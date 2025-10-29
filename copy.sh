@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 echo "Copying files from qtile into directory"
 cp -r ~/.config/qtile/ .

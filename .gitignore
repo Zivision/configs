@@ -1,4 +1,5 @@
 # Ignore qtile stuff
+__pycache__/
 
 
 # Ignore lazy vim configs

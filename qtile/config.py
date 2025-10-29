@@ -1,7 +1,8 @@
 import os
+import subprocess
 
 import libqtile.resources
-from libqtile import bar, layout, qtile, widget
+from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -101,7 +102,7 @@ layouts = [
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    #layout.Bsp(),
+    # layout.Bsp(),
     # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
@@ -111,6 +112,12 @@ layouts = [
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
+
+# Start up hook
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser("~/.config/qtile/autostart.sh")
+    subprocess.Popen([home])
 
 widget_defaults = dict(
     font="sans",
@@ -134,22 +141,16 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                #widget.TextBox("default config", name="default"),
-                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
                 widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.Battery(charge_controller=lambda: (0, 90))
-                #widget.QuickExit(),
+                widget.Battery(update_interval=60,)
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         background="#000000",
-        wallpaper="~/Pictures/Wallpapers/Zhu Yuan(1).png",
-        wallpaper_mode="center",
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
