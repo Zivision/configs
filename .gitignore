@@ -1,0 +1,8 @@
+# Ignore qtile stuff
+
+
+# Ignore lazy vim configs
+.repro/
+.DS_Store
+*.log
+Thumbs.db

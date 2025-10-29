@@ -1,4 +1,7 @@
 #!/bin/bash
 
 echo "Copying files from qtile into directory"
-cp ~/.config/qtile/config.py ./qtile/config.py
+cp -r ~/.config/qtile/ .
+
+echo "Copying files from nvim into directory"
+cp -r ~/.config/nvim/ .
