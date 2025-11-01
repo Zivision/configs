@@ -1,0 +1,8 @@
+#+title: Readme
+* Package config
+** Qtile
+- Status :: Not used anymore
+** Neovim
+- Status :: Not used anymore
+** Emacs
+- Status :: Currently used
