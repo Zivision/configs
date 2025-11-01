@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
 # Start Picom
-picom &
+# picom &
 
 # Nitrogen
 nitrogen --restore &
 
 # Polkit (Gnome)
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+# XFCE powermanager
+#xfce4-power-manager &

@@ -8,7 +8,7 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = guess_terminal(["xfce4-terminal"])
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -98,13 +98,13 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=3, margin=8),
+    layout.MonadTall(border_focus="#ffff00", border_normal="#000000", border_width=1, margin=7),
+    #layout.Columns(border_focus="#ffff00", border_normal="#000000", border_width=1, margin=7),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -142,11 +142,12 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                widget.Systray(),
+                widget.Systray(icon_size=20, padding=5),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                #widget.BatteryIcon(update_interval=60)
                 widget.Battery(update_interval=60,)
             ],
-            24,
+            30,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
