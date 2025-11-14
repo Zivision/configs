@@ -1,0 +1,19 @@
+#+title: Doom Emacs Configuration
+
+*  How to install
+Make sure to install emacs and ripgrep first to use this
+Then install as is or if the elisp files are not installed
+
+
+Then in default doom emacs hit the commands below:
+#+begin_src
+SPC f p
+#+end_src
+
+This opens the doom private directory then select doom-config.org
+and within the file:
+#+begin_src
+C-c C-v t
+#+end_src
+
+This will take the existing source code blocks and write them to the files

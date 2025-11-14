@@ -1,9 +1,66 @@
+#+title: Doom Config
+
+*  Doom config setting :TOC_4:
+-  [[#init-settings][Init settings]]
+  -  [[#input][Input]]
+  -  [[#completion][Completion]]
+  -  [[#ui][UI]]
+  -  [[#editor][Editor]]
+  -  [[#emacs][Emacs]]
+  -  [[#term][Term]]
+  -  [[#checkers][Checkers]]
+  -  [[#tools][Tools]]
+  -  [[#os][OS]]
+  -  [[#lang][Lang]]
+  -  [[#email][Email]]
+  -  [[#app][App]]
+  -  [[#config][Config]]
+-  [[#config-settings][Config settings]]
+  -  [[#basic-usage][Basic usage]]
+    -  [[#basic-variables][Basic variables]]
+    -  [[#basic-macros][Basic macros]]
+  -  [[#basic-settings][Basic settings]]
+    -  [[#fonts][Fonts]]
+    -  [[#theme][Theme]]
+    -  [[#line-numbers][Line numbers]]
+    -  [[#transparency][Transparency]]
+  -  [[#package-settings][Package settings]]
+    -  [[#emms][EMMS]]
+    -  [[#prism][Prism]]
+    -  [[#org][Org]]
+      -  [[#org-modern][Org Modern]]
+      -  [[#org-appear][Org Appear]]
+      -  [[#org-download][Org Download]]
+      -  [[#org-toc][Org TOC]]
+      -  [[#olivetti][Olivetti]]
+      -  [[#misc-org-settings][Misc org settings]]
+-  [[#packages-settings][Packages settings]]
+  -  [[#basic-usage-1][Basic usage]]
+  -  [[#external-packages][External Packages]]
+    -  [[#org-packages][Org Packages]]
+      -  [[#org-modern-1][Org Modern]]
+      -  [[#org-appear-1][Org appear]]
+      -  [[#org-table-of-contents][Org table of contents]]
+      -  [[#org-download-1][Org Download]]
+      -  [[#olivetti-1][Olivetti]]
+    -  [[#themes-and-style][Themes and Style]]
+      -  [[#prism-1][Prism]]
+      -  [[#moe-theme][Moe Theme]]
+    -  [[#misc-and-fun][Misc and fun]]
+      -  [[#fireplace][Fireplace]]
+      -  [[#nyan-mode][Nyan Mode]]
+
+*  Init settings
+**  Input
+#+begin_src emacs-lisp :tangle init.el
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
        ;;japanese
        ;;layout            ; auie,ctsrnm is the superior home row
-
+#+end_src
+**  Completion
+#+begin_src emacs-lisp :tangle init.el
        :completion
        ;;company           ; the ultimate code completion backend
        (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
@@ -11,7 +68,9 @@
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
        vertico           ; the search engine of the future
-
+#+end_src
+**  UI
+#+begin_src emacs-lisp :tangle init.el
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
@@ -36,7 +95,9 @@
        ;;window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
-
+#+end_src
+**  Editor
+#+begin_src emacs-lisp :tangle init.el
        :editor
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
@@ -51,7 +112,9 @@
        snippets          ; my elves. They type so I don't have to
        (whitespace +guess +trim)  ; a butler for your whitespace
        ;;word-wrap         ; soft wrapping with language-aware indent
-
+#+end_src
+**  Emacs
+#+begin_src emacs-lisp :tangle init.el
        :emacs
        dired             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
@@ -60,18 +123,24 @@
        tramp             ; remote files at your arthritic fingertips
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
-
+#+end_src
+**  Term
+#+begin_src emacs-lisp :tangle init.el
        :term
        eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
-
+#+end_src
+**  Checkers
+#+begin_src emacs-lisp :tangle init.el
        :checkers
        syntax              ; tasing you for every semicolon you forget
        (spell +flyspell) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
-
+#+end_src
+**  Tools
+#+begin_src emacs-lisp :tangle init.el
        :tools
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
@@ -93,11 +162,15 @@
        ;;tmux              ; an API for interacting with tmux
        ;;tree-sitter       ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
-
+#+end_src
+**  OS
+#+begin_src emacs-lisp :tangle init.el
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
        ;;tty               ; improve the terminal Emacs experience
-
+#+end_src
+**  Lang
+#+begin_src emacs-lisp :tangle init.el
        :lang
        ;;ada               ; In strong typing we (blindly) trust
        ;;agda              ; types of types of types of types...
@@ -165,19 +238,205 @@
        ;;web               ; the tubes
        yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
-
+#+end_src
+**  Email
+#+begin_src emacs-lisp :tangle init.el
        :email
        ;;(mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
-
+#+end_src
+**  App
+#+begin_src emacs-lisp :tangle init.el
        :app
        ;;calendar
        (emms +mpv)         ; music player with mpv backend.
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
-
+#+end_src
+**  Config
+#+begin_src emacs-lisp :tangle init.el
        :config
        ;;literate
        (default +bindings +smartparens))
+#+end_src
+
+*  Config settings
+**  Basic usage
+***  Basic variables
++ doom-font                :: the primary font to use
++ doom-variable-pitch-font :: a non-monospace font (where applicable)
++ doom-big-font            :: used for big font
++ doom-symbol-font         :: for symbols
++ doom-serif-font          :: serif font
+
+***  Basic macros
++ after!         :: Used for configuring packages doom might override
++ load!          :: Load external .el files
++ use-package!   :: Configure packages
++ after!         :: For running code after a package has loaded
++ add-load-path! :: For adding directories to the load-path.
++ map!           :: Map new keys
+
+**  Basic settings
+***  Fonts
+#+begin_verse
+Will need to download the Iosevka Nerd font for this to work
+#+end_verse
+#+begin_src emacs-lisp :tangle config.el
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 20))
+(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 20))
+#+end_src
+***  Theme
+#+begin_src emacs-lisp :tangle config.el
+(setq doom-theme 'moe-dark)
+#+end_src
+***  Line numbers
+#+begin_src emacs-lisp :tangle config.el
+(setq display-line-numbers-type `relative)
+#+end_src
+***  Transparency
+#+begin_verse
+Change the numerical values to affect the transparency
+(0-100 where 100 is opaque)
+#+end_verse
+#+begin_src emacs-lisp :tangle config.el
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+#+end_src
+**  Package settings
+***  EMMS
+#+begin_verse
+This is the music player I use
+#+end_verse
+#+begin_src emacs-lisp :tangle config.el
+(use-package! emms
+  :config
+  (setq emms-source-file-default-directory "~/Music/Music")
+  (setq emms-player-list '(emms-player-mpv)))
+#+END_SRC
+***  Prism
+#+begin_verse
+Colored parenthesis (colored lisp go brrr)
+#+end_verse
+#+begin_src emacs-lisp :tangle config.el
+
+(use-package! prism
+  :init
+  (setq prism-desaturations '(10 15 20))
+  :hook (((clojure-mode emacs-lisp-mode) . prism-mode)))
+
+#+end_src
+***  Org
+#+begin_verse
+All of my org settings
+first my default org directory
+#+end_verse
+#+begin_src emacs-lisp :tangle config.el
+(setq org-directory "~/Documents/org")
+(after! org
+  (setq org-hide-emphasis-markers t))
+#+end_src
+****  Org Modern
+#+begin_verse
+This makes org mode nicer to look at
+#+end_verse
+#+begin_src emacs-lisp :tangle config.el
+;; Org modern settings
+(use-package! org-modern
+  :hook (org-mode . org-modern-mode)
+  :config
+  ;; Basic settings
+  (setq org-modern-star '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+        org-modern-table-vertical 1
+        org-modern-table-horizontal 0.2
+        org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
+        org-modern-block-fringe nil
+        org-modern-todo-faces
+        '(("TODO" :background "red" :foreground "white")
+          ("DONE" :background "green" :foreground "white")
+          ("NOTE" :background "yellow" :foreground "black")))
+  ;; Source code block settings
+  (setq org-src-fontify-natively t      ; Syntax highlight in code blocks
+        org-src-tab-acts-natively t      ; Tab works normally in code blocks
+        org-src-preserve-indentation t))  ; Preserve indentation
+#+end_src
+****  Org Appear
+#+begin_src emacs-lisp :tangle config.el
+(use-package! org-appear
+  :after org-modern
+  :hook (org-mode . org-appear-mode))
+#+END_SRC
+****  Org Download
+#+begin_src emacs-lisp :tangle config.el
+(setq-default org-download-image-dir "~/Pictures/Org")
+#+end_src
+****  Org TOC
+#+begin_src emacs-lisp :tangle config.el
+(use-package! toc-org
+  :hook (org-mode . toc-org-mode))
+#+END_SRC
+****  Olivetti
+#+begin_verse
+Used to center org documents
+#+end_verse
+#+begin_src emacs-lisp :tangle config.el
+(use-package! olivetti
+  :hook (org-mode . olivetti-mode)
+  :config (setq olivetti-body-width 100))
+#+end_src
+****  Misc org settings
+#+begin_src emacs-lisp :tangle config.el
+(after! org
+  (setq org-babel-python-command "python3") ; Sets python to "python3"
+  (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
+#+end_src
+*  Packages settings
+**  Basic usage
+1. Declare them here in a `package!' statement,
+2. Run 'doom sync' in the shell,
+3. Restart Emacs.
+NOTE: for more info on packages look at the documentation (SPC h d h) or more specifically
+C-h f package\!
+**  External Packages
+***  Org Packages
+****  Org Modern
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-modern)
+#+end_src
+****  Org appear
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-appear)
+#+END_SRC
+****  Org table of contents
+#+begin_src emacs-lisp :tangle packages.el
+(package! toc-org)
+#+END_SRC
+****  Org Download
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-download)
+#+end_src
+****  Olivetti
+#+begin_src emacs-lisp :tangle packages.el
+(package! olivetti)
+#+end_src
+***  Themes and Style
+****  Prism
+#+begin_src emacs-lisp :tangle packages.el
+(package! prism)
+#+end_src
+****  Moe Theme
+#+begin_src emacs-lisp :tangle packages.el
+(package! moe-theme)
+#+end_src
+***  Misc and fun
+****  Fireplace
+*Hello World*
+#+begin_src emacs-lisp :tangle packages.el
+(package! fireplace)
+#+end_src
+****  Nyan Mode
+#+begin_src emacs-lisp :tangle packages.el
+(package! nyan-mode)
+#+end_src

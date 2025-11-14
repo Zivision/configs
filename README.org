@@ -1,5 +1,12 @@
 #+title: Readme
-* Package config
+
+*  Table of contents :toc:
+-  [[#configs][Configs]]
+  - [[#qtile][Qtile]]
+  - [[#neovim][Neovim]]
+  - [[#emacs][Emacs]]
+
+*  Configs
 ** Qtile
 - Status :: Not used anymore
 ** Neovim
