@@ -10,8 +10,6 @@
 
 (package! prism)
 
-(package! moe-theme)
-
 (package! fireplace)
 
 (package! nyan-mode)

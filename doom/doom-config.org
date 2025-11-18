@@ -22,6 +22,7 @@
   -  [[#basic-settings][Basic settings]]
     -  [[#fonts][Fonts]]
     -  [[#theme][Theme]]
+      -  [[#set-theme][Set Theme]]
     -  [[#line-numbers][Line numbers]]
     -  [[#transparency][Transparency]]
   -  [[#package-settings][Package settings]]
@@ -34,6 +35,7 @@
       -  [[#org-toc][Org TOC]]
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
+    -  [[#lispy][Lispy]]
 -  [[#packages-settings][Packages settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
@@ -45,7 +47,6 @@
       -  [[#olivetti-1][Olivetti]]
     -  [[#themes-and-style][Themes and Style]]
       -  [[#prism-1][Prism]]
-      -  [[#moe-theme][Moe Theme]]
     -  [[#misc-and-fun][Misc and fun]]
       -  [[#fireplace][Fireplace]]
       -  [[#nyan-mode][Nyan Mode]]
@@ -75,7 +76,7 @@
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;indent-guides     ; highlighted indent columns
@@ -99,7 +100,7 @@
 **  Editor
 #+begin_src emacs-lisp :tangle init.el
        :editor
-       (evil +everywhere); come to the dark side, we have cookies
+       (evil +everywhere) ; come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
@@ -160,7 +161,8 @@
        ;;pdf               ; pdf enhancements
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       ;;tree-sitter       ; syntax and parsing, sitting in a tree...
+       (tree-sitter
+        +everywhere)       ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 #+end_src
 **  OS
@@ -184,7 +186,7 @@
        ;;data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;dhall
-       ;;elixir            ; erlang done right
+       elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
@@ -197,13 +199,14 @@
        ;;gdscript          ; the language you waited for
        (go +lsp)         ; the hipster dialect
        ;;(graphql +lsp)    ; Give queries a REST
-       (haskell +lsp)    ; a language that's lazier than I am
+       ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        ;;json              ; At least it ain't XML
        ;;janet             ; Fun fact: Janet is me!
-       (java +lsp)       ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
+       (javascript
+        +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -289,8 +292,9 @@ Will need to download the Iosevka Nerd font for this to work
 (setq doom-serif-font (font-spec :family "DejaVu Serif" :size 20))
 #+end_src
 ***  Theme
+****  Set Theme
 #+begin_src emacs-lisp :tangle config.el
-(setq doom-theme 'moe-dark)
+(setq doom-theme 'doom-gruvbox)
 #+end_src
 ***  Line numbers
 #+begin_src emacs-lisp :tangle config.el
@@ -356,7 +360,7 @@ This makes org mode nicer to look at
         org-modern-todo-faces
         '(("TODO" :background "red" :foreground "white")
           ("DONE" :background "green" :foreground "white")
-          ("NOTE" :background "yellow" :foreground "black")))
+          ("NOTE" :background "blue" :foreground "white")))
   ;; Source code block settings
   (setq org-src-fontify-natively t      ; Syntax highlight in code blocks
         org-src-tab-acts-natively t      ; Tab works normally in code blocks
@@ -392,6 +396,15 @@ Used to center org documents
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
 #+end_src
+
+***  Lispy
+#+begin_src emacs-lisp :tangle config.el
+(map! :leader
+      :prefix "l"
+      "r" #'lispy-raise
+      "b" #'lispy-barf
+      "s" #'lispy-slurp)
+#+end_src
 *  Packages settings
 **  Basic usage
 1. Declare them here in a `package!' statement,
@@ -425,10 +438,6 @@ C-h f package\!
 ****  Prism
 #+begin_src emacs-lisp :tangle packages.el
 (package! prism)
-#+end_src
-****  Moe Theme
-#+begin_src emacs-lisp :tangle packages.el
-(package! moe-theme)
 #+end_src
 ***  Misc and fun
 ****  Fireplace
