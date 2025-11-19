@@ -1,5 +1,11 @@
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 20))
-(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 20))
+(add-hook 'org-mode-hook
+          (lambda () (text-scale-set 1))) ; Make font larger in org mode
+
+(add-hook 'prog-mode-hook
+          (lambda () (text-scale-set 0))) ; Reset font for programming modes
+
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
+(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
 
 (setq doom-theme 'doom-gruvbox)
 
@@ -34,8 +40,8 @@
         org-modern-block-fringe nil
         org-modern-todo-faces
         '(("TODO" :background "red" :foreground "white")
-          ("DONE" :background "green" :foreground "white")
-          ("NOTE" :background "blue" :foreground "white")))
+          ("DONE" :background "green" :foreground "white")))
+
   ;; Source code block settings
   (setq org-src-fontify-natively t      ; Syntax highlight in code blocks
         org-src-tab-acts-natively t      ; Tab works normally in code blocks
@@ -57,9 +63,3 @@
 (after! org
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
-
-(map! :leader
-      :prefix "l"
-      "r" #'lispy-raise
-      "b" #'lispy-barf
-      "s" #'lispy-slurp)

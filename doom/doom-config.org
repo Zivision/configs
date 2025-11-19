@@ -21,8 +21,9 @@
     -  [[#basic-macros][Basic macros]]
   -  [[#basic-settings][Basic settings]]
     -  [[#fonts][Fonts]]
+      -  [[#change-font-based-on-mode][Change Font Based on Mode]]
+      -  [[#set-font-faces][Set Font Faces]]
     -  [[#theme][Theme]]
-      -  [[#set-theme][Set Theme]]
     -  [[#line-numbers][Line numbers]]
     -  [[#transparency][Transparency]]
   -  [[#package-settings][Package settings]]
@@ -35,7 +36,6 @@
       -  [[#org-toc][Org TOC]]
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
-    -  [[#lispy][Lispy]]
 -  [[#packages-settings][Packages settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
@@ -75,7 +75,7 @@
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
-       doom-dashboard    ; a nifty splash screen for Emacs
+       ;;doom-dashboard    ; a nifty splash screen for Emacs
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
@@ -92,9 +92,9 @@
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+       ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
-       workspaces        ; tab emulation, persistence & separate workspaces
+       ;;workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 #+end_src
 **  Editor
@@ -105,7 +105,7 @@
        fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
-       lispy             ; vim for lisp, for people who don't like vim
+       ;;lispy             ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
@@ -186,7 +186,7 @@
        ;;data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;dhall
-       elixir            ; erlang done right
+       ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
@@ -284,15 +284,21 @@
 
 **  Basic settings
 ***  Fonts
-#+begin_verse
-Will need to download the Iosevka Nerd font for this to work
-#+end_verse
+****  Change Font Based on Mode
 #+begin_src emacs-lisp :tangle config.el
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 20))
-(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 20))
+(add-hook 'org-mode-hook
+          (lambda () (text-scale-set 1))) ; Make font larger in org mode
+
+(add-hook 'prog-mode-hook
+          (lambda () (text-scale-set 0))) ; Reset font for programming modes
+#+end_src
+****  Set Font Faces
+Will need to download the Iosevka Nerd font for this to work
+#+begin_src emacs-lisp :tangle config.el
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
+(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
 #+end_src
 ***  Theme
-****  Set Theme
 #+begin_src emacs-lisp :tangle config.el
 (setq doom-theme 'doom-gruvbox)
 #+end_src
@@ -359,8 +365,8 @@ This makes org mode nicer to look at
         org-modern-block-fringe nil
         org-modern-todo-faces
         '(("TODO" :background "red" :foreground "white")
-          ("DONE" :background "green" :foreground "white")
-          ("NOTE" :background "blue" :foreground "white")))
+          ("DONE" :background "green" :foreground "white")))
+
   ;; Source code block settings
   (setq org-src-fontify-natively t      ; Syntax highlight in code blocks
         org-src-tab-acts-natively t      ; Tab works normally in code blocks
@@ -395,15 +401,6 @@ Used to center org documents
 (after! org
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
-#+end_src
-
-***  Lispy
-#+begin_src emacs-lisp :tangle config.el
-(map! :leader
-      :prefix "l"
-      "r" #'lispy-raise
-      "b" #'lispy-barf
-      "s" #'lispy-slurp)
 #+end_src
 *  Packages settings
 **  Basic usage
