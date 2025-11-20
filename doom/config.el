@@ -1,3 +1,5 @@
+(setq initial-buffer-choice (lambda () (get-buffer "*Messages*")))
+
 (add-hook 'org-mode-hook
           (lambda () (text-scale-set 1))) ; Make font larger in org mode
 
@@ -13,11 +15,6 @@
 
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
-
-(use-package! emms
-  :config
-  (setq emms-source-file-default-directory "~/Music/Music")
-  (setq emms-player-list '(emms-player-mpv)))
 
 (use-package! prism
   :init
