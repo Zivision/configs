@@ -1,5 +1,3 @@
-(setq initial-buffer-choice (lambda () (get-buffer "*Messages*")))
-
 (add-hook 'org-mode-hook
           (lambda () (text-scale-set 1))) ; Make font larger in org mode
 

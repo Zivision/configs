@@ -47,9 +47,6 @@
       -  [[#olivetti-1][Olivetti]]
     -  [[#themes-and-style][Themes and Style]]
       -  [[#prism-1][Prism]]
-    -  [[#misc-and-fun][Misc and fun]]
-      -  [[#fireplace][Fireplace]]
-      -  [[#nyan-mode][Nyan Mode]]
 
 *  Init settings
 **  Input
@@ -75,7 +72,7 @@
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
-       ;;doom-dashboard    ; a nifty splash screen for Emacs
+       doom-dashboard    ; a nifty splash screen for Emacs
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
@@ -283,10 +280,6 @@
 + map!           :: Map new keys
 
 **  Basic settings
-***  Splash Screen
-#+begin_src emacs-lisp :tangle config.el
-(setq initial-buffer-choice (lambda () (get-buffer "*Messages*")))
-#+end_src
 ***  Fonts
 ****  Change Font Based on Mode
 #+begin_src emacs-lisp :tangle config.el
@@ -429,14 +422,4 @@ C-h f package\!
 ****  Prism
 #+begin_src emacs-lisp :tangle packages.el
 (package! prism)
-#+end_src
-***  Misc and fun
-****  Fireplace
-*Hello World*
-#+begin_src emacs-lisp :tangle packages.el
-(package! fireplace)
-#+end_src
-****  Nyan Mode
-#+begin_src emacs-lisp :tangle packages.el
-(package! nyan-mode)
 #+end_src

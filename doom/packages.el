@@ -9,7 +9,3 @@
 (package! olivetti)
 
 (package! prism)
-
-(package! fireplace)
-
-(package! nyan-mode)
