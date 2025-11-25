@@ -14,6 +14,21 @@
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
+(after! dap-mode
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (dap-mode 1)
+  (dap-ui-mode 1)
+
+(require 'dap-python)
+;; Set python debugger (debugpy)
+(setq dap-python-debugger 'debugpy)
+
+(require 'dap-node)
+;; Auto-installs debug adapter
+(dap-node-setup)
+
+(require 'dap-dlv-go))
+
 (use-package! prism
   :init
   (setq prism-desaturations '(10 15 20))
