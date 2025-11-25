@@ -1,15 +1,35 @@
-#+title: Readme
+#+title: Config Files
 
-*  Table of contents :toc:
+*  Table of contents :toc_3:
 -  [[#configs][Configs]]
-  - [[#qtile][Qtile]]
-  - [[#neovim][Neovim]]
-  - [[#emacs][Emacs]]
+  -  [[#warnings-as-of-11252025][WARNINGS (as of 11/25/2025)]]
+    -  [[#neovim][Neovim]]
+    -  [[#qtile][Qtile]]
+  -  [[#qtile-1][Qtile]]
+  -  [[#neovim-lazy-vim][Neovim (Lazy Vim)]]
+  -  [[#gnu-emacs-doom-emacs][GNU Emacs (Doom Emacs)]]
+-  [[#general-install][General Install]]
+  -  [[#install][Install]]
+  -  [[#configure][Configure]]
 
 *  Configs
-** Qtile
+**  WARNINGS (as of 11/25/2025)
+List of general warnings
+***  Neovim
+WARNING! Lazy Vim needs Neovim 0.11.2 or greater.
+The current version on Ubuntu is 0.9.5
+***  Qtile
+On Ubuntu based machines you will have to follow the manual install instructions in Qtile's documentation.
+**  Qtile
 - Status :: Not used anymore
-** Neovim
+**  Neovim (Lazy Vim)
 - Status :: Not used anymore
-** Emacs
+**  GNU Emacs (Doom Emacs)
 - Status :: Currently used
+- Ubuntu's default version of GNU Emacs (29.3) is adequate
+*  General Install
+**  Install
+To get started take a quick look at the install.sh file.
+Comment any commands out that you don't want and then run it.
+**  Configure
+After that run configure.sh to run GNU stow symlinks
