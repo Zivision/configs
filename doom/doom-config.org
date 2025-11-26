@@ -31,6 +31,7 @@
       -  [[#main-config][Main Config]]
       -  [[#python][Python]]
       -  [[#javascripttypescript][Javascript/Typescript]]
+      -  [[#go][Go]]
     -  [[#prism][Prism]]
     -  [[#org][Org]]
       -  [[#org-modern][Org Modern]]
