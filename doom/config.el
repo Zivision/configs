@@ -7,7 +7,7 @@
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
 
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-monokai-classic)
 
 (setq display-line-numbers-type `relative)
 
