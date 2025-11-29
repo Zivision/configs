@@ -1,12 +1,14 @@
 (add-hook 'org-mode-hook
-          (lambda () (text-scale-set 1))) ; Make font larger in org mode
+          (lambda () (text-scale-set 2))) ; Make font larger in org mode
 
 (add-hook 'prog-mode-hook
           (lambda () (text-scale-set 0))) ; Reset font for programming modes
 
-(setq doom-font (font-spec :family "Unifont" :size 16))
-(setq doom-big-font-increment 6)
+(setq doom-font (font-spec :family "Unifont" :size 20))
 (setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
+
+;; Make doom large font even bigger
+(setq doom-big-font-increment 6)
 
 (setq doom-theme 'cyberpunk)
 
@@ -31,7 +33,66 @@
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
-(display-time-mode t)
+(after! doom-modeline
+  ;; Configuration
+  (setq doom-modeline-height 32
+        doom-modeline-bar-width 5
+        doom-modeline-icon t
+        doom-modeline-major-mode-icon t
+        doom-modeline-major-mode-color-icon t
+        doom-modeline-buffer-file-name-style 'truncate-upto-project
+        doom-modeline-buffer-encoding t
+        doom-modeline-indent-info t
+        doom-modeline-lsp t
+        doom-modeline-env-version t
+        doom-modeline-enable-word-count t
+        doom-modeline-column-zero-based nil
+        doom-modeline-minor-modes nil)
+  
+  ;; Cyberpunk neon colors
+  (custom-set-faces!
+    ;; Active mode-line - bright cyan with hot pink accent
+    '(mode-line :background "#0a0a0a" :foreground "#00ffff" 
+                :box (:line-width 4 :color "#ff1493" :style nil))
+    
+    ;; Inactive mode-line - subtle and dark
+    '(mode-line-inactive :background "#050505" :foreground "#404040"
+                         :box (:line-width 2 :color "#1a1a1a"))
+    
+    ;; Evil state colors (neon theme)
+    '(doom-modeline-evil-insert-state :foreground "#ff1493" :weight bold)  ; Hot pink
+    '(doom-modeline-evil-normal-state :foreground "#00ffff" :weight bold)  ; Cyan
+    '(doom-modeline-evil-visual-state :foreground "#ff69b4" :weight bold)  ; Light pink
+    '(doom-modeline-evil-replace-state :foreground "#ff00ff" :weight bold) ; Magenta
+    '(doom-modeline-evil-motion-state :foreground "#00ff00" :weight bold)  ; Green
+    '(doom-modeline-evil-emacs-state :foreground "#ffff00" :weight bold)   ; Yellow
+    '(doom-modeline-evil-operator-state :foreground "#00ffff" :weight bold)
+    
+    ;; Buffer status
+    '(doom-modeline-buffer-modified :foreground "#ff1493" :weight bold)
+    '(doom-modeline-buffer-major-mode :foreground "#00ffff")
+    '(doom-modeline-buffer-file :foreground "#00ffff" :weight bold)
+    '(doom-modeline-buffer-path :foreground "#7f7f7f")
+    
+    ;; LSP and checker
+    '(doom-modeline-lsp-success :foreground "#00ff00")
+    '(doom-modeline-lsp-warning :foreground "#ffff00")
+    '(doom-modeline-lsp-error :foreground "#ff1493")
+    
+    ;; Version control
+    '(doom-modeline-vcs-info :foreground "#ff69b4")
+    
+    ;; Info sections
+    '(doom-modeline-info :foreground "#00ffff")
+    '(doom-modeline-warning :foreground "#ffff00")
+    '(doom-modeline-urgent :foreground "#ff1493" :weight bold)
+    
+    ;; Bar (the colored line on the left)
+    '(doom-modeline-bar :background "#ff1493")
+    '(doom-modeline-bar-inactive :background "#1a1a1a")))
+
+(display-time-mode 1)
+(display-battery-mode 1)
 
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
@@ -55,7 +116,12 @@
 
 (setq org-directory "~/Documents/org")
 (after! org
-  (setq org-hide-emphasis-markers t))
+  (setq org-hide-emphasis-markers t)
+
+(custom-set-faces!
+    '(org-block :background "#000000")  ; Pure black or use nil
+    '(org-block-begin-line :background nil :foreground "#00ffff" :height 0.9)
+    '(org-block-end-line :background nil :foreground "#00ffff" :height 0.9)))
 
 ;; Org modern settings
 (use-package! org-modern
