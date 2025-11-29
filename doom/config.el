@@ -1,10 +1,57 @@
+;; Pink GNU Emacs banner
+(defun my-gnu-emacs-banner ()
+  (let* ((banner '(
+    "   _______   ____  __   ______                         "
+    "  / ____/ | / / / / /  / ____/___ ___  ____ ___________"
+    " / / __/  |/ / / / /  / __/ / __ `__ \\/ __ `/ ___/ ___/"
+    "/ /_/ / /|  / /_/ /  / /___/ / / / / / /_/ / /__(__  ) "
+    "\\____/_/ |_/\\____/  /_____/_/ /_/ /_/\\__,_/\\___/____/  "
+    "                                                       "))
+         (longest-line (apply #'max (mapcar #'length banner))))
+    (put-text-property
+     (point)
+     (dolist (line banner (point))
+       (insert (+doom-dashboard--center
+                +doom-dashboard--width
+                (concat
+                 (propertize line 'face '(:foreground "#ff1493" :weight bold))
+                 (make-string (max 0 (- longest-line (length line))) 32)))
+               "\n"))
+     'face 'doom-dashboard-banner)))
+
+(setq +doom-dashboard-ascii-banner-fn #'my-gnu-emacs-banner)
+
+;; Custom footer
+(defun my-custom-footer ()
+  (insert
+   "\n"
+   (+doom-dashboard--center
+    (- +doom-dashboard--width 2)
+    (propertize
+     ">> NEURAL INTERFACE ACTIVE <<"
+     'face '(:foreground "#ff1493" :weight bold)))))
+
+;; Configure dashboard
+(setq +doom-dashboard-functions
+      '(doom-dashboard-widget-banner
+        doom-dashboard-widget-shortmenu
+        doom-dashboard-widget-loaded
+        my-custom-footer))
+
+;; Pink-themed dashboard colors
+(custom-set-faces!
+  '(doom-dashboard-banner :foreground "#ff1493" :weight bold)
+  '(doom-dashboard-menu-title :foreground "#ff69b4" :weight bold)
+  '(doom-dashboard-menu-desc :foreground "#ff1493")
+  '(doom-dashboard-footer :foreground "#ff1493" :weight bold))
+
 (add-hook 'org-mode-hook
-          (lambda () (text-scale-set 2))) ; Make font larger in org mode
+          (lambda () (text-scale-set 1))) ; Make font larger in org mode
 
 (add-hook 'prog-mode-hook
           (lambda () (text-scale-set 0))) ; Reset font for programming modes
 
-(setq doom-font (font-spec :family "Unifont" :size 20))
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
 
 ;; Make doom large font even bigger
@@ -20,6 +67,35 @@
 ;; Fine-tune cyberpunk colors for Doom UI elements
 (after! cyberpunk-theme
   (custom-set-faces!
+    ;; Main text - bright cyan
+    '(default :foreground "#ffffff" :background "#000000")
+    
+    ;; Make comments less dim
+    '(font-lock-comment-face :foreground "#808080" :slant italic)
+    
+    ;; Pop the syntax highlighting
+    '(font-lock-keyword-face :foreground "#ff1493" :weight bold)
+    '(font-lock-type-face :foreground "#00ff00")
+    '(font-lock-function-name-face :foreground "#ffff00" :weight bold)
+    '(font-lock-variable-name-face :foreground "#00ffff")
+    '(font-lock-string-face :foreground "#ff69b4")
+    '(font-lock-constant-face :foreground "#00ffff" :weight bold)
+    '(font-lock-builtin-face :foreground "#ff00ff")
+    
+    ;; Make links and URLs pop
+    '(link :foreground "#ff1493" :underline t)
+    
+    ;; Org mode text
+    '(org-document-title :foreground "#00ffff" :weight bold :height 1.5)
+    '(org-level-1 :foreground "#ff1493" :weight bold :height 1.3)
+    '(org-level-2 :foreground "#00ffff" :weight bold :height 1.2)
+    '(org-level-3 :foreground "#ff69b4" :weight bold :height 1.1)
+    '(org-level-4 :foreground "#00ff00" :weight bold)
+    
+    ;; Bold and italic text
+    '(bold :foreground "#ffffff" :weight bold)
+    '(italic :foreground "#ff69b4" :slant italic)
+    
     ;; Make modeline pop more
     '(mode-line :background "#000000" :foreground "#ffffff")
     '(mode-line-inactive :background "#000000" :foreground "#5f8787")
@@ -27,6 +103,26 @@
     ;; Better line numbers
     '(line-number :foreground "#4a4a4a")
     '(line-number-current-line :foreground "#00ffff" :weight bold)))
+
+;; Remove all window borders and dividers
+(setq window-divider-default-bottom-width 0
+      window-divider-default-right-width 0
+      window-divider-default-places nil)
+(window-divider-mode -1)
+
+;; Make borders invisible by matching background
+(set-face-background 'vertical-border "#000000")
+(set-face-foreground 'vertical-border "#000000")
+
+;; Remove fringe (the side margins)
+(set-fringe-mode 0)  ; Or use a number like 8 for minimal fringe
+
+;; Optional: make internal borders match your background
+(custom-set-faces!
+  '(vertical-border :foreground "#000000" :background "#000000")
+  '(window-divider :foreground "#000000")
+  '(window-divider-first-pixel :foreground "#000000")
+  '(window-divider-last-pixel :foreground "#000000"))
 
 (setq display-line-numbers-type `relative)
 
