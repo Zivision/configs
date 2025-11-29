@@ -4,15 +4,34 @@
 (add-hook 'prog-mode-hook
           (lambda () (text-scale-set 0))) ; Reset font for programming modes
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
+(setq doom-font (font-spec :family "Unifont" :size 16))
+(setq doom-big-font-increment 6)
 (setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
 
-(setq doom-theme 'doom-monokai-classic)
+(setq doom-theme 'cyberpunk)
+
+;; Enable bold and italic for better syntax highlighting
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+
+;; Fine-tune cyberpunk colors for Doom UI elements
+(after! cyberpunk-theme
+  (custom-set-faces!
+    ;; Make modeline pop more
+    '(mode-line :background "#000000" :foreground "#ffffff")
+    '(mode-line-inactive :background "#000000" :foreground "#5f8787")
+
+    ;; Better line numbers
+    '(line-number :foreground "#4a4a4a")
+    '(line-number-current-line :foreground "#00ffff" :weight bold)))
 
 (setq display-line-numbers-type `relative)
 
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+
+(display-time-mode t)
 
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
