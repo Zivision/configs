@@ -14,36 +14,12 @@
        (insert (+doom-dashboard--center
                 +doom-dashboard--width
                 (concat
-                 (propertize line 'face '(:foreground "#ff1493" :weight bold))
+                 (propertize line 'face '(:weight bold))
                  (make-string (max 0 (- longest-line (length line))) 32)))
                "\n"))
      'face 'doom-dashboard-banner)))
 
 (setq +doom-dashboard-ascii-banner-fn #'my-gnu-emacs-banner)
-
-;; Custom footer
-(defun my-custom-footer ()
-  (insert
-   "\n"
-   (+doom-dashboard--center
-    (- +doom-dashboard--width 2)
-    (propertize
-     ">> NEURAL INTERFACE ACTIVE <<"
-     'face '(:foreground "#ff1493" :weight bold)))))
-
-;; Configure dashboard
-(setq +doom-dashboard-functions
-      '(doom-dashboard-widget-banner
-        doom-dashboard-widget-shortmenu
-        doom-dashboard-widget-loaded
-        my-custom-footer))
-
-;; Pink-themed dashboard colors
-(custom-set-faces!
-  '(doom-dashboard-banner :foreground "#ff1493" :weight bold)
-  '(doom-dashboard-menu-title :foreground "#ff69b4" :weight bold)
-  '(doom-dashboard-menu-desc :foreground "#ff1493")
-  '(doom-dashboard-footer :foreground "#ff1493" :weight bold))
 
 (add-hook 'org-mode-hook
           (lambda () (text-scale-set 1))) ; Make font larger in org mode
@@ -57,52 +33,13 @@
 ;; Make doom large font even bigger
 (setq doom-big-font-increment 6)
 
-(setq doom-theme 'cyberpunk)
-
 ;; Enable bold and italic for better syntax highlighting
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 
-;; Fine-tune cyberpunk colors for Doom UI elements
-(after! cyberpunk-theme
-  (custom-set-faces!
-    ;; Main text - bright cyan
-    '(default :foreground "#ffffff" :background "#000000")
-    
-    ;; Make comments less dim
-    '(font-lock-comment-face :foreground "#808080" :slant italic)
-    
-    ;; Pop the syntax highlighting
-    '(font-lock-keyword-face :foreground "#ff1493" :weight bold)
-    '(font-lock-type-face :foreground "#00ff00")
-    '(font-lock-function-name-face :foreground "#ffff00" :weight bold)
-    '(font-lock-variable-name-face :foreground "#00ffff")
-    '(font-lock-string-face :foreground "#ff69b4")
-    '(font-lock-constant-face :foreground "#00ffff" :weight bold)
-    '(font-lock-builtin-face :foreground "#ff00ff")
-    
-    ;; Make links and URLs pop
-    '(link :foreground "#ff1493" :underline t)
-    
-    ;; Org mode text
-    '(org-document-title :foreground "#00ffff" :weight bold :height 1.5)
-    '(org-level-1 :foreground "#ff1493" :weight bold :height 1.3)
-    '(org-level-2 :foreground "#00ffff" :weight bold :height 1.2)
-    '(org-level-3 :foreground "#ff69b4" :weight bold :height 1.1)
-    '(org-level-4 :foreground "#00ff00" :weight bold)
-    
-    ;; Bold and italic text
-    '(bold :foreground "#ffffff" :weight bold)
-    '(italic :foreground "#ff69b4" :slant italic)
-    
-    ;; Make modeline pop more
-    '(mode-line :background "#000000" :foreground "#ffffff")
-    '(mode-line-inactive :background "#000000" :foreground "#5f8787")
-
-    ;; Better line numbers
-    '(line-number :foreground "#4a4a4a")
-    '(line-number-current-line :foreground "#00ffff" :weight bold)))
+;; Set Theme
+(setq doom-theme 'doom-gruvbox)
 
 ;; Remove all window borders and dividers
 (setq window-divider-default-bottom-width 0
@@ -143,49 +80,8 @@
         doom-modeline-env-version t
         doom-modeline-enable-word-count t
         doom-modeline-column-zero-based nil
-        doom-modeline-minor-modes nil)
+        doom-modeline-minor-modes nil))
   
-  ;; Cyberpunk neon colors
-  (custom-set-faces!
-    ;; Active mode-line - bright cyan with hot pink accent
-    '(mode-line :background "#0a0a0a" :foreground "#00ffff" 
-                :box (:line-width 4 :color "#ff1493" :style nil))
-    
-    ;; Inactive mode-line - subtle and dark
-    '(mode-line-inactive :background "#050505" :foreground "#404040"
-                         :box (:line-width 2 :color "#1a1a1a"))
-    
-    ;; Evil state colors (neon theme)
-    '(doom-modeline-evil-insert-state :foreground "#ff1493" :weight bold)  ; Hot pink
-    '(doom-modeline-evil-normal-state :foreground "#00ffff" :weight bold)  ; Cyan
-    '(doom-modeline-evil-visual-state :foreground "#ff69b4" :weight bold)  ; Light pink
-    '(doom-modeline-evil-replace-state :foreground "#ff00ff" :weight bold) ; Magenta
-    '(doom-modeline-evil-motion-state :foreground "#00ff00" :weight bold)  ; Green
-    '(doom-modeline-evil-emacs-state :foreground "#ffff00" :weight bold)   ; Yellow
-    '(doom-modeline-evil-operator-state :foreground "#00ffff" :weight bold)
-    
-    ;; Buffer status
-    '(doom-modeline-buffer-modified :foreground "#ff1493" :weight bold)
-    '(doom-modeline-buffer-major-mode :foreground "#00ffff")
-    '(doom-modeline-buffer-file :foreground "#00ffff" :weight bold)
-    '(doom-modeline-buffer-path :foreground "#7f7f7f")
-    
-    ;; LSP and checker
-    '(doom-modeline-lsp-success :foreground "#00ff00")
-    '(doom-modeline-lsp-warning :foreground "#ffff00")
-    '(doom-modeline-lsp-error :foreground "#ff1493")
-    
-    ;; Version control
-    '(doom-modeline-vcs-info :foreground "#ff69b4")
-    
-    ;; Info sections
-    '(doom-modeline-info :foreground "#00ffff")
-    '(doom-modeline-warning :foreground "#ffff00")
-    '(doom-modeline-urgent :foreground "#ff1493" :weight bold)
-    
-    ;; Bar (the colored line on the left)
-    '(doom-modeline-bar :background "#ff1493")
-    '(doom-modeline-bar-inactive :background "#1a1a1a")))
 
 (display-time-mode 1)
 (display-battery-mode 1)
@@ -212,12 +108,7 @@
 
 (setq org-directory "~/Documents/org")
 (after! org
-  (setq org-hide-emphasis-markers t)
-
-(custom-set-faces!
-    '(org-block :background "#000000")  ; Pure black or use nil
-    '(org-block-begin-line :background nil :foreground "#00ffff" :height 0.9)
-    '(org-block-end-line :background nil :foreground "#00ffff" :height 0.9)))
+  (setq org-hide-emphasis-markers t))
 
 ;; Org modern settings
 (use-package! org-modern

@@ -9,5 +9,3 @@
 (package! olivetti)
 
 (package! prism)
-
-(package! cyberpunk-theme)
