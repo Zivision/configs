@@ -1,5 +1,7 @@
-#+title: Doom Configuration
-
+#+title: Doom Emacs Configuration
+This is the org document for my configuration
+To update the configuration use org-babel-tangle *C-c C-v t* to output the source code.
+Then *SPC h r r* to reload the configuration
 
 *  Doom config setting :TOC_4:
 -  [[#how-to-install][How to Install]]
@@ -65,12 +67,12 @@ After that run configure.sh to run stow and symlink the files.
 
 Happy Hacking!
 
-
-
 *  Init Settings
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
+
+This are the settings originally located in init.el
 **  Input
 #+begin_src emacs-lisp :tangle init.el
 (doom! :input
@@ -290,6 +292,9 @@ Happy Hacking!
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
+
+This are the settings originally located in config.el
+Where all my actual configuration takes place.
 **  Basic usage
 ***  Basic variables
 + doom-font                :: the primary font to use
@@ -634,6 +639,8 @@ Used to center org documents
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
+
+This are the external dependencies originally in packages.el
 **  Basic usage
 1. Declare them here in a `package!' statement,
 2. Run 'doom sync' in the shell,
