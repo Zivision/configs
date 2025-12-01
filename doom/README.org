@@ -41,7 +41,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#go][Go]]
     -  [[#prism][Prism]]
     -  [[#org][Org]]
-      - [[#org-code-blocks][Org Code Blocks]]
       -  [[#org-modern][Org Modern]]
       -  [[#org-appear][Org Appear]]
       -  [[#org-download][Org Download]]
@@ -59,7 +58,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#olivetti-1][Olivetti]]
     -  [[#themes-and-style][Themes and Style]]
       -  [[#prism-1][Prism]]
-      -  [[#cyberpunk-theme][Cyberpunk Theme]]
 
 *  How to Install
 Run the install.sh script in the project root.
@@ -348,7 +346,7 @@ Where all my actual configuration takes place.
           (lambda () (text-scale-set 0))) ; Reset font for programming modes
 #+end_src
 ****  Set Font Faces
-Will need to download the GNU Unifont for this to work
+Will need to download the Iosevka Font for this to work.
 #+begin_src emacs-lisp :tangle config.el
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
