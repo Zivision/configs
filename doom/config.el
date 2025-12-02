@@ -39,7 +39,7 @@
         doom-themes-enable-italic t))
 
 ;; Set Theme
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-outrun-electric)
 
 ;; Remove all window borders and dividers
 (setq window-divider-default-bottom-width 0
