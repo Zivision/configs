@@ -39,7 +39,7 @@
         doom-themes-enable-italic t))
 
 ;; Set Theme
-(setq doom-theme 'doom-outrun-electric)
+(setq doom-theme 'doom-pine)
 
 ;; Remove all window borders and dividers
 (setq window-divider-default-bottom-width 0
@@ -68,8 +68,8 @@
 
 (after! doom-modeline
   ;; Configuration
-  (setq doom-modeline-height 32
-        doom-modeline-bar-width 5
+  (setq doom-modeline-height 40
+        doom-modeline-bar-width 6
         doom-modeline-icon t
         doom-modeline-major-mode-icon t
         doom-modeline-major-mode-color-icon t
@@ -78,7 +78,7 @@
         doom-modeline-indent-info t
         doom-modeline-lsp t
         doom-modeline-env-version t
-        doom-modeline-enable-word-count t
+        doom-modeline-enable-word-count nil
         doom-modeline-column-zero-based nil
         doom-modeline-minor-modes nil))
   
