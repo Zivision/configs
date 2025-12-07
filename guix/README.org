@@ -1,0 +1,8 @@
+#+title: GNU Guix setup
+This is a basic setup for GNU Guix.
+
+*  GNU Guix Table of Contents :TOC_4:
+-  [[#how-to-install][How to Install]]
+
+*  How to Install
++ TODO :: Working on it

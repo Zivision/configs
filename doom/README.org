@@ -1,9 +1,9 @@
-#+title: Doom Emacs Configuration
+#+title: Doom GNU Emacs Configuration
 This is the org document for my configuration
 To update the configuration use org-babel-tangle *C-c C-v t* to output the source code.
 Then *SPC h r r* to reload the configuration
 
-*  Doom config setting :TOC_4:
+*  Doom Table of Contents :TOC_4:
 -  [[#how-to-install][How to Install]]
 -  [[#init-settings][Init Settings]]
   -  [[#input][Input]]
@@ -24,7 +24,7 @@ Then *SPC h r r* to reload the configuration
     -  [[#basic-variables][Basic variables]]
     -  [[#basic-macros][Basic macros]]
   -  [[#basic-settings][Basic settings]]
-    -  [[#splash-screen][Splash Screen]]
+    -  [[#emacs-startup][Emacs Startup]]
     -  [[#fonts][Fonts]]
       -  [[#change-font-based-on-mode][Change Font Based on Mode]]
       -  [[#set-font-faces][Set Font Faces]]
