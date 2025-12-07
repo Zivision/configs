@@ -1,25 +1,4 @@
-;; Pink GNU Emacs banner
-(defun my-gnu-emacs-banner ()
-  (let* ((banner '(
-    "   _______   ____  __   ______                         "
-    "  / ____/ | / / / / /  / ____/___ ___  ____ ___________"
-    " / / __/  |/ / / / /  / __/ / __ `__ \\/ __ `/ ___/ ___/"
-    "/ /_/ / /|  / /_/ /  / /___/ / / / / / /_/ / /__(__  ) "
-    "\\____/_/ |_/\\____/  /_____/_/ /_/ /_/\\__,_/\\___/____/  "
-    "                                                       "))
-         (longest-line (apply #'max (mapcar #'length banner))))
-    (put-text-property
-     (point)
-     (dolist (line banner (point))
-       (insert (+doom-dashboard--center
-                +doom-dashboard--width
-                (concat
-                 (propertize line 'face '(:weight bold))
-                 (make-string (max 0 (- longest-line (length line))) 32)))
-               "\n"))
-     'face 'doom-dashboard-banner)))
 
-(setq +doom-dashboard-ascii-banner-fn #'my-gnu-emacs-banner)
 
 (add-hook 'org-mode-hook
           (lambda () (text-scale-set 1))) ; Make font larger in org mode
@@ -39,7 +18,7 @@
         doom-themes-enable-italic t))
 
 ;; Set Theme
-(setq doom-theme 'doom-pine)
+(setq doom-theme 'doom-rouge)
 
 ;; Remove all window borders and dividers
 (setq window-divider-default-bottom-width 0
@@ -100,6 +79,9 @@
 (dap-node-setup)
 
 (require 'dap-dlv-go))
+
+;; Always create projects when switching projects
+(setq +workspaces-on-switch-project-behavior t)
 
 (use-package! prism
   :init

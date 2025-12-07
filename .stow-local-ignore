@@ -1,6 +1,7 @@
 \.git
+nvim
+qtile
 misc
 #LICENSE
 ^/.*\.org
 ^/.*\.sh
-#.gitignore

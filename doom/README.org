@@ -39,6 +39,7 @@ Then *SPC h r r* to reload the configuration
       -  [[#python][Python]]
       -  [[#javascripttypescript][Javascript/Typescript]]
       -  [[#go][Go]]
+    -  [[#workspaces][Workspaces]]
     -  [[#prism][Prism]]
     -  [[#org][Org]]
       -  [[#org-modern][Org Modern]]
@@ -114,7 +115,7 @@ This are the settings originally located in init.el
        (vc-gutter +pretty) ; vcs diff in the fringe
        ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
-       ;;workspaces        ; tab emulation, persistence & separate workspaces
+       workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 #+end_src
 **  Editor
@@ -311,31 +312,9 @@ Where all my actual configuration takes place.
 + map!           :: Map new keys
 
 **  Basic settings
-***  Splash Screen
+***  Emacs Startup
 #+begin_src emacs-lisp :tangle config.el
-;; Pink GNU Emacs banner
-(defun my-gnu-emacs-banner ()
-  (let* ((banner '(
-    "   _______   ____  __   ______                         "
-    "  / ____/ | / / / / /  / ____/___ ___  ____ ___________"
-    " / / __/  |/ / / / /  / __/ / __ `__ \\/ __ `/ ___/ ___/"
-    "/ /_/ / /|  / /_/ /  / /___/ / / / / / /_/ / /__(__  ) "
-    "\\____/_/ |_/\\____/  /_____/_/ /_/ /_/\\__,_/\\___/____/  "
-    "                                                       "))
-         (longest-line (apply #'max (mapcar #'length banner))))
-    (put-text-property
-     (point)
-     (dolist (line banner (point))
-       (insert (+doom-dashboard--center
-                +doom-dashboard--width
-                (concat
-                 (propertize line 'face '(:weight bold))
-                 (make-string (max 0 (- longest-line (length line))) 32)))
-               "\n"))
-     'face 'doom-dashboard-banner)))
-
-(setq +doom-dashboard-ascii-banner-fn #'my-gnu-emacs-banner)
-
+ 
 #+end_src
 ***  Fonts
 ****  Change Font Based on Mode
@@ -363,7 +342,7 @@ Will need to download the Iosevka Font for this to work.
         doom-themes-enable-italic t))
 
 ;; Set Theme
-(setq doom-theme 'doom-pine)
+(setq doom-theme 'doom-rouge)
 #+end_src
 **** Borders
 #+begin_src emacs-lisp :tangle config.el
@@ -447,6 +426,11 @@ Need to install python debugger (look at install.sh)
 ****  Go
 #+begin_src emacs-lisp :tangle config.el
 (require 'dap-dlv-go))
+#+end_src
+***  Workspaces
+#+begin_src emacs-lisp :tangle config.el
+;; Always create projects when switching projects
+(setq +workspaces-on-switch-project-behavior t)
 #+end_src
 ***  Prism
 #+begin_verse
