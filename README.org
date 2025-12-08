@@ -8,12 +8,16 @@
   -  [[#qtile-1][Qtile]]
   -  [[#neovim-lazy-vim][Neovim (Lazy Vim)]]
   -  [[#gnu-emacs-doom-emacs][GNU Emacs (Doom Emacs)]]
+  -  [[#gnu-guix][GNU Guix]]
 -  [[#general-install][General Install]]
   -  [[#install][Install]]
   -  [[#configure][Configure]]
 
 *  Configs
 **  WARNINGS (as of 11/25/2025)
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 List of general warnings
 ***  Neovim
 WARNING! Lazy Vim needs Neovim 0.11.2 or greater.
@@ -26,7 +30,8 @@ On Ubuntu based machines you will have to follow the manual install instructions
 - Status :: Not used anymore
 **  GNU Emacs (Doom Emacs)
 - Status :: Currently used
-- Ubuntu's default version of GNU Emacs (29.3) is adequate
+**  GNU Guix
+- Status :: Currently used
 *  General Install
 **  Install
 To get started take a quick look at the install.sh file.

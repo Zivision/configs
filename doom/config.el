@@ -86,7 +86,9 @@
 (use-package! prism
   :init
   (setq prism-desaturations '(10 15 20))
-  :hook (((clojure-mode emacs-lisp-mode) . prism-mode)))
+  :hook (((clojure-mode
+           emacs-lisp-mode
+           scheme-mode) . prism-mode)))
 
 (setq org-directory "~/Documents/org")
 (after! org

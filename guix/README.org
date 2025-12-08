@@ -3,6 +3,84 @@ This is a basic setup for GNU Guix.
 
 *  GNU Guix Table of Contents :TOC_4:
 -  [[#how-to-install][How to Install]]
+-  [[#config][Config]]
+  -  [[#basic-settings][Basic Settings]]
+  -  [[#packages][Packages]]
+    -  [[#emacs][Emacs]]
+  -  [[#services][Services]]
 
 *  How to Install
-+ TODO :: Working on it
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+To install grab the dependancies first (for mint/ubuntu):
+#+begin_src bash
+sudo apt update
+sudo apt install wget gpg xz-utils
+#+end_src
+This is optional however, it gets better preformance:
+#+begin_src bash
+sudo apt install nscd
+sudo systemctl enable nscd
+sudo systemctl start nscd
+#+end_src
+
+After the essentials, install the script form the [[https://guix.gnu.org/manual/en/html_node/Binary-Installation.html][Guix Documentation Page]]:
+#+begin_src bash
+cd /tmp
+wget -O guix-install.sh https://guix.gnu.org/install.sh
+chmod +x guix-install.sh
+sudo ./guix-install.sh
+#+end_src
+
+Use these command and *NOT* the apt package! Follow the directions and in the next step.
+
+Update everything by running guix pull
+*WARNING* this will take a while!
+#+begin_src bash
+guix pull
+#+end_src
+
+And update .bashrc (.bash_profile) with these commands:
+#+begin_src bash
+GUIX_PROFILE="$HOME/.config/guix/current"
+. "$GUIX_PROFILE/etc/profile"
+#+end_src
+
+*  Config
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+This is where the main Guix scheme files lives
+**  Basic Settings
+#+begin_src scheme :tangle home-configuration.scm
+(use-modules (gnu home)
+             (gnu packages)
+             (gnu packages emacs)
+             (gnu services)
+             (guix gexp)
+             (gnu home services shells))
+#+end_src
+**  Packages
+***  Emacs
+#+begin_src scheme :tangle home-configuration.scm
+(home-environment
+  ;; Packages to install
+  (packages (specifications->packages
+             '("emacs"
+               "git"
+               "ripgrep"
+               "fd"
+               "shellcheck")))
+#+end_src
+
+**  Services
+#+begin_src scheme :tangle home-configuration.scm
+(services
+ (list
+  ;; Manage your bash config
+  (service home-bash-service-type
+           (home-bash-configuration
+            (aliases '(("ll" . "ls -l")
+                       ("doom" . "~/.config/emacs/bin/doom"))))))))
+#+end_src
