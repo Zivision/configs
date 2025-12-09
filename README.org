@@ -3,10 +3,8 @@
 *  Table of contents :toc_3:
 -  [[#configs][Configs]]
   -  [[#warnings-as-of-11252025][WARNINGS (as of 11/25/2025)]]
-    -  [[#neovim][Neovim]]
     -  [[#qtile][Qtile]]
   -  [[#qtile-1][Qtile]]
-  -  [[#neovim-lazy-vim][Neovim (Lazy Vim)]]
   -  [[#gnu-emacs-doom-emacs][GNU Emacs (Doom Emacs)]]
   -  [[#gnu-guix][GNU Guix]]
 -  [[#general-install][General Install]]
@@ -19,14 +17,9 @@
 :VISIBILITY: folded
 :END:
 List of general warnings
-***  Neovim
-WARNING! Lazy Vim needs Neovim 0.11.2 or greater.
-The current version on Ubuntu is 0.9.5
 ***  Qtile
 On Ubuntu based machines you will have to follow the manual install instructions in Qtile's documentation.
 **  Qtile
-- Status :: Not used anymore
-**  Neovim (Lazy Vim)
 - Status :: Not used anymore
 **  GNU Emacs (Doom Emacs)
 - Status :: Currently used
