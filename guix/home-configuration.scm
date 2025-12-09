@@ -20,4 +20,5 @@
   (service home-bash-service-type
            (home-bash-configuration
             (aliases '(("ll" . "ls -l")
-                       ("doom" . "~/.config/emacs/bin/doom"))))))))
+                       ("doom" . "~/.config/emacs/bin/doom")))
+            (bashrc (list (local-file "bashrc.sh"))))))))
