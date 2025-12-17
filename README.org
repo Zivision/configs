@@ -6,7 +6,6 @@
     -  [[#qtile][Qtile]]
   -  [[#qtile-1][Qtile]]
   -  [[#gnu-emacs-doom-emacs][GNU Emacs (Doom Emacs)]]
-  -  [[#gnu-guix][GNU Guix]]
 -  [[#general-install][General Install]]
   -  [[#install][Install]]
   -  [[#configure][Configure]]
@@ -22,8 +21,6 @@ On Ubuntu based machines you will have to follow the manual install instructions
 **  Qtile
 - Status :: Not used anymore
 **  GNU Emacs (Doom Emacs)
-- Status :: Currently used
-**  GNU Guix
 - Status :: Currently used
 *  General Install
 **  Install

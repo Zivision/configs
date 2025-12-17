@@ -341,7 +341,7 @@ Will need to download the Iosevka Font for this to work.
         doom-themes-enable-italic t))
 
 ;; Set Theme
-(setq doom-theme 'doom-rouge)
+(setq doom-theme 'doom-monokai)
 #+end_src
 **** Borders
 #+begin_src emacs-lisp :tangle config.el
