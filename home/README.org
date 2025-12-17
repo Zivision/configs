@@ -1,3 +1,24 @@
+#+title: Home Directory Files
+
+Basic home directory files
+
+*  Home Table of Contents :TOC_4:
+-  [[#bashrc-config][Bashrc Config]]
+  -  [[#basic-settings][Basic Settings]]
+  -  [[#history-configuration][History Configuration]]
+  -  [[#shell-options][Shell Options]]
+  -  [[#prompt][Prompt]]
+  -  [[#aliases][Aliases]]
+  -  [[#environment-variables][Environment Variables]]
+
+*  Bashrc Config
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+This is the bashrc I use for the system
+**  Basic Settings
+#+begin_src bash :tangle .bashrc
 #!/usr/bin/env bash
 
 # If not running interactively, don't do anything
@@ -5,16 +26,22 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-
+#+end_src
+**  History Configuration
+#+begin_src bash :tangle .bashrc
 HISTSIZE=10000                # Commands to keep in memory
 HISTFILESIZE=20000            # Commands to keep in history file
 HISTCONTROL=ignoreboth        # Ignore duplicates and commands starting with space
 shopt -s histappend           # Append to history file, don't overwrite
-
+#+end_src
+**  Shell Options
+#+begin_src bash :tangle .bashrc
 shopt -s checkwinsize         # Update LINES and COLUMNS after each command
 shopt -s globstar 2>/dev/null # Enable ** for recursive glob matching
 shopt -s cdspell              # Autocorrect minor spelling errors in cd
-
+#+end_src
+**  Prompt
+#+begin_src bash :tangle .bashrc
 # Function to get current git branch
 git_branch() {
     local branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
@@ -26,7 +53,9 @@ git_branch() {
 # Prompt
 
 PS1='\[\033[01;32m\][\u@\h]\[\033[00m\] >>> \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(git_branch)\[\033[00m\]\n\[\033[01;90m\]\A\[\033[00m\] λ '
-
+#+end_src
+**  Aliases
+#+begin_src bash :tangle .bashrc
 # Listing
 alias ls='ls --color=auto'
 alias ll='ls -lh'
@@ -50,18 +79,19 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline --graph --decorate'
-
+#+end_src
+**  Environment Variables
+#+begin_src bash :tangle .bashrc
 export EDITOR=emacs
 export VISUAL=emacs
 
 # Add your custom PATH modifications below:
 export PATH="$HOME/.local/bin:$PATH"
 
+# Doom
+export PATH="$HOME/.config/emacs/bin:$PATH"
 # ASDF
 export ASDF_DATA_DIR="$HOME/.asdf"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 . <(asdf completion bash)
-
-if [ -f "$HOME/.guix-profile/etc/profile" ]; then
-    . "$HOME/.guix-profile/etc/profile"
-fi
+#+end_src

@@ -2,4 +2,4 @@
 
 # Runs stow and loads folders into the .config dir
 stow doom -t ~/.config/doom
-stow guix -t ~/.config/guix
+#stow guix -t ~/.config/guix

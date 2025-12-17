@@ -134,6 +134,7 @@ git_branch() {
 }
 
 # Prompt
+
 PS1='\[\033[01;32m\][\u@\h]\[\033[00m\] >>> \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(git_branch)\[\033[00m\]\n\[\033[01;90m\]\A\[\033[00m\] λ '
 #+end_src
 **  Aliases
@@ -171,7 +172,7 @@ export VISUAL=emacs
 export PATH="$HOME/.local/bin:$PATH"
 
 # ASDF
-export ASDF_DATA_DIR="/your/custom/data/dir"
+export ASDF_DATA_DIR="$HOME/.asdf"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 . <(asdf completion bash)
 #+end_src

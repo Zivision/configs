@@ -57,11 +57,9 @@ export VISUAL=emacs
 # Add your custom PATH modifications below:
 export PATH="$HOME/.local/bin:$PATH"
 
+# Doom
+export PATH="$HOME/.config/emacs/bin:$PATH"
 # ASDF
 export ASDF_DATA_DIR="$HOME/.asdf"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 . <(asdf completion bash)
-
-if [ -f "$HOME/.guix-profile/etc/profile" ]; then
-    . "$HOME/.guix-profile/etc/profile"
-fi
