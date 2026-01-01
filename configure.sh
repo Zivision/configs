@@ -2,7 +2,8 @@
 
 # Runs stow and loads folders into the .config dir
 stow doom -t ~/.config/doom
+stow qtile -t ~/.config/qtile
 stow home -t ~
 
 # Copy desktop file over to xsessions
-sudo cp ~/Workspace/Misc/configs/doom/exwm/exwm.desktop /usr/share/xsessions/
+sudo cp qtile/qtile.desktop /usr/share/xsessions/

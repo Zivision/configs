@@ -20,7 +20,15 @@ sudo apt install python3-debugpy -y # Python Debugger requirements
 # The command is
 # go install github.com/go-delve/delve/cmd/dlv@latest
 # as well as node js for the debugger
-#
+
+# Qtile
+# Base depends
+sudo apt install python3-cffi python3-cairocffi libpangocairo-1.0-0 pipx
+
+# X11
+sudo apt install python3-xcffib
+
+
 
 # Installation
 # Offical install instructions from:
@@ -28,3 +36,6 @@ sudo apt install python3-debugpy -y # Python Debugger requirements
 # DOOM Emacs
 #git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 #~/.config/emacs/bin/doom install
+
+# qtile
+pipx install qtile

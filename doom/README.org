@@ -48,9 +48,14 @@ Then *SPC h r r* to reload the configuration
       -  [[#org-toc][Org TOC]]
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
+    -  [[#exwm][EXWM]]
+      -  [[#update-class-function][Update class function]]
+      -  [[#basic-settings-1][Basic settings]]
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
+    -  [[#window-manager][Window Manager]]
+      -  [[#exwm-1][EXWM]]
     -  [[#org-packages][Org Packages]]
       -  [[#org-modern-1][Org Modern]]
       -  [[#org-appear-1][Org appear]]
@@ -508,6 +513,7 @@ Used to center org documents
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
 #+end_src
+
 *  Packages Settings
 :PROPERTIES:
 :VISIBILITY: folded
@@ -521,11 +527,6 @@ This are the external dependencies originally in packages.el
 NOTE: for more info on packages look at the documentation (SPC h d h) or more specifically
 C-h f package\!
 **  External Packages
-***  Window Manager
-****  EXWM
-#+begin_src emacs-lisp :tangle packages.el
-(package! exwm)
-#+END_SRC
 ***  Org Packages
 ****  Org Modern
 #+begin_src emacs-lisp :tangle packages.el
