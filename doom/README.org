@@ -33,6 +33,7 @@ Then *SPC h r r* to reload the configuration
     -  [[#line-numbers][Line numbers]]
     -  [[#transparency][Transparency]]
     -  [[#mode-line-settings][Mode Line Settings]]
+    -  [[#mode-settings][Mode Settings]]
   -  [[#package-settings][Package settings]]
     -  [[#debugger][Debugger]]
       -  [[#main-config][Main Config]]
@@ -48,14 +49,11 @@ Then *SPC h r r* to reload the configuration
       -  [[#org-toc][Org TOC]]
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
-    -  [[#exwm][EXWM]]
-      -  [[#update-class-function][Update class function]]
-      -  [[#basic-settings-1][Basic settings]]
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
-    -  [[#window-manager][Window Manager]]
-      -  [[#exwm-1][EXWM]]
+    -  [[#utils][Utils]]
+      -  [[#eat-emulate-a-terminal][Eat (Emulate A Terminal)]]
     -  [[#org-packages][Org Packages]]
       -  [[#org-modern-1][Org Modern]]
       -  [[#org-appear-1][Org appear]]
@@ -63,6 +61,7 @@ Then *SPC h r r* to reload the configuration
       -  [[#org-download-1][Org Download]]
       -  [[#olivetti-1][Olivetti]]
     -  [[#themes-and-style][Themes and Style]]
+      -  [[#ef-themes][EF themes]]
       -  [[#prism-1][Prism]]
 
 *  How to Install
@@ -405,6 +404,10 @@ Change the numerical values to affect the transparency
 (display-time-mode 1)
 (display-battery-mode 1)
 #+end_src
+***  Mode Settings
+#+begin_src emacs-lisp :tangle config.el
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+#+end_src
 **  Package settings
 ***  Debugger
 ****  Main Config
@@ -527,6 +530,11 @@ This are the external dependencies originally in packages.el
 NOTE: for more info on packages look at the documentation (SPC h d h) or more specifically
 C-h f package\!
 **  External Packages
+***  Utils
+****  Eat (Emulate A Terminal)
+#+begin_src emacs-lisp :tangle packages.el
+(package! eat)
+#+end_src
 ***  Org Packages
 ****  Org Modern
 #+begin_src emacs-lisp :tangle packages.el
@@ -549,6 +557,10 @@ C-h f package\!
 (package! olivetti)
 #+end_src
 ***  Themes and Style
+****  EF themes
+#+begin_src emacs-lisp :tangle packages.el
+(package! ef-themes)
+#+end_src
 ****  Prism
 #+begin_src emacs-lisp :tangle packages.el
 (package! prism)

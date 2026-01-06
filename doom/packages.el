@@ -1,3 +1,5 @@
+(package! eat)
+
 (package! org-modern)
 
 (package! org-appear)
@@ -7,5 +9,7 @@
 (package! org-download)
 
 (package! olivetti)
+
+(package! ef-themes)
 
 (package! prism)

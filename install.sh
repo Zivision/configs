@@ -23,10 +23,10 @@ sudo apt install python3-debugpy -y # Python Debugger requirements
 
 # Qtile
 # Base depends
-sudo apt install python3-cffi python3-cairocffi libpangocairo-1.0-0 pipx
+#sudo apt install python3-cffi python3-cairocffi libpangocairo-1.0-0 pipx
 
 # X11
-sudo apt install python3-xcffib
+#sudo apt install python3-xcffib
 
 
 

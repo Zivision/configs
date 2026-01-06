@@ -65,6 +65,8 @@
 (display-time-mode 1)
 (display-battery-mode 1)
 
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (dap-mode 1)
