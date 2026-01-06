@@ -35,6 +35,8 @@ Then *SPC h r r* to reload the configuration
     -  [[#mode-line-settings][Mode Line Settings]]
     -  [[#mode-settings][Mode Settings]]
   -  [[#package-settings][Package settings]]
+    -  [[#utilities][Utilities]]
+      -  [[#dired][Dired]]
     -  [[#debugger][Debugger]]
       -  [[#main-config][Main Config]]
       -  [[#python][Python]]
@@ -61,7 +63,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#org-download-1][Org Download]]
       -  [[#olivetti-1][Olivetti]]
     -  [[#themes-and-style][Themes and Style]]
-      -  [[#ef-themes][EF themes]]
       -  [[#prism-1][Prism]]
 
 *  How to Install
@@ -104,7 +105,7 @@ This are the settings originally located in init.el
        ;;(emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;indent-guides     ; highlighted indent columns
-       ;;(ligatures +extra)         ; ligatures and symbols to make your code pretty again
+       (ligatures +extra)         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
@@ -409,6 +410,13 @@ Change the numerical values to affect the transparency
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 #+end_src
 **  Package settings
+***  Utilities
+****  Dired
+#+begin_src emacs-lisp :tangle config.el
+(use-package! nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+#+end_src
 ***  Debugger
 ****  Main Config
 #+begin_src emacs-lisp :tangle config.el
@@ -557,9 +565,9 @@ C-h f package\!
 (package! olivetti)
 #+end_src
 ***  Themes and Style
-****  EF themes
+****
 #+begin_src emacs-lisp :tangle packages.el
-(package! ef-themes)
+(package! nerd-icons-dired)
 #+end_src
 ****  Prism
 #+begin_src emacs-lisp :tangle packages.el

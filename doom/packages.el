@@ -10,6 +10,6 @@
 
 (package! olivetti)
 
-(package! ef-themes)
+(package! nerd-icons-dired)
 
 (package! prism)

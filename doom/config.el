@@ -67,6 +67,10 @@
 
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 
+(use-package! nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (dap-mode 1)
