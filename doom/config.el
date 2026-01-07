@@ -94,6 +94,7 @@
   (setq prism-desaturations '(10 15 20))
   :hook (((clojure-mode
            emacs-lisp-mode
+           lisp-mode
            scheme-mode) . prism-mode)))
 
 (setq org-directory "~/Documents/org")

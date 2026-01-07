@@ -5,5 +5,9 @@ stow doom -t ~/.config/doom
 stow qtile -t ~/.config/qtile
 stow home -t ~
 
+# link certain files
+ln -s ~/Workspace/Misc/configs/stumpwm/init.lisp ~/.config/stumpwm/config
+ln -s ~/Workspace/Misc/configs/stumpwm/autostart.sh ~/.config/stumpwm/autostart.sh
+
 # Copy desktop file over to xsessions
-sudo cp qtile/qtile.desktop /usr/share/xsessions/
+#sudo cp qtile/qtile.desktop /usr/share/xsessions/
