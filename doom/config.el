@@ -136,3 +136,5 @@
 (after! org
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
+
+(global-prettify-symbols-mode -1)

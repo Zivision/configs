@@ -2,19 +2,33 @@
 
 *  StumpWM Table of Contents :TOC_4:
 -  [[#how-to-install][How to install]]
+-  [[#stumpwm-imports][Stumpwm imports]]
+  -  [[#contrib][Contrib]]
 -  [[#stumpwm-settings][StumpWM Settings]]
   -  [[#mouse-settings][Mouse Settings]]
   -  [[#prefix-key][Prefix Key]]
   -  [[#keybinds][Keybinds]]
     -  [[#window-floating][Window Floating]]
+    -  [[#reload-config][Reload Config]]
     -  [[#shell-commands][Shell Commands]]
+  -  [[#border-colors][Border Colors]]
   -  [[#gaps][Gaps]]
 -  [[#autostart][Autostart]]
 
 *  How to install
 For ubunut install the official package
 
+*  Stumpwm imports
+**  Contrib
+#+begin_src lisp  :tangle init.lisp
+;; Add contrib to load path
+(add-to-load-path "~/Workspace/Misc/configs/stumpwm/modules/stumpwm-contrib/util/swm-gaps")
+
+;; Load swm-gaps
+(load-module "swm-gaps")
+#+end_src
 *  StumpWM Settings
+
 **  Mouse Settings
 make windows clickable
 #+begin_src lisp :tangle init.lisp
@@ -34,16 +48,30 @@ make windows clickable
 (define-key *root-map* (kbd "s-f") "float-this")
 (define-key *root-map* (kbd "s-u") "unfloat-this")
 #+end_src
+***  Reload Config
+#+begin_src lisp :tangle init.lisp
+(define-key *root-map* (kbd "s-R") "loadrc")
+#+end_src
 ***  Shell Commands
 #+begin_src lisp :tangle init.lisp
 ;; Custom commands
 (define-key *root-map* (stumpwm:kbd "p") "exec rofi -show drun")
 #+end_src
+**  Border Colors
+#+begin_src lisp :tangle init.lisp
+;; Custom commands
+;; Set focused window border color
+(set-focus-color "magenta")
 
+;; Set unfocused window border color
+(set-unfocus-color "black")
+#+end_src
 **  Gaps
 #+begin_src lisp :tangle init.lisp
-(ql:quickload :swm-gaps)
-(load-module "swm-gaps")
+;; Configure gaps
+(setf swm-gaps:*head-gaps-size* 2
+      swm-gaps:*inner-gaps-size* 2)
+(swm-gaps:toggle-gaps)
 #+end_src
 *  Autostart
 #+begin_src lisp :tangle init.lisp

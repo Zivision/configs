@@ -51,6 +51,7 @@ Then *SPC h r r* to reload the configuration
       -  [[#org-toc][Org TOC]]
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
+      -  [[#prettify-symbols-mode][Prettify Symbols Mode]]
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
@@ -526,6 +527,13 @@ Used to center org documents
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
 #+end_src
 
+****  Prettify Symbols Mode
+#+begin_src emacs-lisp :tangle config.el
+(after! org
+  ;; Disables these modes that freeze org mode
+  (global-prettify-symbols-mode -1)
+  (global-prettify-symbols-mode -1))
+#+end_src
 *  Packages Settings
 :PROPERTIES:
 :VISIBILITY: folded
