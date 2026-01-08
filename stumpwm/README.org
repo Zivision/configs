@@ -1,0 +1,55 @@
+#+title: StumpWM Config
+
+*  StumpWM Table of Contents :TOC_4:
+-  [[#how-to-install][How to install]]
+-  [[#stumpwm-settings][StumpWM Settings]]
+  -  [[#mouse-settings][Mouse Settings]]
+  -  [[#prefix-key][Prefix Key]]
+  -  [[#keybinds][Keybinds]]
+    -  [[#window-floating][Window Floating]]
+    -  [[#shell-commands][Shell Commands]]
+  -  [[#gaps][Gaps]]
+-  [[#autostart][Autostart]]
+
+*  How to install
+For ubunut install the official package
+
+*  StumpWM Settings
+**  Mouse Settings
+make windows clickable
+#+begin_src lisp :tangle init.lisp
+;; Enable mouse clicking to change window
+(setf *mouse-focus-policy* :click)
+#+end_src
+**  Prefix Key
+#+begin_src lisp :tangle init.lisp
+;; Prefix key
+(stumpwm:set-prefix-key (stumpwm:kbd "s-RET"))
+#+end_src
+
+**  Keybinds
+***  Window Floating
+#+begin_src lisp :tangle init.lisp
+;; Make windows floating
+(define-key *root-map* (kbd "s-f") "float-this")
+(define-key *root-map* (kbd "s-u") "unfloat-this")
+#+end_src
+***  Shell Commands
+#+begin_src lisp :tangle init.lisp
+;; Custom commands
+(define-key *root-map* (stumpwm:kbd "p") "exec rofi -show drun")
+#+end_src
+
+**  Gaps
+#+begin_src lisp :tangle init.lisp
+(ql:quickload :swm-gaps)
+(load-module "swm-gaps")
+#+end_src
+*  Autostart
+#+begin_src lisp :tangle init.lisp
+;; Run arandr to get a screen layout config
+(run-shell-command "bash ~/.screenlayout/stumpwm.sh")
+
+;; Auto start script
+(run-shell-command "bash ~/.config/stumpwm/autostart.sh")
+#+end_src

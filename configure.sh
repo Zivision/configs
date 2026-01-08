@@ -4,6 +4,7 @@
 stow doom -t ~/.config/doom
 stow qtile -t ~/.config/qtile
 stow home -t ~
+stow picom -t ~/.config/picom
 
 # link certain files
 ln -s ~/Workspace/Misc/configs/stumpwm/init.lisp ~/.config/stumpwm/config
