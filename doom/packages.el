@@ -1,5 +1,7 @@
 (package! eat)
 
+(package! elpher)
+
 (package! org-modern)
 
 (package! org-appear)

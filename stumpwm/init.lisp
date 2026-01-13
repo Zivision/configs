@@ -1,3 +1,11 @@
+;; Run arandr to get a screen layout config
+(run-shell-command "bash ~/.screenlayout/stumpwm.sh")
+
+;; Launch polybar
+;;(run-shell-command "bash ~/.config/stumpwm/launchpoly.sh")
+;; Auto start script
+(run-shell-command "bash ~/.config/stumpwm/autostart.sh")
+
 ;; Add contrib to load path
 (add-to-load-path "~/Workspace/Misc/configs/stumpwm/modules/stumpwm-contrib/util/swm-gaps")
 
@@ -26,13 +34,34 @@
 ;; Set unfocused window border color
 (set-unfocus-color "black")
 
+;; Actual Modeline
+(setf *time-modeline-string* "%a, %b %d %I:%M%p")
+(setf *screen-mode-line-format*
+      (list
+       ;; Groups
+       " ^7[^B^4%n^7^b] "
+       ;; Pad to right
+       "^>"
+       '(:eval (when (> *reps* 0)
+                 (format nil "^1^B(Reps ~A)^n " *reps*)))
+       ;; Date
+       "^7"
+       "%d"
+       ;; Battery
+       " ^7[^n%B^7]^n "))
+
+(defun enable-mode-line-everywhere ()
+  (loop for screen in *screen-list* do
+        (loop for head in (screen-heads screen) do
+              (enable-mode-line screen head t))))
+(enable-mode-line-everywhere)
+;; turn on/off the mode line for the current head only.
+(define-key *top-map* (kbd "s-B") "mode-line")
+
 ;; Configure gaps
-(setf swm-gaps:*head-gaps-size* 2
-      swm-gaps:*inner-gaps-size* 2)
-(swm-gaps:toggle-gaps)
-
-;; Run arandr to get a screen layout config
-(run-shell-command "bash ~/.screenlayout/stumpwm.sh")
-
-;; Auto start script
-(run-shell-command "bash ~/.config/stumpwm/autostart.sh")
+(setf swm-gaps:*inner-gaps-size* 2
+      swm-gaps:*outer-gaps-size* 5
+      swm-gaps:*head-gaps-size* 0)
+(when *initializing*
+  (swm-gaps:toggle-gaps))
+(define-key *top-map* (kbd "C-g") "toggle-gaps")

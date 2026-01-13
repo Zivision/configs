@@ -1,5 +1,10 @@
 
 
+(global-set-key (kbd "<C-up>") 'shrink-window)
+(global-set-key (kbd "<C-down>") 'enlarge-window)
+(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
+(global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
+
 (add-hook 'org-mode-hook
           (lambda () (text-scale-set 1))) ; Make font larger in org mode
 
@@ -86,6 +91,10 @@
 
 (require 'dap-dlv-go))
 
+(map! :after elpher
+      :map elpher-mode-map
+      "-" #'elpher-back)
+
 ;; Always create projects when switching projects
 (setq +workspaces-on-switch-project-behavior t)
 
@@ -137,4 +146,7 @@
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
 
-(global-prettify-symbols-mode -1)
+(after! org
+  ;; Disables these modes that freeze org mode
+  (global-prettify-symbols-mode -1)
+  (global-prettify-symbols-mode -1))
