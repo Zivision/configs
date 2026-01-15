@@ -41,7 +41,7 @@ two requirements are needed for this script.
 
 Git should already be installed in order for you to clone the repository but to run the emacs lisp scripts you will need emacs.
 
-*WARNING!* The install script is designed for debian based machines and won't work with arch of fedora based machines
+*WARNING!* The install script is designed for Debian based machines and won't work with arch of fedora based machines
 #+begin_src emacs-lisp :tangle install.el
 #!/usr/bin/emacs --script
 
