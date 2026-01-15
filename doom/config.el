@@ -151,24 +151,8 @@
   (global-prettify-symbols-mode -1)
   (global-prettify-symbols-mode -1))
 
-(defun org-tangle-git-project ()
-  "Tangle all org files in the current git project."
-  (interactive)
-  (let* ((git-root (magit-toplevel))
-         (org-files (when git-root
-                      (directory-files-recursively git-root "\\.org$")))
-         (tangled-count 0))
-    (if (not git-root)
-        (message "Not in a git repository")
-      (dolist (file org-files)
-        (with-current-buffer (find-file-noselect file)
-          (when (org-babel-tangle)
-            (setq tangled-count (1+ tangled-count)))
-          (kill-buffer)))
-      (message "Tangled %d org file(s) in git project: %s" tangled-count git-root))))
-
-(defun config/deploy
+(defun run-config-script
     ()
   "Run config script."
   (interactive)
-  (message "It did something"))
+  (shell-command "../configure.el"))
