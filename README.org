@@ -33,7 +33,7 @@ This is the script for linking all config files to the correct directory
 #+end_src
 
 **  Install
-This script needs to be ran as *SUDO* when installing a new machine
+This script needs to be ran with *SUDO* (or root) when installing a new machine
 two requirements are needed for this script.
 
 - GNU Emacs
