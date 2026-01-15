@@ -55,6 +55,8 @@ Then *SPC h r r* to reload the configuration
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
       -  [[#prettify-symbols-mode][Prettify Symbols Mode]]
+  -  [[#custom-functions][Custom Functions]]
+    -  [[#config-1][Config]]
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
@@ -324,7 +326,6 @@ Where all my actual configuration takes place.
 **  Basic settings
 ***  Emacs Startup
 #+begin_src emacs-lisp :tangle config.el
- 
 #+end_src
 ***  Keybinds
 ****  Window sizing
@@ -554,6 +555,15 @@ Used to center org documents
   ;; Disables these modes that freeze org mode
   (global-prettify-symbols-mode -1)
   (global-prettify-symbols-mode -1))
+#+end_src
+**  Custom Functions
+***  Config
+#+begin_src emacs-lisp :tangle config.el
+(defun config/deploy
+    ()
+  "Run config script."
+  (interactive)
+  (message "It did something"))
 #+end_src
 *  Packages Settings
 :PROPERTIES:
