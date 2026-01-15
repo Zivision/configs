@@ -559,7 +559,7 @@ Used to center org documents
 **  Custom Functions
 ***  Config
 #+begin_src emacs-lisp :tangle config.el
-(defun config/deploy
+(defun script-deploy-config
     ()
   "Run config script."
   (interactive)
