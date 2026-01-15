@@ -2,29 +2,88 @@
 
 *  Table of contents :toc_3:
 -  [[#configs][Configs]]
-  -  [[#warnings-as-of-11252025][WARNINGS (as of 11/25/2025)]]
-    -  [[#qtile][Qtile]]
-  -  [[#qtile-1][Qtile]]
   -  [[#gnu-emacs-doom-emacs][GNU Emacs (Doom Emacs)]]
--  [[#general-install][General Install]]
-  -  [[#install][Install]]
+-  [[#scripts][Scripts]]
   -  [[#configure][Configure]]
+  -  [[#install][Install]]
 
 *  Configs
-**  WARNINGS (as of 11/25/2025)
-:PROPERTIES:
-:VISIBILITY: folded
-:END:
-List of general warnings
-***  Qtile
-On Ubuntu based machines you will have to follow the manual install instructions in Qtile's documentation.
-**  Qtile
-- Status :: Not used anymore
 **  GNU Emacs (Doom Emacs)
 - Status :: Currently used
-*  General Install
-**  Install
-To get started take a quick look at the install.sh file.
-Comment any commands out that you don't want and then run it.
+
+*  Scripts
 **  Configure
-After that run configure.sh to run GNU stow symlinks
+This is the script for linking all config files to the correct directory
+#+begin_src emacs-lisp :tangle configure.el
+#!/usr/bin/emacs --script
+
+;; String of all stow packages
+(setq stow-packages
+     '(("doom" . "stow doom -t ~/.config/doom")
+       ("home" . "stow home -t ~")))
+
+;; Loop over list and stow packages
+(defun loop-over-packages
+    (packages)
+  "Loop over stow PACKAGES"
+  (cl-loop for (key . value) in packages
+         collect (shell-command value)))
+
+(loop-over-packages stow-packages)
+#+end_src
+
+**  Install
+This script needs to be ran as *SUDO* when installing a new machine
+two requirements are needed for this script.
+
+- GNU Emacs
+- Git
+
+Git should already be installed in order for you to clone the repository but to run the emacs lisp scripts you will need emacs.
+
+*WARNING!* The install script is designed for debian based machines and won't work with arch of fedora based machines
+#+begin_src emacs-lisp :tangle install.el
+#!/usr/bin/emacs --script
+
+(defun install-depends
+    (dependancies)
+  "Install DEPENDANCIES."
+  (dolist (dep dependancies)
+    (shell-command (format "apt install %s -y" dep))))
+
+;; Update repos
+(shell-command "apt update")
+(message "Repos updated")
+
+;; General dependancies I want on my machine
+(setq general-dependancies
+      '("stow"
+        "ripgrep"
+        "fd-find"))
+(install-depends general-dependancies)
+
+(message "General dependancies installed.")
+
+;; Doom emacs dependancies
+(setq doom-dependancies
+      '("libjansson4"
+        "libjansson-dev"
+        ;; This is for vterm
+        "cmake"
+        "libtool-bin"))
+
+(install-depends doom-dependancies)
+(message "Doom dependancies installed.")
+
+;; This will install doom emacs
+;; Uncomment to install it
+;(shell-command "git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs")
+;(shell-command "~/.config/emacs/bin/doom install")
+(message "Doom installed")
+
+;; Configure machine
+(load-file "configure.el")
+(loop-over-packages stow-packages)
+
+(message "All done! Enjoy doom emacs!")
+#+end_src

@@ -34,5 +34,10 @@
 ;; Uncomment to install it
 ;(shell-command "git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs")
 ;(shell-command "~/.config/emacs/bin/doom install")
+(message "Doom installed")
+
+;; Configure machine
+(load-file "configure.el")
+(loop-over-packages stow-packages)
 
 (message "All done! Enjoy doom emacs!")
