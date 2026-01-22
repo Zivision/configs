@@ -23,7 +23,7 @@
         doom-themes-enable-italic t))
 
 ;; Set Theme
-(setq doom-theme 'doom-monokai-classic)
+(setq doom-theme 'doom-molokai)
 
 ;; Remove all window borders and dividers
 (setq window-divider-default-bottom-width 0
