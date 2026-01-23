@@ -23,7 +23,7 @@
 (setq doom-dependancies
       '("libjansson4"
         "libjansson-dev"
-        ;; This is for vterm
+        ;; vterm
         "cmake"
         "libtool-bin"))
 
