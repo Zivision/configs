@@ -37,6 +37,7 @@ Then *SPC h r r* to reload the configuration
     -  [[#mode-line-settings][Mode Line Settings]]
     -  [[#mode-settings][Mode Settings]]
   -  [[#package-settings][Package settings]]
+    -  [[#mastodon][Mastodon]]
     -  [[#utilities][Utilities]]
       -  [[#dired][Dired]]
     -  [[#debugger][Debugger]]
@@ -61,7 +62,7 @@ Then *SPC h r r* to reload the configuration
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
     -  [[#utils][Utils]]
-      -  [[#eat-emulate-a-terminal][Eat (Emulate A Terminal)]]
+      -  [[#mastodon-1][Mastodon]]
       -  [[#elpher-1][Elpher]]
     -  [[#org-packages][Org Packages]]
       -  [[#org-modern-1][Org Modern]]
@@ -577,10 +578,6 @@ NOTE: for more info on packages look at the documentation (SPC h d h) or more sp
 C-h f package\!
 **  External Packages
 ***  Utils
-****  Eat (Emulate A Terminal)
-#+begin_src emacs-lisp :tangle packages.el
-(package! eat)
-#+end_src
 ****  Elpher
 #+begin_src emacs-lisp :tangle packages.el
 (package! elpher)
