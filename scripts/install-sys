@@ -1,0 +1,20 @@
+# Update repositories
+echo "Updating Repositories"
+sudo apt update
+
+echo "Installing general packages"
+sudo apt install emacs stow ripgrep fd-find -y
+
+echo "Installing DOOM Emacs dependencies."
+sudo apt install libjansson4 libjansson-dev cmake libtool-bin
+
+# Stow packages
+(cd ~/Workspace/Misc/configs && stow doom -t ~/.config/doom)
+(cd ~/Workspace/Misc/configs && stow home -t ~)
+
+#git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+
+# Install doom emacs
+#~/.config/emacs/bin/doom install
+
+echo "Install finished"

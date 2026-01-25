@@ -1,0 +1,74 @@
+#+title: Scripts
+
+*  Scripts table of contents :TOC_4:
+-  [[#install-sys-script][Install-Sys script]]
+  -  [[#general-dependencies][General Dependencies]]
+  -  [[#doom-dependencies][Doom Dependencies]]
+  -  [[#stow-configs][Stow Configs]]
+  -  [[#install-doom][Install Doom]]
+-  [[#stow-configs-script][Stow-Configs Script]]
+  -  [[#run-stow][Run Stow]]
+
+*  Install-Sys script
+:PROPERTIES:
+:header-args: :tangle install-sys
+:END:
+First update repositories
+#+begin_src bash
+# Update repositories
+echo "Updating Repositories"
+sudo apt update
+#+end_src
+
+**  General Dependencies
++  GNU Emacs
++  GNU Stow
++  rg (ripgrep)
++  fd (fd-find)
+#+begin_src bash
+echo "Installing general packages"
+sudo apt install emacs stow ripgrep fd-find -y
+#+end_src
+
+**  Doom Dependencies
++  libjansson4
++  libjansson-dev
+These are for vterm
++  cmake
++  libtool-bin
+#+begin_src bash
+echo "Installing DOOM Emacs dependencies."
+sudo apt install libjansson4 libjansson-dev cmake libtool-bin
+#+end_src
+
+**  Stow Configs
+#+begin_src bash
+# Stow packages
+(cd ~/Workspace/Misc/configs && stow doom -t ~/.config/doom)
+(cd ~/Workspace/Misc/configs && stow home -t ~)
+#+end_src
+
+**  Install Doom
+This will first clone the doom emacs git repo then install it
+#+begin_src bash
+#git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+
+# Install doom emacs
+#~/.config/emacs/bin/doom install
+
+echo "Install finished"
+#+end_src
+
+*  Stow-Configs Script
+:PROPERTIES:
+:header-args: :tangle stow-configs
+:END:
+
+**  Run Stow
+This will put everything where it needs to go
+#+begin_src bash
+# Stow packages
+(cd ~/Workspace/Misc/configs && stow doom -t ~/.config/doom)
+(cd ~/Workspace/Misc/configs && stow home -t ~)
+(cd ~/Workspace/Misc/configs && stow scripts -t ~/.local/bin)
+#+end_src

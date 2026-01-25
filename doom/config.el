@@ -1,8 +1,18 @@
+(defun run-config-script
+    ()
+  "Run config script."
+  (interactive)
+  (shell-command "stow-configs")
+  (message "Done!"))
 
 
-(global-set-key (kbd "<C-up>") 'shrink-window)
-(global-set-key (kbd "<C-down>") 'enlarge-window)
-(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
+
+(map!
+ "C-c f c" #'run-config-script)
+
+(global-set-key (kbd "<C-up>"   ) 'shrink-window)
+(global-set-key (kbd "<C-down>" ) 'enlarge-window)
+(global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 
 (add-hook 'org-mode-hook
@@ -150,9 +160,3 @@
   ;; Disables these modes that freeze org mode
   (global-prettify-symbols-mode -1)
   (global-prettify-symbols-mode -1))
-
-(defun run-config-script
-    ()
-  "Run config script."
-  (interactive)
-  (shell-command "../configure.el"))

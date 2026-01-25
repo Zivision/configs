@@ -37,7 +37,6 @@ Then *SPC h r r* to reload the configuration
     -  [[#mode-line-settings][Mode Line Settings]]
     -  [[#mode-settings][Mode Settings]]
   -  [[#package-settings][Package settings]]
-    -  [[#mastodon][Mastodon]]
     -  [[#utilities][Utilities]]
       -  [[#dired][Dired]]
     -  [[#debugger][Debugger]]
@@ -62,7 +61,6 @@ Then *SPC h r r* to reload the configuration
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
     -  [[#utils][Utils]]
-      -  [[#mastodon-1][Mastodon]]
       -  [[#elpher-1][Elpher]]
     -  [[#org-packages][Org Packages]]
       -  [[#org-modern-1][Org Modern]]
@@ -302,6 +300,7 @@ This are the settings originally located in init.el
 
 *  Config Settings
 :PROPERTIES:
+:header-args: :tangle config.el
 :VISIBILITY: folded
 :END:
 
@@ -323,16 +322,33 @@ Where all my actual configuration takes place.
 + add-load-path! :: For adding directories to the load-path.
 + map!           :: Map new keys
 
+**  Custom Functions
+***  Config Script
+#+begin_src emacs-lisp :tangle config.el
+(defun run-config-script
+    ()
+  "Run config script."
+  (interactive)
+  (shell-command "stow-configs")
+  (message "Done!"))
+#+end_src
 **  Basic settings
 ***  Emacs Startup
 #+begin_src emacs-lisp :tangle config.el
 #+end_src
 ***  Keybinds
+****  Custom Functions
+*****  Config Script
+#+begin_src emacs-lisp
+(map!
+ "C-c f c" #'run-config-script)
+#+end_src
+
 ****  Window sizing
 #+begin_src emacs-lisp :tangle config.el
-(global-set-key (kbd "<C-up>") 'shrink-window)
-(global-set-key (kbd "<C-down>") 'enlarge-window)
-(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
+(global-set-key (kbd "<C-up>"   ) 'shrink-window)
+(global-set-key (kbd "<C-down>" ) 'enlarge-window)
+(global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 #+end_src
 ***  Fonts
@@ -554,15 +570,6 @@ Used to center org documents
   ;; Disables these modes that freeze org mode
   (global-prettify-symbols-mode -1)
   (global-prettify-symbols-mode -1))
-#+end_src
-**  Custom Functions
-***  Config
-#+begin_src emacs-lisp :tangle config.el
-(defun run-config-script
-    ()
-  "Run config script."
-  (interactive)
-  (shell-command "../configure.el"))
 #+end_src
 *  Packages Settings
 :PROPERTIES:

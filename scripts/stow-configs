@@ -1,0 +1,4 @@
+# Stow packages
+(cd ~/Workspace/Misc/configs && stow doom -t ~/.config/doom)
+(cd ~/Workspace/Misc/configs && stow home -t ~)
+(cd ~/Workspace/Misc/configs && stow scripts -t ~/.local/bin)
