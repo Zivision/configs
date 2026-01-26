@@ -50,6 +50,10 @@ These are for vterm
 echo "Installing DOOM Emacs dependencies."
 sudo apt install libjansson4 libjansson-dev cmake libtool-bin
 #+end_src
+**  Remove Old .bashrc
+#+begin_src bash
+rm ~/.bashrc
+#+end_src
 
 **  Stow Configs
 #+begin_src bash

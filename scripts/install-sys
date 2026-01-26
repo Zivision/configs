@@ -12,6 +12,8 @@ sudo apt install emacs stow ripgrep fd-find -y
 echo "Installing DOOM Emacs dependencies."
 sudo apt install libjansson4 libjansson-dev cmake libtool-bin
 
+rm ~/.bashrc
+
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
 (cd "$PROJECT_DIR" && stow home -t ~)
