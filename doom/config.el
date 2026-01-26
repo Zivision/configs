@@ -10,6 +10,11 @@
 (map!
  "C-c f c" #'run-config-script)
 
+(map!
+ "C-c d d" #'dirvish
+ "C-c d q" #'dirvish-quit
+ "C-c d f" #'dirvish-fd)
+
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
 (global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)

@@ -23,9 +23,13 @@ Then *SPC h r r* to reload the configuration
   -  [[#basic-usage][Basic usage]]
     -  [[#basic-variables][Basic variables]]
     -  [[#basic-macros][Basic macros]]
+  -  [[#custom-functions][Custom Functions]]
+    -  [[#config-script][Config Script]]
   -  [[#basic-settings][Basic settings]]
     -  [[#emacs-startup][Emacs Startup]]
     -  [[#keybinds][Keybinds]]
+      -  [[#custom-functions-1][Custom Functions]]
+      -  [[#dirvish][Dirvish]]
       -  [[#window-sizing][Window sizing]]
     -  [[#fonts][Fonts]]
       -  [[#change-font-based-on-mode][Change Font Based on Mode]]
@@ -55,8 +59,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
       -  [[#prettify-symbols-mode][Prettify Symbols Mode]]
-  -  [[#custom-functions][Custom Functions]]
-    -  [[#config-1][Config]]
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
@@ -71,6 +73,9 @@ Then *SPC h r r* to reload the configuration
     -  [[#ui-1][UI]]
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
       -  [[#prism-1][Prism]]
+    -  [[#fun][Fun]]
+      -  [[#fireplace][Fireplace]]
+      -  [[#parrot][Parrot]]
 
 *  How to Install
 Run the install.sh script in the project root.
@@ -108,7 +113,7 @@ This are the settings originally located in init.el
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        indent-guides     ; highlighted indent columns
@@ -135,10 +140,10 @@ This are the settings originally located in init.el
        (evil +everywhere) ; come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
-       ;;multiple-cursors  ; editing in many places at once
+       multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
@@ -265,7 +270,7 @@ This are the settings originally located in init.el
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       ;;(scheme +guile)   ; a fully conniving family of lisps
+       (scheme +guile)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
@@ -343,6 +348,15 @@ Where all my actual configuration takes place.
 (map!
  "C-c f c" #'run-config-script)
 #+end_src
+****  Dirvish
+#+begin_src emacs-lisp
+(map!
+ "C-c d d" #'dirvish
+ "C-c d q" #'dirvish-quit
+ "C-c d f" #'dirvish-fd)
+#+end_src
+
+#+RESULTS:
 
 ****  Window sizing
 #+begin_src emacs-lisp :tangle config.el
@@ -618,4 +632,13 @@ C-h f package\!
 ****  Prism
 #+begin_src emacs-lisp :tangle packages.el
 (package! prism)
+#+end_src
+***  Fun
+****  Fireplace
+#+begin_src emacs-lisp :tangle packages.el
+(package! fireplace)
+#+end_src
+****  Parrot
+#+begin_src emacs-lisp :tangle packages.el
+(package! parrot)
 #+end_src

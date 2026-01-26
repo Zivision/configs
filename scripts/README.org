@@ -2,17 +2,27 @@
 
 *  Scripts table of contents :TOC_4:
 -  [[#install-sys-script][Install-Sys script]]
+  -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
+  -  [[#update-repositories][Update Repositories]]
   -  [[#general-dependencies][General Dependencies]]
   -  [[#doom-dependencies][Doom Dependencies]]
   -  [[#stow-configs][Stow Configs]]
   -  [[#install-doom][Install Doom]]
 -  [[#stow-configs-script][Stow-Configs Script]]
+  -  [[#get-script-location-and-project-root-1][Get Script Location and Project Root]]
   -  [[#run-stow][Run Stow]]
 
 *  Install-Sys script
 :PROPERTIES:
 :header-args: :tangle install-sys
 :END:
+**  Get Script Location and Project Root
+#+begin_src bash
+#!/usr/bin/env sh
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+PROJECT_DIR=$(dirname "$SCRIPT_DIR")
+#+end_src
+**  Update Repositories
 First update repositories
 #+begin_src bash
 # Update repositories
@@ -44,17 +54,18 @@ sudo apt install libjansson4 libjansson-dev cmake libtool-bin
 **  Stow Configs
 #+begin_src bash
 # Stow packages
-(cd ~/Workspace/Misc/configs && stow doom -t ~/.config/doom)
-(cd ~/Workspace/Misc/configs && stow home -t ~)
+(cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
+(cd "$PROJECT_DIR" && stow home -t ~)
+(cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)
 #+end_src
 
 **  Install Doom
 This will first clone the doom emacs git repo then install it
 #+begin_src bash
-#git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 
 # Install doom emacs
-#~/.config/emacs/bin/doom install
+~/.config/emacs/bin/doom install
 
 echo "Install finished"
 #+end_src
@@ -63,12 +74,19 @@ echo "Install finished"
 :PROPERTIES:
 :header-args: :tangle stow-configs
 :END:
+**  Get Script Location and Project Root
+This finds the orignal script location
+#+begin_src bash
+#!/usr/bin/env sh
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+PROJECT_DIR=$(dirname "$SCRIPT_DIR")
+#+end_src
 
 **  Run Stow
 This will put everything where it needs to go
 #+begin_src bash
 # Stow packages
-(cd ~/Workspace/Misc/configs && stow doom -t ~/.config/doom)
-(cd ~/Workspace/Misc/configs && stow home -t ~)
-(cd ~/Workspace/Misc/configs && stow scripts -t ~/.local/bin)
+(cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
+(cd "$PROJECT_DIR" && stow home -t ~)
+(cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)
 #+end_src
