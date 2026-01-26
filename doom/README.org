@@ -85,12 +85,13 @@ Happy Hacking!
 
 *  Init Settings
 :PROPERTIES:
+:header-args: :tangle init.el
 :VISIBILITY: folded
 :END:
 
 This are the settings originally located in init.el
 **  Input
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
@@ -98,7 +99,7 @@ This are the settings originally located in init.el
        ;;layout            ; auie,ctsrnm is the superior home row
 #+end_src
 **  Completion
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :completion
        ;;company           ; the ultimate code completion backend
        (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
@@ -108,7 +109,7 @@ This are the settings originally located in init.el
        vertico           ; the search engine of the future
 #+end_src
 **  UI
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
@@ -135,7 +136,7 @@ This are the settings originally located in init.el
        ;;zen               ; distraction-free coding or writing
 #+end_src
 **  Editor
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :editor
        (evil +everywhere) ; come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
@@ -152,7 +153,7 @@ This are the settings originally located in init.el
        word-wrap         ; soft wrapping with language-aware indent
 #+end_src
 **  Emacs
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :emacs
        dired             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
@@ -163,7 +164,7 @@ This are the settings originally located in init.el
        vc                ; version-control and Emacs, sitting in a tree
 #+end_src
 **  Term
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :term
        eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
@@ -171,14 +172,14 @@ This are the settings originally located in init.el
        vterm             ; the best terminal emulation in Emacs
 #+end_src
 **  Checkers
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :checkers
        syntax              ; tasing you for every semicolon you forget
        (spell +flyspell) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
 #+end_src
 **  Tools
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :tools
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
@@ -203,13 +204,13 @@ This are the settings originally located in init.el
        ;;upload            ; map local to remote projects via ssh/ftp
 #+end_src
 **  OS
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
        ;;tty               ; improve the terminal Emacs experience
 #+end_src
 **  Lang
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :lang
        ;;ada               ; In strong typing we (blindly) trust
        ;;agda              ; types of types of types of types...
@@ -281,14 +282,14 @@ This are the settings originally located in init.el
        ;;zig               ; C, but simpler
 #+end_src
 **  Email
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :email
        ;;(mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 #+end_src
 **  App
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp 
        :app
        ;;calendar
        ;;(emms +mpv)         ; music player with mpv backend.
@@ -297,7 +298,7 @@ This are the settings originally located in init.el
        ;;(rss +org)        ; emacs as an RSS reader
 #+end_src
 **  Config
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :config
        ;;literate
        (default +bindings +smartparens))
@@ -329,7 +330,7 @@ Where all my actual configuration takes place.
 
 **  Custom Functions
 ***  Config Script
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (defun run-config-script
     ()
   "Run config script."
@@ -338,9 +339,6 @@ Where all my actual configuration takes place.
   (message "Done!"))
 #+end_src
 **  Basic settings
-***  Emacs Startup
-#+begin_src emacs-lisp :tangle config.el
-#+end_src
 ***  Keybinds
 ****  Custom Functions
 *****  Config Script
@@ -355,11 +353,8 @@ Where all my actual configuration takes place.
  "C-c d q" #'dirvish-quit
  "C-c d f" #'dirvish-fd)
 #+end_src
-
-#+RESULTS:
-
 ****  Window sizing
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
 (global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)
@@ -367,7 +362,7 @@ Where all my actual configuration takes place.
 #+end_src
 ***  Fonts
 ****  Change Font Based on Mode
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (add-hook 'org-mode-hook
           (lambda () (text-scale-set 1))) ; Make font larger in org mode
 
@@ -376,7 +371,7 @@ Where all my actual configuration takes place.
 #+end_src
 ****  Set Font Faces
 Will need to download the Iosevka Font for this to work.
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
 
@@ -384,7 +379,7 @@ Will need to download the Iosevka Font for this to work.
 (setq doom-big-font-increment 6)
 #+end_src
 ***  Theme
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 ;; Enable bold and italic for better syntax highlighting
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -394,7 +389,7 @@ Will need to download the Iosevka Font for this to work.
 (setq doom-theme 'doom-molokai)
 #+end_src
 **** Borders
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 ;; Remove all window borders and dividers
 (setq window-divider-default-bottom-width 0
       window-divider-default-right-width 0
@@ -416,7 +411,7 @@ Will need to download the Iosevka Font for this to work.
   '(window-divider-last-pixel :foreground "#000000"))
 #+end_src
 ***  Line numbers
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (setq display-line-numbers-type `relative)
 #+end_src
 ***  Transparency
@@ -424,12 +419,12 @@ Will need to download the Iosevka Font for this to work.
 Change the numerical values to affect the transparency
 (0-100 where 100 is opaque)
 #+end_verse
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 #+end_src
 ***  Mode Line Settings
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (after! doom-modeline
   ;; Configuration
   (setq doom-modeline-height 40
@@ -451,20 +446,20 @@ Change the numerical values to affect the transparency
 (display-battery-mode 1)
 #+end_src
 ***  Mode Settings
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 #+end_src
 **  Package settings
 ***  Utilities
 ****  Dired
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (use-package! nerd-icons-dired
   :hook
   (dired-mode . nerd-icons-dired-mode))
 #+end_src
 ***  Debugger
 ****  Main Config
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (dap-mode 1)
@@ -472,30 +467,30 @@ Change the numerical values to affect the transparency
 #+end_src
 ****  Python
 Need to install python debugger (look at install.sh)
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (require 'dap-python)
 ;; Set python debugger (debugpy)
 (setq dap-python-debugger 'debugpy)
 #+end_src
 ****  Javascript/Typescript
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (require 'dap-node)
 ;; Auto-installs debug adapter
 (dap-node-setup)
 #+end_src
 ****  Go
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (require 'dap-dlv-go))
 #+end_src
 ***  Elpher
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (map! :after elpher
       :map elpher-mode-map
       "-" #'elpher-back)
 #+end_src
 
 ***  Workspaces
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 ;; Always create projects when switching projects
 (setq +workspaces-on-switch-project-behavior t)
 #+end_src
@@ -503,7 +498,7 @@ Need to install python debugger (look at install.sh)
 #+begin_verse
 Colored parenthesis (colored lisp go brrr)
 #+end_verse
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (use-package! prism
   :init
   (setq prism-desaturations '(10 15 20))
@@ -517,7 +512,7 @@ Colored parenthesis (colored lisp go brrr)
 All of my org settings
 first my default org directory
 #+end_verse
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (setq org-directory "~/Documents/org")
 (after! org
   (setq org-hide-emphasis-markers t))
@@ -527,7 +522,7 @@ first my default org directory
 #+begin_verse
 This makes org mode nicer to look at
 #+end_verse
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 ;; Org modern settings
 (use-package! org-modern
   :hook (org-mode . org-modern-mode)
@@ -548,17 +543,17 @@ This makes org mode nicer to look at
         org-src-preserve-indentation t))  ; Preserve indentation
 #+end_src
 ****  Org Appear
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (use-package! org-appear
   :after org-modern
   :hook (org-mode . org-appear-mode))
 #+END_SRC
 ****  Org Download
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (setq-default org-download-image-dir "~/Pictures/Org")
 #+end_src
 ****  Org TOC
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (use-package! toc-org
   :hook (org-mode . toc-org-mode))
 #+END_SRC
@@ -566,20 +561,20 @@ This makes org mode nicer to look at
 #+begin_verse
 Used to center org documents
 #+end_verse
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (use-package! olivetti
   :hook (org-mode . olivetti-mode)
   :config (setq olivetti-body-width 100))
 #+end_src
 ****  Misc org settings
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (after! org
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
 #+end_src
 
 ****  Prettify Symbols Mode
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp 
 (after! org
   ;; Disables these modes that freeze org mode
   (global-prettify-symbols-mode -1)
@@ -587,6 +582,7 @@ Used to center org documents
 #+end_src
 *  Packages Settings
 :PROPERTIES:
+:header-args: :tangle packages.el
 :VISIBILITY: folded
 :END:
 
@@ -600,45 +596,45 @@ C-h f package\!
 **  External Packages
 ***  Utils
 ****  Elpher
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! elpher)
 #+end_src
 ***  Org Packages
 ****  Org Modern
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! org-modern)
 #+end_src
 ****  Org appear
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! org-appear)
 #+END_SRC
 ****  Org table of contents
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! toc-org)
 #+END_SRC
 ****  Org Download
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! org-download)
 #+end_src
 ****  Olivetti
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! olivetti)
 #+end_src
 ***  UI
 ****  Nerd Icons (dired)
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! nerd-icons-dired)
 #+end_src
 ****  Prism
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! prism)
 #+end_src
 ***  Fun
 ****  Fireplace
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! fireplace)
 #+end_src
 ****  Parrot
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp 
 (package! parrot)
 #+end_src

@@ -5,8 +5,6 @@
   (shell-command "stow-configs")
   (message "Done!"))
 
-
-
 (map!
  "C-c f c" #'run-config-script)
 
