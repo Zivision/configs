@@ -7,6 +7,9 @@
   -  [[#scripts][Scripts]]
 -  [[#prerequisites][Prerequisites]]
   -  [[#getting-started][Getting Started]]
+  -  [[#install][Install]]
+  -  [[#quick-information][Quick Information]]
+    -  [[#list-of-directories][List of directories]]
 
 *  Configs
 **  GNU Emacs (Doom Emacs)
@@ -24,3 +27,18 @@ In order to get started clone the repository from github with the command below:
 #+begin_src bash
 git clone https://github.com/Zivision/configs.git
 #+end_src
+
+**  Install
+To install doom Emacs and setup the configurations, use the _install-sys_ script located in *scripts*
+#+begin_src bash
+cd configs
+./scripts/install-sys
+#+end_src
+
+**  Quick Information
+This project makes links (via stow) to different directories in the machine
+
+***  List of directories
++  Doom Configuration :: ~/.config/doom/
++  Home Configuration :: ~/
++  Scripts :: ~/.local/bin/
