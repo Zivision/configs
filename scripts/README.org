@@ -16,9 +16,6 @@
   -  [[#update-all-packages-script][Update All Packages Script]]
     -  [[#update-apt][Update Apt]]
     -  [[#update-flatpak][Update Flatpak]]
--  [[#emacs-lisp][Emacs Lisp]]
-  -  [[#libel][Lib.el]]
-    -  [[#find-script-function][Find Script Function]]
 
 *  Bash
 **  Install-Sys Script
@@ -123,21 +120,3 @@ flatpak update -y
 echo "Done!"
 #+end_src
 
-*  Emacs Lisp
-**  Lib.el
-:PROPERTIES:
-:header-args: :tangle lib.el
-:END:
-***  Find Script Function
-#+begin_src emacs-lisp
-(defun find-script-location
-    ()
-  "Returns location of scripts."
-  (setq script-location
-        (file-name-directory
-         (file-truename (or load-file-name (buffer-file-name)))))
-  (setq script-project-root (string-replace "scripts/" "" script-location))
-
-  ;; Return location of script and project root
-  (list script-location script-project-root))
-#+end_src
