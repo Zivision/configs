@@ -15,5 +15,3 @@
 (package! prism)
 
 (package! fireplace)
-
-(package! parrot)

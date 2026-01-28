@@ -4,6 +4,14 @@ To update the configuration use org-babel-tangle *C-c C-v t* to output the sourc
 Then *SPC h r r* to reload the configuration
 
 *  Doom Table of Contents :TOC_4:
+-  [[#about][About]]
+  -  [[#why-emacs][Why Emacs?]]
+    -  [[#i-like-lisp][I like lisp]]
+    -  [[#developerwriting-environment][Developer/Writing environment]]
+    -  [[#customize-everything][Customize everything]]
+    -  [[#gui-app][GUI App]]
+    -  [[#stability][Stability]]
+    -  [[#killer-features][Killer Features]]
 -  [[#how-to-install][How to Install]]
 -  [[#init-settings][Init Settings]]
   -  [[#input][Input]]
@@ -26,7 +34,6 @@ Then *SPC h r r* to reload the configuration
   -  [[#custom-functions][Custom Functions]]
     -  [[#config-script][Config Script]]
   -  [[#basic-settings][Basic settings]]
-    -  [[#emacs-startup][Emacs Startup]]
     -  [[#keybinds][Keybinds]]
       -  [[#custom-functions-1][Custom Functions]]
       -  [[#dirvish][Dirvish]]
@@ -75,10 +82,40 @@ Then *SPC h r r* to reload the configuration
       -  [[#prism-1][Prism]]
     -  [[#fun][Fun]]
       -  [[#fireplace][Fireplace]]
-      -  [[#parrot][Parrot]]
+
+*  About
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+*DISCLAIMER:* The configuration starts after this, so feel free to skip the about section
+
+**  Why Emacs?
+I chose Emacs for a couple of reasons.
+***  I like lisp
+Sometimes it is that simple, I like writing lisp and wanted an editor that is configured with lisp.
+
+***  Developer/Writing environment
+I like using tools that enable modal editing and keyboard driven text editing. I also value a tool that keeps everything in one space.
+- Development :: Git, Docker, Scripting, Debugging, and READING logs all in Emacs
+- Writing :: Org Mode enables to do all my writing in one format then target different formats with tools like pandoc
+
+Nothing is off the table with Emacs, I can write custom functions to do whatever I need and interact with the system through my main environment.
+
+***  Customize everything
+Everything can be changed: theme, font, functionality, keybinds, modes, you name it.
+
+***  GUI App
+This one is less important, but due to issues with emoji and certain font faces in terminals I had issues with displaying characters in Neovim in the past.
+
+***  Stability
+In my experience Emacs has been pretty stable once I got everything working how I liked it. My previous editor (Neovim) had stability issues in the past but from what I've gathered it has gotten better over the years.
+
+***  Killer Features
+I used to use Neovim so you might be inclined to ask why do I not switch back? The main reasons are magit and org-mode. Hands down my favorite features of Emacs and keep me here with it.
 
 *  How to Install
-Run the install.sh script in the project root.
+Run the install-sys (Debian based systems only) script in the project root.
 After that run configure.sh to run stow and symlink the files.
 
 Happy Hacking!
@@ -89,7 +126,8 @@ Happy Hacking!
 :VISIBILITY: folded
 :END:
 
-This are the settings originally located in init.el
+This are the settings originally located in *init.el*
+To toggle certain settings simply uncomment (remove ;;) a package name.
 **  Input
 #+begin_src emacs-lisp 
 (doom! :input
@@ -310,8 +348,8 @@ This are the settings originally located in init.el
 :VISIBILITY: folded
 :END:
 
-This are the settings originally located in config.el
-Where all my actual configuration takes place.
+This are the settings originally located in *config.el*.
+This is where custom Emacs functions and configuration for packages reside.
 **  Basic usage
 ***  Basic variables
 + doom-font                :: the primary font to use
@@ -586,7 +624,9 @@ Used to center org documents
 :VISIBILITY: folded
 :END:
 
-This are the external dependencies originally in packages.el
+This are the external dependencies originally in *packages.el*.
+Packages outside of what's available for Doom Emacs reside here.
+
 **  Basic usage
 1. Declare them here in a `package!' statement,
 2. Run 'doom sync' in the shell,
@@ -633,8 +673,4 @@ C-h f package\!
 ****  Fireplace
 #+begin_src emacs-lisp
 (package! fireplace)
-#+end_src
-****  Parrot
-#+begin_src emacs-lisp 
-(package! parrot)
 #+end_src
