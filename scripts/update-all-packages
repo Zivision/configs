@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo "Updating system packages and repos"
+sudo apt update
+sudo apt upgrade -y
+
+echo "Updating flatpak"
+flatpak update -y
+
+echo "Done!"

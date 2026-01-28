@@ -31,7 +31,11 @@ Then *SPC h r r* to reload the configuration
   -  [[#basic-usage][Basic usage]]
     -  [[#basic-variables][Basic variables]]
     -  [[#basic-macros][Basic macros]]
+  -  [[#early-emacs-setup][Early Emacs Setup]]
+    -  [[#auth-source][Auth Source]]
+    -  [[#tramp][Tramp]]
   -  [[#custom-functions][Custom Functions]]
+    -  [[#update-script][Update Script]]
     -  [[#config-script][Config Script]]
   -  [[#basic-settings][Basic settings]]
     -  [[#keybinds][Keybinds]]
@@ -66,6 +70,7 @@ Then *SPC h r r* to reload the configuration
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
       -  [[#prettify-symbols-mode][Prettify Symbols Mode]]
+    -  [[#tramp-1][Tramp]]
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
@@ -365,11 +370,20 @@ This is where custom Emacs functions and configuration for packages reside.
 + after!         :: For running code after a package has loaded
 + add-load-path! :: For adding directories to the load-path.
 + map!           :: Map new keys
-
+**  Early Emacs Setup
 **  Custom Functions
+***  Update Script
+#+begin_src emacs-lisp
+(defun scripts/update
+    ()
+  "Run update script."
+  (interactive)
+(let ((default-directory (concat "/sudo::" (expand-file-name "~/.local/bin/"))))
+    (async-shell-command "./update-all-packages")))
+#+end_src
 ***  Config Script
 #+begin_src emacs-lisp
-(defun run-config-script
+(defun scripts/config
     ()
   "Run config script."
   (interactive)
@@ -379,11 +393,14 @@ This is where custom Emacs functions and configuration for packages reside.
 **  Basic settings
 ***  Keybinds
 ****  Custom Functions
-*****  Config Script
 #+begin_src emacs-lisp
 (map!
- "C-c f c" #'run-config-script)
+ "C-c f c" #'scripts/config
+ "C-c f u" #'scripts/update)
 #+end_src
+
+#+RESULTS:
+
 ****  Dirvish
 #+begin_src emacs-lisp
 (map!

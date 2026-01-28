@@ -1,4 +1,11 @@
-(defun run-config-script
+(defun scripts/update
+    ()
+  "Run update script."
+  (interactive)
+(let ((default-directory (concat "/sudo::" (expand-file-name "~/.local/bin/"))))
+    (async-shell-command "./update-all-packages")))
+
+(defun scripts/config
     ()
   "Run config script."
   (interactive)
@@ -6,7 +13,8 @@
   (message "Done!"))
 
 (map!
- "C-c f c" #'run-config-script)
+ "C-c f c" #'scripts/config
+ "C-c f u" #'scripts/update)
 
 (map!
  "C-c d d" #'dirvish
