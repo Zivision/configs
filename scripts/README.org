@@ -1,28 +1,37 @@
 #+title: Scripts
 
 *  Scripts table of contents :TOC_4:
--  [[#install-sys-script][Install-Sys script]]
-  -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
-  -  [[#update-repositories][Update Repositories]]
-  -  [[#general-dependencies][General Dependencies]]
-  -  [[#doom-dependencies][Doom Dependencies]]
-  -  [[#stow-configs][Stow Configs]]
-  -  [[#install-doom][Install Doom]]
--  [[#stow-configs-script][Stow-Configs Script]]
-  -  [[#get-script-location-and-project-root-1][Get Script Location and Project Root]]
-  -  [[#run-stow][Run Stow]]
+-  [[#bash][Bash]]
+  -  [[#install-sys-script][Install-Sys Script]]
+    -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
+    -  [[#update-repositories][Update Repositories]]
+    -  [[#general-dependencies][General Dependencies]]
+    -  [[#doom-dependencies][Doom Dependencies]]
+    -  [[#remove-old-bashrc][Remove Old .bashrc]]
+    -  [[#stow-configs][Stow Configs]]
+    -  [[#install-doom][Install Doom]]
+  -  [[#stow-configs-script][Stow-Configs Script]]
+    -  [[#get-script-location-and-project-root-1][Get Script Location and Project Root]]
+    -  [[#run-stow][Run Stow]]
+  -  [[#update-all-packages-script][Update All Packages Script]]
+    -  [[#update-apt][Update Apt]]
+    -  [[#update-flatpak][Update Flatpak]]
+-  [[#emacs-lisp][Emacs Lisp]]
+  -  [[#libel][Lib.el]]
+    -  [[#find-script-function][Find Script Function]]
 
-*  Install-Sys script
+*  Bash
+**  Install-Sys Script
 :PROPERTIES:
 :header-args: :tangle install-sys
 :END:
-**  Get Script Location and Project Root
+***  Get Script Location and Project Root
 #+begin_src bash
 #!/usr/bin/env sh
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 PROJECT_DIR=$(dirname "$SCRIPT_DIR")
 #+end_src
-**  Update Repositories
+***  Update Repositories
 First update repositories
 #+begin_src bash
 # Update repositories
@@ -30,7 +39,7 @@ echo "Updating Repositories"
 sudo apt update
 #+end_src
 
-**  General Dependencies
+***  General Dependencies
 +  GNU Emacs
 +  GNU Stow
 +  rg (ripgrep)
@@ -40,7 +49,7 @@ echo "Installing general packages"
 sudo apt install emacs stow ripgrep fd-find -y
 #+end_src
 
-**  Doom Dependencies
+***  Doom Dependencies
 +  libjansson4
 +  libjansson-dev
 These are for vterm
@@ -50,12 +59,12 @@ These are for vterm
 echo "Installing DOOM Emacs dependencies."
 sudo apt install libjansson4 libjansson-dev cmake libtool-bin
 #+end_src
-**  Remove Old .bashrc
+***  Remove Old .bashrc
 #+begin_src bash
 rm ~/.bashrc
 #+end_src
 
-**  Stow Configs
+***  Stow Configs
 #+begin_src bash
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
@@ -63,7 +72,7 @@ rm ~/.bashrc
 (cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)
 #+end_src
 
-**  Install Doom
+***  Install Doom
 This will first clone the doom emacs git repo then install it
 #+begin_src bash
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
@@ -74,11 +83,11 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 echo "Install finished"
 #+end_src
 
-*  Stow-Configs Script
+**  Stow-Configs Script
 :PROPERTIES:
 :header-args: :tangle stow-configs
 :END:
-**  Get Script Location and Project Root
+***  Get Script Location and Project Root
 This finds the orignal script location
 #+begin_src bash
 #!/usr/bin/env sh
@@ -86,11 +95,49 @@ SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 PROJECT_DIR=$(dirname "$SCRIPT_DIR")
 #+end_src
 
-**  Run Stow
+***  Run Stow
 This will put everything where it needs to go
 #+begin_src bash
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
 (cd "$PROJECT_DIR" && stow home -t ~)
 (cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)
+#+end_src
+**  Update All Packages Script
+:PROPERTIES:
+:header-args: :update-all-packages
+:END:
+***  Update Apt
+#+begin_src bash
+#!/usr/bin/env bash
+
+echo "Updating system packages and repos"
+sudo apt update
+sudo apt upgrade -y
+#+end_src
+***  Update Flatpak
+#+begin_src bash
+echo "Updating flatpak"
+flatpak update -y
+
+echo "Done!"
+#+end_src
+
+*  Emacs Lisp
+**  Lib.el
+:PROPERTIES:
+:header-args: :tangle lib.el
+:END:
+***  Find Script Function
+#+begin_src emacs-lisp
+(defun find-script-location
+    ()
+  "Returns location of scripts."
+  (setq script-location
+        (file-name-directory
+         (file-truename (or load-file-name (buffer-file-name)))))
+  (setq script-project-root (string-replace "scripts/" "" script-location))
+
+  ;; Return location of script and project root
+  (list script-location script-project-root))
 #+end_src
