@@ -25,8 +25,7 @@
 ***  Get Script Location and Project Root
 #+begin_src bash
 #!/usr/bin/env sh
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
-PROJECT_DIR=$(dirname "$SCRIPT_DIR")
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 #+end_src
 ***  Update Repositories
 First update repositories
@@ -66,7 +65,7 @@ rm ~/.bashrc
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
 (cd "$PROJECT_DIR" && stow home -t ~)
-(cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)
+(cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
 #+end_src
 
 ***  Install Doom
@@ -88,8 +87,7 @@ echo "Install finished"
 This finds the orignal script location
 #+begin_src bash
 #!/usr/bin/env sh
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
-PROJECT_DIR=$(dirname "$SCRIPT_DIR")
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 #+end_src
 
 ***  Run Stow
@@ -98,7 +96,7 @@ This will put everything where it needs to go
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
 (cd "$PROJECT_DIR" && stow home -t ~)
-(cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)
+(cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
 #+end_src
 **  Update All Packages Script
 :PROPERTIES:

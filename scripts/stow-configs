@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
-PROJECT_DIR=$(dirname "$SCRIPT_DIR")
-
-# Stow packages
-(cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
-(cd "$PROJECT_DIR" && stow home -t ~)
-(cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)

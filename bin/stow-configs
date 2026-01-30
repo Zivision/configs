@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
+
+# Stow packages
+(cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
+(cd "$PROJECT_DIR" && stow home -t ~)
+(cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)

@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
-PROJECT_DIR=$(dirname "$SCRIPT_DIR")
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 
 # Update repositories
 echo "Updating Repositories"
@@ -17,7 +16,7 @@ rm ~/.bashrc
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
 (cd "$PROJECT_DIR" && stow home -t ~)
-(cd "$PROJECT_DIR" && stow scripts -t ~/.local/bin)
+(cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
 
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 
