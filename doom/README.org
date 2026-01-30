@@ -32,8 +32,6 @@ Then *SPC h r r* to reload the configuration
     -  [[#basic-variables][Basic variables]]
     -  [[#basic-macros][Basic macros]]
   -  [[#early-emacs-setup][Early Emacs Setup]]
-    -  [[#auth-source][Auth Source]]
-    -  [[#tramp][Tramp]]
   -  [[#custom-functions][Custom Functions]]
     -  [[#update-script][Update Script]]
     -  [[#config-script][Config Script]]
@@ -70,7 +68,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
       -  [[#prettify-symbols-mode][Prettify Symbols Mode]]
-    -  [[#tramp-1][Tramp]]
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
@@ -395,8 +392,9 @@ This is where custom Emacs functions and configuration for packages reside.
 ****  Custom Functions
 #+begin_src emacs-lisp
 (map!
- "C-c f c" #'scripts/config
- "C-c f u" #'scripts/update)
+ :prefix "C-c f"
+ :desc "Run 'stow-configs' script" "c" #'scripts/config
+ :desc "Run 'update-all-packages' script" "u" #'scripts/update)
 #+end_src
 
 #+RESULTS:

@@ -13,8 +13,9 @@
   (message "Done!"))
 
 (map!
- "C-c f c" #'scripts/config
- "C-c f u" #'scripts/update)
+ :prefix "C-c f"
+ :desc "Run 'stow-configs' script" "c" #'scripts/config
+ :desc "Run 'update-all-packages' script" "u" #'scripts/update)
 
 (map!
  "C-c d d" #'dirvish
