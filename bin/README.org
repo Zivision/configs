@@ -1,8 +1,8 @@
-#+title: Scripts
+#+title: Binaries and Scripts
 
-*  Scripts table of contents :TOC_4:
+*  Binaries and Scripts table of contents :TOC_4:
 -  [[#bash][Bash]]
-  -  [[#install-sys-script][Install-Sys Script]]
+  -  [[#install-sys][Install-Sys]]
     -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
     -  [[#update-repositories][Update Repositories]]
     -  [[#general-dependencies][General Dependencies]]
@@ -10,15 +10,15 @@
     -  [[#remove-old-bashrc][Remove Old .bashrc]]
     -  [[#stow-configs][Stow Configs]]
     -  [[#install-doom][Install Doom]]
-  -  [[#stow-configs-script][Stow-Configs Script]]
+  -  [[#stow-configs-1][Stow-Configs]]
     -  [[#get-script-location-and-project-root-1][Get Script Location and Project Root]]
     -  [[#run-stow][Run Stow]]
-  -  [[#update-all-packages-script][Update All Packages Script]]
+  -  [[#update-all-packages][Update All Packages]]
     -  [[#update-apt][Update Apt]]
     -  [[#update-flatpak][Update Flatpak]]
 
 *  Bash
-**  Install-Sys Script
+**  Install-Sys
 :PROPERTIES:
 :header-args: :tangle install-sys
 :END:
@@ -79,7 +79,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 echo "Install finished"
 #+end_src
 
-**  Stow-Configs Script
+**  Stow-Configs
 :PROPERTIES:
 :header-args: :tangle stow-configs
 :END:
@@ -98,7 +98,7 @@ This will put everything where it needs to go
 (cd "$PROJECT_DIR" && stow home -t ~)
 (cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
 #+end_src
-**  Update All Packages Script
+**  Update All Packages
 :PROPERTIES:
 :header-args: :update-all-packages
 :END:
