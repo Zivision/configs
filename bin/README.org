@@ -4,6 +4,8 @@
 -  [[#bash][Bash]]
   -  [[#stow-configs][Stow-Configs]]
     -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
+    -  [[#create-directories-if-needed][Create directories (if needed)]]
+    -  [[#symlink-hardware-configurationnix][Symlink hardware-configuration.nix]]
     -  [[#run-stow][Run Stow]]
 
 *  Bash
@@ -12,10 +14,23 @@
 :header-args: :tangle stow-configs
 :END:
 ***  Get Script Location and Project Root
-This finds the orignal script location
+This finds the original script location
 #+begin_src bash
 #!/usr/bin/env sh
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
+#+end_src
+***  Create directories (if needed)
+#+begin_src bash
+mkdir -p ~/.config/doom
+mkdir -p ~/.config/nixos
+mkdir -p ~/.local/bin
+#+end_src
+
+***  Symlink hardware-configuration.nix
+#+begin_src bash
+if [ ! -L "${PROJECT_DIR}/nixos/hardware-configuration.nix" ]; then
+    (cd "${PROJECT_DIR}/nixos" && ln -sr /etc/nixos/hardware-configuration.nix)
+fi
 #+end_src
 
 ***  Run Stow
@@ -23,7 +38,7 @@ This will put everything where it needs to go
 #+begin_src bash
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
+(cd "$PROJECT_DIR" && stow nixos -t ~/.config/nixos)
 (cd "$PROJECT_DIR" && stow home -t ~)
 (cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
-(cd "$PROJECT_DIR" && sudo stow nixos -t /etc/nixos)
 #+end_src

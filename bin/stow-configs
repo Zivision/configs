@@ -1,8 +1,16 @@
 #!/usr/bin/env sh
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 
+mkdir -p ~/.config/doom
+mkdir -p ~/.config/nixos
+mkdir -p ~/.local/bin
+
+if [ ! -L "${PROJECT_DIR}/nixos/hardware-configuration.nix" ]; then
+    (cd "${PROJECT_DIR}/nixos" && ln -sr /etc/nixos/hardware-configuration.nix)
+fi
+
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
+(cd "$PROJECT_DIR" && stow nixos -t ~/.config/nixos)
 (cd "$PROJECT_DIR" && stow home -t ~)
 (cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
-(cd "$PROJECT_DIR" && sudo stow nixos -t /etc/nixos)
