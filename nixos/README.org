@@ -1,0 +1,283 @@
+#+title: Nixos Directory Files
+
+The Files used to configure nixos
+
+*  Nixos Table of Contents :TOC_4:
+-  [[#flake-setttings][Flake Setttings]]
+  -  [[#description][Description]]
+  -  [[#inputs][Inputs]]
+  -  [[#outputs][Outputs]]
+-  [[#home-settings][Home Settings]]
+  -  [[#imports][Imports]]
+  -  [[#basic-settings][Basic Settings]]
+  -  [[#packages][Packages]]
+    -  [[#browser][Browser]]
+    -  [[#fonts][Fonts]]
+    -  [[#gnu-stow][GNU Stow]]
+-  [[#configuration-settings][Configuration Settings]]
+  -  [[#imports-1][Imports]]
+  -  [[#bootloader][Bootloader]]
+  -  [[#app-armor][App armor]]
+  -  [[#steam][Steam]]
+  -  [[#system][System]]
+  -  [[#flakes][Flakes]]
+  -  [[#desktop][Desktop]]
+  -  [[#audio][Audio]]
+  -  [[#users][Users]]
+  -  [[#packages-1][Packages]]
+
+*  Flake Setttings
+:PROPERTIES:
+:header-args: :tangle flake.nix
+:VISIBILITY: folded
+:END:
+**  Description
+#+begin_src nix
+{
+  description = "My system flake";
+#+end_src
+
+**  Inputs
+#+begin_src nix
+inputs = {
+  # NixOS official package source, using the nixos-25.11 branch here
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+  # Home manager
+  home-manager = {
+    url = "github:nix-community/home-manager/release-25.11";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+};
+#+end_src
+
+**  Outputs
+#+begin_src nix
+outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    modules = [
+      # Import the previous configuration.nix we used,
+      # so the old configuration file still takes effect
+      ./configuration.nix
+
+      # Import home manager
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.primary = import ./home.nix;
+      }
+    ];
+  };
+};
+}
+#+end_src
+
+*  Home Settings
+:PROPERTIES:
+:header-args: :tangle home.nix
+:VISIBILITY: folded
+:END:
+
+**  Imports
+#+begin_src nix
+{ config, lib, pkgs, ... }:
+#+end_src
+**  Basic Settings
+#+begin_src nix
+{
+  home.username = "primary";
+  home.homeDirectory = "/home/primary";
+  home.stateVersion = "25.11";
+#+end_src
+
+**  Packages
+***  Browser
+#+begin_src nix
+# Start of the home packages array
+home.packages = with pkgs; [
+brave
+#+end_src
+***  Fonts
+#+begin_src nix
+# User fonts
+nerd-fonts.symbols-only
+nerd-fonts.iosevka
+#+end_src
+***  GNU Stow
+#+begin_src nix
+# Symlink manager
+stow
+];
+}
+#+end_src
+
+*  Configuration Settings
+:PROPERTIES:
+:header-args: :tangle configuration.nix
+:VISIBILITY: folded
+:END:
+**  Imports
+#+begin_src nix
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+#+end_src
+
+**  Bootloader
+#+begin_src nix
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+#+end_src
+
+**  App armor
+#+begin_src nix
+  # App armor
+  security.apparmor.enable = true;
+#+end_src
+
+**  Steam
+#+begin_src nix
+  # Steam
+  programs.steam.enable = true;
+#+end_src
+
+**  System
+#+begin_src nix
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Set your time zone.
+  time.timeZone = "America/Chicago";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  # Backup browser
+  programs.firefox.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
+
+  networking.firewall.enable = true;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.05"; # Did you read the comment?
+#+end_src
+
+**  Flakes
+#+begin_src nix
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+#+end_src
+
+**  Desktop
+#+begin_src nix
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+  services.xserver.enable = true;
+
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Set editor to neovim for quick edits
+  environment.variables.EDITOR = "nvim";
+#+end_src
+
+**  Audio
+#+begin_src nix
+  # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+#+end_src
+
+**  Users
+#+begin_src nix
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.primary = {
+    isNormalUser = true;
+    description = "Primary";
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
+#+end_src
+
+**  Packages
+These are *SYSTEM* packages for user specific look at home settings
+#+begin_src nix
+  environment.systemPackages = with pkgs; [
+    neovim
+    fastfetch
+    git
+    curl
+    wget
+    htop
+
+    # Emacs
+    gcc
+    gnumake
+    ripgrep
+    fd
+    emacs
+    cmake
+    libtool
+    ispell
+
+    # Languages
+    python314
+
+  ];
+}
+#+end_src

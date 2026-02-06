@@ -7,6 +7,9 @@
     -  [[#create-directories-if-needed][Create directories (if needed)]]
     -  [[#symlink-hardware-configurationnix][Symlink hardware-configuration.nix]]
     -  [[#run-stow][Run Stow]]
+  -  [[#rebuild-system][Rebuild-System]]
+    -  [[#get-script-location-and-project-root-1][Get Script Location and Project Root]]
+    -  [[#run-nixos-rebuild][Run nixos-rebuild]]
 
 *  Bash
 **  Stow-Configs
@@ -22,7 +25,6 @@ PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 ***  Create directories (if needed)
 #+begin_src bash
 mkdir -p ~/.config/doom
-mkdir -p ~/.config/nixos
 mkdir -p ~/.local/bin
 #+end_src
 
@@ -38,7 +40,20 @@ This will put everything where it needs to go
 #+begin_src bash
 # Stow packages
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
-(cd "$PROJECT_DIR" && stow nixos -t ~/.config/nixos)
 (cd "$PROJECT_DIR" && stow home -t ~)
 (cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
+#+end_src
+**  Rebuild-System
+:PROPERTIES:
+:header-args: :tangle rebuild-system
+:END:
+***  Get Script Location and Project Root
+This finds the original script location
+#+begin_src bash
+#!/usr/bin/env sh
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
+#+end_src
+***  Run nixos-rebuild
+#+begin_src bash
+sudo nixos-rebuild switch --flake "${PROJECT_DIR}/nixos" --impure
 #+end_src
