@@ -24,6 +24,7 @@ The Files used to configure nixos
   -  [[#desktop][Desktop]]
   -  [[#audio][Audio]]
   -  [[#users][Users]]
+  -  [[#docker][Docker]]
   -  [[#packages-1][Packages]]
 
 *  Flake Setttings
@@ -250,34 +251,45 @@ stow
   users.users.primary = {
     isNormalUser = true;
     description = "Primary";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
+#+end_src
+
+**  Docker
+#+begin_src nix
+virtualisation.docker.enable = true;
 #+end_src
 
 **  Packages
 These are *SYSTEM* packages for user specific look at home settings
 #+begin_src nix
-  environment.systemPackages = with pkgs; [
-    neovim
-    fastfetch
-    git
-    curl
-    wget
-    htop
+environment.systemPackages = with pkgs; [
+  neovim
+  fastfetch
+  git
+  curl
+  wget
+  htop
 
-    # Emacs
-    gcc
-    gnumake
-    ripgrep
-    fd
-    emacs
-    cmake
-    libtool
-    ispell
+  # Emacs
+  gcc
+  gnumake
+  ripgrep
+  fd
+  emacs
+  cmake
+  libtool
+  ispell
 
-    # Languages
-    python314
+  # Languages
+  python314
 
-  ];
+  # Devops
+  kubectl
+  docker
+  terraform
+  google-cloud-sdk
+
+];
 }
 #+end_src

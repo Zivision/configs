@@ -105,29 +105,37 @@
   users.users.primary = {
     isNormalUser = true;
     description = "Primary";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    fastfetch
-    git
-    curl
-    wget
-    htop
+virtualisation.docker.enable = true;
 
-    # Emacs
-    gcc
-    gnumake
-    ripgrep
-    fd
-    emacs
-    cmake
-    libtool
-    ispell
+environment.systemPackages = with pkgs; [
+  neovim
+  fastfetch
+  git
+  curl
+  wget
+  htop
 
-    # Languages
-    python314
+  # Emacs
+  gcc
+  gnumake
+  ripgrep
+  fd
+  emacs
+  cmake
+  libtool
+  ispell
 
-  ];
+  # Languages
+  python314
+
+  # Devops
+  kubectl
+  docker
+  terraform
+  google-cloud-sdk
+
+];
 }
