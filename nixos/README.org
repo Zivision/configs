@@ -12,8 +12,6 @@ The Files used to configure nixos
   -  [[#basic-settings][Basic Settings]]
   -  [[#packages][Packages]]
     -  [[#browser][Browser]]
-    -  [[#fonts][Fonts]]
-    -  [[#gnu-stow][GNU Stow]]
 -  [[#configuration-settings][Configuration Settings]]
   -  [[#imports-1][Imports]]
   -  [[#bootloader][Bootloader]]
@@ -25,7 +23,14 @@ The Files used to configure nixos
   -  [[#audio][Audio]]
   -  [[#users][Users]]
   -  [[#docker][Docker]]
+  -  [[#flatpak][Flatpak]]
   -  [[#packages-1][Packages]]
+    -  [[#general-dependencies][General Dependencies]]
+    -  [[#fonts][Fonts]]
+    -  [[#programming-languages][Programming Languages]]
+    -  [[#more-developer-tools][More Developer Tools]]
+    -  [[#flatpak-1][Flatpak]]
+    -  [[#misc][Misc]]
 
 *  Flake Setttings
 :PROPERTIES:
@@ -96,18 +101,7 @@ outputs = { self, nixpkgs, home-manager, ... }@inputs: {
 #+begin_src nix
 # Start of the home packages array
 home.packages = with pkgs; [
-brave
-#+end_src
-***  Fonts
-#+begin_src nix
-# User fonts
-nerd-fonts.symbols-only
-nerd-fonts.iosevka
-#+end_src
-***  GNU Stow
-#+begin_src nix
-# Symlink manager
-stow
+  brave
 ];
 }
 #+end_src
@@ -259,9 +253,13 @@ stow
 #+begin_src nix
 virtualisation.docker.enable = true;
 #+end_src
-
+**  Flatpak
+#+begin_src nix
+services.flatpak.enable = true;
+#+end_src
 **  Packages
 These are *SYSTEM* packages for user specific look at home settings
+***  General Dependencies
 #+begin_src nix
 environment.systemPackages = with pkgs; [
   neovim
@@ -281,15 +279,38 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 
+  # Stow
+  stow
+#+end_src
+***  Fonts
+#+begin_src nix
+nerd-fonts.symbols-only
+nerd-fonts.iosevka
+#+end_src
+***  Programming Languages
+This is for languages I use for both normal development and around the system.
+For project specific versions I usually use nix-shell
+#+begin_src nix
   # Languages
   python314
+#+end_src
 
+***  More Developer Tools
+#+begin_src nix
   # Devops
   kubectl
   docker
   terraform
   google-cloud-sdk
+#+end_src
 
+***  Flatpak
+Why Flatpak? for sandboxing certain apps I wish to have more restrictive permissions
+#+begin_src nix
+flatpak
+#+end_src
+***  Misc
+#+begin_src nix
 ];
 }
 #+end_src

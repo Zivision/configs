@@ -7,13 +7,6 @@
 
 # Start of the home packages array
 home.packages = with pkgs; [
-brave
-
-# User fonts
-nerd-fonts.symbols-only
-nerd-fonts.iosevka
-
-# Symlink manager
-stow
+  brave
 ];
 }

@@ -110,6 +110,8 @@
 
 virtualisation.docker.enable = true;
 
+services.flatpak.enable = true;
+
 environment.systemPackages = with pkgs; [
   neovim
   fastfetch
@@ -128,6 +130,12 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 
+  # Stow
+  stow
+
+nerd-fonts.symbols-only
+nerd-fonts.iosevka
+
   # Languages
   python314
 
@@ -136,6 +144,8 @@ environment.systemPackages = with pkgs; [
   docker
   terraform
   google-cloud-sdk
+
+flatpak
 
 ];
 }
