@@ -130,9 +130,6 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 
-  # Stow
-  stow
-
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
 

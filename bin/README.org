@@ -16,10 +16,15 @@
 :PROPERTIES:
 :header-args: :tangle stow-configs
 :END:
+***  Shebang
+#+begin_src bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash stow
+#+end_src
 ***  Get Script Location and Project Root
 This finds the original script location
 #+begin_src bash
-#!/usr/bin/env sh
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 #+end_src
 ***  Create directories (if needed)

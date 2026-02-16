@@ -135,7 +135,6 @@ home.packages = with pkgs; [
   # App armor
   security.apparmor.enable = true;
 #+end_src
-
 **  Steam
 #+begin_src nix
   # Steam
@@ -279,8 +278,6 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 
-  # Stow
-  stow
 #+end_src
 ***  Fonts
 #+begin_src nix

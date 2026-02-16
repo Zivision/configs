@@ -1,4 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash stow
+
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 
 mkdir -p ~/.config/doom
