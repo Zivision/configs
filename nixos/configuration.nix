@@ -136,6 +136,9 @@ nerd-fonts.iosevka
   # Languages
   python314
 
+  # LSP (pyright in my case)
+  pyright
+
   # Devops
   kubectl
   docker

@@ -28,6 +28,7 @@ The Files used to configure nixos
     -  [[#general-dependencies][General Dependencies]]
     -  [[#fonts][Fonts]]
     -  [[#programming-languages][Programming Languages]]
+      -  [[#python][Python]]
     -  [[#more-developer-tools][More Developer Tools]]
     -  [[#flatpak-1][Flatpak]]
     -  [[#misc][Misc]]
@@ -287,9 +288,13 @@ nerd-fonts.iosevka
 ***  Programming Languages
 This is for languages I use for both normal development and around the system.
 For project specific versions I usually use nix-shell
+****  Python
 #+begin_src nix
   # Languages
   python314
+
+  # LSP (pyright in my case)
+  pyright
 #+end_src
 
 ***  More Developer Tools
