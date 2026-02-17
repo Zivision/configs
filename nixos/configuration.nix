@@ -133,6 +133,9 @@ environment.systemPackages = with pkgs; [
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
 
+  # Shell Check
+  shellcheck
+
   # Languages
   python314
 
