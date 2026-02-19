@@ -167,11 +167,28 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 
+  # Shell Check
+  shellcheck
+
+  # Formatter
+  shfmt
+
 # Formatter
 cljfmt
 
 # Linter
 clj-kondo
+
+  # Python
+  python3
+
+  # LSP (pyright in my case)
+  pyright
+
+  # Python Formatter
+  black
+  # Import management
+  python3Packages.pyflakes
 
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
@@ -179,13 +196,6 @@ nerd-fonts.iosevka
 # Chinese Font
 noto-fonts-cjk-sans
 noto-fonts-cjk-serif
-
-  # Shell Check
-  shellcheck
-
-  python3
-  # LSP (pyright in my case)
-  pyright
 
   # Devops
   kubectl

@@ -27,11 +27,10 @@ The Files used to configure nixos
   -  [[#packages-1][Packages]]
     -  [[#general-dependencies][General Dependencies]]
     -  [[#emacs-doom][Emacs (DOOM)]]
-      -  [[#clojure][Clojure]]
-    -  [[#fonts][Fonts]]
-    -  [[#programming-languages][Programming Languages]]
       -  [[#bash][Bash]]
+      -  [[#clojure][Clojure]]
       -  [[#python][Python]]
+    -  [[#fonts][Fonts]]
     -  [[#more-developer-tools][More Developer Tools]]
     -  [[#flatpak-1][Flatpak]]
     -  [[#misc][Misc]]
@@ -321,6 +320,14 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 #+end_src
+****  Bash
+#+begin_src nix
+  # Shell Check
+  shellcheck
+
+  # Formatter
+  shfmt
+#+end_src
 ****  Clojure
 #+begin_src nix
 # Formatter
@@ -328,6 +335,21 @@ cljfmt
 
 # Linter
 clj-kondo
+#+end_src
+****  Python
+#+begin_src nix
+  # Python
+  python3
+
+  # LSP (pyright in my case)
+  pyright
+
+  # Python Formatter
+  black
+  # Import management
+  python3Packages.pyflakes
+
+
 #+end_src
 ***  Fonts
 #+begin_src nix
@@ -337,20 +359,6 @@ nerd-fonts.iosevka
 # Chinese Font
 noto-fonts-cjk-sans
 noto-fonts-cjk-serif
-#+end_src
-***  Programming Languages
-This is for languages I use for both normal development and around the system.
-For project specific versions I usually use nix-shell
-****  Bash
-#+begin_src nix
-  # Shell Check
-  shellcheck
-#+end_src
-****  Python
-#+begin_src nix
-  python3
-  # LSP (pyright in my case)
-  pyright
 #+end_src
 ***  More Developer Tools
 #+begin_src nix
