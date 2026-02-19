@@ -134,7 +134,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
 #+begin_src emacs-lisp 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
-       ;;chinese
+       chinese
        ;;japanese
        ;;layout            ; auie,ctsrnm is the superior home row
 #+end_src
