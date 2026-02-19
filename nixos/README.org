@@ -26,6 +26,8 @@ The Files used to configure nixos
   -  [[#flatpak][Flatpak]]
   -  [[#packages-1][Packages]]
     -  [[#general-dependencies][General Dependencies]]
+    -  [[#emacs-doom][Emacs (DOOM)]]
+      -  [[#clojure][Clojure]]
     -  [[#fonts][Fonts]]
     -  [[#programming-languages][Programming Languages]]
       -  [[#bash][Bash]]
@@ -306,7 +308,9 @@ environment.systemPackages = with pkgs; [
   curl
   wget
   htop
-
+#+end_src
+***  Emacs (DOOM)
+#+begin_src nix
   # Emacs
   gcc
   gnumake
@@ -316,7 +320,14 @@ environment.systemPackages = with pkgs; [
   cmake
   libtool
   ispell
+#+end_src
+****  Clojure
+#+begin_src nix
+# Formatter
+cljfmt
 
+# Linter
+clj-kondo
 #+end_src
 ***  Fonts
 #+begin_src nix
@@ -337,9 +348,7 @@ For project specific versions I usually use nix-shell
 #+end_src
 ****  Python
 #+begin_src nix
-  # Languages
   python3
-
   # LSP (pyright in my case)
   pyright
 #+end_src

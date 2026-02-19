@@ -167,6 +167,12 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 
+# Formatter
+cljfmt
+
+# Linter
+clj-kondo
+
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
 
@@ -177,9 +183,7 @@ noto-fonts-cjk-serif
   # Shell Check
   shellcheck
 
-  # Languages
   python3
-
   # LSP (pyright in my case)
   pyright
 
