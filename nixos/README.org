@@ -330,6 +330,12 @@ environment.systemPackages = with pkgs; [
 #+end_src
 ****  Clojure
 #+begin_src nix
+# Clojure
+clojure
+
+# Script runtime (babashka)
+babashka
+
 # Formatter
 cljfmt
 

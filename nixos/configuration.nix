@@ -173,6 +173,12 @@ environment.systemPackages = with pkgs; [
   # Formatter
   shfmt
 
+# Clojure
+clojure
+
+# Script runtime (babashka)
+babashka
+
 # Formatter
 cljfmt
 
