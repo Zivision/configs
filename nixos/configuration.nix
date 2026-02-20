@@ -188,6 +188,9 @@ clj-kondo
 # Formatter
 nixfmt
 
+# For org roam
+graphviz
+
   # Python
   python3
 

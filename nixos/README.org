@@ -348,6 +348,11 @@ clj-kondo
 # Formatter
 nixfmt
 #+end_src
+****  Org
+#+begin_src nix
+# For org roam
+graphviz
+#+end_src
 ****  Python
 #+begin_src nix
   # Python
