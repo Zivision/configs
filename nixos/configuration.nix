@@ -185,6 +185,9 @@ cljfmt
 # Linter
 clj-kondo
 
+# Formatter
+nixfmt
+
   # Python
   python3
 

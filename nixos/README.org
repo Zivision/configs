@@ -29,6 +29,7 @@ The Files used to configure nixos
     -  [[#emacs-doom][Emacs (DOOM)]]
       -  [[#bash][Bash]]
       -  [[#clojure][Clojure]]
+      -  [[#nix][Nix]]
       -  [[#python][Python]]
     -  [[#fonts][Fonts]]
     -  [[#more-developer-tools][More Developer Tools]]
@@ -341,6 +342,11 @@ cljfmt
 
 # Linter
 clj-kondo
+#+end_src
+****  Nix
+#+begin_src nix
+# Formatter
+nixfmt
 #+end_src
 ****  Python
 #+begin_src nix
