@@ -9,6 +9,10 @@
 (def project-dir
   (.getParent (java.io.File. script-dir)))
 
+;; Config system
+(defn sys-config []
+  (shell "stow-configs"))
+
 ;; Rebuild system
 (defn sys-rebuild []
   (shell
@@ -29,6 +33,7 @@
 (if (seq *command-line-args*)
   (doseq [arg *command-line-args*]
     (case arg
+      "-c" (sys-config)
       "-r" (sys-rebuild)
       "-u" (sys-update)))
   (sys-rebuild))
