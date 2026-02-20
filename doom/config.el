@@ -120,14 +120,6 @@
 ;; Always create projects when switching projects
 (setq +workspaces-on-switch-project-behavior t)
 
-(use-package! prism
-  :init
-  (setq prism-desaturations '(10 15 20))
-  :hook (((clojure-mode
-           emacs-lisp-mode
-           lisp-mode
-           scheme-mode) . prism-mode)))
-
 (setq org-directory "~/Documents/org")
 (after! org
   (setq org-hide-emphasis-markers t))

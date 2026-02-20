@@ -59,7 +59,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#go][Go]]
     -  [[#elpher][Elpher]]
     -  [[#workspaces][Workspaces]]
-    -  [[#prism][Prism]]
     -  [[#org][Org]]
       -  [[#org-modern][Org Modern]]
       -  [[#org-appear][Org Appear]]
@@ -81,7 +80,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#olivetti-1][Olivetti]]
     -  [[#ui-1][UI]]
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
-      -  [[#prism-1][Prism]]
     -  [[#fun][Fun]]
       -  [[#fireplace][Fireplace]]
 
@@ -548,19 +546,6 @@ Need to install python debugger (look at install.sh)
 ;; Always create projects when switching projects
 (setq +workspaces-on-switch-project-behavior t)
 #+end_src
-***  Prism
-#+begin_verse
-Colored parenthesis (colored lisp go brrr)
-#+end_verse
-#+begin_src emacs-lisp 
-(use-package! prism
-  :init
-  (setq prism-desaturations '(10 15 20))
-  :hook (((clojure-mode
-           emacs-lisp-mode
-           lisp-mode
-           scheme-mode) . prism-mode)))
-#+end_src
 ***  Org
 #+begin_verse
 All of my org settings
@@ -680,10 +665,6 @@ C-h f package\!
 ****  Nerd Icons (dired)
 #+begin_src emacs-lisp
 (package! nerd-icons-dired)
-#+end_src
-****  Prism
-#+begin_src emacs-lisp
-(package! prism)
 #+end_src
 ***  Fun
 ****  Fireplace

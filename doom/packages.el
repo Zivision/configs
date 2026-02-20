@@ -12,6 +12,4 @@
 
 (package! nerd-icons-dired)
 
-(package! prism)
-
 (package! fireplace)
