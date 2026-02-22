@@ -82,7 +82,8 @@ i18n = {
   };
 };
 
-
+# picom
+services.picom.enable = true;
 
 # Backup browser
 programs.firefox.enable = true;
@@ -99,17 +100,22 @@ networking.firewall.enable = true;
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 system.stateVersion = "25.05"; # Did you read the comment?
 
-services.emacs = {
-  enable = true;
-  package = pkgs.emacs;
-};
+  services.xserver = {
+    enable = true;
+    displayManager.startx.enable = true;
+
+    windowManager.exwm = {
+      enable = true;
+      #enableDefaultConfig = false; # important for Doom users
+    };
+  };
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  #services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -161,6 +167,11 @@ environment.systemPackages = with pkgs; [
   curl
   wget
   htop
+
+  # Window manager
+  arandr
+  picom
+  nitrogen
 
   # Emacs
   gcc

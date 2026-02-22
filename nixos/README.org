@@ -19,6 +19,7 @@ The Files used to configure nixos
   -  [[#steam][Steam]]
   -  [[#system][System]]
   -  [[#emacs-settings][Emacs (Settings)]]
+    -  [[#exwm][EXWM]]
   -  [[#flakes][Flakes]]
   -  [[#desktop][Desktop]]
   -  [[#audio][Audio]]
@@ -215,7 +216,8 @@ i18n = {
   };
 };
 
-
+# picom
+services.picom.enable = true;
 
 # Backup browser
 programs.firefox.enable = true;
@@ -233,11 +235,17 @@ networking.firewall.enable = true;
 system.stateVersion = "25.05"; # Did you read the comment?
 #+end_src
 **  Emacs (Settings)
+***  EXWM
 #+begin_src nix
-services.emacs = {
-  enable = true;
-  package = pkgs.emacs;
-};
+  services.xserver = {
+    enable = true;
+    displayManager.startx.enable = true;
+
+    windowManager.exwm = {
+      enable = true;
+      #enableDefaultConfig = false; # important for Doom users
+    };
+  };
 #+end_src
 **  Flakes
 #+begin_src nix
@@ -249,7 +257,7 @@ services.emacs = {
 #+begin_src nix
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  #services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -316,6 +324,11 @@ environment.systemPackages = with pkgs; [
   curl
   wget
   htop
+
+  # Window manager
+  arandr
+  picom
+  nitrogen
 #+end_src
 ***  Emacs (DOOM)
 #+begin_src nix
