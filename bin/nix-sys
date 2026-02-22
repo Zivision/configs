@@ -30,10 +30,20 @@
     "/nixos\""))
   (sys-rebuild))
 
+(defn sys-help []
+  (print (apply str
+                ["Nix-Sys v0.0.1\n"
+                 "Use flags:\n\n"
+                 "'-c': Run GNU stow for symlink management along with other commands\n"
+                 "'-r': Rebuild NixOS from configs/nixos\n"
+                 "'-u': Updates Nixos from configs/nixos\n"
+                 "'-h': Shows this page\n"])))
+
 (if (seq *command-line-args*)
   (doseq [arg *command-line-args*]
     (case arg
       "-c" (sys-config)
       "-r" (sys-rebuild)
-      "-u" (sys-update)))
-  (sys-rebuild))
+      "-u" (sys-update)
+      "-h" (sys-help)))
+  (sys-help))
