@@ -219,6 +219,13 @@ i18n = {
 # picom
 services.picom.enable = true;
 
+# AMD Driver fix
+services.xserver.videoDrivers = [ "amdgpu" ];
+
+services.xserver.deviceSection = ''
+  Option "TearFree" "true"
+'';
+
 # Backup browser
 programs.firefox.enable = true;
 

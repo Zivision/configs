@@ -2,7 +2,7 @@
   (use-package! exwm
     :config
     ;; Set the default number of workspaces
-    (setq exwm-workspace-number 5)
+    (setq exwm-workspace-number 10)
 
     ;; When window "class" updates, use it to set the buffer name
     ;; (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
@@ -51,28 +51,48 @@
                             (exwm-workspace-switch-create ,i))))
                       (number-sequence 0 9))))
     (require 'exwm-randr)
-    (setq exwm-randr-workspace-monitor-plist '(1 "HDMI-A-1" 0 "DP-2"))
+    (setq exwm-randr-workspace-monitor-plist
+          '(1 "HDMI-A-1"
+            0 "DisplayPort-1"
+            9 "DisplayPort-1"))
+
+    ;; run once
     (add-hook 'exwm-randr-screen-change-hook
               (lambda ()
-                (start-process-shell-command "xrandr" nil "xrandr --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 900x0 --rotate normal --output DP-2 --mode 1440x900 --pos 0x0 --rotate left --output DP-3 --off")))
+                (start-process-shell-command
+                 "xrandr" nil
+                 "bash ~/.screenlayout/exwm.sh")))
 
 
     (setq mouse-autoselect-window t
           focus-follows-mouse t)
     (setq emacs-workspace-warp-cursor t)
 
-    (exwm-randr-mode 1)
+    (require 'exwm-systemtray)
 
-    ;; Startup Script
-    (start-process-shell-command "bash" nil "./exwm-start.sh")
+    (exwm-randr-mode 1)
+    (exwm-systemtray-mode 1)
+
+    ;; Startup
+    ;;(start-process-shell-command "nitrogen" nil "nitrogen --restore")
     (exwm-enable)))
 
 (defun scripts/update
     ()
-  "Run update script."
+  "Run update script"
   (interactive)
-(let ((default-directory (concat "/sudo::" (expand-file-name "~/.local/bin/"))))
-    (async-shell-command "./update-all-packages")))
+  (shell-command "nix-sys -u"))
+
+(defun scripts/rebuild
+    ()
+  "Run rebuild script"
+  (interactive)
+  (shell-command "nix-sys -r"))
+
+(defun scripts/rebuild-exwm
+    ()
+  "Run rebuild-exwm script"
+  (shell-command "nix-sys -re"))
 
 (defun scripts/config
     ()

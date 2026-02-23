@@ -36,6 +36,8 @@ Then *SPC h r r* to reload the configuration
     -  [[#exwm-start][EXWM-Start]]
   -  [[#custom-functions][Custom Functions]]
     -  [[#update-script][Update Script]]
+    -  [[#rebuild-script][Rebuild Script]]
+    -  [[#rebuild-exwm-script][Rebuild EXWM Script]]
     -  [[#config-script][Config Script]]
   -  [[#basic-settings][Basic settings]]
     -  [[#keybinds][Keybinds]]
@@ -376,7 +378,7 @@ This is where custom Emacs functions and configuration for packages reside.
   (use-package! exwm
     :config
     ;; Set the default number of workspaces
-    (setq exwm-workspace-number 5)
+    (setq exwm-workspace-number 10)
 
     ;; When window "class" updates, use it to set the buffer name
     ;; (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
@@ -425,20 +427,30 @@ This is where custom Emacs functions and configuration for packages reside.
                             (exwm-workspace-switch-create ,i))))
                       (number-sequence 0 9))))
     (require 'exwm-randr)
-    (setq exwm-randr-workspace-monitor-plist '(1 "HDMI-A-1" 0 "DP-2"))
+    (setq exwm-randr-workspace-monitor-plist
+          '(1 "HDMI-A-1"
+            0 "DisplayPort-1"
+            9 "DisplayPort-1"))
+
+    ;; run once
     (add-hook 'exwm-randr-screen-change-hook
               (lambda ()
-                (start-process-shell-command "xrandr" nil "bash ~/.screenlayout/exwm.sh")))
+                (start-process-shell-command
+                 "xrandr" nil
+                 "bash ~/.screenlayout/exwm.sh")))
 
 
     (setq mouse-autoselect-window t
           focus-follows-mouse t)
     (setq emacs-workspace-warp-cursor t)
 
-    (exwm-randr-mode 1)
+    (require 'exwm-systemtray)
 
-    ;; Startup Script
-    (start-process-shell-command "bash" nil "./exwm-start.sh")
+    (exwm-randr-mode 1)
+    (exwm-systemtray-mode 1)
+
+    ;; Startup
+    ;;(start-process-shell-command "nitrogen" nil "nitrogen --restore")
     (exwm-enable)))
 #+end_src
 ***  EXWM-Start
@@ -455,10 +467,25 @@ nitrogen --restore
 #+begin_src emacs-lisp
 (defun scripts/update
     ()
-  "Run update script."
+  "Run update script"
   (interactive)
-(let ((default-directory (concat "/sudo::" (expand-file-name "~/.local/bin/"))))
-    (async-shell-command "./update-all-packages")))
+  (shell-command "nix-sys -u"))
+#+end_src
+***  Rebuild Script
+#+begin_src emacs-lisp
+(defun scripts/rebuild
+    ()
+  "Run rebuild script"
+  (interactive)
+  (shell-command "nix-sys -r"))
+#+end_src
+***  Rebuild EXWM Script
+#+begin_src emacs-lisp
+(defun scripts/rebuild-exwm
+    ()
+  "Run rebuild-exwm script"
+  (shell-command "nix-sys -re"))
+
 #+end_src
 ***  Config Script
 #+begin_src emacs-lisp
