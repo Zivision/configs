@@ -10,6 +10,7 @@ The Files used to configure nixos
 -  [[#home-settings][Home Settings]]
   -  [[#imports][Imports]]
   -  [[#basic-settings][Basic Settings]]
+    -  [[#hyprpaper][Hyprpaper]]
   -  [[#packages][Packages]]
     -  [[#browser][Browser]]
 -  [[#configuration-settings][Configuration Settings]]
@@ -19,6 +20,7 @@ The Files used to configure nixos
   -  [[#steam][Steam]]
   -  [[#system][System]]
   -  [[#emacs-settings][Emacs (Settings)]]
+  -  [[#hyprland][Hyprland]]
   -  [[#flakes][Flakes]]
   -  [[#desktop][Desktop]]
   -  [[#audio][Audio]]
@@ -27,6 +29,8 @@ The Files used to configure nixos
   -  [[#flatpak][Flatpak]]
   -  [[#packages-1][Packages]]
     -  [[#general-dependencies][General Dependencies]]
+    -  [[#terminal-kitty][Terminal (kitty)]]
+    -  [[#hyprland-1][Hyprland]]
     -  [[#emacs-doom][Emacs (DOOM)]]
       -  [[#bash][Bash]]
       -  [[#clojure][Clojure]]
@@ -100,6 +104,24 @@ outputs = { self, nixpkgs, home-manager, ... }@inputs: {
   home.username = "primary";
   home.homeDirectory = "/home/primary";
   home.stateVersion = "25.11";
+#+end_src
+
+***  Hyprpaper
+#+begin_src nix
+services.hyprpaper = {
+  enable = true;
+  settings = {
+    preload = [
+      "~/Pictures/abstract_flute.png"
+      "~/Pictures/art-deco-acid-trip.png"
+    ];
+    wallpaper = [
+      # By display
+      "HDMI-A-1,~/Pictures/abstract_flute.png"
+      "DP-2,~/Pictures/art-deco-acid-trip.png"
+    ];
+  };
+};
 #+end_src
 
 **  Packages
@@ -231,6 +253,19 @@ networking.firewall.enable = true;
 system.stateVersion = "25.05"; # Did you read the comment?
 #+end_src
 **  Emacs (Settings)
+#+begin_src nix
+services.emacs = {
+   enable = true;
+   defaultEditor = true;
+};
+#+end_src
+**  Hyprland
+#+begin_src nix
+programs.hyprland.enable = true;
+
+# Optional, hint Electron apps to use Wayland:
+environment.sessionVariables.NIXOS_OZONE_WL = "1";
+#+end_src
 **  Flakes
 #+begin_src nix
   # Enable flakes
@@ -308,6 +343,16 @@ environment.systemPackages = with pkgs; [
   curl
   wget
   htop
+#+end_src
+***  Terminal (kitty)
+#+begin_src nix
+  kitty
+#+end_src
+***  Hyprland
+#+begin_src nix
+  hyprpaper
+  wofi
+  waybar
 #+end_src
 ***  Emacs (DOOM)
 #+begin_src nix

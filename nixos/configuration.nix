@@ -97,6 +97,16 @@ networking.firewall.enable = true;
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 system.stateVersion = "25.05"; # Did you read the comment?
 
+services.emacs = {
+   enable = true;
+   defaultEditor = true;
+};
+
+programs.hyprland.enable = true;
+
+# Optional, hint Electron apps to use Wayland:
+environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -154,6 +164,12 @@ environment.systemPackages = with pkgs; [
   curl
   wget
   htop
+
+  kitty
+
+  hyprpaper
+  wofi
+  waybar
 
   # Emacs
   gcc
