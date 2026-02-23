@@ -45,4 +45,6 @@ This will put everything where it needs to go
 (cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
 (cd "$PROJECT_DIR" && stow home -t ~)
 (cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
+(cd "$PROJECT_DIR" && stow waybar -t ~/.config/waybar)
+(cd "$PROJECT_DIR" && stow hypr -t ~/.config/hypr)
 #+end_src

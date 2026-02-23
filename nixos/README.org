@@ -10,7 +10,6 @@ The Files used to configure nixos
 -  [[#home-settings][Home Settings]]
   -  [[#imports][Imports]]
   -  [[#basic-settings][Basic Settings]]
-    -  [[#hyprpaper][Hyprpaper]]
   -  [[#packages][Packages]]
     -  [[#browser][Browser]]
 -  [[#configuration-settings][Configuration Settings]]
@@ -106,23 +105,6 @@ outputs = { self, nixpkgs, home-manager, ... }@inputs: {
   home.stateVersion = "25.11";
 #+end_src
 
-***  Hyprpaper
-#+begin_src nix
-services.hyprpaper = {
-  enable = true;
-  settings = {
-    preload = [
-      "~/Pictures/abstract_flute.png"
-      "~/Pictures/art-deco-acid-trip.png"
-    ];
-    wallpaper = [
-      # By display
-      "HDMI-A-1,~/Pictures/abstract_flute.png"
-      "DP-2,~/Pictures/art-deco-acid-trip.png"
-    ];
-  };
-};
-#+end_src
 
 **  Packages
 ***  Browser
