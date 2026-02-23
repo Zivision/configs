@@ -37,12 +37,7 @@
                  "'-c': Run GNU stow for symlink management along with other commands\n"
                  "'-r': Rebuild NixOS from configs/nixos\n"
                  "'-u': Updates Nixos from configs/nixos\n"
-                 "'-re': Reconfigures EXWM (Mostly for testing)"
                  "'-h': Shows this page\n"])))
-
-(defn sys-rebuild-exwm []
-  (shell "bash /home/primary/.screenlayout/exwm.sh")
-  (shell "nitrogen --restore"))
 
 (if (seq *command-line-args*)
   (doseq [arg *command-line-args*]
@@ -50,6 +45,5 @@
       "-c" (sys-config)
       "-r" (sys-rebuild)
       "-u" (sys-update)
-      "-re" (sys-rebuild-exwm)
       "-h" (sys-help)))
   (sys-help))
