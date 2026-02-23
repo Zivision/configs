@@ -10,8 +10,6 @@
 
 (package! olivetti)
 
-(package! exwm)
-
 (package! nerd-icons-dired)
 
 (package! fireplace)
