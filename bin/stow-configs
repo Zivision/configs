@@ -8,6 +8,7 @@ mkdir -p ~/.config/doom
 mkdir -p ~/.config/waybar
 mkdir -p ~/.config/wofi
 mkdir -p ~/.config/hypr
+mkdir -p ~/.config/kitty
 mkdir -p ~/.local/bin
 
 if [ ! -L "${PROJECT_DIR}/nixos/hardware-configuration.nix" ]; then
@@ -21,3 +22,4 @@ fi
 (cd "$PROJECT_DIR" && stow waybar -t ~/.config/waybar)
 (cd "$PROJECT_DIR" && stow hypr -t ~/.config/hypr)
 (cd "$PROJECT_DIR" && stow wofi -t ~/.config/wofi)
+(cd "$PROJECT_DIR" && stow kitty -t ~/.config/kitty)
