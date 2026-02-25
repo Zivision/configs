@@ -1,17 +1,61 @@
 #!/usr/bin/env bb
-(require '[babashka.process :refer [shell]])
 
-;; Get the true (not symlink) location of script
-(def script-dir
-  (.getParent (.getCanonicalFile (java.io.File. *file*))))
+(require '[babashka.process :refer [shell process check]])
+(require '[babashka.fs :as fs])
+(require '[clojure.edn :as edn])
 
-;; Then the project
+;; Get the root directory of the true file (not symlink)
 (def project-dir
-  (.getParent (java.io.File. script-dir)))
+  (->> *file*
+       (java.io.File.)
+       (.getCanonicalFile)
+       (.getParent)
+       (java.io.File.)
+       (.getParent)))
+
+(def data
+  (->> "/bin/directories.edn"
+       (str project-dir)
+       (slurp)
+       (edn/read-string)))
+
+(def dirs
+  (map #(str (fs/home) (:dir %)) data))
+
+(def packages (map #(:name %) data))
+
+(defn configure-directories [dirs]
+  (doseq [d dirs]
+    (when-not (= d (str (fs/home) "/"))
+      (fs/create-dirs d))))
+
+(defn ensure-hardware-symlink [link target]
+  (when-not (fs/sym-link? link)
+    (fs/create-sym-link
+     link
+     (fs/relativize (fs/parent link) target))))
+
+(defn configure-stow-links [packages dirs]
+  (doseq [[package d] (map vector packages dirs)]
+    (-> (process ["stow" package "-t" d])
+        check)))
 
 ;; Config system
-(defn sys-config []
-  (shell "stow-configs"))
+(defn sys-config
+  "Sets the system up correctly"
+  []
+
+  ;; Take the hardware-configuration.nix from /etc/ that's auto generated
+  ;; When installing nixos
+  (ensure-hardware-symlink
+   (str project-dir "/nixos/hardware-configuration.nix")
+   "/etc/nixos/hardware-configuration.nix")
+
+  ;; Setup directories
+  (configure-directories dirs)
+
+  ;; Use stow to install all config file symlinks
+  (configure-stow-links packages dirs))
 
 ;; Rebuild system
 (defn sys-rebuild []
@@ -39,11 +83,12 @@
                  "'-u': Updates Nixos from configs/nixos\n"
                  "'-h': Shows this page\n"])))
 
-(if (seq *command-line-args*)
+(when (seq *command-line-args*)
   (doseq [arg *command-line-args*]
     (case arg
+      "" (sys-help)
       "-c" (sys-config)
       "-r" (sys-rebuild)
       "-u" (sys-update)
-      "-h" (sys-help)))
-  (sys-help))
+      "-h" (sys-help)
+      (sys-help))))

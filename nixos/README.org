@@ -325,6 +325,7 @@ environment.systemPackages = with pkgs; [
   curl
   wget
   htop
+  stow
 #+end_src
 ***  Terminal (kitty)
 #+begin_src nix

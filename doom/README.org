@@ -32,8 +32,6 @@ Then *SPC h r r* to reload the configuration
     -  [[#basic-variables][Basic variables]]
     -  [[#basic-macros][Basic macros]]
   -  [[#early-emacs-setup][Early Emacs Setup]]
-    -  [[#exwm][EXWM]]
-    -  [[#exwm-start][EXWM-Start]]
   -  [[#custom-functions][Custom Functions]]
     -  [[#update-script][Update Script]]
     -  [[#rebuild-script][Rebuild Script]]
@@ -83,7 +81,6 @@ Then *SPC h r r* to reload the configuration
       -  [[#org-download-1][Org Download]]
       -  [[#olivetti-1][Olivetti]]
     -  [[#ui-1][UI]]
-      -  [[#exwm-1][EXWM]]
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
     -  [[#fun][Fun]]
       -  [[#fireplace][Fireplace]]
@@ -291,7 +288,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
         +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       ;;latex             ; writing papers in Emacs has never been so fun
+       latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
