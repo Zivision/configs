@@ -385,6 +385,9 @@ gotests
 
 # go repl (gore)
 gore
+
+# Go language server (gopls)
+gopls
 #+end_src
 ****  Nix
 #+begin_src nix

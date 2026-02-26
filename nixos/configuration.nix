@@ -212,6 +212,9 @@ gotests
 # go repl (gore)
 gore
 
+# Go language server (gopls)
+gopls
+
 # Formatter
 nixfmt
 
