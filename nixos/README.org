@@ -33,6 +33,7 @@ The Files used to configure nixos
     -  [[#emacs-doom][Emacs (DOOM)]]
       -  [[#bash][Bash]]
       -  [[#clojure][Clojure]]
+      -  [[#go][Go]]
       -  [[#nix][Nix]]
       -  [[#org][Org]]
       -  [[#python][Python]]
@@ -370,6 +371,20 @@ cljfmt
 
 # Linter
 clj-kondo
+#+end_src
+****  Go
+#+begin_src nix
+# Golang
+go
+
+# Go modify tags
+gomodifytags
+
+# Tests
+gotests
+
+# go repl (gore)
+gore
 #+end_src
 ****  Nix
 #+begin_src nix

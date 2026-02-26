@@ -200,6 +200,18 @@ cljfmt
 # Linter
 clj-kondo
 
+# Golang
+go
+
+# Go modify tags
+gomodifytags
+
+# Tests
+gotests
+
+# go repl (gore)
+gore
+
 # Formatter
 nixfmt
 
