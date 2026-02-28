@@ -1,0 +1,211 @@
+#+title: Config
+This is the document containing all of my configurations
+refer to the headers or the table of contents for navigation
+
+*  Table of Contents :TOC_4:
+-  [[#scripts-bin-directory][Scripts (bin/ Directory)]]
+  -  [[#bash][Bash]]
+    -  [[#stow-configs][Stow Configs]]
+      -  [[#shebang][Shebang]]
+      -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
+      -  [[#create-directories-if-needed][Create directories (if needed)]]
+      -  [[#symlink-hardware-configurationnix][Symlink hardware-configuration.nix]]
+      -  [[#run-stow][Run Stow]]
+  -  [[#clojure-babashka][Clojure (Babashka)]]
+    -  [[#directories-edn][Directories (EDN)]]
+    -  [[#nix-sys][Nix Sys]]
+      -  [[#shebang-and-imports][Shebang and Imports]]
+      -  [[#general-variables][General Variables]]
+      -  [[#utility-functions][Utility Functions]]
+      -  [[#system-config][System Config]]
+      -  [[#system-rebuild][System Rebuild]]
+      -  [[#system-update][System Update]]
+      -  [[#system-help][System Help]]
+      -  [[#cli-interface][CLI Interface]]
+
+*  Scripts (bin/ Directory)
+**  Bash
+***  Stow Configs
+:PROPERTIES:
+:header-args: :tangle ./bin/stow-configs
+:END:
+****  Shebang
+#+begin_src bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash stow
+#+end_src
+****  Get Script Location and Project Root
+This finds the original script location
+#+begin_src bash
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
+
+echo "Hello World"
+#+end_src
+****  Create directories (if needed)
+#+begin_src bash
+mkdir -p ~/.config/doom
+mkdir -p ~/.config/waybar
+mkdir -p ~/.config/wofi
+mkdir -p ~/.config/hypr
+mkdir -p ~/.config/kitty
+mkdir -p ~/.local/bin
+#+end_src
+
+****  Symlink hardware-configuration.nix
+#+begin_src bash
+if [ ! -L "${PROJECT_DIR}/nixos/hardware-configuration.nix" ]; then
+    (cd "${PROJECT_DIR}/nixos" && ln -sr /etc/nixos/hardware-configuration.nix)
+fi
+#+end_src
+
+****  Run Stow
+This will put everything where it needs to go
+#+begin_src bash
+# Stow packages
+(cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
+(cd "$PROJECT_DIR" && stow home -t ~)
+(cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
+(cd "$PROJECT_DIR" && stow waybar -t ~/.config/waybar)
+(cd "$PROJECT_DIR" && stow hypr -t ~/.config/hypr)
+(cd "$PROJECT_DIR" && stow wofi -t ~/.config/wofi)
+(cd "$PROJECT_DIR" && stow kitty -t ~/.config/kitty)
+#+end_src
+
+**  Clojure (Babashka)
+***  Directories (EDN)
+:PROPERTIES:
+:header-args: :tangle ./bin/directories.edn
+:END:
+This is an EDN file that's shared between clojure scripts
+
+#+begin_src clojure
+[{:name "doom"   :dir "/.config/doom"}
+ {:name "home"   :dir "/"}
+ {:name "bin"    :dir "/.local/bin"}
+ {:name "waybar" :dir "/.config/waybar"}
+ {:name "hypr"   :dir "/.config/hypr"}
+ {:name "wofi"   :dir "/.config/wofi"}
+ {:name "kitty"  :dir "/.config/kitty"}]
+#+end_src
+
+***  Nix Sys
+:PROPERTIES:
+:header-args: :tangle ./bin/nix-sys
+:END:
+****  Shebang and Imports
+#+begin_src clojure
+#!/usr/bin/env bb
+
+(require '[babashka.process :refer [shell process check]])
+(require '[babashka.fs :as fs])
+(require '[clojure.edn :as edn])
+#+end_src
+****  General Variables
+#+begin_src clojure
+;; Get the root directory of the true file (not symlink)
+(def project-dir
+  (->> *file*
+       (java.io.File.)
+       (.getCanonicalFile)
+       (.getParent)
+       (java.io.File.)
+       (.getParent)))
+
+(def data
+  (->> "/bin/directories.edn"
+       (str project-dir)
+       (slurp)
+       (edn/read-string)))
+
+(def dirs
+  (map #(str (fs/home) (:dir %)) data))
+
+(def packages (map #(:name %) data))
+#+end_src
+****  Utility Functions
+#+begin_src clojure
+(defn configure-directories [dirs]
+  (doseq [d dirs]
+    (when-not (= d (str (fs/home) "/"))
+      (fs/create-dirs d))))
+
+(defn ensure-hardware-symlink [link target]
+  (when-not (fs/sym-link? link)
+    (fs/create-sym-link
+     link
+     (fs/relativize (fs/parent link) target))))
+
+(defn configure-stow-links [packages dirs]
+  (doseq [[package d] (map vector packages dirs)]
+    (-> (process ["stow" package "-t" d])
+        check)))
+#+end_src
+
+****  System Config
+#+begin_src clojure
+;; Config system
+(defn sys-config
+  "Sets the system up correctly"
+  []
+
+  ;; Take the hardware-configuration.nix from /etc/ that's auto generated
+  ;; When installing nixos
+  (ensure-hardware-symlink
+   (str project-dir "/nixos/hardware-configuration.nix")
+   "/etc/nixos/hardware-configuration.nix")
+
+  ;; Setup directories
+  (configure-directories dirs)
+
+  ;; Use stow to install all config file symlinks
+  (configure-stow-links packages dirs))
+#+end_src
+
+****  System Rebuild
+#+begin_src clojure
+;; Rebuild system
+(defn sys-rebuild []
+  (shell
+   (str
+    "sudo nixos-rebuild switch --flake \""
+    project-dir
+    "/nixos\" --impure")))
+#+end_src
+
+****  System Update
+#+begin_src clojure
+;; Update then rebuild
+(defn sys-update []
+  (shell
+   (str
+    "nix flake update --flake \""
+    project-dir
+    "/nixos\""))
+  (sys-rebuild))
+#+end_src
+
+****  System Help
+#+begin_src clojure
+(defn sys-help []
+  (print (apply str
+                ["Nix-Sys v0.0.1\n"
+                 "Use flags:\n\n"
+                 "'-c': Run GNU stow for symlink management along with other commands\n"
+                 "'-r': Rebuild NixOS from configs/nixos\n"
+                 "'-u': Updates Nixos from configs/nixos\n"
+                 "'-h': Shows this page\n"])))
+#+end_src
+
+****  CLI Interface
+#+begin_src clojure
+(when (seq *command-line-args*)
+  (doseq [arg *command-line-args*]
+    (case arg
+      "" (sys-help)
+      "-c" (sys-config)
+      "-r" (sys-rebuild)
+      "-u" (sys-update)
+      "-h" (sys-help)
+      (sys-help))))
+#+end_src
