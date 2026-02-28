@@ -10,11 +10,6 @@
   (interactive)
   (shell-command "nix-sys -r"))
 
-(defun scripts/rebuild-exwm
-    ()
-  "Run rebuild-exwm script"
-  (shell-command "nix-sys -re"))
-
 (defun scripts/config
     ()
   "Run config script."
@@ -104,11 +99,42 @@
 
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 
-;; eshell functions
-(defun eshell/nix-sys
-  (num1 num2)
-    "Add two numbers swiftly"
-    (+ num1 num2))
+(after! eshell
+  (require 'magit)
+
+  (setq eshell-prompt-function
+        (lambda ()
+          (let* ((user (user-login-name))
+                 (host (system-name))
+                 (pwd  (abbreviate-file-name (eshell/pwd)))
+                 (branch (ignore-errors (magit-get-current-branch)))
+                 ;; 12-hour time with AM/PM
+                 (time (format-time-string "%I:%M %p"))
+                 ;; Nerd Font Git branch icon (nf-dev-git_branch)
+                 (git-icon "")
+                 (git-part (when branch
+                             (concat
+                              " "
+                              (propertize git-icon
+                                          'face 'font-lock-constant-face)
+                              " "
+                              (propertize branch
+                                          'face 'font-lock-constant-face)))))
+            (concat
+             ;; First line
+             (propertize (format "[%s@%s]" user host)
+                         'face 'font-lock-keyword-face)
+             " >>> "
+             (propertize pwd 'face 'font-lock-string-face)
+             git-part
+             "\n"
+             ;; Second line
+             (propertize time 'face 'font-lock-comment-face)
+             " "
+             (propertize "λ "
+                         'face 'font-lock-function-name-face)))))
+
+  (setq eshell-prompt-regexp "^[^λ]*λ "))
 
 (use-package! nerd-icons-dired
   :hook

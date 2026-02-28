@@ -53,7 +53,6 @@ refer to the headers or the table of contents for navigation
     -  [[#custom-functions][Custom Functions]]
       -  [[#update-script][Update Script]]
       -  [[#rebuild-script][Rebuild Script]]
-      -  [[#rebuild-exwm-script][Rebuild EXWM Script]]
       -  [[#config-script][Config Script]]
     -  [[#basic-settings][Basic settings]]
       -  [[#keybinds][Keybinds]]
@@ -63,7 +62,6 @@ refer to the headers or the table of contents for navigation
       -  [[#transparency][Transparency]]
       -  [[#mode-line-settings][Mode Line Settings]]
       -  [[#mode-settings][Mode Settings]]
-      -  [[#eshell][Eshell]]
     -  [[#package-settings][Package settings]]
       -  [[#utilities][Utilities]]
       -  [[#debugger][Debugger]]
@@ -85,8 +83,36 @@ refer to the headers or the table of contents for navigation
     -  [[#prompt][Prompt]]
     -  [[#aliases][Aliases]]
     -  [[#environment-variables][Environment Variables]]
+-  [[#hyprland-hypr-directory][Hyprland (hypr/ Directory)]]
+  -  [[#hyprland-config][Hyprland Config]]
+    -  [[#monitors][Monitors]]
+    -  [[#programs][Programs]]
+    -  [[#autostart][Autostart]]
+    -  [[#environment-variables-1][Environment Variables]]
+    -  [[#look-and-feel][Look and Feel]]
+      -  [[#general][General]]
+      -  [[#decoration][Decoration]]
+      -  [[#animations][Animations]]
+      -  [[#gaps][Gaps]]
+      -  [[#layouts][Layouts]]
+      -  [[#misc-variables][Misc Variables]]
+    -  [[#input-1][Input]]
+    -  [[#keybinds-1][Keybinds]]
+      -  [[#main-modifier-key][Main Modifier Key]]
+      -  [[#main-keybinds][Main Keybinds]]
+      -  [[#movement][Movement]]
+      -  [[#workspaces-1][Workspaces]]
+      -  [[#move-to-workspaces][Move To Workspaces]]
+      -  [[#special-workspaces][Special Workspaces]]
+      -  [[#window-resize][Window Resize]]
+      -  [[#special-keys][Special Keys]]
+      -  [[#windows-and-workspaces][Windows and Workspaces]]
+  -  [[#hyprpaper][Hyprpaper]]
 
 *  Scripts (bin/ Directory)
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 **  Bash
 ***  Stow Configs
 :PROPERTIES:
@@ -274,6 +300,9 @@ This is an EDN file that's shared between clojure scripts
 #+end_src
 
 *  Doom GNU Emacs (doom/ Directory)
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 **  About
 :PROPERTIES:
 :VISIBILITY: folded
@@ -570,14 +599,6 @@ This is where custom Emacs functions and configuration for packages reside.
   (interactive)
   (shell-command "nix-sys -r"))
 #+end_src
-****  Rebuild EXWM Script
-#+begin_src emacs-lisp
-(defun scripts/rebuild-exwm
-    ()
-  "Run rebuild-exwm script"
-  (shell-command "nix-sys -re"))
-
-#+end_src
 ****  Config Script
 #+begin_src emacs-lisp
 (defun scripts/config
@@ -702,16 +723,48 @@ Change the numerical values to affect the transparency
 #+begin_src emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 #+end_src
-****  Eshell
-#+begin_src emacs-lisp
-;; eshell functions
-(defun eshell/nix-sys
-  (num1 num2)
-    "Add two numbers swiftly"
-    (+ num1 num2))
-#+end_src
 ***  Package settings
 ****  Utilities
+*****  Eshell
+******  Prompt
+#+begin_src emacs-lisp
+(after! eshell
+  (require 'magit)
+
+  (setq eshell-prompt-function
+        (lambda ()
+          (let* ((user (user-login-name))
+                 (host (system-name))
+                 (pwd  (abbreviate-file-name (eshell/pwd)))
+                 (branch (ignore-errors (magit-get-current-branch)))
+                 ;; 12-hour time with AM/PM
+                 (time (format-time-string "%I:%M %p"))
+                 ;; Nerd Font Git branch icon (nf-dev-git_branch)
+                 (git-icon "")
+                 (git-part (when branch
+                             (concat
+                              " "
+                              (propertize git-icon
+                                          'face 'font-lock-constant-face)
+                              " "
+                              (propertize branch
+                                          'face 'font-lock-constant-face)))))
+            (concat
+             ;; First line
+             (propertize (format "[%s@%s]" user host)
+                         'face 'font-lock-keyword-face)
+             " >>> "
+             (propertize pwd 'face 'font-lock-string-face)
+             git-part
+             "\n"
+             ;; Second line
+             (propertize time 'face 'font-lock-comment-face)
+             " "
+             (propertize "λ "
+                         'face 'font-lock-function-name-face)))))
+
+  (setq eshell-prompt-regexp "^[^λ]*λ "))
+#+end_src
 *****  Dired
 #+begin_src emacs-lisp
 (use-package! nerd-icons-dired
@@ -883,6 +936,10 @@ C-h f package\!
 #+end_src
 
 *  Home (home/ Directory)
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
 **  Bashrc Config
 :PROPERTIES:
 :header-args: :tangle ./home/.bashrc
@@ -963,4 +1020,288 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Doom
 export PATH="$HOME/.config/emacs/bin:$PATH"
+#+end_src
+*  Hyprland (hypr/ Directory)
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+**  Hyprland Config
+:PROPERTIES:
+:header-args: :tangle ./hypr/hyprland.conf
+:VISIBILITY: folded
+:END:
+This is my hyprland configuration originally modified from an auto generated one.
+
+For more info on configuring hyprland visit the [[https://wiki.hypr.land/Configuring/][Wiki]]
+***  Monitors
+#+begin_src conf
+monitor = DP-2, 1440x900@74.98, -900x0, 1, transform, 1
+monitor = HDMI-A-1, 1920x1080@74.97, 0x0, 1
+#+end_src
+***  Programs
+#+begin_src conf
+$terminal = kitty
+$fileManager = dolphin
+$menu = wofi --show drun
+$editor = emacsclient -cn
+#+end_src
+***  Autostart
+#+begin_src conf
+exec-once = hyprpaper & waybar
+exec-once = emacs --daemon
+#+end_src
+***  Environment Variables
+#+begin_src conf
+env = XCURSOR_SIZE,24
+env = HYPRCURSOR_SIZE,24
+#+end_src
+
+***  Look and Feel
+****  General
+#+begin_src conf
+general {
+    gaps_in = 5
+    gaps_out = 10
+
+    border_size = 5
+
+    col.active_border =  rgba(fb2874aa) 45deg
+    col.inactive_border = rgba(1c1e1faa)
+
+    resize_on_border = true
+
+    allow_tearing = false
+
+    layout = dwindle
+}
+#+end_src
+****  Decoration
+#+begin_src conf
+decoration {
+    rounding = 3
+    rounding_power = 1
+
+    active_opacity = 0.9
+    inactive_opacity = 0.87
+
+    shadow {
+        enabled = true
+        range = 4
+        render_power = 3
+        color = rgba(1a1a1aee)
+    }
+
+    blur {
+        enabled = true
+        size = 1
+        passes = 1
+
+        vibrancy = 0.1696
+    }
+}
+#+end_src
+****  Animations
+#+begin_src conf
+animations {
+    enabled = yes, please :)
+
+    #        NAME,           X0,   Y0,   X1,   Y1
+    bezier = easeOutQuint,   0.23, 1,    0.32, 1
+    bezier = easeInOutCubic, 0.65, 0.05, 0.36, 1
+    bezier = linear,         0,    0,    1,    1
+    bezier = almostLinear,   0.5,  0.5,  0.75, 1
+    bezier = quick,          0.15, 0,    0.1,  1
+
+    #           NAME,          ONOFF, SPEED, CURVE,        [STYLE]
+    animation = global,        1,     10,    default
+    animation = border,        1,     5.39,  easeOutQuint
+    animation = windows,       1,     4.79,  easeOutQuint
+    animation = windowsIn,     1,     4.1,   easeOutQuint, popin 87%
+    animation = windowsOut,    1,     1.49,  linear,       popin 87%
+    animation = fadeIn,        1,     1.73,  almostLinear
+    animation = fadeOut,       1,     1.46,  almostLinear
+    animation = fade,          1,     3.03,  quick
+    animation = layers,        1,     3.81,  easeOutQuint
+    animation = layersIn,      1,     4,     easeOutQuint, fade
+    animation = layersOut,     1,     1.5,   linear,       fade
+    animation = fadeLayersIn,  1,     1.79,  almostLinear
+    animation = fadeLayersOut, 1,     1.39,  almostLinear
+    animation = workspaces,    1,     1.94,  almostLinear, fade
+    animation = workspacesIn,  1,     1.21,  almostLinear, fade
+    animation = workspacesOut, 1,     1.94,  almostLinear, fade
+    animation = zoomFactor,    1,     7,     quick
+}
+#+end_src
+****  Gaps
+#+begin_src conf
+# "Smart gaps" / "No gaps when only"
+workspace = w[tv1], gapsout:0, gapsin:0
+workspace = f[1], gapsout:0, gapsin:0
+windowrule = bordersize 0, floating:0, onworkspace:w[tv1]
+windowrule = rounding 0, floating:0, onworkspace:w[tv1]
+windowrule = bordersize 0, floating:0, onworkspace:f[1]
+windowrule = rounding 0, floating:0, onworkspace:f[1]
+#+end_src
+****  Layouts
+*****  Dwindle
+#+begin_src conf
+dwindle {
+    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = true # You probably want this
+}
+
+#+end_src
+*****  Master
+#+begin_src conf
+master {
+    new_status = master
+}
+#+end_src
+****  Misc Variables
+#+begin_src conf
+misc {
+    force_default_wallpaper = -1 # Set to 0 or 1 to disable the anime mascot wallpapers
+    disable_hyprland_logo = false # If true disables the random hyprland logo / anime girl background. :(
+}
+#+end_src
+***  Input
+#+begin_src conf
+input {
+    kb_layout = us
+    kb_variant =
+    kb_model =
+    kb_options =
+    kb_rules =
+
+    follow_mouse = 1
+
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+
+    touchpad {
+        natural_scroll = false
+    }
+}
+
+gesture = 3, horizontal, workspace
+
+device {
+    name = epic-mouse-v1
+    sensitivity = -0.5
+}
+#+end_src
+***  Keybinds
+****  Main Modifier Key
+#+begin_src conf
+$mainMod = SUPER # Sets "Windows" key as main modifier
+#+end_src
+****  Main Keybinds
+#+begin_src conf
+bind = $mainMod, Q, exec, $terminal
+bind = $mainMod, W, exec, $editor
+bind = $mainMod, C, killactive,
+bind = $mainMod SHIFT, M, exit,
+bind = $mainMod, E, exec, $fileManager
+bind = $mainMod, V, togglefloating,
+bind = $mainMod, R, exec, $menu
+bind = $mainMod, P, pseudo, # dwindle
+bind = $mainMod, ., togglesplit, # dwindle
+bind = $mainMod, F, fullscreen
+#+end_src
+****  Movement
+#+begin_src conf
+bind = $mainMod, H, movefocus, l
+bind = $mainMod, L, movefocus, r
+bind = $mainMod, K, movefocus, u
+bind = $mainMod, J, movefocus, d
+#+end_src
+
+****  Workspaces
+#+begin_src conf
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+bind = $mainMod, 0, workspace, 10
+#+end_src
+****  Move To Workspaces
+#+begin_src conf
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10
+#+end_src
+****  Special Workspaces
+#+begin_src conf
+# Example special workspace (scratchpad)
+bind = $mainMod, S, togglespecialworkspace, magic
+bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+
+# Scroll through existing workspaces with mainMod + scroll
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+#+end_src
+
+****  Window Resize
+#+begin_src conf
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+#+end_src
+
+****  Special Keys
+#+begin_src conf
+# Laptop multimedia keys for volume and LCD brightness
+bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindel = ,XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+
+bindel = ,XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-
+
+# Requires playerctl
+bindl = , XF86AudioNext, exec, playerctl next
+bindl = , XF86AudioPause, exec, playerctl play-pause
+bindl = , XF86AudioPlay, exec, playerctl play-pause
+bindl = , XF86AudioPrev, exec, playerctl previous
+#+end_src
+
+****  Windows and Workspaces
+#+begin_src conf
+# Ignore maximize requests from apps. You'll probably like this.
+windowrule = suppressevent maximize, class:.*
+
+# Fix some dragging issues with XWayland
+windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+
+# Bind certain workspaces to certain monitors
+workspace = 10, monitor:DP-2, default:true
+workspace = 9, monitor:DP-2
+workspace = 8, monitor:DP-2
+workspace = 2, monitor:HDMI-A-1 default: true
+workspace = 3, monitor:HDMI-A-1
+workspace = 4, monitor:HDMI-A-1
+#+end_src
+**  Hyprpaper
+:PROPERTIES:
+:header-args: :tangle ./hypr/hyprpaper.conf
+:VISIBILITY: folded
+:END:
+
+#+begin_src conf
+preload=~/Pictures/judgement_H_1920x1080.png
+preload=~/Pictures/judgement_H_900x1440.png
+wallpaper=HDMI-A-1,~/Pictures/judgement_H_1920x1080.png
+wallpaper=DP-2,~/Pictures/judgement_H_900x1440.png
 #+end_src
