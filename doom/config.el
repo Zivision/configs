@@ -97,12 +97,18 @@
         doom-modeline-enable-word-count nil
         doom-modeline-column-zero-based nil
         doom-modeline-minor-modes nil))
-  
+
 
 (display-time-mode 1)
 (display-battery-mode 1)
 
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+
+;; eshell functions
+(defun eshell/nix-sys
+  (num1 num2)
+    "Add two numbers swiftly"
+    (+ num1 num2))
 
 (use-package! nerd-icons-dired
   :hook
