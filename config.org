@@ -146,6 +146,22 @@ refer to the headers or the table of contents for navigation
       -  [[#more-developer-tools][More Developer Tools]]
       -  [[#flatpak-1][Flatpak]]
       -  [[#misc][Misc]]
+-  [[#waybar-waybar-directory][Waybar (waybar/ directory)]]
+  -  [[#config-1][Config]]
+    -  [[#basic-settings-3][Basic Settings]]
+    -  [[#mpd][MPD]]
+    -  [[#idle_inhibitor][Idle_inhibitor]]
+    -  [[#tray][Tray]]
+    -  [[#clock][Clock]]
+    -  [[#cpu][CPU]]
+    -  [[#memory][Memory]]
+    -  [[#temperature][Temperature]]
+    -  [[#backlight][Backlight]]
+    -  [[#battery][Battery]]
+    -  [[#power-profiles][Power Profiles]]
+    -  [[#custom-power][Custom Power]]
+    -  [[#network][Network]]
+    -  [[#pulseaudio][PulseAudio]]
 
 *  Scripts (bin/ Directory)
 :PROPERTIES:
@@ -1416,7 +1432,9 @@ color15 #f8f8f2
 #+end_src
 
 *  NixOS (nixos/ Directory)
-
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 **  Flake Setttings
 :PROPERTIES:
 :header-args: :tangle ./nixos/flake.nix
@@ -1815,5 +1833,224 @@ flatpak
 ****  Misc
 #+begin_src nix
 ];
+}
+#+end_src
+*  Waybar (waybar/ directory)
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+**  Config
+:PROPERTIES:
+:header-args: :tangle ./waybar/config.jsonc
+:VISIBILITY: folded
+:END:
+***  Basic Settings
+#+begin_src js
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/mode",
+        "hyprland/scratchpad",
+        "custom/media"
+    ],
+    "modules-right": [
+        "mpd",
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "power-profiles-daemon",
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "keyboard-state",
+        "sway/language",
+        "battery",
+        "battery#bat2",
+        "clock",
+        "tray",
+        "custom/power"
+    ],
+#+end_src
+***  MPD
+#+begin_src js
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+#+end_src
+***  Idle_inhibitor
+#+begin_src js
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+#+end_src
+***  Tray
+#+begin_src js
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
+#+end_src
+***  Clock
+#+begin_src js
+    "clock": {
+        "timezone": "America/Chicago",
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%m-%d-%Y}"
+    },
+#+end_src
+***  CPU
+#+begin_src js
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+#+end_src
+***  Memory
+#+begin_src js
+    "memory": {
+        "format": "{}% "
+    },
+#+end_src
+***  Temperature
+#+begin_src js
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+#+end_src
+***  Backlight
+#+begin_src js
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+#+end_src
+***  Battery
+#+begin_src js
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+#+end_src
+***  Power Profiles
+#+begin_src js
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+#+end_src
+***  Custom Power
+#+begin_src js
+    "custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"shutdown": "shutdown",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate"
+		}
+    },
+#+end_src
+***  Network
+#+begin_src js
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+#+end_src
+***  PulseAudio
+#+begin_src js
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
 }
 #+end_src
