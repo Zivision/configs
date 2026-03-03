@@ -147,21 +147,20 @@ refer to the headers or the table of contents for navigation
       -  [[#flatpak-1][Flatpak]]
       -  [[#misc][Misc]]
 -  [[#waybar-waybar-directory][Waybar (waybar/ directory)]]
-  -  [[#config-1][Config]]
-    -  [[#basic-settings-3][Basic Settings]]
-    -  [[#mpd][MPD]]
-    -  [[#idle_inhibitor][Idle_inhibitor]]
-    -  [[#tray][Tray]]
-    -  [[#clock][Clock]]
-    -  [[#cpu][CPU]]
-    -  [[#memory][Memory]]
-    -  [[#temperature][Temperature]]
-    -  [[#backlight][Backlight]]
-    -  [[#battery][Battery]]
-    -  [[#power-profiles][Power Profiles]]
-    -  [[#custom-power][Custom Power]]
-    -  [[#network][Network]]
-    -  [[#pulseaudio][PulseAudio]]
+  -  [[#basic-settings-3][Basic Settings]]
+  -  [[#mpd][MPD]]
+  -  [[#idle_inhibitor][Idle_inhibitor]]
+  -  [[#tray][Tray]]
+  -  [[#clock][Clock]]
+  -  [[#cpu][CPU]]
+  -  [[#memory][Memory]]
+  -  [[#temperature][Temperature]]
+  -  [[#backlight][Backlight]]
+  -  [[#battery][Battery]]
+  -  [[#power-profiles][Power Profiles]]
+  -  [[#custom-power][Custom Power]]
+  -  [[#network][Network]]
+  -  [[#pulseaudio][PulseAudio]]
 
 *  Scripts (bin/ Directory)
 :PROPERTIES:
@@ -1837,15 +1836,11 @@ flatpak
 #+end_src
 *  Waybar (waybar/ directory)
 :PROPERTIES:
-:VISIBILITY: folded
-:END:
-
-**  Config
-:PROPERTIES:
 :header-args: :tangle ./waybar/config.jsonc
 :VISIBILITY: folded
 :END:
-***  Basic Settings
+
+**  Basic Settings
 #+begin_src js
 {
     "layer": "top", // Waybar at top layer
@@ -1879,7 +1874,7 @@ flatpak
         "custom/power"
     ],
 #+end_src
-***  MPD
+**  MPD
 #+begin_src js
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -1908,7 +1903,7 @@ flatpak
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
 #+end_src
-***  Idle_inhibitor
+**  Idle_inhibitor
 #+begin_src js
     "idle_inhibitor": {
         "format": "{icon}",
@@ -1918,7 +1913,7 @@ flatpak
         }
     },
 #+end_src
-***  Tray
+**  Tray
 #+begin_src js
     "tray": {
         // "icon-size": 21,
@@ -1929,7 +1924,7 @@ flatpak
         // }
     },
 #+end_src
-***  Clock
+**  Clock
 #+begin_src js
     "clock": {
         "timezone": "America/Chicago",
@@ -1937,20 +1932,20 @@ flatpak
         "format-alt": "{:%m-%d-%Y}"
     },
 #+end_src
-***  CPU
+**  CPU
 #+begin_src js
     "cpu": {
         "format": "{usage}% ",
         "tooltip": false
     },
 #+end_src
-***  Memory
+**  Memory
 #+begin_src js
     "memory": {
         "format": "{}% "
     },
 #+end_src
-***  Temperature
+**  Temperature
 #+begin_src js
     "temperature": {
         // "thermal-zone": 2,
@@ -1961,7 +1956,7 @@ flatpak
         "format-icons": ["", "", ""]
     },
 #+end_src
-***  Backlight
+**  Backlight
 #+begin_src js
     "backlight": {
         // "device": "acpi_video1",
@@ -1969,7 +1964,7 @@ flatpak
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
 #+end_src
-***  Battery
+**  Battery
 #+begin_src js
     "battery": {
         "states": {
@@ -1990,7 +1985,7 @@ flatpak
         "bat": "BAT2"
     },
 #+end_src
-***  Power Profiles
+**  Power Profiles
 #+begin_src js
     "power-profiles-daemon": {
       "format": "{icon}",
@@ -2004,7 +1999,7 @@ flatpak
       }
     },
 #+end_src
-***  Custom Power
+**  Custom Power
 #+begin_src js
     "custom/power": {
         "format" : "⏻ ",
@@ -2019,7 +2014,7 @@ flatpak
 		}
     },
 #+end_src
-***  Network
+**  Network
 #+begin_src js
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -2031,7 +2026,7 @@ flatpak
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 #+end_src
-***  PulseAudio
+**  PulseAudio
 #+begin_src js
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
