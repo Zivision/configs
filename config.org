@@ -95,6 +95,7 @@ refer to the headers or the table of contents for navigation
       -  [[#animations][Animations]]
       -  [[#gaps][Gaps]]
       -  [[#layouts][Layouts]]
+      -  [[#xwayland][Xwayland]]
       -  [[#misc-variables][Misc Variables]]
     -  [[#input-1][Input]]
     -  [[#keybinds-1][Keybinds]]
@@ -1209,6 +1210,12 @@ dwindle {
 #+begin_src conf
 master {
     new_status = master
+}
+#+end_src
+****  Xwayland
+#+begin_src conf
+xwayland {
+    force_zero_scaling = true
 }
 #+end_src
 ****  Misc Variables
