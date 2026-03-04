@@ -788,7 +788,7 @@ Change the numerical values to affect the transparency
   (setq eshell-prompt-function
         (lambda ()
           (let* ((user (user-login-name))
-                 (host (system-name))
+                 (emacs (format "GNU EMACS-%s" emacs-version))
                  (pwd  (abbreviate-file-name (eshell/pwd)))
                  (branch (ignore-errors (magit-get-current-branch)))
                  ;; 12-hour time with AM/PM
@@ -805,13 +805,15 @@ Change the numerical values to affect the transparency
                                           'face 'font-lock-constant-face)))))
             (concat
              ;; First line
-             (propertize (format "[%s@%s]" user host)
+             (propertize (format "[%s@EMACS]" user)
                          'face 'font-lock-keyword-face)
-             " >>> "
+             " |> "
              (propertize pwd 'face 'font-lock-string-face)
              git-part
              "\n"
              ;; Second line
+             (propertize emacs 'face 'font-lock-comment-face)
+             "\n"
              (propertize time 'face 'font-lock-comment-face)
              " "
              (propertize "λ "
@@ -1036,7 +1038,7 @@ git_branch() {
 
 # Prompt
 
-PS1='\[\033[01;32m\][\u@\h]\[\033[00m\] >>> \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(git_branch)\[\033[00m\]\n\[\033[01;90m\]\A\[\033[00m\] λ '
+PS1='\[\033[01;32m\][\u@\h]\[\033[00m\] >>> \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(git_branch)\[\033[00m\]\n\[\033[01;90m\]\A\[\033[00m\] $ '
 #+end_src
 ***  Aliases
 #+begin_src bash

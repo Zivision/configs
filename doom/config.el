@@ -105,7 +105,7 @@
   (setq eshell-prompt-function
         (lambda ()
           (let* ((user (user-login-name))
-                 (host (system-name))
+                 (emacs (format "GNU EMACS-%s" emacs-version))
                  (pwd  (abbreviate-file-name (eshell/pwd)))
                  (branch (ignore-errors (magit-get-current-branch)))
                  ;; 12-hour time with AM/PM
@@ -122,13 +122,15 @@
                                           'face 'font-lock-constant-face)))))
             (concat
              ;; First line
-             (propertize (format "[%s@%s]" user host)
+             (propertize (format "[%s@EMACS]" user)
                          'face 'font-lock-keyword-face)
-             " >>> "
+             " |> "
              (propertize pwd 'face 'font-lock-string-face)
              git-part
              "\n"
              ;; Second line
+             (propertize emacs 'face 'font-lock-comment-face)
+             "\n"
              (propertize time 'face 'font-lock-comment-face)
              " "
              (propertize "λ "
