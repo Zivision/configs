@@ -142,6 +142,8 @@
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
+(setq emms-source-file-default-directory "~/Music/")
+
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (dap-mode 1)

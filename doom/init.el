@@ -177,7 +177,7 @@
 
        :app
        ;;calendar
-       ;;(emms +mpv)         ; music player with mpv backend.
+       (emms +mpv)         ; music player with mpv backend.
        ;;everywhere        ; *leave* Emacs!? You must be joking
        irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader

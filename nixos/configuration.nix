@@ -192,6 +192,9 @@ environment.systemPackages = with pkgs; [
   libtool
   ispell
 
+  # For emms
+  mpv
+
   # Shell Check
   shellcheck
 

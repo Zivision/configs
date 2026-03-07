@@ -64,6 +64,7 @@ refer to the headers or the table of contents for navigation
       -  [[#mode-settings][Mode Settings]]
     -  [[#package-settings][Package settings]]
       -  [[#utilities][Utilities]]
+      -  [[#emms][EMMS]]
       -  [[#debugger][Debugger]]
       -  [[#elpher][Elpher]]
       -  [[#workspaces][Workspaces]]
@@ -600,7 +601,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
 #+begin_src emacs-lisp
        :app
        ;;calendar
-       ;;(emms +mpv)         ; music player with mpv backend.
+       (emms +mpv)         ; music player with mpv backend.
        ;;everywhere        ; *leave* Emacs!? You must be joking
        irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
@@ -826,6 +827,10 @@ Change the numerical values to affect the transparency
 (use-package! nerd-icons-dired
   :hook
   (dired-mode . nerd-icons-dired-mode))
+#+end_src
+****  EMMS
+#+begin_src emacs-lisp
+(setq emms-source-file-default-directory "~/Music/")
 #+end_src
 ****  Debugger
 *****  Main Config
@@ -1751,6 +1756,9 @@ environment.systemPackages = with pkgs; [
   cmake
   libtool
   ispell
+
+  # For emms
+  mpv
 #+end_src
 *****  Bash
 #+begin_src nix
