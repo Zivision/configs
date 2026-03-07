@@ -2008,10 +2008,10 @@ flatpak
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
       "tooltip": true,
       "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
+        "default": "Balanced",
+        "performance": "Performance",
+        "balanced": "Balanced",
+        "power-saver": "Power-Saver"
       }
     },
 #+end_src

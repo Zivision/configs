@@ -1,51 +1,171 @@
+/* ============================================================
+   Wofi — Doom Monokai Classic Theme
+   Font: Iosevka Nerd Font
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   Outer window
+   ---------------------------------------------------------- */
 window {
-  background-color: rgba(27, 29, 30, 0.7);
-  border: 2px solid rgba(64, 61, 61, 0.65);
-  border-radius: 10px;
+  font-family:      "Iosevka Nerd Font", "Iosevka NF", monospace;
+  font-size:        14px;
+  background-color: rgba(28, 30, 31, 0.88);
+  color:            #f8f8f2;
+  border:           1px solid #505253;
+  border-radius:    8px;
 }
 
+/* ----------------------------------------------------------
+   Inner box (wraps search + scroll)
+   ---------------------------------------------------------- */
+#inner-box {
+  background-color: transparent;
+  border-radius:    8px;
+  padding:          4px;
+}
+
+/* ----------------------------------------------------------
+   Outer box
+   ---------------------------------------------------------- */
+#outer-box {
+  background-color: transparent;
+  padding:          8px;
+}
+
+/* ----------------------------------------------------------
+   Search bar
+   ---------------------------------------------------------- */
 #input {
-  background-color: rgba(39, 40, 34, 0.85);
-  color: #f8f8f2;
-  border: 1px solid #75715e;
-  border-radius: 6px;
-  padding: 8px 12px;
-  margin: 8px;
-  caret-color: #f92672;
+  font-family:      "Iosevka Nerd Font", "Iosevka NF", monospace;
+  font-size:        14px;
+  background-color: rgba(45, 46, 46, 0.80);
+  color:            #f8f8f2;
+  border:           1px solid #505253;
+  border-radius:    5px;
+  padding:          8px 12px;
+  margin:           0 0 6px 0;
+  caret-color:      #a6e22e;
+  outline:          none;
 }
 
 #input:focus {
-  border-color: #f92672;
+  border-color: #a6e22e;
+  box-shadow:   none;
 }
 
-#outer-box {
-  background-color: transparent;
-  padding: 6px;
+#input::placeholder {
+  color: #9b9b8c;
 }
 
-#inner-box {
-  background-color: transparent;
-}
-
+/* ----------------------------------------------------------
+   Scrollable list
+   ---------------------------------------------------------- */
 #scroll {
   background-color: transparent;
+  border:           none;
+  margin:           0;
+  padding:          0;
 }
 
-#text {
-  color: #f8f8f2;
-  padding: 2px 6px;
-}
-
+/* ----------------------------------------------------------
+   Each result row
+   ---------------------------------------------------------- */
 #entry {
-  border-radius: 6px;
-  padding: 4px 6px;
-  margin: 2px 4px;
+  background-color: transparent;
+  color:            #d8d8d5;
+  border-radius:    5px;
+  padding:          6px 10px;
+  margin:           1px 0;
+  border:           1px solid transparent;
+  transition:       background-color 0.1s ease;
+}
+
+#entry:hover,
+#entry:selected {
+  background-color: rgba(59, 60, 60, 0.90);
+  color:            #f8f8f2;
+  border-color:     #505253;
 }
 
 #entry:selected {
-  background-color: rgba(249, 38, 114, 0.85);
+  border-left: 3px solid #a6e22e;
+}
+
+/* ----------------------------------------------------------
+   Entry text
+   ---------------------------------------------------------- */
+#entry #text {
+  font-family: "Iosevka Nerd Font", "Iosevka NF", monospace;
+  font-size:   14px;
+  color:       inherit;
 }
 
 #entry:selected #text {
-  color: #1b1d1e;
+  color:       #f8f8f2;
+  font-weight: 500;
 }
+
+/* ----------------------------------------------------------
+   Entry icon
+   ---------------------------------------------------------- */
+#entry image,
+#entry #img {
+  margin-right: 8px;
+  min-width:    20px;
+  min-height:   20px;
+}
+
+/* ----------------------------------------------------------
+   Category / mode labels (drun categories, etc.)
+   ---------------------------------------------------------- */
+#entry.category-label {
+  color:       #9b9b8c;
+  font-size:   11px;
+  font-weight: 600;
+  padding:     8px 10px 2px 10px;
+  border:      none;
+  background:  transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ----------------------------------------------------------
+   Separator between groups
+   ---------------------------------------------------------- */
+#entry separator {
+  background-color: #505253;
+  min-height:       1px;
+  margin:           4px 0;
+}
+
+/* ----------------------------------------------------------
+   Scrollbar
+   ---------------------------------------------------------- */
+scrollbar {
+  background-color: transparent;
+  border:           none;
+  width:            4px;
+}
+
+scrollbar slider {
+  background-color: #505253;
+  border-radius:    4px;
+  min-height:       20px;
+}
+
+scrollbar slider:hover {
+  background-color: #9b9b8c;
+}
+
+/* ----------------------------------------------------------
+   No results
+   ---------------------------------------------------------- */
+#no-results {
+  color:      #9b9b8c;
+  font-style: italic;
+  padding:    12px;
+}
+
+/* ============================================================
+   End of wofi-monokai.css
+   ============================================================ */
