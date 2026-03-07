@@ -181,6 +181,7 @@ environment.systemPackages = with pkgs; [
   waybar
 
   waypaper
+  brightnessctl
 
   # Emacs
   gcc

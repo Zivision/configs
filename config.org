@@ -1744,6 +1744,7 @@ environment.systemPackages = with pkgs; [
   waybar
 
   waypaper
+  brightnessctl
 #+end_src
 ****  Emacs (DOOM)
 #+begin_src nix
