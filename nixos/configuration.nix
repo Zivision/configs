@@ -172,7 +172,7 @@ environment.systemPackages = with pkgs; [
   wofi
   waybar
 
-  waytrogen
+  waypaper
 
   # Emacs
   gcc

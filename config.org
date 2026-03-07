@@ -1104,7 +1104,7 @@ $editor = emacsclient -cn
 ***  Autostart
 #+begin_src conf
 exec-once = waybar
-exec-once = waytrogen --restore
+exec-once = waypaper --restore
 exec-once = emacs --daemon
 #+end_src
 ***  Environment Variables
@@ -1223,8 +1223,8 @@ xwayland {
 ****  Misc Variables
 #+begin_src conf
 misc {
-    force_default_wallpaper = -1 # Set to 0 or 1 to disable the anime mascot wallpapers
-    disable_hyprland_logo = false # If true disables the random hyprland logo / anime girl background. :(
+    force_default_wallpaper = 0 # Set to 0 or 1 to disable the anime mascot wallpapers
+    disable_hyprland_logo = true # If true disables the random hyprland logo / anime girl background. :(
 }
 #+end_src
 ***  Input
@@ -1727,7 +1727,7 @@ environment.systemPackages = with pkgs; [
   wofi
   waybar
 
-  waytrogen
+  waypaper
 #+end_src
 ****  Emacs (DOOM)
 #+begin_src nix
