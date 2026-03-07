@@ -172,6 +172,8 @@ environment.systemPackages = with pkgs; [
   wofi
   waybar
 
+  waytrogen
+
   # Emacs
   gcc
   gnumake
@@ -231,15 +233,6 @@ graphviz
   black
   # Import management
   python3Packages.pyflakes
-
-# LSP (rust-analyzer)
-rust-analyzer
-
-# Package manager
-cargo
-
-# rust
-rustc
 
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
