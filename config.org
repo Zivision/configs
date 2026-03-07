@@ -715,7 +715,7 @@ Will need to download the Iosevka Font for this to work.
         doom-themes-enable-italic t))
 
 ;; Set Theme
-(setq doom-theme 'doom-molokai)
+(setq doom-theme 'doom-monokai-classic)
 #+end_src
 ***** Borders
 #+begin_src emacs-lisp
