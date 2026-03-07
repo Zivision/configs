@@ -130,6 +130,7 @@ refer to the headers or the table of contents for navigation
     -  [[#steam][Steam]]
     -  [[#system][System]]
     -  [[#emacs-settings][Emacs (Settings)]]
+    -  [[#syncthing][Syncthing]]
     -  [[#hyprland][Hyprland]]
     -  [[#flakes][Flakes]]
     -  [[#desktop][Desktop]]
@@ -137,7 +138,7 @@ refer to the headers or the table of contents for navigation
     -  [[#users][Users]]
     -  [[#docker][Docker]]
     -  [[#flatpak][Flatpak]]
-    -  [[#packages-1][Packages]]
+    -  [[#nix-packages][Nix Packages]]
       -  [[#general-dependencies][General Dependencies]]
       -  [[#terminal-kitty][Terminal (kitty)]]
       -  [[#hyprland-1][Hyprland]]
@@ -1631,6 +1632,14 @@ services.emacs = {
    defaultEditor = true;
 };
 #+end_src
+***  Syncthing
+#+begin_src nix
+# Example for /etc/nixos/configuration.nix
+services.syncthing = {
+  enable = true;
+  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+};
+#+end_src
 ***  Hyprland
 #+begin_src nix
 programs.hyprland.enable = true;
@@ -1704,7 +1713,7 @@ virtualisation.docker.enable = true;
 #+begin_src nix
 services.flatpak.enable = true;
 #+end_src
-***  Packages
+***  Nix Packages
 These are *SYSTEM* packages for user specific look at home settings
 ****  General Dependencies
 #+begin_src nix
