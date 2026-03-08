@@ -28,6 +28,20 @@
  "q" #'dirvish-quit
  "f" #'dirvish-fd)
 
+(map!
+ :prefix "C-c e"
+ :desc "Open EMMS" "e" #'emms
+ :desc "Pause EMMS" "t" #'emms-pause
+ :desc "Refresh EMMS" "R" #'(lambda ()
+                              (interactive)
+                              (emms-add-directory "~/Music")
+                              (emms))
+ :desc "Seek forward" "l" #'emms-seek-forward
+ :desc "Seek backwards" "h" #'emms-seek-backward
+ :desc "Next Track" "j" #'emms-next
+ :desc "Previous track" "k" #'emms-previous
+ :desc "Toggle repeat" "r" #'emms-toggle-repeat-track)
+
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
 (global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)
@@ -144,6 +158,12 @@
   (dired-mode . nerd-icons-dired-mode))
 
 (setq emms-source-file-default-directory "~/Music/")
+
+(after! elfeed
+ (setq elfeed-feeds
+   '("https://feeds.npr.org/1003/rss.xml"
+     "https://feeds.bbci.co.uk/news/world/rss.xml"
+     "https://feeds.npr.org/1004/rss.xml")))
 
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))

@@ -65,6 +65,7 @@ refer to the headers or the table of contents for navigation
     -  [[#package-settings][Package settings]]
       -  [[#utilities][Utilities]]
       -  [[#emms][EMMS]]
+      -  [[#elfeed][Elfeed]]
       -  [[#debugger][Debugger]]
       -  [[#elpher][Elpher]]
       -  [[#workspaces][Workspaces]]
@@ -433,9 +434,9 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       ;;smooth-scroll     ; So smooth you won't believe it's not butter
+       smooth-scroll     ; So smooth you won't believe it's not butter
        ;;tabs              ; a tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
+       ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -504,7 +505,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       ;;pdf               ; pdf enhancements
+       pdf               ; pdf enhancements
        terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        (tree-sitter
@@ -600,11 +601,11 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
 ***  App
 #+begin_src emacs-lisp
        :app
-       ;;calendar
+       calendar
        (emms +mpv)         ; music player with mpv backend.
        ;;everywhere        ; *leave* Emacs!? You must be joking
        irc               ; how neckbeards socialize
-       ;;(rss +org)        ; emacs as an RSS reader
+       (rss +org)        ; emacs as an RSS reader
 #+end_src
 ***  Config
 #+begin_src emacs-lisp
@@ -849,6 +850,14 @@ Change the numerical values to affect the transparency
 ****  EMMS
 #+begin_src emacs-lisp
 (setq emms-source-file-default-directory "~/Music/")
+#+end_src
+****  Elfeed
+#+begin_src emacs-lisp
+(after! elfeed
+ (setq elfeed-feeds
+   '("https://feeds.npr.org/1003/rss.xml"
+     "https://feeds.bbci.co.uk/news/world/rss.xml"
+     "https://feeds.npr.org/1004/rss.xml")))
 #+end_src
 ****  Debugger
 *****  Main Config
