@@ -678,10 +678,28 @@ This is where custom Emacs functions and configuration for packages reside.
 *****  Dirvish
 #+begin_src emacs-lisp
 (map!
- "C-c d d" #'dirvish
- "C-c d q" #'dirvish-quit
- "C-c d f" #'dirvish-fd)
+ :prefix "C-c d"
+ "d" #'dirvish
+ "q" #'dirvish-quit
+ "f" #'dirvish-fd)
 #+end_src
+*****  EMMS
+#+begin_src emacs-lisp
+(map!
+ :prefix "C-c e"
+ :desc "Open EMMS" "e" #'emms
+ :desc "Pause EMMS" "t" #'emms-pause
+ :desc "Refresh EMMS" "R" #'(lambda ()
+                              (interactive)
+                              (emms-add-directory "~/Music")
+                              (emms))
+ :desc "Seek forward" "l" #'emms-seek-forward
+ :desc "Seek backwards" "h" #'emms-seek-backward
+ :desc "Next Track" "j" #'emms-next
+ :desc "Previous track" "k" #'emms-previous
+ :desc "Toggle repeat" "r" #'emms-toggle-repeat-track)
+#+end_src
+
 *****  Window sizing
 #+begin_src emacs-lisp
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)

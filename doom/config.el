@@ -23,9 +23,10 @@
  :desc "Run 'update-all-packages' script" "u" #'scripts/update)
 
 (map!
- "C-c d d" #'dirvish
- "C-c d q" #'dirvish-quit
- "C-c d f" #'dirvish-fd)
+ :prefix "C-c d"
+ "d" #'dirvish
+ "q" #'dirvish-quit
+ "f" #'dirvish-fd)
 
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
