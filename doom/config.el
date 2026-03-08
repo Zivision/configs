@@ -39,8 +39,7 @@
  :desc "Seek forward" "l" #'emms-seek-forward
  :desc "Seek backwards" "h" #'emms-seek-backward
  :desc "Next Track" "j" #'emms-next
- :desc "Previous track" "k" #'emms-previous
- :desc "Toggle repeat" "r" #'emms-toggle-repeat-track)
+ :desc "Previous track" "k" #'emms-previous)
 
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
