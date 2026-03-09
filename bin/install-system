@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
+
+echo "Configuring system first..."
+./configure-system
+
+echo "Updating flake..."
+./update-system
+
+echo "Building from nix configuration..."
+./rebuild-system
+
+echo "Installing doom emacs from https://github.com/doomemacs/doomemacs"
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install
+
+echo "Everything is in order, happy hacking!"
