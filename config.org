@@ -5,7 +5,7 @@ refer to the headers or the table of contents for navigation
 *  Table of Contents :TOC_4:
 -  [[#scripts-bin-directory][Scripts (bin/ Directory)]]
   -  [[#bash][Bash]]
-    -  [[#stow-configs][Stow Configs]]
+    -  [[#link-configs][Link Configs]]
       -  [[#shebang][Shebang]]
       -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
       -  [[#create-directories-if-needed][Create directories (if needed)]]
@@ -170,22 +170,18 @@ refer to the headers or the table of contents for navigation
 :VISIBILITY: folded
 :END:
 **  Bash
-***  Stow Configs
+***  Link Configs
 :PROPERTIES:
-:header-args: :tangle ./bin/stow-configs
+:header-args: :tangle ./bin/link-configs
 :END:
 ****  Shebang
 #+begin_src bash
-#!/usr/bin/env nix-shell
-#! nix-shell -i bash --pure
-#! nix-shell -p bash stow
+#!/usr/bin/env bash
 #+end_src
 ****  Get Script Location and Project Root
 This finds the original script location
 #+begin_src bash
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
-
-echo "Hello World"
 #+end_src
 ****  Create directories (if needed)
 #+begin_src bash
@@ -216,6 +212,7 @@ This will put everything where it needs to go
 (cd "$PROJECT_DIR" && stow wofi -t ~/.config/wofi)
 (cd "$PROJECT_DIR" && stow kitty -t ~/.config/kitty)
 #+end_src
+
 
 **  Clojure (Babashka)
 ***  Directories (EDN)
@@ -669,7 +666,7 @@ This is where custom Emacs functions and configuration for packages reside.
 *****  Custom Functions
 #+begin_src emacs-lisp
 (map!
- :prefix "C-c f"
+ :prefix "C-c s"
  :desc "Run 'stow-configs' script" "c" #'scripts/config
  :desc "Run 'update-all-packages' script" "u" #'scripts/update)
 #+end_src
@@ -687,7 +684,7 @@ This is where custom Emacs functions and configuration for packages reside.
 *****  EMMS
 #+begin_src emacs-lisp
 (map!
- :prefix "C-c e"
+ :prefix "C-c m"
  :desc "Open EMMS" "e" #'emms
  :desc "Pause EMMS" "t" #'emms-pause
  :desc "Refresh EMMS" "R" #'(lambda ()
@@ -698,6 +695,14 @@ This is where custom Emacs functions and configuration for packages reside.
  :desc "Seek backwards" "h" #'emms-seek-backward
  :desc "Next Track" "j" #'emms-next
  :desc "Previous track" "k" #'emms-previous)
+#+end_src
+*****  Elfeed
+#+begin_src emacs-lisp
+(map!
+ :prefix "C-c f"
+ :desc "Open elfeed" "f" #'elfeed
+ :desc "Unjam elfeed" "u" #'elfeed-unjam
+ :desc "Update elfeed" "U" #'elfeed-update)
 #+end_src
 
 *****  Window sizing
@@ -853,10 +858,7 @@ Change the numerical values to affect the transparency
 ****  Elfeed
 #+begin_src emacs-lisp
 (after! elfeed
- (setq elfeed-feeds
-   '("https://feeds.npr.org/1003/rss.xml"
-     "https://feeds.bbci.co.uk/news/world/rss.xml"
-     "https://feeds.npr.org/1004/rss.xml")))
+  (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
 #+end_src
 ****  Debugger
 *****  Main Config

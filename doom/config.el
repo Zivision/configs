@@ -18,7 +18,7 @@
   (message "Done!"))
 
 (map!
- :prefix "C-c f"
+ :prefix "C-c s"
  :desc "Run 'stow-configs' script" "c" #'scripts/config
  :desc "Run 'update-all-packages' script" "u" #'scripts/update)
 
@@ -29,7 +29,7 @@
  "f" #'dirvish-fd)
 
 (map!
- :prefix "C-c e"
+ :prefix "C-c m"
  :desc "Open EMMS" "e" #'emms
  :desc "Pause EMMS" "t" #'emms-pause
  :desc "Refresh EMMS" "R" #'(lambda ()
@@ -40,6 +40,12 @@
  :desc "Seek backwards" "h" #'emms-seek-backward
  :desc "Next Track" "j" #'emms-next
  :desc "Previous track" "k" #'emms-previous)
+
+(map!
+ :prefix "C-c f"
+ :desc "Open elfeed" "f" #'elfeed
+ :desc "Unjam elfeed" "u" #'elfeed-unjam
+ :desc "Update elfeed" "U" #'elfeed-update)
 
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
@@ -159,10 +165,7 @@
 (setq emms-source-file-default-directory "~/Music/")
 
 (after! elfeed
- (setq elfeed-feeds
-   '("https://feeds.npr.org/1003/rss.xml"
-     "https://feeds.bbci.co.uk/news/world/rss.xml"
-     "https://feeds.npr.org/1004/rss.xml")))
+  (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
 
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
