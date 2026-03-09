@@ -11,6 +11,10 @@ refer to the headers or the table of contents for navigation
       -  [[#create-directories-if-needed][Create directories (if needed)]]
       -  [[#symlink-hardware-configurationnix][Symlink hardware-configuration.nix]]
       -  [[#run-stow][Run Stow]]
+    -  [[#rebuild-system][Rebuild System]]
+      -  [[#shebang-1][Shebang]]
+      -  [[#get-script-location-and-project-root-1][Get Script Location and Project Root]]
+      -  [[#rebuild-system-1][Rebuild System]]
   -  [[#clojure-babashka][Clojure (Babashka)]]
     -  [[#directories-edn][Directories (EDN)]]
     -  [[#nix-sys][Nix Sys]]
@@ -212,7 +216,25 @@ This will put everything where it needs to go
 (cd "$PROJECT_DIR" && stow wofi -t ~/.config/wofi)
 (cd "$PROJECT_DIR" && stow kitty -t ~/.config/kitty)
 #+end_src
+***  Rebuild System
+:PROPERTIES:
+:header-args: :tangle ./bin/rebuild-system
+:END:
+****  Shebang
+#+begin_src bash
+#!/usr/bin/env bash
+#+end_src
+****  Get Script Location and Project Root
+This finds the original script location
+#+begin_src bash
+PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
+#+end_src
+****  Rebuild System
+#+begin_src bash
+sudo nixos-rebuild switch --flake "$PROJECT_DIR/nixos" --impure
+#+end_src
 
+#+RESULTS:
 
 **  Clojure (Babashka)
 ***  Directories (EDN)
