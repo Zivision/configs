@@ -61,6 +61,7 @@ refer to the headers or the table of contents for navigation
       -  [[#transparency][Transparency]]
       -  [[#mode-line-settings][Mode Line Settings]]
       -  [[#mode-settings][Mode Settings]]
+      -  [[#review-packages][Review Packages]]
     -  [[#package-settings][Package settings]]
       -  [[#utilities][Utilities]]
       -  [[#emms][EMMS]]
@@ -282,7 +283,6 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 
 echo "Everything is in order, happy hacking!"
 #+end_src
-
 
 *  Doom GNU Emacs (doom/ Directory)
 :PROPERTIES:
@@ -705,6 +705,11 @@ Change the numerical values to affect the transparency
 ****  Mode Settings
 #+begin_src emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+#+end_src
+****  Review Packages
+#+begin_src emacs-lisp
+(setq package-review-policy t
+      package-review-diff-command '("git" "diff" "--no-index" "--color=never" "--diff-filter=d"))
 #+end_src
 ***  Package settings
 ****  Utilities

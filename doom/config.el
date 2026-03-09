@@ -1,22 +1,3 @@
-(defun scripts/update
-    ()
-  "Run update script"
-  (interactive)
-  (shell-command "nix-sys -u"))
-
-(defun scripts/rebuild
-    ()
-  "Run rebuild script"
-  (interactive)
-  (shell-command "nix-sys -r"))
-
-(defun scripts/config
-    ()
-  "Run config script."
-  (interactive)
-  (shell-command "stow-configs")
-  (message "Done!"))
-
 (map!
  :prefix "C-c s"
  :desc "Run 'stow-configs' script" "c" #'scripts/config
@@ -118,6 +99,9 @@
 (display-battery-mode 1)
 
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+
+(setq package-review-policy t
+      package-review-diff-command '("git" "diff" "--no-index" "--color=never" "--diff-filter=d"))
 
 (after! eshell
   (require 'magit)
