@@ -1,7 +1,0 @@
-[{:name "doom"   :dir "/.config/doom"}
- {:name "home"   :dir "/"}
- {:name "bin"    :dir "/.local/bin"}
- {:name "waybar" :dir "/.config/waybar"}
- {:name "hypr"   :dir "/.config/hypr"}
- {:name "wofi"   :dir "/.config/wofi"}
- {:name "kitty"  :dir "/.config/kitty"}]
