@@ -3,29 +3,6 @@ This is the document containing all of my configurations
 refer to the headers or the table of contents for navigation
 
 *  Table of Contents :TOC_4:
--  [[#scripts-bin-directory][Scripts (bin/ Directory)]]
-  -  [[#bash][Bash]]
-    -  [[#configure-system][Configure System]]
-      -  [[#shebang][Shebang]]
-      -  [[#get-script-location-and-project-root][Get Script Location and Project Root]]
-      -  [[#create-directories-if-needed][Create directories (if needed)]]
-      -  [[#symlink-hardware-configurationnix][Symlink hardware-configuration.nix]]
-      -  [[#run-stow][Run Stow]]
-    -  [[#rebuild-system][Rebuild System]]
-      -  [[#shebang-1][Shebang]]
-      -  [[#get-script-location-and-project-root-1][Get Script Location and Project Root]]
-      -  [[#rebuild-system-1][Rebuild System]]
-    -  [[#update-system][Update System]]
-      -  [[#shebang-2][Shebang]]
-      -  [[#get-script-location-and-project-root-2][Get Script Location and Project Root]]
-      -  [[#update][Update]]
-    -  [[#install-system][Install System]]
-      -  [[#shebang-3][Shebang]]
-      -  [[#get-script-location-and-project-root-3][Get Script Location and Project Root]]
-      -  [[#configure-system-1][Configure System]]
-      -  [[#update-system-1][Update System]]
-      -  [[#rebuild-system-2][Rebuild System]]
-      -  [[#install-doom-emacs][Install doom emacs]]
 -  [[#doom-gnu-emacs-doom-directory][Doom GNU Emacs (doom/ Directory)]]
   -  [[#about][About]]
     -  [[#why-emacs][Why Emacs?]]
@@ -114,6 +91,7 @@ refer to the headers or the table of contents for navigation
   -  [[#fonts-1][Fonts]]
   -  [[#cursor][Cursor]]
   -  [[#misc-settings][Misc Settings]]
+  -  [[#close-prompt][Close Prompt]]
   -  [[#colors][Colors]]
 -  [[#nixos-nixos-directory][NixOS (nixos/ Directory)]]
   -  [[#flake-setttings][Flake Setttings]]
@@ -164,125 +142,6 @@ refer to the headers or the table of contents for navigation
   -  [[#custom-power][Custom Power]]
   -  [[#network][Network]]
   -  [[#pulseaudio][PulseAudio]]
-
-*  Scripts (bin/ Directory)
-:PROPERTIES:
-:VISIBILITY: folded
-:END:
-**  Bash
-***  Configure System
-:PROPERTIES:
-:header-args: :tangle ./bin/configure-system
-:END:
-****  Shebang
-#+begin_src bash
-#!/usr/bin/env bash
-#+end_src
-****  Get Script Location and Project Root
-This finds the original script location
-#+begin_src bash
-PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
-#+end_src
-****  Create directories (if needed)
-#+begin_src bash
-mkdir -p ~/.config/doom
-mkdir -p ~/.config/waybar
-mkdir -p ~/.config/wofi
-mkdir -p ~/.config/hypr
-mkdir -p ~/.config/kitty
-mkdir -p ~/.local/bin
-#+end_src
-
-****  Symlink hardware-configuration.nix
-#+begin_src bash
-if [ ! -L "${PROJECT_DIR}/nixos/hardware-configuration.nix" ]; then
-    (cd "${PROJECT_DIR}/nixos" && ln -sr /etc/nixos/hardware-configuration.nix)
-fi
-#+end_src
-
-****  Run Stow
-This will put everything where it needs to go
-#+begin_src bash
-# Stow packages
-(cd "$PROJECT_DIR" && stow doom -t ~/.config/doom)
-(cd "$PROJECT_DIR" && stow home -t ~)
-(cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
-(cd "$PROJECT_DIR" && stow waybar -t ~/.config/waybar)
-(cd "$PROJECT_DIR" && stow hypr -t ~/.config/hypr)
-(cd "$PROJECT_DIR" && stow wofi -t ~/.config/wofi)
-(cd "$PROJECT_DIR" && stow kitty -t ~/.config/kitty)
-#+end_src
-***  Rebuild System
-:PROPERTIES:
-:header-args: :tangle ./bin/update-system
-:END:
-****  Shebang
-#+begin_src bash
-#!/usr/bin/env bash
-#+end_src
-****  Get Script Location and Project Root
-This finds the original script location
-#+begin_src bash
-PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
-#+end_src
-****  Rebuild System
-#+begin_src bash
-sudo nixos-rebuild switch --flake "$PROJECT_DIR/nixos" --impure
-#+end_src
-
-***  Update System
-:PROPERTIES:
-:header-args: :tangle ./bin/rebuild-system
-:END:
-****  Shebang
-#+begin_src bash
-#!/usr/bin/env bash
-#+end_src
-****  Get Script Location and Project Root
-This finds the original script location
-#+begin_src bash
-PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
-#+end_src
-****  Update
-#+begin_src bash
-nix flake update --flake "$PROJECT_DIR/nixos"
-#+end_src
-***  Install System
-:PROPERTIES:
-:header-args: :tangle ./bin/install-system
-:END:
-****  Shebang
-#+begin_src bash
-#!/usr/bin/env bash
-#+end_src
-****  Get Script Location and Project Root
-This finds the original script location
-#+begin_src bash
-PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
-#+end_src
-****  Configure System
-#+begin_src bash
-echo "Configuring system first..."
-./configure-system
-#+end_src
-****  Update System
-#+begin_src bash
-echo "Updating flake..."
-./update-system
-#+end_src
-****  Rebuild System
-#+begin_src bash
-echo "Building from nix configuration..."
-./rebuild-system
-#+end_src
-****  Install doom emacs
-#+begin_src bash
-echo "Installing doom emacs from https://github.com/doomemacs/doomemacs"
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-~/.config/emacs/bin/doom install
-
-echo "Everything is in order, happy hacking!"
-#+end_src
 
 *  Doom GNU Emacs (doom/ Directory)
 :PROPERTIES:
@@ -1325,6 +1184,10 @@ cursor_blink_interval 0
 scrollback_lines 10000
 
 window_padding_width 8
+#+end_src
+**  Close Prompt
+#+begin_src conf
+confirm_os_window_close 0
 #+end_src
 
 **  Colors
