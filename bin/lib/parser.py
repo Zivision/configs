@@ -1,5 +1,5 @@
 import argparse
-from lib.shell import run_simple_script
+from lib.shell import run_simple_script, get_project_dir
 
 
 def define_flags() -> argparse.ArgumentParser:
@@ -36,7 +36,10 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
 
     # Commands to dispatch
     dispatch = {
-        "configure": [["configure-system"]],
+        "configure": [
+            [get_project_dir() + "/lib/tangle-config.el"],
+            ["configure-system"],
+        ],
         "update": [["update-system"]],
         "update_flatpak": [["flatpak", "update"]],
         "update_all": [
