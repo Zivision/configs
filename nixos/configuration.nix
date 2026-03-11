@@ -6,15 +6,15 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+# Bootloader.
+boot.loader.systemd-boot.enable = true;
+boot.loader.efi.canTouchEfiVariables = true;
 
-  # App armor
-  security.apparmor.enable = true;
+# App armor
+security.apparmor.enable = true;
 
-  # Steam
-  programs.steam.enable = true;
+# Steam
+programs.steam.enable = true;
 
 # Use latest kernel.
 boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -115,51 +115,51 @@ programs.hyprland.enable = true;
 # Optional, hint Electron apps to use Wayland:
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+# Enable flakes
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+# Enable the X11 windowing system.
+# You can disable this if you're only using the Wayland session.
+services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+# Enable the KDE Plasma Desktop Environment.
+services.displayManager.sddm.enable = true;
+services.desktopManager.plasma6.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+# Configure keymap in X11
+services.xserver.xkb = {
+  layout = "us";
+  variant = "";
+};
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+# Enable CUPS to print documents.
+services.printing.enable = true;
 
-  # Set editor to neovim for quick edits
-  environment.variables.EDITOR = "nvim";
+# Set editor to neovim for quick edits
+environment.variables.EDITOR = "nvim";
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+# Enable sound with pipewire.
+services.pulseaudio.enable = false;
+security.rtkit.enable = true;
+services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+  # If you want to use JACK applications, uncomment this
+  #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+  # use the example session manager (no others are packaged yet so this is enabled by default,
+  # no need to redefine it in your config for now)
+  #media-session.enable = true;
+};
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.primary = {
-    isNormalUser = true;
-    description = "Primary";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-  };
+# Define a user account. Don't forget to set a password with ‘passwd’.
+users.users.primary = {
+  isNormalUser = true;
+  description = "Primary";
+  extraGroups = [ "networkmanager" "wheel" "docker" ];
+};
 
 virtualisation.docker.enable = true;
 
@@ -174,33 +174,33 @@ environment.systemPackages = with pkgs; [
   htop
   stow
 
-  kitty
+kitty
 
-  hyprpaper
-  wofi
-  waybar
+hyprpaper
+wofi
+waybar
 
-  waypaper
-  brightnessctl
+waypaper
+brightnessctl
 
-  # Emacs
-  gcc
-  gnumake
-  ripgrep
-  fd
-  emacs
-  cmake
-  libtool
-  ispell
+# Emacs
+gcc
+gnumake
+ripgrep
+fd
+emacs
+cmake
+libtool
+ispell
 
-  # For emms
-  mpv
+# For emms
+mpv
 
-  # Shell Check
-  shellcheck
+# Shell Check
+shellcheck
 
-  # Formatter
-  shfmt
+# Formatter
+shfmt
 
 # Clojure
 clojure
@@ -235,16 +235,16 @@ nixfmt
 # For org roam
 graphviz
 
-  # Python
-  python3
+# Python
+python3
 
-  # LSP (pyright in my case)
-  pyright
+# LSP (pyright in my case)
+pyright
 
-  # Python Formatter
-  black
-  # Import management
-  python3Packages.pyflakes
+# Python Formatter
+black
+# Import management
+python3Packages.pyflakes
 
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
@@ -253,11 +253,11 @@ nerd-fonts.iosevka
 noto-fonts-cjk-sans
 noto-fonts-cjk-serif
 
-  # Devops
-  kubectl
-  docker
-  terraform
-  google-cloud-sdk
+# Devops
+kubectl
+docker
+terraform
+google-cloud-sdk
 
 flatpak
 

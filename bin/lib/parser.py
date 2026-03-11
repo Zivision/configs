@@ -37,7 +37,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
     # Commands to dispatch
     dispatch = {
         "configure": [
-            [get_project_dir() + "/lib/tangle-config.el"],
+            [get_project_dir() + "/lib/elisp/main.el"],
             ["configure-system"],
         ],
         "update": [["update-system"]],

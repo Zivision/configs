@@ -1,9 +1,11 @@
 #!/usr/bin/env -S emacs --script
 
+;; Get elisp library folder
 (defvar elisp-directory
   (file-name-directory (file-truename (or load-file-name buffer-file-name))))
 
-(defvar project-directory
+;; Get the project root
+(defvar project-root
   (file-name-directory
    (directory-file-name
     (file-name-directory
@@ -12,7 +14,7 @@
        (directory-file-name
         elisp-directory)))))))
 
-
+;; Load external file
 (load-file (concat elisp-directory "config-tangle.el"))
 
-(tangle-config (concat project-directory "config.org"))
+(tangle-config (concat project-root "config.org"))
