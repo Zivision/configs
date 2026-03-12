@@ -1,3 +1,6 @@
+(defvar project-root
+  (file-name-directory (file-truename (or load-file-name buffer-file-name))))
+
 (defun hypr/launch-vterm
     ()
   "Open a new frame with a vterm buffer."
@@ -20,6 +23,11 @@
   (elfeed-update)
   (switch-to-buffer "*elfeed-search*"))
 
+(defun hypr/launch-scratch
+    ()
+  (scratch-buffer)
+  (switch-to-buffer "*scratch*"))
+
 (map!
  :prefix "C-c s"
  :desc "Run 'stow-configs' script" "c" #'scripts/config
@@ -29,10 +37,12 @@
  :prefix "C-c o f"
  :desc "Open notes.org" "n" #'(lambda ()
                                 (interactive)
-                                (find-file "~/Documents/org/notes.org"))
+                                (find-file
+                                 (concat org-directory "/notes.org")))
  :desc "Open config.org" "c" #'(lambda ()
                                  (interactive)
-                                 (find-file "~/Workspace/Misc/configs/config.org")))
+                                 (find-file
+                                  (concat project-root "config.org"))))
 
 (map!
  :prefix "C-c m"

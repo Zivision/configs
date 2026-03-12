@@ -30,6 +30,7 @@ refer to the headers or the table of contents for navigation
     -  [[#basic-usage][Basic usage]]
       -  [[#basic-variables][Basic variables]]
       -  [[#basic-macros][Basic macros]]
+    -  [[#custom-variables][Custom Variables]]
     -  [[#custom-functions][Custom Functions]]
     -  [[#basic-settings][Basic settings]]
       -  [[#keybinds][Keybinds]]
@@ -64,30 +65,31 @@ refer to the headers or the table of contents for navigation
     -  [[#aliases][Aliases]]
     -  [[#environment-variables][Environment Variables]]
 -  [[#hyprland-hypr-directory][Hyprland (hypr/ Directory)]]
-  -  [[#hyprland-config][Hyprland Config]]
-    -  [[#monitors][Monitors]]
-    -  [[#programs][Programs]]
-    -  [[#autostart][Autostart]]
-    -  [[#environment-variables-1][Environment Variables]]
-    -  [[#look-and-feel][Look and Feel]]
-      -  [[#general][General]]
-      -  [[#decoration][Decoration]]
-      -  [[#animations][Animations]]
-      -  [[#gaps][Gaps]]
-      -  [[#layouts][Layouts]]
-      -  [[#xwayland][Xwayland]]
-      -  [[#misc-variables][Misc Variables]]
-    -  [[#input-1][Input]]
-    -  [[#keybinds-1][Keybinds]]
-      -  [[#main-modifier-key][Main Modifier Key]]
-      -  [[#main-keybinds][Main Keybinds]]
-      -  [[#movement][Movement]]
-      -  [[#workspaces-1][Workspaces]]
-      -  [[#move-to-workspaces][Move To Workspaces]]
-      -  [[#special-workspaces][Special Workspaces]]
-      -  [[#window-resize][Window Resize]]
-      -  [[#special-keys][Special Keys]]
-      -  [[#windows-and-workspaces][Windows and Workspaces]]
+  -  [[#monitors][Monitors]]
+  -  [[#programs][Programs]]
+  -  [[#autostart][Autostart]]
+  -  [[#environment-variables-1][Environment Variables]]
+  -  [[#look-and-feel][Look and Feel]]
+    -  [[#general][General]]
+    -  [[#decoration][Decoration]]
+    -  [[#animations][Animations]]
+    -  [[#gaps][Gaps]]
+    -  [[#layouts][Layouts]]
+      -  [[#dwindle][Dwindle]]
+      -  [[#master][Master]]
+    -  [[#xwayland][Xwayland]]
+    -  [[#misc-variables][Misc Variables]]
+  -  [[#input-1][Input]]
+  -  [[#keybinds-1][Keybinds]]
+    -  [[#main-modifier-key][Main Modifier Key]]
+    -  [[#main-keybinds][Main Keybinds]]
+    -  [[#movement][Movement]]
+    -  [[#workspaces-1][Workspaces]]
+    -  [[#move-to-workspaces][Move To Workspaces]]
+    -  [[#special-workspaces][Special Workspaces]]
+    -  [[#window-resize][Window Resize]]
+    -  [[#special-keys][Special Keys]]
+    -  [[#windows-and-workspaces][Windows and Workspaces]]
 -  [[#kitty-kitty-directory][Kitty (kitty/ Directory)]]
   -  [[#fonts-1][Fonts]]
   -  [[#cursor][Cursor]]
@@ -426,6 +428,11 @@ This is where custom Emacs functions and configuration for packages reside.
 + after!         :: For running code after a package has loaded
 + add-load-path! :: For adding directories to the load-path.
 + map!           :: Map new keys
+***  Custom Variables
+#+begin_src elisp
+(defvar project-root
+  (file-name-directory (file-truename (or load-file-name buffer-file-name))))
+#+end_src
 ***  Custom Functions
 #+begin_src elisp
 (defun hypr/launch-vterm
@@ -449,6 +456,11 @@ This is where custom Emacs functions and configuration for packages reside.
   (elfeed)
   (elfeed-update)
   (switch-to-buffer "*elfeed-search*"))
+
+(defun hypr/launch-scratch
+    ()
+  (scratch-buffer)
+  (switch-to-buffer "*scratch*"))
 #+end_src
 ***  Basic settings
 ****  Keybinds
@@ -466,10 +478,12 @@ This is where custom Emacs functions and configuration for packages reside.
  :prefix "C-c o f"
  :desc "Open notes.org" "n" #'(lambda ()
                                 (interactive)
-                                (find-file "~/Documents/org/notes.org"))
+                                (find-file
+                                 (concat org-directory "/notes.org")))
  :desc "Open config.org" "c" #'(lambda ()
                                  (interactive)
-                                 (find-file "~/Workspace/Misc/configs/config.org")))
+                                 (find-file
+                                  (concat project-root "config.org"))))
 #+end_src
 
 *****  EMMS
@@ -908,23 +922,19 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 #+end_src
 *  Hyprland (hypr/ Directory)
 :PROPERTIES:
-:VISIBILITY: folded
-:END:
-
-**  Hyprland Config
-:PROPERTIES:
 :header-args: :tangle ./hypr/hyprland.conf
 :VISIBILITY: folded
 :END:
+
 This is my hyprland configuration originally modified from an auto generated one.
 
 For more info on configuring hyprland visit the [[https://wiki.hypr.land/Configuring/][Wiki]]
-***  Monitors
+**  Monitors
 #+begin_src conf
 monitor = DP-2, 1440x900@74.98, -900x0, 1, transform, 1
 monitor = HDMI-A-1, 1920x1080@74.97, 0x0, 1
 #+end_src
-***  Programs
+**  Programs
 #+begin_src conf
 $terminal = kitty
 $fileManager = dolphin
@@ -933,21 +943,22 @@ $editor = emacsclient -cn
 $vterm = emacsclient -c -e '(hypr/launch-vterm)'
 $eshell = emacsclient -c -e '(hypr/launch-eshell)'
 $elfeed = emacsclient -c -e '(hypr/launch-elfeed)'
+$scratch = emacsclient -c -e '(hypr/launch-scratch)'
 #+end_src
-***  Autostart
+**  Autostart
 #+begin_src conf
 exec-once = waybar
 exec-once = waypaper --restore
 exec-once = emacs --daemon
 #+end_src
-***  Environment Variables
+**  Environment Variables
 #+begin_src conf
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
 #+end_src
 
-***  Look and Feel
-****  General
+**  Look and Feel
+***  General
 #+begin_src conf
 general {
     gaps_in = 5
@@ -965,7 +976,7 @@ general {
     layout = dwindle
 }
 #+end_src
-****  Decoration
+***  Decoration
 #+begin_src conf
 decoration {
     rounding = 3
@@ -990,7 +1001,7 @@ decoration {
     }
 }
 #+end_src
-****  Animations
+***  Animations
 #+begin_src conf
 animations {
     enabled = yes, please :)
@@ -1022,7 +1033,7 @@ animations {
     animation = zoomFactor,    1,     7,     quick
 }
 #+end_src
-****  Gaps
+***  Gaps
 #+begin_src conf
 # "Smart gaps" / "No gaps when only"
 workspace = w[tv1], gapsout:0, gapsin:0
@@ -1032,8 +1043,8 @@ windowrule = rounding 0, floating:0, onworkspace:w[tv1]
 windowrule = bordersize 0, floating:0, onworkspace:f[1]
 windowrule = rounding 0, floating:0, onworkspace:f[1]
 #+end_src
-****  Layouts
-*****  Dwindle
+***  Layouts
+****  Dwindle
 #+begin_src conf
 dwindle {
     pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
@@ -1041,26 +1052,26 @@ dwindle {
 }
 
 #+end_src
-*****  Master
+****  Master
 #+begin_src conf
 master {
     new_status = master
 }
 #+end_src
-****  Xwayland
+***  Xwayland
 #+begin_src conf
 xwayland {
     force_zero_scaling = true
 }
 #+end_src
-****  Misc Variables
+***  Misc Variables
 #+begin_src conf
 misc {
     force_default_wallpaper = 0 # Set to 0 or 1 to disable the anime mascot wallpapers
     disable_hyprland_logo = true # If true disables the random hyprland logo / anime girl background. :(
 }
 #+end_src
-***  Input
+**  Input
 #+begin_src conf
 input {
     kb_layout = us
@@ -1085,19 +1096,20 @@ device {
     sensitivity = -0.5
 }
 #+end_src
-***  Keybinds
-****  Main Modifier Key
+**  Keybinds
+***  Main Modifier Key
 #+begin_src conf
 $mainMod = SUPER # Sets "Windows" key as main modifier
 #+end_src
-****  Main Keybinds
+***  Main Keybinds
 #+begin_src conf
 bind = $mainMod, Q, exec, $vterm
 bind = $mainMod SHIFT, Q, exec, $terminal
 bind = $mainMod, W, exec, $eshell
 bind = $mainMod, E, exec, $editor
+bind = $mainMod SHIFT, E, exec, $scratch
 bind = $mainMod, R, exec, $menu
-bind = $mainMod, n, exec, $elfeed
+bind = $mainMod, N, exec, $elfeed
 
 
 bind = $mainMod, C, killactive,
@@ -1107,7 +1119,7 @@ bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, ., togglesplit, # dwindle
 bind = $mainMod, F, fullscreen
 #+end_src
-****  Movement
+***  Movement
 #+begin_src conf
 bind = $mainMod, H, movefocus, l
 bind = $mainMod, L, movefocus, r
@@ -1115,7 +1127,7 @@ bind = $mainMod, K, movefocus, u
 bind = $mainMod, J, movefocus, d
 #+end_src
 
-****  Workspaces
+***  Workspaces
 #+begin_src conf
 bind = $mainMod, 1, workspace, 1
 bind = $mainMod, 2, workspace, 2
@@ -1128,7 +1140,7 @@ bind = $mainMod, 8, workspace, 8
 bind = $mainMod, 9, workspace, 9
 bind = $mainMod, 0, workspace, 10
 #+end_src
-****  Move To Workspaces
+***  Move To Workspaces
 #+begin_src conf
 bind = $mainMod SHIFT, 1, movetoworkspace, 1
 bind = $mainMod SHIFT, 2, movetoworkspace, 2
@@ -1141,7 +1153,7 @@ bind = $mainMod SHIFT, 8, movetoworkspace, 8
 bind = $mainMod SHIFT, 9, movetoworkspace, 9
 bind = $mainMod SHIFT, 0, movetoworkspace, 10
 #+end_src
-****  Special Workspaces
+***  Special Workspaces
 #+begin_src conf
 # Example special workspace (scratchpad)
 bind = $mainMod, S, togglespecialworkspace, magic
@@ -1152,14 +1164,14 @@ bind = $mainMod, mouse_down, workspace, e+1
 bind = $mainMod, mouse_up, workspace, e-1
 #+end_src
 
-****  Window Resize
+***  Window Resize
 #+begin_src conf
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 #+end_src
 
-****  Special Keys
+***  Special Keys
 #+begin_src conf
 # Laptop multimedia keys for volume and LCD brightness
 bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
@@ -1176,7 +1188,7 @@ bindl = , XF86AudioPlay, exec, playerctl play-pause
 bindl = , XF86AudioPrev, exec, playerctl previous
 #+end_src
 
-****  Windows and Workspaces
+***  Windows and Workspaces
 #+begin_src conf
 # Ignore maximize requests from apps. You'll probably like this.
 windowrule = suppressevent maximize, class:.*
