@@ -1,3 +1,25 @@
+(defun hypr/launch-vterm
+    ()
+  "Open a new frame with a vterm buffer."
+  (+vterm/here 0)
+  (switch-to-buffer "*vterm*"))
+
+(defun hypr/launch-eshell
+    ()
+  "Open a new eshell frame if one doesn't exist. Otherwise open new eshell buffer."
+  (if (get-buffer "*doom:eshell*")
+      (switch-to-buffer "*doom:eshell*")
+    (progn
+      (+eshell/here 0)
+      (switch-to-buffer "*doom:eshell*")
+      (eshell/clear))))
+
+(defun hypr/launch-elfeed
+    ()
+  (elfeed)
+  (elfeed-update)
+  (switch-to-buffer "*elfeed-search*"))
+
 (map!
  :prefix "C-c s"
  :desc "Run 'stow-configs' script" "c" #'scripts/config

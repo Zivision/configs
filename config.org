@@ -30,6 +30,7 @@ refer to the headers or the table of contents for navigation
     -  [[#basic-usage][Basic usage]]
       -  [[#basic-variables][Basic variables]]
       -  [[#basic-macros][Basic macros]]
+    -  [[#custom-functions][Custom Functions]]
     -  [[#basic-settings][Basic settings]]
       -  [[#keybinds][Keybinds]]
       -  [[#fonts][Fonts]]
@@ -425,6 +426,30 @@ This is where custom Emacs functions and configuration for packages reside.
 + after!         :: For running code after a package has loaded
 + add-load-path! :: For adding directories to the load-path.
 + map!           :: Map new keys
+***  Custom Functions
+#+begin_src elisp
+(defun hypr/launch-vterm
+    ()
+  "Open a new frame with a vterm buffer."
+  (+vterm/here 0)
+  (switch-to-buffer "*vterm*"))
+
+(defun hypr/launch-eshell
+    ()
+  "Open a new eshell frame if one doesn't exist. Otherwise open new eshell buffer."
+  (if (get-buffer "*doom:eshell*")
+      (switch-to-buffer "*doom:eshell*")
+    (progn
+      (+eshell/here 0)
+      (switch-to-buffer "*doom:eshell*")
+      (eshell/clear))))
+
+(defun hypr/launch-elfeed
+    ()
+  (elfeed)
+  (elfeed-update)
+  (switch-to-buffer "*elfeed-search*"))
+#+end_src
 ***  Basic settings
 ****  Keybinds
 *****  Custom Functions
@@ -905,6 +930,9 @@ $terminal = kitty
 $fileManager = dolphin
 $menu = wofi --show drun
 $editor = emacsclient -cn
+$vterm = emacsclient -c -e '(hypr/launch-vterm)'
+$eshell = emacsclient -c -e '(hypr/launch-eshell)'
+$elfeed = emacsclient -c -e '(hypr/launch-elfeed)'
 #+end_src
 ***  Autostart
 #+begin_src conf
@@ -1064,13 +1092,17 @@ $mainMod = SUPER # Sets "Windows" key as main modifier
 #+end_src
 ****  Main Keybinds
 #+begin_src conf
-bind = $mainMod, Q, exec, $terminal
-bind = $mainMod, W, exec, $editor
+bind = $mainMod, Q, exec, $vterm
+bind = $mainMod SHIFT, Q, exec, $terminal
+bind = $mainMod, W, exec, $eshell
+bind = $mainMod, E, exec, $editor
+bind = $mainMod, R, exec, $menu
+bind = $mainMod, n, exec, $elfeed
+
+
 bind = $mainMod, C, killactive,
 bind = $mainMod SHIFT, M, exit,
-bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, V, togglefloating,
-bind = $mainMod, R, exec, $menu
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, ., togglesplit, # dwindle
 bind = $mainMod, F, fullscreen
