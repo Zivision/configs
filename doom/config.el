@@ -4,10 +4,13 @@
  :desc "Run 'update-all-packages' script" "u" #'scripts/update)
 
 (map!
- :prefix "C-c d"
- "d" #'dirvish
- "q" #'dirvish-quit
- "f" #'dirvish-fd)
+ :prefix "C-c o f"
+ :desc "Open notes.org" "n" #'(lambda ()
+                                (interactive)
+                                (find-file "~/Documents/org/notes.org"))
+ :desc "Open config.org" "c" #'(lambda ()
+                                 (interactive)
+                                 (find-file "~/Workspace/Misc/configs/config.org")))
 
 (map!
  :prefix "C-c m"
@@ -23,7 +26,7 @@
  :desc "Previous track" "k" #'emms-previous)
 
 (map!
- :prefix "C-c f"
+ :prefix "C-c n"
  :desc "Open elfeed" "f" #'elfeed
  :desc "Unjam elfeed" "u" #'elfeed-unjam
  :desc "Update elfeed" "U" #'elfeed-update)

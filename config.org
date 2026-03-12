@@ -435,16 +435,18 @@ This is where custom Emacs functions and configuration for packages reside.
  :desc "Run 'update-all-packages' script" "u" #'scripts/update)
 #+end_src
 
-#+RESULTS:
-
-*****  Dirvish
+*****  Open File
 #+begin_src emacs-lisp
 (map!
- :prefix "C-c d"
- "d" #'dirvish
- "q" #'dirvish-quit
- "f" #'dirvish-fd)
+ :prefix "C-c o f"
+ :desc "Open notes.org" "n" #'(lambda ()
+                                (interactive)
+                                (find-file "~/Documents/org/notes.org"))
+ :desc "Open config.org" "c" #'(lambda ()
+                                 (interactive)
+                                 (find-file "~/Workspace/Misc/configs/config.org")))
 #+end_src
+
 *****  EMMS
 #+begin_src emacs-lisp
 (map!
@@ -463,7 +465,7 @@ This is where custom Emacs functions and configuration for packages reside.
 *****  Elfeed
 #+begin_src emacs-lisp
 (map!
- :prefix "C-c f"
+ :prefix "C-c n"
  :desc "Open elfeed" "f" #'elfeed
  :desc "Unjam elfeed" "u" #'elfeed-unjam
  :desc "Update elfeed" "U" #'elfeed-update)
