@@ -2,4 +2,4 @@
 
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 
-sudo nixos-rebuild switch --flake "$PROJECT_DIR/nixos" --impure
+nix flake update --flake "$PROJECT_DIR/nixos"
