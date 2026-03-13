@@ -600,7 +600,6 @@ Change the numerical values to affect the transparency
 
 
 (display-time-mode 1)
-(display-battery-mode 1)
 #+end_src
 ****  Mode Settings
 #+begin_src emacs-lisp

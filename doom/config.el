@@ -131,7 +131,7 @@
 
 
 (display-time-mode 1)
-(display-battery-mode 1)
+;;(display-battery-mode 1)
 
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 
@@ -191,15 +191,15 @@
   (dap-mode 1)
   (dap-ui-mode 1)
 
-(require 'dap-python)
-;; Set python debugger (debugpy)
-(setq dap-python-debugger 'debugpy)
+  (require 'dap-python)
+  ;; Set python debugger (debugpy)
+  (setq dap-python-debugger 'debugpy)
 
-(require 'dap-node)
-;; Auto-installs debug adapter
-(dap-node-setup)
+  (require 'dap-node)
+  ;; Auto-installs debug adapter
+  (dap-node-setup)
 
-(require 'dap-dlv-go))
+  (require 'dap-dlv-go))
 
 (map! :after elpher
       :map elpher-mode-map
