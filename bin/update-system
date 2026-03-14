@@ -2,4 +2,6 @@
 
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 
+echo "Updating Nix flake"
 nix flake update --flake "$PROJECT_DIR/nixos"
+echo "Finished!"

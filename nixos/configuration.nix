@@ -13,6 +13,9 @@ boot.loader.efi.canTouchEfiVariables = true;
 # App armor
 security.apparmor.enable = true;
 
+programs.powershell.enable = true;
+users.defaultUserShell = pkgs.powershell;
+
 # Steam
 programs.steam.enable = true;
 
@@ -96,11 +99,6 @@ networking.firewall.enable = true;
 # Before changing this value read the documentation for this option
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 system.stateVersion = "25.05"; # Did you read the comment?
-
-services.emacs = {
-   enable = true;
-   defaultEditor = true;
-};
 
 # Example for /etc/nixos/configuration.nix
 services.syncthing = {

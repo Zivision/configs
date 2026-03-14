@@ -110,9 +110,9 @@ refer to the headers or the table of contents for navigation
     -  [[#imports-1][Imports]]
     -  [[#bootloader][Bootloader]]
     -  [[#app-armor][App armor]]
+    -  [[#shell][Shell]]
     -  [[#steam][Steam]]
     -  [[#system][System]]
-    -  [[#emacs-settings][Emacs (Settings)]]
     -  [[#syncthing][Syncthing]]
     -  [[#hyprland][Hyprland]]
     -  [[#flakes][Flakes]]
@@ -1390,6 +1390,11 @@ home.packages = with pkgs; [
   # App armor
   security.apparmor.enable = true;
 #+end_src
+***  Shell
+Using Powershell right now as an test
+#+begin_src nix
+users.defaultUserShell = pkgs.powershell;
+#+end_src
 ***  Steam
 #+begin_src nix
   # Steam
@@ -1478,13 +1483,6 @@ networking.firewall.enable = true;
 # Before changing this value read the documentation for this option
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 system.stateVersion = "25.05"; # Did you read the comment?
-#+end_src
-***  Emacs (Settings)
-#+begin_src nix
-services.emacs = {
-   enable = true;
-   defaultEditor = true;
-};
 #+end_src
 ***  Syncthing
 #+begin_src nix

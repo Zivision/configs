@@ -2,4 +2,6 @@
 
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 
+echo "Rebuilding System"
 sudo nixos-rebuild switch --flake "$PROJECT_DIR/nixos" --impure
+echo "Finished!"

@@ -86,7 +86,8 @@
 ;; Enable bold and italic for better syntax highlighting
 (after! doom-themes
   (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
+        doom-themes-enable-italic t)
+  (setq doom-monokai-classic-brighter-comments t))
 
 ;; Set Theme
 (setq doom-theme 'doom-monokai-classic)
