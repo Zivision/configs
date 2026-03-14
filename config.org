@@ -110,6 +110,7 @@ refer to the headers or the table of contents for navigation
     -  [[#imports-1][Imports]]
     -  [[#bootloader][Bootloader]]
     -  [[#app-armor][App armor]]
+    -  [[#nix-packages-manager][Nix (Packages manager)]]
     -  [[#shell][Shell]]
     -  [[#steam][Steam]]
     -  [[#system][System]]
@@ -1390,10 +1391,13 @@ home.packages = with pkgs; [
   # App armor
   security.apparmor.enable = true;
 #+end_src
-***  Shell
-Using Powershell right now as an test
+***  Nix (Packages manager)
 #+begin_src nix
-users.defaultUserShell = pkgs.powershell;
+nix.package = pkgs.nixVersions.latest;
+#+end_src
+***  Shell
+#+begin_src nix
+#users.defaultUserShell = pkgs.powershell;
 #+end_src
 ***  Steam
 #+begin_src nix

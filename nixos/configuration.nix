@@ -13,8 +13,9 @@ boot.loader.efi.canTouchEfiVariables = true;
 # App armor
 security.apparmor.enable = true;
 
-programs.powershell.enable = true;
-users.defaultUserShell = pkgs.powershell;
+nix.package = pkgs.nixVersions.latest;
+
+#users.defaultUserShell = pkgs.powershell;
 
 # Steam
 programs.steam.enable = true;
