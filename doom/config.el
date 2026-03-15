@@ -31,6 +31,17 @@
   (scratch-buffer)
   (switch-to-buffer "*scratch*"))
 
+
+(defun hypr/launch-custom-shell (name)
+  "Open a new vterm buffer with a specified NAME."
+  (setq vterm-shell "/run/current-system/sw/bin/xonsh")
+  (let ((buffer (get-buffer-create (concat "*vterm-" name "*"))))
+    (with-current-buffer buffer
+      (unless (derived-mode-p 'vterm-mode)
+        (vterm-mode)))
+    (switch-to-buffer buffer))
+  (setq vterm-shell "/run/current-system/sw/bin/bash"))
+
 (map!
  :prefix "C-c s"
  :desc "Run 'stow-configs' script" "c" #'scripts/config
