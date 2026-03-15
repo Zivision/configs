@@ -111,7 +111,6 @@ refer to the headers or the table of contents for navigation
     -  [[#bootloader][Bootloader]]
     -  [[#app-armor][App armor]]
     -  [[#nix-packages-manager][Nix (Packages manager)]]
-    -  [[#shell][Shell]]
     -  [[#steam][Steam]]
     -  [[#system][System]]
     -  [[#syncthing][Syncthing]]
@@ -126,6 +125,7 @@ refer to the headers or the table of contents for navigation
       -  [[#general-dependencies][General Dependencies]]
       -  [[#terminal-kitty][Terminal (kitty)]]
       -  [[#hyprland-1][Hyprland]]
+      -  [[#shells][Shells]]
       -  [[#emacs-doom][Emacs (DOOM)]]
       -  [[#fonts-2][Fonts]]
       -  [[#more-developer-tools][More Developer Tools]]
@@ -1395,10 +1395,6 @@ home.packages = with pkgs; [
 #+begin_src nix
 nix.package = pkgs.nixVersions.latest;
 #+end_src
-***  Shell
-#+begin_src nix
-#users.defaultUserShell = pkgs.powershell;
-#+end_src
 ***  Steam
 #+begin_src nix
   # Steam
@@ -1596,6 +1592,10 @@ environment.systemPackages = with pkgs; [
 
   waypaper
   brightnessctl
+#+end_src
+****  Shells
+#+begin_src nix
+xonsh
 #+end_src
 ****  Emacs (DOOM)
 #+begin_src nix

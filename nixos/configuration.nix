@@ -15,8 +15,6 @@ security.apparmor.enable = true;
 
 nix.package = pkgs.nixVersions.latest;
 
-#users.defaultUserShell = pkgs.powershell;
-
 # Steam
 programs.steam.enable = true;
 
@@ -181,6 +179,8 @@ waybar
 
 waypaper
 brightnessctl
+
+xonsh
 
 # Emacs
 gcc
