@@ -6,7 +6,14 @@ def get_project_dir() -> str:
     return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def run_simple_script(command: list[str]) -> None:
+def run_dispatch(
+    arguments: dict[str, bool], dispatch: dict[str, list], key: str
+) -> None:
+    if arguments[key]:
+        [_run_simple_script(command) for command in dispatch[key]]
+
+
+def _run_simple_script(command: list[str]) -> None:
     try:
         print(f"Running commands: {command}")
         proc = subprocess.Popen(

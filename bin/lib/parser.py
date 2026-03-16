@@ -1,5 +1,5 @@
 import argparse
-from lib.shell import run_simple_script, get_project_dir
+from lib.shell import run_dispatch, get_project_dir
 
 
 def define_flags() -> argparse.ArgumentParser:
@@ -23,7 +23,7 @@ def define_flags() -> argparse.ArgumentParser:
         help="Run 'flatpak update'",
     )
     parser.add_argument(
-        "-ua", "--update-all", action="store_true", help="Run full system update"
+        "-U", "--update-all", action="store_true", help="Run full system update"
     )
     parser.add_argument(
         "-i", "--install", action="store_true", help="Run 'install-system' script"
@@ -33,6 +33,12 @@ def define_flags() -> argparse.ArgumentParser:
 
 
 def parse_flags(parser: argparse.ArgumentParser) -> None:
+    args = vars(parser.parse_args())
+    # If none of the configuration flags are true
+    # Print help menu and exit function
+    if True not in args.values():
+        parser.print_help()
+        return
 
     # Commands to dispatch
     dispatch = {
@@ -50,11 +56,19 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
         "install": [["install-system"]],
     }
 
-    args = vars(parser.parse_args())
+    print(args)
 
-    for key in dispatch:
-        if args[key]:
-            [run_simple_script(command) for command in dispatch[key]]
+    # This checks for commands in order.
+    # Currently it is:
+    # 1. Install (it runs everything in order within it's bash script)
+    # 2. Configure
+    # 3. Updates
+    # 4. Rebuild
 
-    if True not in args.values():
-        parser.print_help()
+    run_dispatch(args, dispatch, "install")
+    run_dispatch(args, dispatch, "configure")
+
+    for key in ["update", "update_flatpak", "update_all"]:
+        run_dispatch(args, dispatch, key)
+
+    run_dispatch(args, dispatch, "rebuild")
