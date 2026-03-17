@@ -180,8 +180,6 @@ waybar
 waypaper
 brightnessctl
 
-xonsh
-
 # Emacs
 gcc
 gnumake

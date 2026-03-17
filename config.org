@@ -125,7 +125,6 @@ refer to the headers or the table of contents for navigation
       -  [[#general-dependencies][General Dependencies]]
       -  [[#terminal-kitty][Terminal (kitty)]]
       -  [[#hyprland-1][Hyprland]]
-      -  [[#shells][Shells]]
       -  [[#emacs-doom][Emacs (DOOM)]]
       -  [[#fonts-2][Fonts]]
       -  [[#more-developer-tools][More Developer Tools]]
@@ -146,10 +145,6 @@ refer to the headers or the table of contents for navigation
   -  [[#custom-power][Custom Power]]
   -  [[#network][Network]]
   -  [[#pulseaudio][PulseAudio]]
--  [[#xonsh-xonsh-directory][Xonsh (xonsh/ directory)]]
-  -  [[#imports-2][Imports]]
-  -  [[#variables][Variables]]
-  -  [[#theme-1][Theme]]
 
 *  Doom GNU Emacs (doom/ Directory)
 :PROPERTIES:
@@ -469,17 +464,6 @@ This is where custom Emacs functions and configuration for packages reside.
     ()
   (scratch-buffer)
   (switch-to-buffer "*scratch*"))
-
-
-(defun hypr/launch-custom-shell (name)
-  "Open a new vterm buffer with a specified NAME."
-  (setq vterm-shell "/run/current-system/sw/bin/xonsh")
-  (let ((buffer (get-buffer-create (concat "*vterm-" name "*"))))
-    (with-current-buffer buffer
-      (unless (derived-mode-p 'vterm-mode)
-        (vterm-mode)))
-    (switch-to-buffer buffer))
-  (setq vterm-shell "/run/current-system/sw/bin/bash"))
 #+end_src
 ***  Basic settings
 ****  Keybinds
@@ -963,7 +947,6 @@ $vterm = emacsclient -c -e '(hypr/launch-vterm)'
 $eshell = emacsclient -c -e '(hypr/launch-eshell)'
 $elfeed = emacsclient -c -e '(hypr/launch-elfeed)'
 $scratch = emacsclient -c -e '(hypr/launch-scratch)'
-$xonsh = emacsclient -c -e '(hypr/launch-custom-shell "xonsh")'
 #+end_src
 **  Autostart
 #+begin_src conf
@@ -1126,7 +1109,6 @@ $mainMod = SUPER # Sets "Windows" key as main modifier
 bind = $mainMod, Q, exec, $vterm
 bind = $mainMod SHIFT, Q, exec, $terminal
 bind = $mainMod, W, exec, $eshell
-bind = $mainMod SHIFT, W, exec, $xonsh
 bind = $mainMod, E, exec, $editor
 bind = $mainMod SHIFT, E, exec, $scratch
 bind = $mainMod, R, exec, $menu
@@ -1610,10 +1592,6 @@ environment.systemPackages = with pkgs; [
   waypaper
   brightnessctl
 #+end_src
-****  Shells
-#+begin_src nix
-xonsh
-#+end_src
 ****  Emacs (DOOM)
 #+begin_src nix
   # Emacs
@@ -1933,34 +1911,4 @@ flatpak
         "on-click": "pavucontrol"
     },
 }
-#+end_src
-*  Xonsh (xonsh/ directory)
-:PROPERTIES:
-:header-args: :tangle ./xonsh/rc.py
-:VISIBILITY: folded
-:END:
-
-**  Imports
-#+begin_src python
-import subprocess
-from pathlib import Path
-#+end_src
-
-**  Variables
-#+begin_src python
-xenv = __xonsh__.env
-
-path_directories = []
-
-for d in path_directories:
-    xenv["PATH"].append(Path(d).expanduser())
-
-
-#$PROMPT = '[{localtime}] {YELLOW}{env_name} {BOLD_BLUE}{user}@{hostname} {BOLD_GREEN}{cwd} {gitstatus}{RESET}\n@ '
-#$XONSH_COLOR_STYLE = 'monokai'
-#+end_src
-
-**  Theme
-#+begin_src python
-xenv["XONSH_COLOR_STYLE"] = "monokai"
 #+end_src
