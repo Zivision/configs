@@ -33,6 +33,7 @@ refer to the headers or the table of contents for navigation
     -  [[#custom-variables][Custom Variables]]
     -  [[#custom-functions][Custom Functions]]
     -  [[#basic-settings][Basic settings]]
+      -  [[#splash-screen][Splash Screen]]
       -  [[#keybinds][Keybinds]]
       -  [[#fonts][Fonts]]
       -  [[#theme][Theme]]
@@ -60,6 +61,7 @@ refer to the headers or the table of contents for navigation
   -  [[#bashrc-config][Bashrc Config]]
     -  [[#basic-settings-1][Basic Settings]]
     -  [[#history-configuration][History Configuration]]
+    -  [[#fzf][Fzf]]
     -  [[#shell-options][Shell Options]]
     -  [[#prompt][Prompt]]
     -  [[#aliases][Aliases]]
@@ -466,6 +468,10 @@ This is where custom Emacs functions and configuration for packages reside.
   (switch-to-buffer "*scratch*"))
 #+end_src
 ***  Basic settings
+****  Splash Screen
+#+begin_src elisp
+(setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
+#+end_src
 ****  Keybinds
 *****  Custom Functions
 #+begin_src emacs-lisp
@@ -866,6 +872,11 @@ HISTFILESIZE=20000            # Commands to keep in history file
 HISTCONTROL=ignoreboth        # Ignore duplicates and commands starting with space
 shopt -s histappend           # Append to history file, don't overwrite
 #+end_src
+***  Fzf
+#+begin_src bash
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+#+end_src
 ***  Shell Options
 #+begin_src bash
 shopt -s checkwinsize         # Update LINES and COLUMNS after each command
@@ -911,7 +922,12 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline --graph --decorate'
+
+# Fzf
+alias efzf='emacsclient -tty $(fzf -m --preview="cat {}")'
+alias nfzf='nvim $(fzf -m --preview="cat {}")'
 #+end_src
+
 ***  Environment Variables
 #+begin_src bash
 export EDITOR=emacs
@@ -947,6 +963,7 @@ $vterm = emacsclient -c -e '(hypr/launch-vterm)'
 $eshell = emacsclient -c -e '(hypr/launch-eshell)'
 $elfeed = emacsclient -c -e '(hypr/launch-elfeed)'
 $scratch = emacsclient -c -e '(hypr/launch-scratch)'
+$dired = emacsclient -c -e '(dired ".")'
 #+end_src
 **  Autostart
 #+begin_src conf
@@ -1113,6 +1130,7 @@ bind = $mainMod, E, exec, $editor
 bind = $mainMod SHIFT, E, exec, $scratch
 bind = $mainMod, R, exec, $menu
 bind = $mainMod, N, exec, $elfeed
+bind = $mainMod, D, exec, $dired
 
 bind = $mainMod, C, killactive,
 bind = $mainMod SHIFT, M, exit,
@@ -1578,6 +1596,7 @@ environment.systemPackages = with pkgs; [
   wget
   htop
   stow
+  fzf
 #+end_src
 ****  Terminal (kitty)
 #+begin_src nix

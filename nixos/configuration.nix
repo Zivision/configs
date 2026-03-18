@@ -170,6 +170,7 @@ environment.systemPackages = with pkgs; [
   wget
   htop
   stow
+  fzf
 
 kitty
 

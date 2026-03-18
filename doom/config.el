@@ -31,6 +31,8 @@
   (scratch-buffer)
   (switch-to-buffer "*scratch*"))
 
+(setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
+
 (map!
  :prefix "C-c s"
  :desc "Run 'stow-configs' script" "c" #'scripts/config

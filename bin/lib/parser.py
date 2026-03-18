@@ -56,8 +56,6 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
         "install": [["install-system"]],
     }
 
-    print(args)
-
     # This checks for commands in order.
     # Currently it is:
     # 1. Install (it runs everything in order within it's bash script)

@@ -11,6 +11,9 @@ HISTFILESIZE=20000            # Commands to keep in history file
 HISTCONTROL=ignoreboth        # Ignore duplicates and commands starting with space
 shopt -s histappend           # Append to history file, don't overwrite
 
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
 shopt -s checkwinsize         # Update LINES and COLUMNS after each command
 shopt -s globstar 2>/dev/null # Enable ** for recursive glob matching
 shopt -s cdspell              # Autocorrect minor spelling errors in cd
@@ -50,6 +53,10 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline --graph --decorate'
+
+# Fzf
+alias efzf='emacsclient -tty $(fzf -m --preview="cat {}")'
+alias nfzf='nvim $(fzf -m --preview="cat {}")'
 
 export EDITOR=emacs
 export VISUAL=emacs
