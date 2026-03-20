@@ -58,8 +58,8 @@ alias gl='git log --oneline --graph --decorate'
 alias efzf='emacsclient -tty $(fzf -m --preview="cat {}")'
 alias nfzf='nvim $(fzf -m --preview="cat {}")'
 
-export EDITOR=emacs
-export VISUAL=emacs
+export EDITOR='emacsclient -tty'
+export VISUAL='emacsclient -tty'
 
 # Add your custom PATH modifications below:
 export PATH="$HOME/.local/bin:$PATH"

@@ -773,7 +773,7 @@ Used to center org documents
 #+begin_src emacs-lisp
 (use-package! olivetti
   :hook (org-mode . olivetti-mode)
-  :config (setq olivetti-body-width 100))
+  :init (setq olivetti-body-width 100))
 #+end_src
 *****  Misc org settings
 #+begin_src emacs-lisp
@@ -930,8 +930,8 @@ alias nfzf='nvim $(fzf -m --preview="cat {}")'
 
 ***  Environment Variables
 #+begin_src bash
-export EDITOR=emacs
-export VISUAL=emacs
+export EDITOR='emacsclient -tty'
+export VISUAL='emacsclient -tty'
 
 # Add your custom PATH modifications below:
 export PATH="$HOME/.local/bin:$PATH"
