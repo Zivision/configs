@@ -213,8 +213,9 @@
 ;; Always create projects when switching projects
 (setq +workspaces-on-switch-project-behavior t)
 
-(setq org-directory "~/Documents/org")
 (after! org
+  (setq org-agenda-files '("~/Documents/org/agenda/agenda.org"))
+  (setq org-directory "~/Documents/org")
   (setq org-hide-emphasis-markers t))
 
 ;; Org modern settings
@@ -228,8 +229,8 @@
         org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
         org-modern-block-fringe nil
         org-modern-todo-faces
-        '(("TODO" :background "red" :foreground "white")
-          ("DONE" :background "green" :foreground "white")))
+        '(("TODO" :background: "gray" :foreground "yellow")
+          ("DONE" :background "gray" :foreground "green")))
 
   ;; Source code block settings
   (setq org-src-fontify-natively t      ; Syntax highlight in code blocks
