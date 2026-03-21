@@ -227,6 +227,9 @@ gore
 # Go language server (gopls)
 gopls
 
+# Go debugger
+delve
+
 # Formatter
 nixfmt
 
@@ -243,6 +246,9 @@ pyright
 black
 # Import management
 python3Packages.pyflakes
+
+# Python debugger
+python3Packages.debugpy
 
 nerd-fonts.symbols-only
 nerd-fonts.iosevka

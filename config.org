@@ -286,7 +286,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
-       ;;(debugger +lsp)          ; FIXME stepping through code, to help you add bugs
+       (debugger +eglot)          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
@@ -1665,6 +1665,9 @@ gore
 
 # Go language server (gopls)
 gopls
+
+# Go debugger
+delve
 #+end_src
 *****  Nix
 #+begin_src nix
@@ -1688,6 +1691,10 @@ graphviz
   black
   # Import management
   python3Packages.pyflakes
+
+  # Python debugger
+  python3Packages.debugpy
+
 #+end_src
 ****  Fonts
 #+begin_src nix
