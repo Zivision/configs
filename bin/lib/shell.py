@@ -3,7 +3,7 @@ import os
 
 
 def get_project_dir() -> str:
-    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def run_dispatch(

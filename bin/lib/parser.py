@@ -8,13 +8,21 @@ def define_flags() -> argparse.ArgumentParser:
     )
 
     parser.add_argument(
-        "-c", "--configure", action="store_true", help="Run 'configure-system' script"
+        "-c",
+        "--configure",
+        action="store_true",
+        help="Run 'configure-system' script",
     )
     parser.add_argument(
-        "-r", "--rebuild", action="store_true", help="Run 'rebuild-system' script"
+        "-r",
+        "--rebuild",
+        help="Run 'rebuild-system' script",
     )
     parser.add_argument(
-        "-u", "--update", action="store_true", help="Run 'rebuild-system' script"
+        "-u",
+        "--update",
+        action="store_true",
+        help="Run 'rebuild-system' script",
     )
     parser.add_argument(
         "-uf",
@@ -23,10 +31,16 @@ def define_flags() -> argparse.ArgumentParser:
         help="Run 'flatpak update'",
     )
     parser.add_argument(
-        "-U", "--update-all", action="store_true", help="Run full system update"
+        "-U",
+        "--update-all",
+        action="store_true",
+        help="Run full system update",
     )
     parser.add_argument(
-        "-i", "--install", action="store_true", help="Run 'install-system' script"
+        "-i",
+        "--install",
+        action="store_true",
+        help="Run 'install-system' script",
     )
 
     return parser
@@ -36,14 +50,14 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
     args = vars(parser.parse_args())
     # If none of the configuration flags are true
     # Print help menu and exit function
-    if True not in args.values():
+    if None in args.values() and True not in args.values():
         parser.print_help()
         return
 
     # Commands to dispatch
     dispatch = {
         "configure": [
-            [get_project_dir() + "/lib/elisp/main.el"],
+            [get_project_dir() + "/bin/lib/elisp/main.el"],
             ["configure-system"],
         ],
         "update": [["update-system"]],
@@ -52,9 +66,19 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
             ["update-system"],
             ["flatpak", "update"],
         ],
-        "rebuild": [["rebuild-system"]],
+        "rebuild": [
+            [
+                "sudo",
+                "nixos-rebuild",
+                "switch",
+                "--flake",
+                (get_project_dir() + "/nixos#" + str(args["rebuild"])),
+                "--impure",
+            ]
+        ],
         "install": [["install-system"]],
     }
+    # print(" ".join(dispatch["rebuild"][0]))
 
     # This checks for commands in order.
     # Currently it is:
