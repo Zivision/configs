@@ -229,8 +229,10 @@
         org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
         org-modern-block-fringe nil
         org-modern-todo-faces
-        '(("TODO" :background: "gray" :foreground "yellow")
-          ("DONE" :background "gray" :foreground "green")))
+        '(("TODO"  :foreground "red")
+          ("DONE"  :foreground "green")
+          ("IDEA"  :foreground "yellow")
+          ("PROJ"  :foreground "magenta")))
 
   ;; Source code block settings
   (setq org-src-fontify-natively t      ; Syntax highlight in code blocks
