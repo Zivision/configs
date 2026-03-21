@@ -108,30 +108,30 @@ refer to the headers or the table of contents for navigation
     -  [[#basic-settings-2][Basic Settings]]
     -  [[#packages][Packages]]
       -  [[#browser][Browser]]
+  -  [[#systems][Systems]]
+    -  [[#swiftx][SwiftX]]
+    -  [[#nixbox][NixBox]]
   -  [[#configuration-settings][Configuration Settings]]
-    -  [[#imports-1][Imports]]
-    -  [[#bootloader][Bootloader]]
-    -  [[#app-armor][App armor]]
-    -  [[#nix-packages-manager][Nix (Packages manager)]]
-    -  [[#steam][Steam]]
-    -  [[#system][System]]
-    -  [[#syncthing][Syncthing]]
-    -  [[#hyprland][Hyprland]]
-    -  [[#flakes][Flakes]]
-    -  [[#desktop][Desktop]]
-    -  [[#audio][Audio]]
-    -  [[#users][Users]]
-    -  [[#docker][Docker]]
-    -  [[#flatpak][Flatpak]]
-    -  [[#nix-packages][Nix Packages]]
-      -  [[#general-dependencies][General Dependencies]]
-      -  [[#terminal-kitty][Terminal (kitty)]]
-      -  [[#hyprland-1][Hyprland]]
-      -  [[#emacs-doom][Emacs (DOOM)]]
-      -  [[#fonts-2][Fonts]]
-      -  [[#more-developer-tools][More Developer Tools]]
-      -  [[#flatpak-1][Flatpak]]
-      -  [[#misc][Misc]]
+    -  [[#nvidia][Nvidia]]
+      -  [[#lts-kernel][LTS Kernel]]
+      -  [[#open-gl][Open GL]]
+      -  [[#drivers-and-hardware-settings][Drivers and Hardware Settings]]
+    -  [[#configuration][Configuration]]
+      -  [[#imports-1][Imports]]
+      -  [[#bootloader][Bootloader]]
+      -  [[#app-armor][App armor]]
+      -  [[#nix-packages-manager][Nix (Packages manager)]]
+      -  [[#steam][Steam]]
+      -  [[#system][System]]
+      -  [[#syncthing][Syncthing]]
+      -  [[#hyprland][Hyprland]]
+      -  [[#flakes][Flakes]]
+      -  [[#desktop][Desktop]]
+      -  [[#audio][Audio]]
+      -  [[#users][Users]]
+      -  [[#docker][Docker]]
+      -  [[#flatpak][Flatpak]]
+      -  [[#nix-packages][Nix Packages]]
 -  [[#waybar-waybar-directory][Waybar (waybar/ directory)]]
   -  [[#basic-settings-3][Basic Settings]]
   -  [[#mpd][MPD]]
@@ -1334,22 +1334,44 @@ inputs = {
 ***  Outputs
 #+begin_src nix
 outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-  nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-    modules = [
-      # Import the previous configuration.nix we used,
-      # so the old configuration file still takes effect
-      ./configuration.nix
+  nixosConfigurations = {
+    swiftx = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        # Import the previous configuration.nix we used,
+        # so the old configuration file still takes effect
+        ./configuration.nix
+        ./nvidia.nix
+        ./swiftx.nix
 
-      # Import home manager
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.primary = import ./home.nix;
-      }
-    ];
+        # Import home manager
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.primary = import ./home.nix;
+        }
+      ];
+    };
+    nixbox = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        # Import the previous configuration.nix we used,
+        # so the old configuration file still takes effect
+        ./configuration.nix
+        ./nixbox.nix
+
+        # Import home manager
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.primary = import ./home.nix;
+        }
+      ];
+    };
   };
-};
+  };
 }
 #+end_src
 
@@ -1381,13 +1403,134 @@ home.packages = with pkgs; [
 ];
 }
 #+end_src
+**  Systems
+***  SwiftX
+:PROPERTIES:
+:header-args: :tangle ./nixos/swiftx.nix
+:VISIBILITY: folded
+:END:
+One of my laptops
+#+begin_src nix
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+# This is for the swift x
+{
+  # Enable Prime
+  hardware.nvidia.prime = {
+    sync.enable = true;
 
+    # Make sure to use the correct Bus ID values for your system!
+    #intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:04:0:0";
+    amdgpuBusId = "PCI:01:0:0";
+  };
+  networking.hostName = "AcerSwfitX"; # Define your hostname.
+}
+
+#+end_src
+***  NixBox
+:PROPERTIES:
+:header-args: :tangle ./nixos/nixbox.nix
+:VISIBILITY: folded
+:END:
+Main Desktop
+#+begin_src nix
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  networking.hostName = "NixBox"; # Define your hostname.
+
+  # Use Latest Kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+}
+#+end_src
 **  Configuration Settings
+***  Nvidia
+:PROPERTIES:
+:header-args: :tangle ./nixos/nvidia.nix
+:VISIBILITY: folded
+:END:
+This is for machines that require nvidia drivers.
+This will work on all my machines, but it won't work on all nvidia cards.
+Mainly legacy, RTX 20+ should work fine.
+
+WARNING! Set LTS kernel
+I set this because running the latest kernel with nvidia ran into issues.
+****  LTS Kernel
+#+begin_src nix
+# Import basic dependancies
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+
+  # Set Kernel to lts
+  boot.kernelPackages = pkgs.linuxPackages;
+#+end_src
+
+****  Open GL
+#+begin_src nix
+  hardware.graphics = {
+    enable = true;
+  };
+#+end_src
+****  Drivers and Hardware Settings
+#+begin_src nix
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+    # of just the bare essentials.
+    powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+    # Only available from driver 515.43.04+
+    open = true;
+
+    # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+}
+#+end_src
+
+***  Configuration
 :PROPERTIES:
 :header-args: :tangle ./nixos/configuration.nix
 :VISIBILITY: folded
 :END:
-***  Imports
+
+This is for global packages and settings I want on all my machines.
+****  Imports
 #+begin_src nix
 { config, pkgs, ... }:
 
@@ -1399,34 +1542,31 @@ home.packages = with pkgs; [
 
 #+end_src
 
-***  Bootloader
+****  Bootloader
 #+begin_src nix
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 #+end_src
 
-***  App armor
+****  App armor
 #+begin_src nix
   # App armor
   security.apparmor.enable = true;
 #+end_src
-***  Nix (Packages manager)
+****  Nix (Packages manager)
 #+begin_src nix
 nix.package = pkgs.nixVersions.latest;
 #+end_src
-***  Steam
+****  Steam
 #+begin_src nix
   # Steam
   programs.steam.enable = true;
 #+end_src
 
-***  System
+****  System
 #+begin_src nix
-# Use latest kernel.
-boot.kernelPackages = pkgs.linuxPackages_latest;
 
-networking.hostName = "nixos"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 # Configure network proxy if necessary
@@ -1504,7 +1644,7 @@ networking.firewall.enable = true;
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 system.stateVersion = "25.05"; # Did you read the comment?
 #+end_src
-***  Syncthing
+****  Syncthing
 #+begin_src nix
 # Example for /etc/nixos/configuration.nix
 services.syncthing = {
@@ -1514,20 +1654,20 @@ services.syncthing = {
   dataDir = "/home/primary";
 };
 #+end_src
-***  Hyprland
+****  Hyprland
 #+begin_src nix
 programs.hyprland.enable = true;
 
 # Optional, hint Electron apps to use Wayland:
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
 #+end_src
-***  Flakes
+****  Flakes
 #+begin_src nix
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #+end_src
 
-***  Desktop
+****  Desktop
 #+begin_src nix
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -1550,7 +1690,7 @@ environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables.EDITOR = "nvim";
 #+end_src
 
-***  Audio
+****  Audio
 #+begin_src nix
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -1569,7 +1709,7 @@ environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 #+end_src
 
-***  Users
+****  Users
 #+begin_src nix
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.primary = {
@@ -1579,17 +1719,17 @@ environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 #+end_src
 
-***  Docker
+****  Docker
 #+begin_src nix
 virtualisation.docker.enable = true;
 #+end_src
-***  Flatpak
+****  Flatpak
 #+begin_src nix
 services.flatpak.enable = true;
 #+end_src
-***  Nix Packages
+****  Nix Packages
 These are *SYSTEM* packages for user specific look at home settings
-****  General Dependencies
+*****  General Dependencies
 #+begin_src nix
 environment.systemPackages = with pkgs; [
   neovim
@@ -1601,11 +1741,11 @@ environment.systemPackages = with pkgs; [
   stow
   fzf
 #+end_src
-****  Terminal (kitty)
+*****  Terminal (kitty)
 #+begin_src nix
   kitty
 #+end_src
-****  Hyprland
+*****  Hyprland
 #+begin_src nix
   hyprpaper
   wofi
@@ -1614,7 +1754,7 @@ environment.systemPackages = with pkgs; [
   waypaper
   brightnessctl
 #+end_src
-****  Emacs (DOOM)
+*****  Emacs (DOOM)
 #+begin_src nix
   # Emacs
   gcc
@@ -1629,7 +1769,7 @@ environment.systemPackages = with pkgs; [
   # For emms
   mpv
 #+end_src
-*****  Bash
+******  Bash
 #+begin_src nix
   # Shell Check
   shellcheck
@@ -1637,7 +1777,7 @@ environment.systemPackages = with pkgs; [
   # Formatter
   shfmt
 #+end_src
-*****  Clojure
+******  Clojure
 #+begin_src nix
 # Clojure
 clojure
@@ -1651,7 +1791,7 @@ cljfmt
 # Linter
 clj-kondo
 #+end_src
-*****  Go
+******  Go
 #+begin_src nix
 # Golang
 go
@@ -1671,17 +1811,17 @@ gopls
 # Go debugger
 delve
 #+end_src
-*****  Nix
+******  Nix
 #+begin_src nix
 # Formatter
 nixfmt
 #+end_src
-*****  Org
+******  Org
 #+begin_src nix
 # For org roam
 graphviz
 #+end_src
-*****  Python
+******  Python
 #+begin_src nix
   # Python
   python3
@@ -1698,7 +1838,7 @@ graphviz
   python3Packages.debugpy
 
 #+end_src
-****  Fonts
+*****  Fonts
 #+begin_src nix
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
@@ -1707,7 +1847,7 @@ nerd-fonts.iosevka
 noto-fonts-cjk-sans
 noto-fonts-cjk-serif
 #+end_src
-****  More Developer Tools
+*****  More Developer Tools
 #+begin_src nix
   # Devops
   kubectl
@@ -1716,12 +1856,12 @@ noto-fonts-cjk-serif
   google-cloud-sdk
 #+end_src
 
-****  Flatpak
+*****  Flatpak
 Why Flatpak? for sandboxing certain apps I wish to have more restrictive permissions
 #+begin_src nix
 flatpak
 #+end_src
-****  Misc
+*****  Misc
 #+begin_src nix
 ];
 }
