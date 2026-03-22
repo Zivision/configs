@@ -1,5 +1,7 @@
 import argparse
-from lib.shell import run_dispatch, get_project_dir
+from lib.shell import run_dispatch, run_dispatch_install, get_project_dir
+
+import sys
 
 
 def define_flags() -> argparse.ArgumentParser:
@@ -39,20 +41,33 @@ def define_flags() -> argparse.ArgumentParser:
     parser.add_argument(
         "-i",
         "--install",
-        action="store_true",
         help="Run 'install-system' script",
     )
 
     return parser
 
 
+def show_help_menu(
+    parser: argparse.ArgumentParser,
+    arguments: dict[str, bool | str | None],
+    target_type: type,
+) -> None:
+    # Checks for TARGET_TYPE in arguments
+    checked_type: bool = any(
+        isinstance(value, target_type) for value in arguments.values()
+    )
+
+    if not checked_type and True not in arguments.values():
+        parser.print_help()
+        sys.exit(0)
+
+
 def parse_flags(parser: argparse.ArgumentParser) -> None:
     args = vars(parser.parse_args())
     # If none of the configuration flags are true
-    # Print help menu and exit function
-    if None in args.values() and True not in args.values():
-        parser.print_help()
-        return
+    # And there is no string
+    # Print help menu and exit program
+    show_help_menu(parser, args, str)
 
     # Commands to dispatch
     dispatch = {
@@ -76,9 +91,11 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "--impure",
             ]
         ],
-        "install": [["install-system"]],
+        "install": [
+            [get_project_dir() + "/bin/lib/elisp/main.el"],
+            ["configure-system"],
+        ],
     }
-    # print(" ".join(dispatch["rebuild"][0]))
 
     # This checks for commands in order.
     # Currently it is:
@@ -87,6 +104,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
     # 3. Updates
     # 4. Rebuild
 
+    # run_dispatch(args, dispatch, "install")
     run_dispatch(args, dispatch, "install")
     run_dispatch(args, dispatch, "configure")
 

@@ -1,5 +1,6 @@
 import subprocess
 import os
+import sys
 
 
 def get_project_dir() -> str:
@@ -7,8 +8,16 @@ def get_project_dir() -> str:
 
 
 def run_dispatch(
-    arguments: dict[str, bool], dispatch: dict[str, list], key: str
+    arguments: dict[str, bool | str], dispatch: dict[str, list], key: str
 ) -> None:
+    if arguments[key]:
+        [_run_simple_script(command) for command in dispatch[key]]
+
+
+def run_dispatch_install(
+    arguments: dict[str, bool | str], dispatch: dict[str, list], key: str
+) -> None:
+    print(arguments["install"])
     if arguments[key]:
         [_run_simple_script(command) for command in dispatch[key]]
 
