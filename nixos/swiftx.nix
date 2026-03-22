@@ -15,5 +15,4 @@
     nvidiaBusId = "PCI:04:0:0";
     amdgpuBusId = "PCI:01:0:0";
   };
-  networking.hostName = "AcerSwfitX"; # Define your hostname.
 }
