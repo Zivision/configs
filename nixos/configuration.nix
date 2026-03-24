@@ -227,6 +227,17 @@ gopls
 # Go debugger
 delve
 
+# Haskell compiler
+ghc
+
+# language Server
+haskellPackages.haskell-language-server
+# Stack
+stack
+
+# Hoogle
+haskellPackages.hoogle
+
 # Formatter
 nixfmt
 

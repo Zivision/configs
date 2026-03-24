@@ -546,6 +546,19 @@ gopls
 # Go debugger
 delve
 #+end_src
+*****  Haskell
+#+begin_src nix
+# Haskell compiler
+ghc
+
+# language Server
+haskellPackages.haskell-language-server
+# Stack
+stack
+
+# Hoogle
+haskellPackages.hoogle
+#+end_src
 *****  Nix
 #+begin_src nix
 # Formatter
