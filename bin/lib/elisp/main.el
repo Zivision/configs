@@ -17,4 +17,7 @@
 ;; Load external file
 (load-file (concat elisp-directory "config-tangle.el"))
 
-(tangle-config (concat project-root "config.org"))
+;; Org documents to tangle
+(seq-doseq (element '("config.org" "doom.org" "nixos.org"))
+  (tangle-config (concat project-root element)))
+

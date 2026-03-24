@@ -1,0 +1,783 @@
+#+title: Doom
+
+*  Table of Contents :TOC_4:
+-  [[#about][About]]
+  -  [[#why-emacs][Why Emacs?]]
+    -  [[#i-like-lisp][I like lisp]]
+    -  [[#developerwriting-environment][Developer/Writing environment]]
+    -  [[#customize-everything][Customize everything]]
+    -  [[#gui-app][GUI App]]
+    -  [[#stability][Stability]]
+    -  [[#killer-features][Killer Features]]
+-  [[#init-settings][Init Settings]]
+  -  [[#input][Input]]
+  -  [[#completion][Completion]]
+  -  [[#ui][UI]]
+  -  [[#editor][Editor]]
+  -  [[#emacs][Emacs]]
+  -  [[#term][Term]]
+  -  [[#checkers][Checkers]]
+  -  [[#tools][Tools]]
+  -  [[#os][OS]]
+  -  [[#lang][Lang]]
+  -  [[#email][Email]]
+  -  [[#app][App]]
+  -  [[#config][Config]]
+-  [[#config-settings][Config Settings]]
+  -  [[#basic-usage][Basic usage]]
+    -  [[#basic-variables][Basic variables]]
+    -  [[#basic-macros][Basic macros]]
+  -  [[#custom-variables][Custom Variables]]
+  -  [[#custom-functions][Custom Functions]]
+  -  [[#basic-settings][Basic settings]]
+    -  [[#splash-screen][Splash Screen]]
+    -  [[#keybinds][Keybinds]]
+      -  [[#custom-functions-1][Custom Functions]]
+      -  [[#open-file][Open File]]
+      -  [[#emms][EMMS]]
+      -  [[#elfeed][Elfeed]]
+      -  [[#window-sizing][Window sizing]]
+    -  [[#fonts][Fonts]]
+      -  [[#change-font-based-on-mode][Change Font Based on Mode]]
+      -  [[#set-font-faces][Set Font Faces]]
+    -  [[#theme][Theme]]
+      - [[#borders][Borders]]
+    -  [[#line-numbers][Line numbers]]
+    -  [[#transparency][Transparency]]
+    -  [[#mode-line-settings][Mode Line Settings]]
+    -  [[#mode-settings][Mode Settings]]
+    -  [[#review-packages][Review Packages]]
+  -  [[#package-settings][Package settings]]
+    -  [[#utilities][Utilities]]
+      -  [[#eshell][Eshell]]
+      -  [[#dired][Dired]]
+    -  [[#emms-1][EMMS]]
+    -  [[#elfeed-1][Elfeed]]
+    -  [[#debugger][Debugger]]
+      -  [[#main-config][Main Config]]
+      -  [[#python][Python]]
+      -  [[#javascripttypescript][Javascript/Typescript]]
+      -  [[#go][Go]]
+    -  [[#elpher][Elpher]]
+    -  [[#workspaces][Workspaces]]
+    -  [[#org][Org]]
+      -  [[#org-modern][Org Modern]]
+      -  [[#org-appear][Org Appear]]
+      -  [[#org-download][Org Download]]
+      -  [[#org-toc][Org TOC]]
+      -  [[#olivetti][Olivetti]]
+      -  [[#misc-org-settings][Misc org settings]]
+      -  [[#prettify-symbols-mode][Prettify Symbols Mode]]
+-  [[#packages-settings][Packages Settings]]
+  -  [[#basic-usage-1][Basic usage]]
+  -  [[#external-packages][External Packages]]
+    -  [[#utils][Utils]]
+      -  [[#elpher-1][Elpher]]
+    -  [[#org-packages][Org Packages]]
+      -  [[#org-modern-1][Org Modern]]
+      -  [[#org-appear-1][Org appear]]
+      -  [[#org-table-of-contents][Org table of contents]]
+      -  [[#org-download-1][Org Download]]
+      -  [[#olivetti-1][Olivetti]]
+    -  [[#ui-1][UI]]
+      -  [[#nerd-icons-dired][Nerd Icons (dired)]]
+    -  [[#fun][Fun]]
+      -  [[#fireplace][Fireplace]]
+
+*  About
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+*DISCLAIMER:* The configuration starts after this, so feel free to skip the about section
+
+**  Why Emacs?
+I chose Emacs for a couple of reasons.
+***  I like lisp
+Sometimes it is that simple, I like writing lisp and wanted an editor that is configured with lisp.
+
+***  Developer/Writing environment
+I like using tools that enable modal editing and keyboard driven text editing. I also value a tool that keeps everything in one space.
+- Development :: Git, Docker, Scripting, Debugging, and READING logs all in Emacs
+- Writing :: Org Mode enables to do all my writing in one format then target different formats with tools like pandoc
+
+Nothing is off the table with Emacs, I can write custom functions to do whatever I need and interact with the system through my main environment.
+
+***  Customize everything
+Everything can be changed: theme, font, functionality, keybinds, modes, you name it.
+
+***  GUI App
+This one is less important, but due to issues with emoji and certain font faces in terminals I had issues with displaying characters in Neovim in the past.
+
+***  Stability
+In my experience Emacs has been pretty stable once I got everything working how I liked it. My previous editor (Neovim) had stability issues in the past but from what I've gathered it has gotten better over the years.
+
+***  Killer Features
+I used to use Neovim so you might be inclined to ask why do I not switch back? The main reasons are magit and org-mode. Hands down my favorite features of Emacs and keep me here with it.
+
+
+*  Init Settings
+:PROPERTIES:
+:header-args: :tangle ./doom/init.el
+:VISIBILITY: folded
+:END:
+
+This are the settings originally located in *init.el*
+To toggle certain settings simply uncomment (remove ;;) a package name.
+**  Input
+#+begin_src emacs-lisp
+(doom! :input
+       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
+       chinese
+       ;;japanese
+       ;;layout            ; auie,ctsrnm is the superior home row
+#+end_src
+**  Completion
+#+begin_src emacs-lisp
+       :completion
+       ;;company           ; the ultimate code completion backend
+       (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
+       ;;helm              ; the *other* search engine for love and life
+       ;;ido               ; the other *other* search engine...
+       ;;ivy               ; a search engine for love and life
+       vertico           ; the search engine of the future
+#+end_src
+**  UI
+#+begin_src emacs-lisp
+       :ui
+       ;;deft              ; notational velocity for Emacs
+       doom              ; what makes DOOM look the way it does
+       doom-dashboard    ; a nifty splash screen for Emacs
+       doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       ;;(emoji +unicode)  ; 🙂
+       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+       indent-guides     ; highlighted indent columns
+       ;;(ligatures +extra)         ; ligatures and symbols to make your code pretty again
+       ;;minimap           ; show a map of the code on the side
+       modeline          ; snazzy, Atom-inspired modeline, plus API
+       ;;nav-flash         ; blink cursor line after big motions
+       ;;neotree           ; a project drawer, like NERDTree for vim
+       ophints           ; highlight the region an operation acts on
+       (popup +defaults)   ; tame sudden yet inevitable temporary windows
+       smooth-scroll     ; So smooth you won't believe it's not butter
+       ;;tabs              ; a tab bar for Emacs
+       ;;treemacs          ; a project drawer, like neotree but cooler
+       ;;unicode           ; extended unicode support for various languages
+       (vc-gutter +pretty) ; vcs diff in the fringe
+       ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+       ;;window-select     ; visually switch windows
+       workspaces        ; tab emulation, persistence & separate workspaces
+       ;;zen               ; distraction-free coding or writing
+#+end_src
+**  Editor
+#+begin_src emacs-lisp
+       :editor
+       (evil +everywhere) ; come to the dark side, we have cookies
+       file-templates    ; auto-snippets for empty files
+       fold              ; (nigh) universal code folding
+       (format +onsave)  ; automated prettiness
+       ;;god               ; run Emacs commands without modifier keys
+       ;;lispy             ; vim for lisp, for people who don't like vim
+       multiple-cursors  ; editing in many places at once
+       ;;objed             ; text object editing for the innocent
+       ;;parinfer          ; turn lisp into python, sort of
+       ;;rotate-text       ; cycle region at point between text candidates
+       snippets          ; my elves. They type so I don't have to
+       (whitespace +guess +trim)  ; a butler for your whitespace
+       word-wrap         ; soft wrapping with language-aware indent
+#+end_src
+**  Emacs
+#+begin_src emacs-lisp
+       :emacs
+       dired             ; making dired pretty [functional]
+       electric          ; smarter, keyword-based electric-indent
+       eww               ; the internet is gross
+       ibuffer           ; interactive buffer management
+       tramp             ; remote files at your arthritic fingertips
+       undo              ; persistent, smarter undo for your inevitable mistakes
+       vc                ; version-control and Emacs, sitting in a tree
+#+end_src
+**  Term
+#+begin_src emacs-lisp
+       :term
+       eshell            ; the elisp shell that works everywhere
+       ;;shell             ; simple shell REPL for Emacs
+       ;;term              ; basic terminal emulator for Emacs
+       vterm             ; the best terminal emulation in Emacs
+#+end_src
+**  Checkers
+#+begin_src emacs-lisp
+       :checkers
+       syntax              ; tasing you for every semicolon you forget
+       (spell +flyspell) ; tasing you for misspelling mispelling
+       grammar           ; tasing grammar mistake every you make
+#+end_src
+**  Tools
+#+begin_src emacs-lisp
+       :tools
+       ;;ansible
+       ;;biblio            ; Writes a PhD for you (citation needed)
+       ;;collab            ; buffers with friends
+       (debugger +eglot)          ; FIXME stepping through code, to help you add bugs
+       ;;direnv
+       docker
+       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       ;;ein               ; tame Jupyter notebooks with emacs
+       (eval +overlay)     ; run code, run (also, repls)
+       lookup              ; navigate your code and its documentation
+       ;;llm               ; when I said you needed friends, I didn't mean...
+       (lsp +eglot)      ; M-x vscode
+       magit             ; a git porcelain for Emacs
+       ;;make              ; run make tasks from Emacs
+       ;;pass              ; password manager for nerds
+       pdf               ; pdf enhancements
+       terraform         ; infrastructure as code
+       ;;tmux              ; an API for interacting with tmux
+       (tree-sitter
+        +everywhere)       ; syntax and parsing, sitting in a tree...
+       ;;upload            ; map local to remote projects via ssh/ftp
+#+end_src
+**  OS
+#+begin_src emacs-lisp
+       :os
+       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
+       ;;tty               ; improve the terminal Emacs experience
+#+end_src
+**  Lang
+#+begin_src emacs-lisp
+       :lang
+       ;;ada               ; In strong typing we (blindly) trust
+       ;;agda              ; types of types of types of types...
+       ;;beancount         ; mind the GAAP
+       ;;(cc +lsp)         ; C > C++ == 1
+       clojure           ; java with a lisp
+       ;;common-lisp       ; if you've seen one lisp, you've seen them all
+       ;;coq               ; proofs-as-programs
+       ;;crystal           ; ruby at the speed of c
+       ;;csharp            ; unity, .NET, and mono shenanigans
+       ;;data              ; config/data formats
+       ;;(dart +flutter)   ; paint ui and not much else
+       ;;dhall
+       ;;elixir            ; erlang done right
+       ;;elm               ; care for a cup of TEA?
+       emacs-lisp        ; drown in parentheses
+       ;;erlang            ; an elegant language for a more civilized age
+       ;;ess               ; emacs speaks statistics
+       ;;factor
+       ;;faust             ; dsp, but you get to keep your soul
+       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)
+       ;;fsharp            ; ML stands for Microsoft's Language
+       ;;fstar             ; (dependent) types and (monadic) effects and Z3
+       ;;gdscript          ; the language you waited for
+       (go +lsp)         ; the hipster dialect
+       ;;(graphql +lsp)    ; Give queries a REST
+       ;;(haskell +lsp)    ; a language that's lazier than I am
+       ;;hy                ; readability of scheme w/ speed of python
+       ;;idris             ; a language you can depend on
+       json              ; At least it ain't XML
+       ;;janet             ; Fun fact: Janet is me!
+       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
+       (javascript
+        +tree-sitter
+        +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;julia             ; a better, faster MATLAB
+       ;;kotlin            ; a better, slicker Java(Script)
+       latex             ; writing papers in Emacs has never been so fun
+       ;;lean              ; for folks with too much to prove
+       ;;ledger            ; be audit you can be
+       ;;lua               ; one-based indices? one-based indices
+       markdown          ; writing docs for people to ignore
+       ;;nim               ; python + lisp at the speed of c
+       nix               ; I hereby declare "nix geht mehr!"
+       ;;ocaml             ; an objective camel
+       (org
+        +roam)               ; organize your plain life in plain text
+       ;;php               ; perl's insecure younger brother
+       ;;plantuml          ; diagrams for confusing people more
+       ;;graphviz          ; diagrams for confusing yourself even more
+       ;;purescript        ; javascript, but functional
+       (python
+        +lsp)            ; beautiful is better than ugly
+       ;;qt                ; the 'cutest' gui framework ever
+       ;;racket            ; a DSL for DSLs
+       ;;raku              ; the artist formerly known as perl6
+       ;;rest              ; Emacs as a REST client
+       ;;rst               ; ReST in peace
+       ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;;scala             ; java, but good
+       ;;(scheme +guile)   ; a fully conniving family of lisps
+       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       ;;sml
+       ;;solidity          ; do you need a blockchain? No.
+       ;;swift             ; who asked for emoji variables?
+       ;;terra             ; Earth and Moon in alignment for performance.
+       web               ; the tubes
+       yaml              ; JSON, but readable
+       ;;zig               ; C, but simpler
+#+end_src
+**  Email
+#+begin_src emacs-lisp
+       :email
+       ;;(mu4e +org +gmail)
+       ;;notmuch
+       ;;(wanderlust +gmail)
+#+end_src
+**  App
+#+begin_src emacs-lisp
+       :app
+       calendar
+       (emms +mpv)         ; music player with mpv backend.
+       ;;everywhere        ; *leave* Emacs!? You must be joking
+       irc               ; how neckbeards socialize
+       (rss +org)        ; emacs as an RSS reader
+#+end_src
+**  Config
+#+begin_src emacs-lisp
+       :config
+       ;;literate
+       (default +bindings +smartparens))
+#+end_src
+
+*  Config Settings
+:PROPERTIES:
+:header-args: :tangle ./doom/config.el
+:VISIBILITY: folded
+:END:
+
+This are the settings originally located in *config.el*.
+This is where custom Emacs functions and configuration for packages reside.
+**  Basic usage
+***  Basic variables
++ doom-font                :: the primary font to use
++ doom-variable-pitch-font :: a non-monospace font (where applicable)
++ doom-big-font            :: used for big font
++ doom-symbol-font         :: for symbols
++ doom-serif-font          :: serif font
+
+***  Basic macros
++ after!         :: Used for configuring packages doom might override
++ load!          :: Load external .el files
++ use-package!   :: Configure packages
++ after!         :: For running code after a package has loaded
++ add-load-path! :: For adding directories to the load-path.
++ map!           :: Map new keys
+**  Custom Variables
+#+begin_src elisp
+(defvar project-root
+  (file-name-directory
+   (directory-file-name
+    (file-name-directory
+     (file-truename (or load-file-name buffer-file-name))))))
+#+end_src
+**  Custom Functions
+#+begin_src elisp
+(defun hypr/launch-vterm
+    ()
+  "Open a new frame with a vterm buffer."
+  (+vterm/here 0)
+  (switch-to-buffer "*vterm*"))
+
+(defun hypr/launch-eshell
+    ()
+  "Open a new eshell frame if one doesn't exist. Otherwise open new eshell buffer."
+  (if (get-buffer "*doom:eshell*")
+      (switch-to-buffer "*doom:eshell*")
+    (progn
+      (+eshell/here 0)
+      (switch-to-buffer "*doom:eshell*")
+      (eshell/clear))))
+
+(defun hypr/launch-elfeed
+    ()
+  (elfeed)
+  (elfeed-update)
+  (switch-to-buffer "*elfeed-search*"))
+
+(defun hypr/launch-scratch
+    ()
+  (scratch-buffer)
+  (switch-to-buffer "*scratch*"))
+#+end_src
+
+#+RESULTS:
+: hypr/launch-scratch
+
+**  Basic settings
+***  Splash Screen
+#+begin_src elisp
+(setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
+#+end_src
+***  Keybinds
+****  Custom Functions
+#+begin_src emacs-lisp
+(map!
+ :prefix "C-c s"
+ :desc "Run 'stow-configs' script" "c" #'scripts/config
+ :desc "Run 'update-all-packages' script" "u" #'scripts/update)
+#+end_src
+
+****  Open File
+#+begin_src emacs-lisp
+(map!
+ :prefix "C-c o f"
+ :desc "Open notes.org" "n" #'(lambda ()
+                                (interactive)
+                                (find-file
+                                 (concat org-directory "/notes.org")))
+ :desc "Open config.org" "c" #'(lambda ()
+                                 (interactive)
+                                 (find-file
+                                  (concat project-root "config.org"))))
+#+end_src
+
+****  EMMS
+#+begin_src emacs-lisp
+(map!
+ :prefix "C-c m"
+ :desc "Open EMMS" "e" #'emms
+ :desc "Pause EMMS" "t" #'emms-pause
+ :desc "Refresh EMMS" "R" #'(lambda ()
+                              (interactive)
+                              (emms-add-directory "~/Music")
+                              (emms))
+ :desc "Seek forward" "l" #'emms-seek-forward
+ :desc "Seek backwards" "h" #'emms-seek-backward
+ :desc "Next Track" "j" #'emms-next
+ :desc "Previous track" "k" #'emms-previous)
+#+end_src
+****  Elfeed
+#+begin_src emacs-lisp
+(map!
+ :prefix "C-c n"
+ :desc "Open elfeed" "f" #'elfeed
+ :desc "Unjam elfeed" "u" #'elfeed-unjam
+ :desc "Update elfeed" "U" #'elfeed-update)
+#+end_src
+
+****  Window sizing
+#+begin_src emacs-lisp
+(global-set-key (kbd "<C-up>"   ) 'shrink-window)
+(global-set-key (kbd "<C-down>" ) 'enlarge-window)
+(global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)
+(global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
+#+end_src
+***  Fonts
+****  Change Font Based on Mode
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook
+          (lambda () (text-scale-set 1))) ; Make font larger in org mode
+
+(add-hook 'prog-mode-hook
+          (lambda () (text-scale-set 0))) ; Reset font for programming modes
+#+end_src
+****  Set Font Faces
+Will need to download the Iosevka Font for this to work.
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
+(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
+
+;; Make doom large font even bigger
+(setq doom-big-font-increment 6)
+#+end_src
+***  Theme
+#+begin_src emacs-lisp
+;; Enable bold and italic for better syntax highlighting
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (setq doom-monokai-classic-brighter-comments t))
+
+;; Set Theme
+(setq doom-theme 'doom-monokai-classic)
+#+end_src
+**** Borders
+#+begin_src emacs-lisp
+;; Remove all window borders and dividers
+(setq window-divider-default-bottom-width 0
+      window-divider-default-right-width 0
+      window-divider-default-places nil)
+(window-divider-mode -1)
+
+;; Make borders invisible by matching background
+(set-face-background 'vertical-border "#000000")
+(set-face-foreground 'vertical-border "#000000")
+
+;; Remove fringe (the side margins)
+(set-fringe-mode 0)  ; Or use a number like 8 for minimal fringe
+
+;; Optional: make internal borders match your background
+(custom-set-faces!
+  '(vertical-border :foreground "#000000" :background "#000000")
+  '(window-divider :foreground "#000000")
+  '(window-divider-first-pixel :foreground "#000000")
+  '(window-divider-last-pixel :foreground "#000000"))
+#+end_src
+***  Line numbers
+#+begin_src emacs-lisp
+(setq display-line-numbers-type `relative)
+#+end_src
+***  Transparency
+#+begin_verse
+Change the numerical values to affect the transparency
+(0-100 where 100 is opaque)
+#+end_verse
+#+begin_src emacs-lisp
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+#+end_src
+***  Mode Line Settings
+#+begin_src emacs-lisp
+(after! doom-modeline
+  ;; Configuration
+  (setq doom-modeline-height 40
+        doom-modeline-bar-width 6
+        doom-modeline-icon t
+        doom-modeline-major-mode-icon t
+        doom-modeline-major-mode-color-icon t
+        doom-modeline-buffer-file-name-style 'truncate-upto-project
+        doom-modeline-buffer-encoding t
+        doom-modeline-indent-info t
+        doom-modeline-lsp t
+        doom-modeline-env-version t
+        doom-modeline-enable-word-count nil
+        doom-modeline-column-zero-based nil
+        doom-modeline-minor-modes nil))
+
+
+(display-time-mode 1)
+#+end_src
+***  Mode Settings
+#+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+#+end_src
+***  Review Packages
+#+begin_src emacs-lisp
+(setq package-review-policy t
+      package-review-diff-command '("git" "diff" "--no-index" "--color=never" "--diff-filter=d"))
+#+end_src
+**  Package settings
+***  Utilities
+****  Eshell
+*****  Prompt
+#+begin_src emacs-lisp
+(after! eshell
+  (require 'magit)
+
+  (setq eshell-prompt-function
+        (lambda ()
+          (let* ((user (user-login-name))
+                 (emacs (format "GNU EMACS-%s" emacs-version))
+                 (pwd  (abbreviate-file-name (eshell/pwd)))
+                 (branch (ignore-errors (magit-get-current-branch)))
+                 ;; 12-hour time with AM/PM
+                 (time (format-time-string "%I:%M %p"))
+                 ;; Nerd Font Git branch icon (nf-dev-git_branch)
+                 (git-icon "")
+                 (git-part (when branch
+                             (concat
+                              " "
+                              (propertize git-icon
+                                          'face 'font-lock-constant-face)
+                              " "
+                              (propertize branch
+                                          'face 'font-lock-constant-face)))))
+            (concat
+             ;; First line
+             (propertize (format "[%s@EMACS]" user)
+                         'face 'font-lock-keyword-face)
+             " |> "
+             (propertize pwd 'face 'font-lock-string-face)
+             git-part
+             "\n"
+             ;; Second line
+             (propertize emacs 'face 'font-lock-comment-face)
+             "\n"
+             (propertize time 'face 'font-lock-comment-face)
+             " "
+             (propertize "λ "
+                         'face 'font-lock-function-name-face)))))
+
+  (setq eshell-prompt-regexp "^[^λ]*λ "))
+#+end_src
+****  Dired
+#+begin_src emacs-lisp
+(use-package! nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+#+end_src
+***  EMMS
+#+begin_src emacs-lisp
+(setq emms-source-file-default-directory "~/Music/")
+#+end_src
+***  Elfeed
+#+begin_src emacs-lisp
+(after! elfeed
+  (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
+#+end_src
+***  Debugger
+****  Main Config
+#+begin_src emacs-lisp
+(after! dap-mode
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (dap-mode 1)
+  (dap-ui-mode 1)
+#+end_src
+****  Python
+Need to install python debugger (look at install.sh)
+#+begin_src emacs-lisp
+(require 'dap-python)
+;; Set python debugger (debugpy)
+(setq dap-python-debugger 'debugpy)
+#+end_src
+****  Javascript/Typescript
+#+begin_src emacs-lisp
+(require 'dap-node)
+;; Auto-installs debug adapter
+(dap-node-setup)
+#+end_src
+****  Go
+#+begin_src emacs-lisp
+(require 'dap-dlv-go))
+#+end_src
+***  Elpher
+#+begin_src emacs-lisp
+(map! :after elpher
+      :map elpher-mode-map
+      "-" #'elpher-back)
+#+end_src
+
+***  Workspaces
+#+begin_src emacs-lisp
+;; Always create projects when switching projects
+(setq +workspaces-on-switch-project-behavior t)
+#+end_src
+***  Org
+#+begin_verse
+All of my org settings
+first my default org directory
+#+end_verse
+#+begin_src emacs-lisp
+(after! org
+  (setq org-agenda-files '("~/Documents/org/agenda/agenda.org"))
+  (setq org-directory "~/Documents/org")
+  (setq org-hide-emphasis-markers t))
+#+end_src
+
+****  Org Modern
+#+begin_verse
+This makes org mode nicer to look at
+#+end_verse
+#+begin_src emacs-lisp
+;; Org modern settings
+(use-package! org-modern
+  :hook (org-mode . org-modern-mode)
+  :config
+  ;; Basic settings
+  (setq org-modern-star '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+        org-modern-table-vertical 1
+        org-modern-table-horizontal 0.2
+        org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
+        org-modern-block-fringe nil
+        org-modern-todo-faces
+        '(("TODO"  :foreground "red")
+          ("DONE"  :foreground "green")
+          ("IDEA"  :foreground "yellow")
+          ("PROJ"  :foreground "magenta")))
+
+  ;; Source code block settings
+  (setq org-src-fontify-natively t      ; Syntax highlight in code blocks
+        org-src-tab-acts-natively t      ; Tab works normally in code blocks
+        org-src-preserve-indentation t))  ; Preserve indentation
+#+end_src
+****  Org Appear
+#+begin_src emacs-lisp
+(use-package! org-appear
+  :after org-modern
+  :hook (org-mode . org-appear-mode))
+#+END_SRC
+****  Org Download
+#+begin_src emacs-lisp
+(setq-default org-download-image-dir "~/Pictures/Org")
+#+end_src
+****  Org TOC
+#+begin_src emacs-lisp
+(use-package! toc-org
+  :hook (org-mode . toc-org-mode))
+#+END_SRC
+****  Olivetti
+#+begin_verse
+Used to center org documents
+#+end_verse
+#+begin_src emacs-lisp
+(use-package! olivetti
+  :hook (org-mode . olivetti-mode)
+  :init (setq olivetti-body-width 100))
+#+end_src
+****  Misc org settings
+#+begin_src emacs-lisp
+(after! org
+  (setq org-babel-python-command "python3") ; Sets python to "python3"
+  (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
+#+end_src
+
+****  Prettify Symbols Mode
+#+begin_src emacs-lisp
+(after! org
+  ;; Disables these modes that freeze org mode
+  (global-prettify-symbols-mode -1)
+  (global-prettify-symbols-mode -1))
+#+end_src
+
+*  Packages Settings
+:PROPERTIES:
+:header-args: :tangle ./doom/packages.el
+:VISIBILITY: folded
+:END:
+
+This are the external dependencies originally in *packages.el*.
+Packages outside of what's available for Doom Emacs reside here.
+
+**  Basic usage
+1. Declare them here in a `package!' statement,
+2. Run 'doom sync' in the shell,
+3. Restart Emacs.
+NOTE: for more info on packages look at the documentation (SPC h d h) or more specifically
+C-h f package\!
+**  External Packages
+***  Utils
+****  Elpher
+#+begin_src emacs-lisp
+(package! elpher)
+#+end_src
+***  Org Packages
+****  Org Modern
+#+begin_src emacs-lisp
+(package! org-modern)
+#+end_src
+****  Org appear
+#+begin_src emacs-lisp
+(package! org-appear)
+#+END_SRC
+****  Org table of contents
+#+begin_src emacs-lisp
+(package! toc-org)
+#+END_SRC
+****  Org Download
+#+begin_src emacs-lisp
+(package! org-download)
+#+end_src
+****  Olivetti
+#+begin_src emacs-lisp
+(package! olivetti)
+#+end_src
+***  UI
+****  Nerd Icons (dired)
+#+begin_src emacs-lisp
+(package! nerd-icons-dired)
+#+end_src
+***  Fun
+****  Fireplace
+#+begin_src emacs-lisp
+(package! fireplace)
+#+end_src
