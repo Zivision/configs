@@ -486,10 +486,10 @@ Will need to download the Iosevka Font for this to work.
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (setq doom-monokai-classic-brighter-comments t))
+  (setq doom-miramare-brighter-comments t))
 
 ;; Set Theme
-(setq doom-theme 'doom-monokai-classic)
+(setq doom-theme 'doom-miramare)
 #+end_src
 **** Borders
 #+begin_src emacs-lisp

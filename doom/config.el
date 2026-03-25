@@ -89,10 +89,10 @@
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (setq doom-monokai-classic-brighter-comments t))
+  (setq doom-miramare-brighter-comments t))
 
 ;; Set Theme
-(setq doom-theme 'doom-monokai-classic)
+(setq doom-theme 'doom-miramare)
 
 ;; Remove all window borders and dividers
 (setq window-divider-default-bottom-width 0
