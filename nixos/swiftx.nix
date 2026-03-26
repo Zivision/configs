@@ -15,4 +15,12 @@
     nvidiaBusId = "PCI:04:0:0";
     amdgpuBusId = "PCI:01:0:0";
   };
+
+  # Network Fixes
+  networking.networkmanager.wifi.powersave = false;
+
+  boot.extraModprobeConfig = ''
+    options mt7921e disable_aspm=1
+  '';
+
 }
