@@ -32,10 +32,10 @@
   -  [[#basic-settings][Basic settings]]
     -  [[#splash-screen][Splash Screen]]
     -  [[#keybinds][Keybinds]]
-      -  [[#custom-functions-1][Custom Functions]]
       -  [[#open-file][Open File]]
       -  [[#emms][EMMS]]
       -  [[#elfeed][Elfeed]]
+      -  [[#run-apps][Run apps]]
       -  [[#window-sizing][Window sizing]]
     -  [[#fonts][Fonts]]
       -  [[#change-font-based-on-mode][Change Font Based on Mode]]
@@ -53,6 +53,7 @@
       -  [[#dired][Dired]]
     -  [[#emms-1][EMMS]]
     -  [[#elfeed-1][Elfeed]]
+    -  [[#nerd-icons][Nerd Icons]]
     -  [[#debugger][Debugger]]
       -  [[#main-config][Main Config]]
       -  [[#python][Python]]
@@ -73,6 +74,7 @@
   -  [[#external-packages][External Packages]]
     -  [[#utils][Utils]]
       -  [[#elpher-1][Elpher]]
+      -  [[#xdg-launcher-app-launcher][Xdg-launcher (App Launcher)]]
     -  [[#org-packages][Org Packages]]
       -  [[#org-modern-1][Org Modern]]
       -  [[#org-appear-1][Org appear]]
@@ -81,6 +83,7 @@
       -  [[#olivetti-1][Olivetti]]
     -  [[#ui-1][UI]]
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
+      -  [[#nerd-icons-completion][Nerd Icons Completion]]
     -  [[#fun][Fun]]
       -  [[#fireplace][Fireplace]]
 
@@ -166,7 +169,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        (vc-gutter +pretty) ; vcs diff in the fringe
        ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
-       workspaces        ; tab emulation, persistence & separate workspaces
+       ;;workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 #+end_src
 **  Editor
@@ -409,14 +412,6 @@ This is where custom Emacs functions and configuration for packages reside.
 (setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
 #+end_src
 ***  Keybinds
-****  Custom Functions
-#+begin_src emacs-lisp
-(map!
- :prefix "C-c s"
- :desc "Run 'stow-configs' script" "c" #'scripts/config
- :desc "Run 'update-all-packages' script" "u" #'scripts/update)
-#+end_src
-
 ****  Open File
 #+begin_src emacs-lisp
 (map!
@@ -453,6 +448,13 @@ This is where custom Emacs functions and configuration for packages reside.
  :desc "Open elfeed" "f" #'elfeed
  :desc "Unjam elfeed" "u" #'elfeed-unjam
  :desc "Update elfeed" "U" #'elfeed-update)
+#+end_src
+****  Run apps
+#+begin_src elisp
+(map!
+ :prefix "C-c r"
+ :desc "Run application" "r" #'xdg-launcher-run-app)
+
 #+end_src
 
 ****  Window sizing
@@ -602,9 +604,6 @@ Change the numerical values to affect the transparency
 #+end_src
 ****  Dired
 #+begin_src emacs-lisp
-(use-package! nerd-icons-dired
-  :hook
-  (dired-mode . nerd-icons-dired-mode))
 #+end_src
 ***  EMMS
 #+begin_src emacs-lisp
@@ -614,6 +613,15 @@ Change the numerical values to affect the transparency
 #+begin_src emacs-lisp
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
+#+end_src
+***  Nerd Icons
+#+begin_src elisp
+(use-package! nerd-icons-completion
+  :config
+  (nerd-icons-completion-mode))
+(use-package! nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 #+end_src
 ***  Debugger
 ****  Main Config
@@ -750,6 +758,12 @@ C-h f package\!
 #+begin_src emacs-lisp
 (package! elpher)
 #+end_src
+****  Xdg-launcher (App Launcher)
+#+begin_src elisp
+(package! xdg-launcher
+  :recipe '(:host github :repo "emacs-exwm/xdg-launcher")
+  :pin "7c81fd506f7a97e4f69eca90794d807ab84aec3f")
+#+end_src
 ***  Org Packages
 ****  Org Modern
 #+begin_src emacs-lisp
@@ -775,6 +789,10 @@ C-h f package\!
 ****  Nerd Icons (dired)
 #+begin_src emacs-lisp
 (package! nerd-icons-dired)
+#+end_src
+****  Nerd Icons Completion
+#+begin_src elisp
+(package! nerd-icons-completion)
 #+end_src
 ***  Fun
 ****  Fireplace

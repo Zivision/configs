@@ -34,11 +34,6 @@
 (setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
 
 (map!
- :prefix "C-c s"
- :desc "Run 'stow-configs' script" "c" #'scripts/config
- :desc "Run 'update-all-packages' script" "u" #'scripts/update)
-
-(map!
  :prefix "C-c o f"
  :desc "Open notes.org" "n" #'(lambda ()
                                 (interactive)
@@ -67,6 +62,10 @@
  :desc "Open elfeed" "f" #'elfeed
  :desc "Unjam elfeed" "u" #'elfeed-unjam
  :desc "Update elfeed" "U" #'elfeed-update)
+
+(map!
+ :prefix "C-c r"
+ :desc "Run application" "r" #'xdg-launcher-run-app)
 
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
@@ -182,14 +181,19 @@
 
   (setq eshell-prompt-regexp "^[^λ]*λ "))
 
-(use-package! nerd-icons-dired
-  :hook
-  (dired-mode . nerd-icons-dired-mode))
+
 
 (setq emms-source-file-default-directory "~/Music/")
 
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
+
+(use-package! nerd-icons-completion
+  :config
+  (nerd-icons-completion-mode))
+(use-package! nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))

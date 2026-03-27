@@ -181,6 +181,7 @@ $eshell = emacsclient -c -e '(hypr/launch-eshell)'
 $elfeed = emacsclient -c -e '(hypr/launch-elfeed)'
 $scratch = emacsclient -c -e '(hypr/launch-scratch)'
 $dired = emacsclient -c -e '(dired ".")'
+$emacsMenu = emacsclient -c -F '((name . "emacs-run-app") (minibuffer . only))' -e "(progn (xdg-launcher-run-app) (delete-frame))"
 #+end_src
 **  Autostart
 #+begin_src conf
@@ -346,6 +347,7 @@ bind = $mainMod, W, exec, $eshell
 bind = $mainMod, E, exec, $editor
 bind = $mainMod SHIFT, E, exec, $scratch
 bind = $mainMod, R, exec, $menu
+bind = $mainMod SHIFT, R, exec, $emacsMenu
 bind = $mainMod, N, exec, $elfeed
 bind = $mainMod, D, exec, $dired
 
@@ -440,6 +442,12 @@ workspace = 8, monitor:DP-2
 workspace = 2, monitor:HDMI-A-1 default: true
 workspace = 3, monitor:HDMI-A-1
 workspace = 4, monitor:HDMI-A-1
+
+# Window rule for emacs launchers
+windowrulev2 = float, title:emacs-run-app
+windowrulev2 = size 600 250, title:emacs-run-app
+windowrulev2 = center, title:emacs-run-app
+
 #+end_src
 *  Kitty (kitty/ Directory)
 :PROPERTIES:
