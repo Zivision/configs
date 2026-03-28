@@ -220,6 +220,7 @@
 (after! org
   (setq org-agenda-files '("~/Documents/org/agenda/agenda.org"))
   (setq org-directory "~/Documents/org")
+  (setq org-roam-directory "~/Documents/org/roam")
   (setq org-hide-emphasis-markers t))
 
 ;; Org modern settings
