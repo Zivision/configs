@@ -183,14 +183,22 @@
 
 
 
-(setq emms-source-file-default-directory "~/Music/")
+(after! EMMS
+  (require 'emms-source-file)
+  (emms-all)
+
+  (setq-default emms-source-file-default-directory "~/Music/"))
 
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
 
-(use-package! nerd-icons-completion
-  :config
-  (nerd-icons-completion-mode))
+;; Load after vertico
+(after! vertico
+  (use-package! nerd-icons-completion
+    :config
+    (nerd-icons-completion-mode)))
+
+
 (use-package! nerd-icons-dired
   :hook
   (dired-mode . nerd-icons-dired-mode))
@@ -213,9 +221,6 @@
 (map! :after elpher
       :map elpher-mode-map
       "-" #'elpher-back)
-
-;; Always create projects when switching projects
-(setq +workspaces-on-switch-project-behavior t)
 
 (after! org
   (setq org-agenda-files '("~/Documents/org/agenda/agenda.org"))

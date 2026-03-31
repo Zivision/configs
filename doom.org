@@ -60,7 +60,6 @@
       -  [[#javascripttypescript][Javascript/Typescript]]
       -  [[#go][Go]]
     -  [[#elpher][Elpher]]
-    -  [[#workspaces][Workspaces]]
     -  [[#org][Org]]
       -  [[#org-modern][Org Modern]]
       -  [[#org-appear][Org Appear]]
@@ -488,10 +487,10 @@ Will need to download the Iosevka Font for this to work.
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (setq doom-miramare-brighter-comments t))
+  (setq doom-monokai-classic-brighter-comments t))
 
 ;; Set Theme
-(setq doom-theme 'doom-miramare)
+(setq doom-theme 'doom-monokai-classic)
 #+end_src
 **** Borders
 #+begin_src emacs-lisp
@@ -607,7 +606,11 @@ Change the numerical values to affect the transparency
 #+end_src
 ***  EMMS
 #+begin_src emacs-lisp
-(setq emms-source-file-default-directory "~/Music/")
+(after! EMMS
+  (require 'emms-source-file)
+  (emms-all)
+
+  (setq-default emms-source-file-default-directory "~/Music/"))
 #+end_src
 ***  Elfeed
 #+begin_src emacs-lisp
@@ -616,9 +619,13 @@ Change the numerical values to affect the transparency
 #+end_src
 ***  Nerd Icons
 #+begin_src elisp
-(use-package! nerd-icons-completion
-  :config
-  (nerd-icons-completion-mode))
+;; Load after vertico
+(after! vertico
+  (use-package! nerd-icons-completion
+    :config
+    (nerd-icons-completion-mode)))
+
+
 (use-package! nerd-icons-dired
   :hook
   (dired-mode . nerd-icons-dired-mode))
@@ -655,11 +662,6 @@ Need to install python debugger (look at install.sh)
       "-" #'elpher-back)
 #+end_src
 
-***  Workspaces
-#+begin_src emacs-lisp
-;; Always create projects when switching projects
-(setq +workspaces-on-switch-project-behavior t)
-#+end_src
 ***  Org
 #+begin_verse
 All of my org settings
