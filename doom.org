@@ -487,6 +487,7 @@ Will need to download the Iosevka Font for this to work.
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
+  (doom-themes-visual-bell-config)
   (setq doom-monokai-classic-brighter-comments t))
 
 ;; Set Theme
