@@ -1,5 +1,5 @@
 import argparse
-from lib.shell import run_dispatch, run_dispatch_install, get_project_dir
+from lib.shell import run_dispatch, PROJECT_DIRECTORY, HOME_DIRECTORY
 
 import sys
 
@@ -18,13 +18,13 @@ def define_flags() -> argparse.ArgumentParser:
     parser.add_argument(
         "-r",
         "--rebuild",
-        help="Run 'rebuild-system' script",
+        help="Run 'rebuild' steps",
     )
     parser.add_argument(
         "-u",
         "--update",
         action="store_true",
-        help="Run 'rebuild-system' script",
+        help="Run 'update-system' script",
     )
     parser.add_argument(
         "-uf",
@@ -41,7 +41,7 @@ def define_flags() -> argparse.ArgumentParser:
     parser.add_argument(
         "-i",
         "--install",
-        help="Run 'install-system' script",
+        help="Run 'install' instructions",
     )
 
     return parser
@@ -72,8 +72,8 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
     # Commands to dispatch
     dispatch = {
         "configure": [
-            [get_project_dir() + "/bin/lib/elisp/main.el"],
-            ["configure-system"],
+            [PROJECT_DIRECTORY + "/bin/lib/elisp/main.el"],
+            [PROJECT_DIRECTORY + "/bin/configure-system"],
         ],
         "update": [["update-system"]],
         "update_flatpak": [["flatpak", "update"]],
@@ -87,26 +87,41 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "nixos-rebuild",
                 "switch",
                 "--flake",
-                (get_project_dir() + "/nixos#" + str(args["rebuild"])),
+                (PROJECT_DIRECTORY + "/nixos#" + str(args["rebuild"])),
                 "--impure",
             ]
         ],
         "install": [
-            [get_project_dir() + "/bin/lib/elisp/main.el"],
-            ["configure-system"],
+            [
+                "sudo",
+                "nixos-rebuild",
+                "switch",
+                "--flake",
+                (PROJECT_DIRECTORY + "/nixos#" + str(args["install"])),
+                "--impure",
+            ],
+            # Clone DOOM Emacs repo and install it
+            [
+                "git",
+                "clone",
+                "--depth",
+                "1",
+                "https://github.com/doomemacs/doomemacs",
+                (HOME_DIRECTORY + "/.config/emacs"),
+            ],
+            [(HOME_DIRECTORY + "/.config/emacs/bin/doom"), "install"],
         ],
     }
 
     # This checks for commands in order.
     # Currently it is:
-    # 1. Install (it runs everything in order within it's bash script)
-    # 2. Configure
+    # 1. Configure
+    # 2. Install
     # 3. Updates
     # 4. Rebuild
 
-    # run_dispatch(args, dispatch, "install")
-    run_dispatch(args, dispatch, "install")
     run_dispatch(args, dispatch, "configure")
+    run_dispatch(args, dispatch, "install")
 
     for key in ["update", "update_flatpak", "update_all"]:
         run_dispatch(args, dispatch, key)
