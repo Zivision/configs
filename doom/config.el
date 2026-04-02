@@ -166,14 +166,12 @@
                                           'face 'font-lock-constant-face)))))
             (concat
              ;; First line
-             (propertize (format "[%s@EMACS]" user)
+             (propertize (format "[%s@%s]" user emacs)
                          'face 'font-lock-keyword-face)
-             " |> "
+             " >>> "
              (propertize pwd 'face 'font-lock-string-face)
              git-part
-             "\n"
              ;; Second line
-             (propertize emacs 'face 'font-lock-comment-face)
              "\n"
              (propertize time 'face 'font-lock-comment-face)
              " "
