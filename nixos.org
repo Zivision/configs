@@ -589,6 +589,16 @@ graphviz
   python3Packages.debugpy
 
 #+end_src
+*****  Rust
+#+begin_src nix
+  # Rust compiler
+  rustc
+  # Cargo
+  cargo
+
+  # LSP
+  rust-analyzer
+#+end_src
 ****  Fonts
 #+begin_src nix
 nerd-fonts.symbols-only

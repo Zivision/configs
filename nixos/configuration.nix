@@ -258,6 +258,14 @@ python3Packages.pyflakes
 # Python debugger
 python3Packages.debugpy
 
+# Rust compiler
+rustc
+# Cargo
+cargo
+
+# LSP
+rust-analyzer
+
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
 
