@@ -34,6 +34,7 @@
     -  [[#steam][Steam]]
     -  [[#system][System]]
     -  [[#syncthing][Syncthing]]
+    -  [[#gnupg][Gnupg]]
     -  [[#hyprland-1][Hyprland]]
     -  [[#flakes][Flakes]]
     -  [[#desktop][Desktop]]
@@ -473,6 +474,13 @@ services.syncthing = {
   openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
   user = "primary";
   dataDir = "/home/primary";
+};
+#+end_src
+***  Gnupg
+#+begin_src nix
+programs.gnupg.agent = {
+  enable = true;
+  pinentryPackage = pkgs.pinentry-qt;
 };
 #+end_src
 ***  Hyprland

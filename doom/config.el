@@ -179,6 +179,19 @@
 
 
 
+;; For auth in mini buffer
+(setq epg-pinentry-mode 'loopback)
+
+(use-package! gptel
+  :config
+  (defun my/gptel-get-key (host)
+    (auth-source-pick-first-password :host host :user "apikey"))
+  (setq gptel-backend
+        (gptel-make-gemini "Gemini"
+          :stream t
+          :key (lambda () (my/gptel-get-key "generativelanguage.googleapis.com"))))
+  (setq gptel-model 'gemini-3-flash-preview))
+
 (after! EMMS
   (require 'emms-source-file)
   (emms-all)

@@ -50,6 +50,7 @@
     -  [[#utilities][Utilities]]
       -  [[#eshell][Eshell]]
       -  [[#dired][Dired]]
+      -  [[#gptel][GPTel]]
     -  [[#emms-1][EMMS]]
     -  [[#elfeed-1][Elfeed]]
     -  [[#nerd-icons][Nerd Icons]]
@@ -226,7 +227,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
-       ;;llm               ; when I said you needed friends, I didn't mean...
+       llm               ; when I said you needed friends, I didn't mean...
        (lsp +eglot)      ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -592,6 +593,21 @@ Will need to download the Iosevka Font for this to work.
 #+end_src
 ****  Dired
 #+begin_src emacs-lisp
+#+end_src
+****  GPTel
+#+begin_src elisp
+;; For auth in mini buffer
+(setq epg-pinentry-mode 'loopback)
+
+(use-package! gptel
+  :config
+  (defun my/gptel-get-key (host)
+    (auth-source-pick-first-password :host host :user "apikey"))
+  (setq gptel-backend
+        (gptel-make-gemini "Gemini"
+          :stream t
+          :key (lambda () (my/gptel-get-key "generativelanguage.googleapis.com"))))
+  (setq gptel-model 'gemini-3-flash-preview))
 #+end_src
 ***  EMMS
 #+begin_src emacs-lisp

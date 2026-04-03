@@ -104,6 +104,11 @@ services.syncthing = {
   dataDir = "/home/primary";
 };
 
+programs.gnupg.agent = {
+  enable = true;
+  pinentryPackage = pkgs.pinentry-qt;
+};
+
 programs.hyprland.enable = true;
 
 # Optional, hint Electron apps to use Wayland:
