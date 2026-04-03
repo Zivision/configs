@@ -43,7 +43,6 @@
     -  [[#theme][Theme]]
       - [[#borders][Borders]]
     -  [[#line-numbers][Line numbers]]
-    -  [[#transparency][Transparency]]
     -  [[#mode-line-settings][Mode Line Settings]]
     -  [[#mode-settings][Mode Settings]]
     -  [[#review-packages][Review Packages]]
@@ -221,7 +220,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
        (debugger +eglot)          ; FIXME stepping through code, to help you add bugs
-       ;;direnv
+       direnv
        docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
@@ -475,11 +474,11 @@ This is where custom Emacs functions and configuration for packages reside.
 ****  Set Font Faces
 Will need to download the Iosevka Font for this to work.
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
-(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 12))
+(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 12))
 
 ;; Make doom large font even bigger
-(setq doom-big-font-increment 6)
+(setq doom-big-font-increment 4)
 #+end_src
 ***  Theme
 #+begin_src emacs-lisp
@@ -518,15 +517,6 @@ Will need to download the Iosevka Font for this to work.
 ***  Line numbers
 #+begin_src emacs-lisp
 (setq display-line-numbers-type `relative)
-#+end_src
-***  Transparency
-#+begin_verse
-Change the numerical values to affect the transparency
-(0-100 where 100 is opaque)
-#+end_verse
-#+begin_src emacs-lisp
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 #+end_src
 ***  Mode Line Settings
 #+begin_src emacs-lisp

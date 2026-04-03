@@ -9,6 +9,7 @@ refer to the headers or the table of contents for navigation
     -  [[#history-configuration][History Configuration]]
     -  [[#fzf][Fzf]]
     -  [[#shell-options][Shell Options]]
+    -  [[#direnv][Direnv]]
     -  [[#prompt][Prompt]]
     -  [[#aliases][Aliases]]
     -  [[#environment-variables][Environment Variables]]
@@ -99,6 +100,10 @@ eval "$(fzf --bash)"
 shopt -s checkwinsize         # Update LINES and COLUMNS after each command
 shopt -s globstar 2>/dev/null # Enable ** for recursive glob matching
 shopt -s cdspell              # Autocorrect minor spelling errors in cd
+#+end_src
+***  Direnv
+#+begin_src bash
+eval "$(direnv hook bash)"
 #+end_src
 ***  Prompt
 #+begin_src bash

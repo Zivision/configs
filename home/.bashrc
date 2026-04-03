@@ -18,6 +18,8 @@ shopt -s checkwinsize         # Update LINES and COLUMNS after each command
 shopt -s globstar 2>/dev/null # Enable ** for recursive glob matching
 shopt -s cdspell              # Autocorrect minor spelling errors in cd
 
+eval "$(direnv hook bash)"
+
 # Function to get current git branch
 git_branch() {
     local branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)

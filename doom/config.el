@@ -78,11 +78,11 @@
 (add-hook 'prog-mode-hook
           (lambda () (text-scale-set 0))) ; Reset font for programming modes
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
-(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 12))
+(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 12))
 
 ;; Make doom large font even bigger
-(setq doom-big-font-increment 6)
+(setq doom-big-font-increment 4)
 
 ;; Enable bold and italic for better syntax highlighting
 (after! doom-themes
@@ -115,9 +115,6 @@
   '(window-divider-last-pixel :foreground "#000000"))
 
 (setq display-line-numbers-type `relative)
-
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 (after! doom-modeline
   ;; Configuration

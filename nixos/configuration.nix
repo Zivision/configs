@@ -160,36 +160,6 @@ virtualisation.docker.enable = true;
 services.flatpak.enable = true;
 
 environment.systemPackages = with pkgs; [
-  neovim
-  fastfetch
-  git
-  curl
-  wget
-  htop
-  stow
-  fzf
-
-kitty
-
-hyprpaper
-wofi
-waybar
-
-waypaper
-brightnessctl
-
-# Emacs
-gcc
-gnumake
-ripgrep
-fd
-emacs
-cmake
-libtool
-ispell
-
-# For emms
-mpv
 
 # Shell Check
 shellcheck
@@ -242,21 +212,6 @@ haskellPackages.hoogle
 nixfmt
 
 # For org roam
-graphviz
-
-# Python
-python3
-
-# LSP (pyright in my case)
-pyright
-
-# Python Formatter
-black
-# Import management
-python3Packages.pyflakes
-
-# Python debugger
-python3Packages.debugpy
 
 # Rust compiler
 rustc
@@ -265,13 +220,6 @@ cargo
 
 # LSP
 rust-analyzer
-
-nerd-fonts.symbols-only
-nerd-fonts.iosevka
-
-# Chinese Font
-noto-fonts-cjk-sans
-noto-fonts-cjk-serif
 
 # Devops
 kubectl

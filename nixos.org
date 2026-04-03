@@ -8,8 +8,16 @@
 -  [[#home-settings][Home Settings]]
   -  [[#imports][Imports]]
   -  [[#basic-settings][Basic Settings]]
+  -  [[#direnv][Direnv]]
   -  [[#packages][Packages]]
+    -  [[#start-of-list][Start of List]]
+    -  [[#hyprland][Hyprland]]
     -  [[#browser][Browser]]
+    -  [[#text-editors][Text editors]]
+    -  [[#other-packages][Other Packages]]
+    -  [[#fonts][Fonts]]
+    -  [[#terminal][Terminal]]
+    -  [[#end-of-list][End of list]]
 -  [[#systems][Systems]]
   -  [[#swiftx][SwiftX]]
   -  [[#nixbox][NixBox]]
@@ -26,7 +34,7 @@
     -  [[#steam][Steam]]
     -  [[#system][System]]
     -  [[#syncthing][Syncthing]]
-    -  [[#hyprland][Hyprland]]
+    -  [[#hyprland-1][Hyprland]]
     -  [[#flakes][Flakes]]
     -  [[#desktop][Desktop]]
     -  [[#audio][Audio]]
@@ -34,14 +42,17 @@
     -  [[#docker][Docker]]
     -  [[#flatpak][Flatpak]]
     -  [[#nix-packages][Nix Packages]]
-      -  [[#general-dependencies][General Dependencies]]
-      -  [[#terminal-kitty][Terminal (kitty)]]
-      -  [[#hyprland-1][Hyprland]]
-      -  [[#emacs-doom][Emacs (DOOM)]]
-      -  [[#fonts][Fonts]]
+      -  [[#start-of-list-1][Start of List]]
+      -  [[#bash][Bash]]
+      -  [[#clojure][Clojure]]
+      -  [[#go][Go]]
+      -  [[#haskell][Haskell]]
+      -  [[#nix][Nix]]
+      -  [[#org][Org]]
+      -  [[#rust][Rust]]
       -  [[#more-developer-tools][More Developer Tools]]
       -  [[#flatpak-1][Flatpak]]
-      -  [[#misc][Misc]]
+      -  [[#end-of-list-1][End of List]]
 
 *  Flake Setttings
 :PROPERTIES:
@@ -128,16 +139,86 @@ outputs = { self, nixpkgs, home-manager, ... }@inputs: {
   home.homeDirectory = "/home/primary";
   home.stateVersion = "25.11";
 #+end_src
+**  Direnv
+#+begin_src nix
+programs.direnv = {
+  enable = true;
+  nix-direnv.enable = true;
+};
+#+end_src
 
 
 **  Packages
+***  Start of List
+#+begin_src nix
+home.packages = with pkgs; [
+#+end_src
+***  Hyprland
+#+begin_src nix
+  hyprpaper
+  wofi
+  waybar
+
+  waypaper
+  brightnessctl
+#+end_src
 ***  Browser
 #+begin_src nix
 # Start of the home packages array
-home.packages = with pkgs; [
-  brave
+brave
+#+end_src
+***  Text editors
+#+begin_src nix
+# For Emacs
+  python3
+  gcc
+  gnumake
+  ripgrep
+  fd
+  emacs-pgtk
+  cmake
+  libtool
+  ispell
+  # emacs itself
+  emacs-pgtk
+
+  # Org mode
+  graphviz
+
+  # MPV for emms
+  mpv
+  # Neovim for quick edits
+  neovim
+#+end_src
+***  Other Packages
+#+begin_src nix
+fastfetch
+  git
+  curl
+  wget
+  htop
+  stow
+  fzf
+#+end_src
+***  Fonts
+#+begin_src nix
+# Fonts for emacs
+nerd-fonts.symbols-only
+nerd-fonts.iosevka
+
+# Chinese Font
+noto-fonts-cjk-sans
+noto-fonts-cjk-serif
+
+#+end_src
+***  Terminal
+#+begin_src nix
+  kitty
+#+end_src
+***  End of list
+#+begin_src nix
 ];
-}
+ }
 #+end_src
 *  Systems
 **  SwiftX
@@ -467,47 +548,11 @@ services.flatpak.enable = true;
 #+end_src
 ***  Nix Packages
 These are *SYSTEM* packages for user specific look at home settings
-****  General Dependencies
+****  Start of List
 #+begin_src nix
 environment.systemPackages = with pkgs; [
-  neovim
-  fastfetch
-  git
-  curl
-  wget
-  htop
-  stow
-  fzf
 #+end_src
-****  Terminal (kitty)
-#+begin_src nix
-  kitty
-#+end_src
-****  Hyprland
-#+begin_src nix
-  hyprpaper
-  wofi
-  waybar
-
-  waypaper
-  brightnessctl
-#+end_src
-****  Emacs (DOOM)
-#+begin_src nix
-  # Emacs
-  gcc
-  gnumake
-  ripgrep
-  fd
-  emacs
-  cmake
-  libtool
-  ispell
-
-  # For emms
-  mpv
-#+end_src
-*****  Bash
+****  Bash
 #+begin_src nix
   # Shell Check
   shellcheck
@@ -515,7 +560,7 @@ environment.systemPackages = with pkgs; [
   # Formatter
   shfmt
 #+end_src
-*****  Clojure
+****  Clojure
 #+begin_src nix
 # Clojure
 clojure
@@ -529,7 +574,7 @@ cljfmt
 # Linter
 clj-kondo
 #+end_src
-*****  Go
+****  Go
 #+begin_src nix
 # Golang
 go
@@ -549,7 +594,7 @@ gopls
 # Go debugger
 delve
 #+end_src
-*****  Haskell
+****  Haskell
 #+begin_src nix
 # Haskell compiler
 ghc
@@ -562,34 +607,16 @@ stack
 # Hoogle
 haskellPackages.hoogle
 #+end_src
-*****  Nix
+****  Nix
 #+begin_src nix
 # Formatter
 nixfmt
 #+end_src
-*****  Org
+****  Org
 #+begin_src nix
 # For org roam
-graphviz
 #+end_src
-*****  Python
-#+begin_src nix
-  # Python
-  python3
-
-  # LSP (pyright in my case)
-  pyright
-
-  # Python Formatter
-  black
-  # Import management
-  python3Packages.pyflakes
-
-  # Python debugger
-  python3Packages.debugpy
-
-#+end_src
-*****  Rust
+****  Rust
 #+begin_src nix
   # Rust compiler
   rustc
@@ -598,15 +625,6 @@ graphviz
 
   # LSP
   rust-analyzer
-#+end_src
-****  Fonts
-#+begin_src nix
-nerd-fonts.symbols-only
-nerd-fonts.iosevka
-
-# Chinese Font
-noto-fonts-cjk-sans
-noto-fonts-cjk-serif
 #+end_src
 ****  More Developer Tools
 #+begin_src nix
@@ -622,7 +640,7 @@ Why Flatpak? for sandboxing certain apps I wish to have more restrictive permiss
 #+begin_src nix
 flatpak
 #+end_src
-****  Misc
+****  End of List
 #+begin_src nix
 ];
 }
