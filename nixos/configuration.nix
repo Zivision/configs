@@ -161,71 +161,7 @@ services.flatpak.enable = true;
 
 environment.systemPackages = with pkgs; [
 
-# Shell Check
-shellcheck
-
-# Formatter
-shfmt
-
-# Clojure
-clojure
-
-# Script runtime (babashka)
-babashka
-
-# Formatter
-cljfmt
-
-# Linter
-clj-kondo
-
-# Golang
-go
-
-# Go modify tags
-gomodifytags
-
-# Tests
-gotests
-
-# go repl (gore)
-gore
-
-# Go language server (gopls)
-gopls
-
-# Go debugger
-delve
-
-# Haskell compiler
-ghc
-
-# language Server
-haskellPackages.haskell-language-server
-# Stack
-stack
-
-# Hoogle
-haskellPackages.hoogle
-
-# Formatter
-nixfmt
-
-# For org roam
-
-# Rust compiler
-rustc
-# Cargo
-cargo
-
-# LSP
-rust-analyzer
-
-# Devops
-kubectl
 docker
-terraform
-google-cloud-sdk
 
 flatpak
 

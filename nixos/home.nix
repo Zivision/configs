@@ -43,6 +43,15 @@ brave
   # Neovim for quick edits
   neovim
 
+  # Nix format
+  nixfmt
+
+  # Shell stuff
+  shellcheck
+  shfmt
+  # Clojure
+  babashka
+
 fastfetch
   git
   curl

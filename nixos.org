@@ -43,13 +43,6 @@
     -  [[#flatpak][Flatpak]]
     -  [[#nix-packages][Nix Packages]]
       -  [[#start-of-list-1][Start of List]]
-      -  [[#bash][Bash]]
-      -  [[#clojure][Clojure]]
-      -  [[#go][Go]]
-      -  [[#haskell][Haskell]]
-      -  [[#nix][Nix]]
-      -  [[#org][Org]]
-      -  [[#rust][Rust]]
       -  [[#more-developer-tools][More Developer Tools]]
       -  [[#flatpak-1][Flatpak]]
       -  [[#end-of-list-1][End of List]]
@@ -189,6 +182,15 @@ brave
   mpv
   # Neovim for quick edits
   neovim
+
+  # Nix format
+  nixfmt
+
+  # Shell stuff
+  shellcheck
+  shfmt
+  # Clojure
+  babashka
 #+end_src
 ***  Other Packages
 #+begin_src nix
@@ -552,87 +554,9 @@ These are *SYSTEM* packages for user specific look at home settings
 #+begin_src nix
 environment.systemPackages = with pkgs; [
 #+end_src
-****  Bash
-#+begin_src nix
-  # Shell Check
-  shellcheck
-
-  # Formatter
-  shfmt
-#+end_src
-****  Clojure
-#+begin_src nix
-# Clojure
-clojure
-
-# Script runtime (babashka)
-babashka
-
-# Formatter
-cljfmt
-
-# Linter
-clj-kondo
-#+end_src
-****  Go
-#+begin_src nix
-# Golang
-go
-
-# Go modify tags
-gomodifytags
-
-# Tests
-gotests
-
-# go repl (gore)
-gore
-
-# Go language server (gopls)
-gopls
-
-# Go debugger
-delve
-#+end_src
-****  Haskell
-#+begin_src nix
-# Haskell compiler
-ghc
-
-# language Server
-haskellPackages.haskell-language-server
-# Stack
-stack
-
-# Hoogle
-haskellPackages.hoogle
-#+end_src
-****  Nix
-#+begin_src nix
-# Formatter
-nixfmt
-#+end_src
-****  Org
-#+begin_src nix
-# For org roam
-#+end_src
-****  Rust
-#+begin_src nix
-  # Rust compiler
-  rustc
-  # Cargo
-  cargo
-
-  # LSP
-  rust-analyzer
-#+end_src
 ****  More Developer Tools
 #+begin_src nix
-  # Devops
-  kubectl
   docker
-  terraform
-  google-cloud-sdk
 #+end_src
 
 ****  Flatpak
