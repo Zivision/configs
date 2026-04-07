@@ -61,6 +61,7 @@
       -  [[#go][Go]]
     -  [[#elpher][Elpher]]
     -  [[#org][Org]]
+      -  [[#org-agenda][Org Agenda]]
       -  [[#org-modern][Org Modern]]
       -  [[#org-appear][Org Appear]]
       -  [[#org-download][Org Download]]
@@ -678,6 +679,12 @@ first my default org directory
   (setq org-directory "~/Documents/org")
   (setq org-roam-directory "~/Documents/org/roam")
   (setq org-hide-emphasis-markers t))
+#+end_src
+****  Org Agenda
+#+begin_src elisp
+(after! org
+  ;; Show upcoming holidays
+  (setq org-agenda-include-diary t))
 #+end_src
 
 ****  Org Modern
