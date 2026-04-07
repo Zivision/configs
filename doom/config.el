@@ -237,6 +237,10 @@
   (setq org-roam-directory "~/Documents/org/roam")
   (setq org-hide-emphasis-markers t))
 
+(after! org
+  ;; Show upcoming holidays
+  (setq org-agenda-include-diary t))
+
 ;; Org modern settings
 (use-package! org-modern
   :hook (org-mode . org-modern-mode)
