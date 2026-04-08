@@ -59,6 +59,7 @@ fastfetch
   htop
   stow
   fzf
+  findutils.locate
 
 # Fonts for emacs
 nerd-fonts.symbols-only

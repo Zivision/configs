@@ -202,6 +202,7 @@ fastfetch
   htop
   stow
   fzf
+  findutils.locate
 #+end_src
 ***  Fonts
 #+begin_src nix
@@ -224,6 +225,9 @@ noto-fonts-cjk-serif
  }
 #+end_src
 *  Systems
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 **  SwiftX
 :PROPERTIES:
 :header-args: :tangle ./nixos/swiftx.nix
@@ -274,6 +278,9 @@ Main Desktop
 }
 #+end_src
 *  Configuration Settings
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 **  Nvidia
 :PROPERTIES:
 :header-args: :tangle ./nixos/nvidia.nix

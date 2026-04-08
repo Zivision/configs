@@ -14,6 +14,10 @@
 
 (package! olivetti)
 
+(package! nov)
+
+(package! djvu)
+
 (package! nerd-icons-dired)
 
 (package! nerd-icons-completion)

@@ -81,6 +81,8 @@
       -  [[#org-table-of-contents][Org table of contents]]
       -  [[#org-download-1][Org Download]]
       -  [[#olivetti-1][Olivetti]]
+      -  [[#nov][Nov]]
+      -  [[#djvu][Djvu]]
     -  [[#ui-1][UI]]
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
       -  [[#nerd-icons-completion][Nerd Icons Completion]]
@@ -800,6 +802,15 @@ C-h f package\!
 #+begin_src emacs-lisp
 (package! olivetti)
 #+end_src
+****  Nov
+#+begin_src elisp
+(package! nov)
+#+end_src
+****  Djvu
+#+begin_src elisp
+(package! djvu)
+#+end_src
+
 ***  UI
 ****  Nerd Icons (dired)
 #+begin_src emacs-lisp
