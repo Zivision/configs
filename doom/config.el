@@ -268,6 +268,14 @@
 
 (setq-default org-download-image-dir "~/Pictures/Org")
 
+(after! org
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?" :target
+           (file+head
+            "%<%Y%m%d%H%M%S>-${slug}.org"
+            "#+title: ${title}\nHead to the [[id:6c8c0623-2b7f-4717-9985-2733777df46e][Home-Node]]\n")
+           :unnarrowed t))))
+
 (use-package! toc-org
   :hook (org-mode . toc-org-mode))
 

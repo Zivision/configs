@@ -65,6 +65,7 @@
       -  [[#org-modern][Org Modern]]
       -  [[#org-appear][Org Appear]]
       -  [[#org-download][Org Download]]
+      -  [[#org-roam][Org Roam]]
       -  [[#org-toc][Org TOC]]
       -  [[#olivetti][Olivetti]]
       -  [[#misc-org-settings][Misc org settings]]
@@ -724,6 +725,16 @@ This makes org mode nicer to look at
 ****  Org Download
 #+begin_src emacs-lisp
 (setq-default org-download-image-dir "~/Pictures/Org")
+#+end_src
+****  Org Roam
+#+begin_src elisp
+(after! org
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?" :target
+           (file+head
+            "%<%Y%m%d%H%M%S>-${slug}.org"
+            "#+title: ${title}\nHead to the [[id:6c8c0623-2b7f-4717-9985-2733777df46e][Home-Node]]\n")
+           :unnarrowed t))))
 #+end_src
 ****  Org TOC
 #+begin_src emacs-lisp
