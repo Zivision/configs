@@ -12,6 +12,12 @@ programs.direnv = {
 
 home.packages = with pkgs; [
 
+(prismlauncher.override {
+  jdks = [
+    zulu25
+  ];
+})
+
 hyprpaper
 wofi
 waybar

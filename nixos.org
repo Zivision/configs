@@ -11,6 +11,7 @@
   -  [[#direnv][Direnv]]
   -  [[#packages][Packages]]
     -  [[#start-of-list][Start of List]]
+    -  [[#games][Games]]
     -  [[#hyprland][Hyprland]]
     -  [[#browser][Browser]]
     -  [[#text-editors][Text editors]]
@@ -146,6 +147,14 @@ programs.direnv = {
 ***  Start of List
 #+begin_src nix
 home.packages = with pkgs; [
+#+end_src
+***  Games
+#+begin_src nix
+(prismlauncher.override {
+  jdks = [
+    zulu25
+  ];
+})
 #+end_src
 ***  Hyprland
 #+begin_src nix
