@@ -78,8 +78,8 @@
 (add-hook 'prog-mode-hook
           (lambda () (text-scale-set 0))) ; Reset font for programming modes
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 12))
-(setq doom-serif-font (font-spec :family "DejaVu Serif" :size 12))
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16)
+      doom-serif-font (font-spec :family "DejaVu Serif" :size 16))
 
 ;; Make doom large font even bigger
 (setq doom-big-font-increment 4)
