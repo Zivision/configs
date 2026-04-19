@@ -66,6 +66,7 @@ fastfetch
   stow
   fzf
   findutils.locate
+  texlive.combined.scheme-medium
 
 # Fonts for emacs
 nerd-fonts.symbols-only

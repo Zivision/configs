@@ -212,6 +212,7 @@ fastfetch
   stow
   fzf
   findutils.locate
+  texlive.combined.scheme-medium
 #+end_src
 ***  Fonts
 #+begin_src nix
