@@ -199,8 +199,6 @@ brave
   # Shell stuff
   shellcheck
   shfmt
-  # Clojure
-  babashka
 #+end_src
 ***  Other Packages
 #+begin_src nix
