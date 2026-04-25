@@ -55,8 +55,6 @@ brave
   # Shell stuff
   shellcheck
   shfmt
-  # Clojure
-  babashka
 
 fastfetch
   git
