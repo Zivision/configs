@@ -1,5 +1,5 @@
 import argparse
-from lib.shell import run_dispatch, PROJECT_DIRECTORY, HOME_DIRECTORY
+from lib.shell import run_dispatch, PROJECT_DIRECTORY, HOME_DIRECTORY, BUILD_DIRECTORY
 
 import sys
 
@@ -87,7 +87,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "nixos-rebuild",
                 "switch",
                 "--flake",
-                (PROJECT_DIRECTORY + "/nixos#" + str(args["rebuild"])),
+                (BUILD_DIRECTORY + "/nixos#" + str(args["rebuild"])),
                 "--impure",
             ]
         ],
@@ -97,7 +97,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "nixos-rebuild",
                 "switch",
                 "--flake",
-                (PROJECT_DIRECTORY + "/nixos#" + str(args["install"])),
+                (BUILD_DIRECTORY + "/nixos#" + str(args["install"])),
                 "--impure",
             ],
             # Clone DOOM Emacs repo and install it

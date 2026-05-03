@@ -4,8 +4,9 @@ import os
 
 PROJECT_DIRECTORY = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-) + "/build"
-
+)
+BUILD_DIRECTORY = PROJECT_DIRECTORY + "/build"
+print(BUILD_DIRECTORY)
 HOME_DIRECTORY = os.path.expanduser("~")
 
 
