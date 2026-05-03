@@ -51,7 +51,7 @@
 
 *  Flake Setttings
 :PROPERTIES:
-:header-args: :tangle ./nixos/flake.nix
+:header-args: :tangle ../build/nixos/flake.nix
 :VISIBILITY: folded
 :END:
 **  Description
@@ -119,7 +119,7 @@ outputs = { self, nixpkgs, home-manager, ... }@inputs: {
 
 *  Home Settings
 :PROPERTIES:
-:header-args: :tangle ./nixos/home.nix
+:header-args: :tangle ../build/nixos/home.nix
 :VISIBILITY: folded
 :END:
 
@@ -238,7 +238,7 @@ noto-fonts-cjk-serif
 :END:
 **  SwiftX
 :PROPERTIES:
-:header-args: :tangle ./nixos/swiftx.nix
+:header-args: :tangle ../build/nixos/swiftx.nix
 :VISIBILITY: folded
 :END:
 One of my laptops
@@ -268,7 +268,7 @@ One of my laptops
 #+end_src
 **  NixBox
 :PROPERTIES:
-:header-args: :tangle ./nixos/nixbox.nix
+:header-args: :tangle ../build/nixos/nixbox.nix
 :VISIBILITY: folded
 :END:
 Main Desktop
@@ -291,7 +291,7 @@ Main Desktop
 :END:
 **  Nvidia
 :PROPERTIES:
-:header-args: :tangle ./nixos/nvidia.nix
+:header-args: :tangle ../build/nixos/nvidia.nix
 :VISIBILITY: folded
 :END:
 This is for machines that require nvidia drivers.
@@ -361,7 +361,7 @@ I set this because running the latest kernel with nvidia ran into issues.
 
 **  Configuration
 :PROPERTIES:
-:header-args: :tangle ./nixos/configuration.nix
+:header-args: :tangle ../build/nixos/configuration.nix
 :VISIBILITY: folded
 :END:
 

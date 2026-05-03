@@ -1,3 +1,24 @@
+#+title: Bashrc
+
+This is the bashrc I use for the system
+*  Table of Contents :TOC_4:
+-  [[#bashrc][Bashrc]]
+  -  [[#basic-settings][Basic Settings]]
+  -  [[#history-configuration][History Configuration]]
+  -  [[#fzf][Fzf]]
+  -  [[#shell-options][Shell Options]]
+  -  [[#direnv][Direnv]]
+  -  [[#prompt][Prompt]]
+  -  [[#aliases][Aliases]]
+  -  [[#environment-variables][Environment Variables]]
+
+*  Bashrc
+:PROPERTIES:
+:header-args: :tangle ../build/home/.bashrc
+:VISIBILITY: folded
+:END:
+**  Basic Settings
+#+begin_src bash
 #!/usr/bin/env bash
 
 # If not running interactively, don't do anything
@@ -5,21 +26,31 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-
+#+end_src
+**  History Configuration
+#+begin_src bash
 HISTSIZE=10000                # Commands to keep in memory
 HISTFILESIZE=20000            # Commands to keep in history file
 HISTCONTROL=ignoreboth        # Ignore duplicates and commands starting with space
 shopt -s histappend           # Append to history file, don't overwrite
-
+#+end_src
+**  Fzf
+#+begin_src bash
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
-
+#+end_src
+**  Shell Options
+#+begin_src bash
 shopt -s checkwinsize         # Update LINES and COLUMNS after each command
 shopt -s globstar 2>/dev/null # Enable ** for recursive glob matching
 shopt -s cdspell              # Autocorrect minor spelling errors in cd
-
+#+end_src
+**  Direnv
+#+begin_src bash
 eval "$(direnv hook bash)"
-
+#+end_src
+**  Prompt
+#+begin_src bash
 # Function to get current git branch
 git_branch() {
     local branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
@@ -31,7 +62,9 @@ git_branch() {
 # Prompt
 
 PS1='\[\033[01;32m\][\u@\h]\[\033[00m\] >>> \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(git_branch)\[\033[00m\]\n\[\033[01;90m\]\A\[\033[00m\] $ '
-
+#+end_src
+**  Aliases
+#+begin_src bash
 # Listing
 alias ls='ls --color=auto'
 alias ll='ls -lh'
@@ -59,7 +92,10 @@ alias gl='git log --oneline --graph --decorate'
 # Fzf
 alias efzf='emacsclient -tty $(fzf -m --preview="cat {}")'
 alias nfzf='nvim $(fzf -m --preview="cat {}")'
+#+end_src
 
+**  Environment Variables
+#+begin_src bash
 export EDITOR='emacsclient -tty'
 export VISUAL='emacsclient -tty'
 
@@ -68,3 +104,4 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Doom
 export PATH="$HOME/.config/emacs/bin:$PATH"
+#+end_src

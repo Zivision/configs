@@ -124,7 +124,7 @@ I used to use Neovim so you might be inclined to ask why do I not switch back? T
 
 *  Init Settings
 :PROPERTIES:
-:header-args: :tangle ./doom/init.el
+:header-args: :tangle ../build/doom/init.el
 :VISIBILITY: folded
 :END:
 
@@ -347,7 +347,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
 
 *  Config Settings
 :PROPERTIES:
-:header-args: :tangle ./doom/config.el
+:header-args: :tangle ../build/doom/config.el
 :VISIBILITY: folded
 :END:
 
@@ -767,7 +767,7 @@ Used to center org documents
 
 *  Packages Settings
 :PROPERTIES:
-:header-args: :tangle ./doom/packages.el
+:header-args: :tangle ../build/doom/packages.el
 :VISIBILITY: folded
 :END:
 

@@ -1,20 +1,48 @@
+#+title: Kitty
+
+*  Table of Contents :TOC_4:
+-  [[#kitty-kitty-directory][Kitty (kitty/ Directory)]]
+  -  [[#fonts][Fonts]]
+  -  [[#cursor][Cursor]]
+  -  [[#misc-settings][Misc Settings]]
+  -  [[#close-prompt][Close Prompt]]
+  -  [[#colors][Colors]]
+
+*  Kitty (kitty/ Directory)
+:PROPERTIES:
+:header-args: :tangle ../build/kitty/kitty.conf
+:VISIBILITY: folded
+:END:
+**  Fonts
+#+begin_src conf
 font_family      Iosevka Nerd Font Mono Light
 bold_font        Iosevka Nerd Font Mono
 italic_font      Iosevka Nerd Font Mono Light Italic
 bold_italic_font Iosevka Nerd Font Mono Italic
 font_size        13.0
+#+end_src
 
+**  Cursor
+#+begin_src conf
 cursor                #f92672
 cursor_text_color     #1b1d1e
 cursor_shape          block
 cursor_blink_interval 0
-
+#+end_src
+**  Misc Settings
+#+begin_src conf
 scrollback_lines 10000
 
 window_padding_width 8
-
+#+end_src
+**  Close Prompt
+#+begin_src conf
 confirm_os_window_close 0
+#+end_src
 
+**  Colors
+Mine are set to resemble molokai
+#+begin_src conf
 # Background / Foreground
 background            #1b1d1e
 foreground            #f8f8f2
@@ -54,3 +82,4 @@ color14 #66d9e8
 # White
 color7  #f8f8f2
 color15 #f8f8f2
+#+end_src

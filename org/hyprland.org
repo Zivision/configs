@@ -1,6 +1,49 @@
+#+title: Hyprland
+
+*  Table of Contents :TOC_4:
+-  [[#hyprland-hypr-directory][Hyprland (hypr/ Directory)]]
+  -  [[#monitors][Monitors]]
+  -  [[#programs][Programs]]
+  -  [[#autostart][Autostart]]
+  -  [[#environment-variables][Environment Variables]]
+  -  [[#look-and-feel][Look and Feel]]
+    -  [[#general][General]]
+    -  [[#decoration][Decoration]]
+    -  [[#animations][Animations]]
+    -  [[#gaps][Gaps]]
+    -  [[#layouts][Layouts]]
+      -  [[#dwindle][Dwindle]]
+      -  [[#master][Master]]
+    -  [[#xwayland][Xwayland]]
+    -  [[#misc-variables][Misc Variables]]
+  -  [[#input][Input]]
+  -  [[#keybinds][Keybinds]]
+    -  [[#main-modifier-key][Main Modifier Key]]
+    -  [[#main-keybinds][Main Keybinds]]
+    -  [[#movement][Movement]]
+    -  [[#workspaces][Workspaces]]
+    -  [[#move-to-workspaces][Move To Workspaces]]
+    -  [[#special-workspaces][Special Workspaces]]
+    -  [[#window-resize][Window Resize]]
+    -  [[#special-keys][Special Keys]]
+    -  [[#windows-and-workspaces][Windows and Workspaces]]
+
+*  Hyprland (hypr/ Directory)
+:PROPERTIES:
+:header-args: :tangle ../build/hypr/hyprland.conf
+:VISIBILITY: folded
+:END:
+
+This is my hyprland configuration originally modified from an auto generated one.
+
+For more info on configuring hyprland visit the [[https://wiki.hypr.land/Configuring/][Wiki]]
+**  Monitors
+#+begin_src conf
 monitor = DP-2, 1440x900@74.98, -900x0, 1, transform, 1
 monitor = HDMI-A-1, 1920x1080@74.97, 0x0, 1
-
+#+end_src
+**  Programs
+#+begin_src conf
 $terminal = kitty
 $fileManager = dolphin
 $menu = wofi --show drun
@@ -11,14 +54,22 @@ $elfeed = emacsclient -c -e '(hypr/launch-elfeed)'
 $scratch = emacsclient -c -e '(hypr/launch-scratch)'
 $dired = emacsclient -c -e '(dired ".")'
 $emacsMenu = emacsclient -c -F '((name . "emacs-run-app") (minibuffer . only))' -e "(progn (xdg-launcher-run-app) (delete-frame))"
-
+#+end_src
+**  Autostart
+#+begin_src conf
 exec-once = waybar
 exec-once = waypaper --restore
 exec-once = emacs --daemon
-
+#+end_src
+**  Environment Variables
+#+begin_src conf
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
+#+end_src
 
+**  Look and Feel
+***  General
+#+begin_src conf
 general {
     gaps_in = 5
     gaps_out = 10
@@ -34,7 +85,9 @@ general {
 
     layout = dwindle
 }
-
+#+end_src
+***  Decoration
+#+begin_src conf
 decoration {
     rounding = 3
     rounding_power = 1
@@ -57,7 +110,9 @@ decoration {
         vibrancy = 0.1696
     }
 }
-
+#+end_src
+***  Animations
+#+begin_src conf
 animations {
     enabled = yes, please :)
 
@@ -87,7 +142,9 @@ animations {
     animation = workspacesOut, 1,     1.94,  almostLinear, fade
     animation = zoomFactor,    1,     7,     quick
 }
-
+#+end_src
+***  Gaps
+#+begin_src conf
 # "Smart gaps" / "No gaps when only"
 workspace = w[tv1], gapsout:0, gapsin:0
 workspace = f[1], gapsout:0, gapsin:0
@@ -95,25 +152,37 @@ windowrule = bordersize 0, floating:0, onworkspace:w[tv1]
 windowrule = rounding 0, floating:0, onworkspace:w[tv1]
 windowrule = bordersize 0, floating:0, onworkspace:f[1]
 windowrule = rounding 0, floating:0, onworkspace:f[1]
-
+#+end_src
+***  Layouts
+****  Dwindle
+#+begin_src conf
 dwindle {
     pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     preserve_split = true # You probably want this
 }
 
+#+end_src
+****  Master
+#+begin_src conf
 master {
     new_status = master
 }
-
+#+end_src
+***  Xwayland
+#+begin_src conf
 xwayland {
     force_zero_scaling = true
 }
-
+#+end_src
+***  Misc Variables
+#+begin_src conf
 misc {
     force_default_wallpaper = 0 # Set to 0 or 1 to disable the anime mascot wallpapers
     disable_hyprland_logo = true # If true disables the random hyprland logo / anime girl background. :(
 }
-
+#+end_src
+**  Input
+#+begin_src conf
 input {
     kb_layout = us
     kb_variant =
@@ -136,9 +205,14 @@ device {
     name = epic-mouse-v1
     sensitivity = -0.5
 }
-
+#+end_src
+**  Keybinds
+***  Main Modifier Key
+#+begin_src conf
 $mainMod = SUPER # Sets "Windows" key as main modifier
-
+#+end_src
+***  Main Keybinds
+#+begin_src conf
 bind = $mainMod, Q, exec, $vterm
 bind = $mainMod SHIFT, Q, exec, $terminal
 bind = $mainMod, W, exec, $eshell
@@ -155,12 +229,17 @@ bind = $mainMod, V, togglefloating,
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, ., togglesplit, # dwindle
 bind = $mainMod, F, fullscreen
-
+#+end_src
+***  Movement
+#+begin_src conf
 bind = $mainMod, H, movefocus, l
 bind = $mainMod, L, movefocus, r
 bind = $mainMod, K, movefocus, u
 bind = $mainMod, J, movefocus, d
+#+end_src
 
+***  Workspaces
+#+begin_src conf
 bind = $mainMod, 1, workspace, 1
 bind = $mainMod, 2, workspace, 2
 bind = $mainMod, 3, workspace, 3
@@ -171,7 +250,9 @@ bind = $mainMod, 7, workspace, 7
 bind = $mainMod, 8, workspace, 8
 bind = $mainMod, 9, workspace, 9
 bind = $mainMod, 0, workspace, 10
-
+#+end_src
+***  Move To Workspaces
+#+begin_src conf
 bind = $mainMod SHIFT, 1, movetoworkspace, 1
 bind = $mainMod SHIFT, 2, movetoworkspace, 2
 bind = $mainMod SHIFT, 3, movetoworkspace, 3
@@ -182,7 +263,9 @@ bind = $mainMod SHIFT, 7, movetoworkspace, 7
 bind = $mainMod SHIFT, 8, movetoworkspace, 8
 bind = $mainMod SHIFT, 9, movetoworkspace, 9
 bind = $mainMod SHIFT, 0, movetoworkspace, 10
-
+#+end_src
+***  Special Workspaces
+#+begin_src conf
 # Example special workspace (scratchpad)
 bind = $mainMod, S, togglespecialworkspace, magic
 bind = $mainMod SHIFT, S, movetoworkspace, special:magic
@@ -190,11 +273,17 @@ bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 # Scroll through existing workspaces with mainMod + scroll
 bind = $mainMod, mouse_down, workspace, e+1
 bind = $mainMod, mouse_up, workspace, e-1
+#+end_src
 
+***  Window Resize
+#+begin_src conf
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
+#+end_src
 
+***  Special Keys
+#+begin_src conf
 # Laptop multimedia keys for volume and LCD brightness
 bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
 bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
@@ -208,7 +297,10 @@ bindl = , XF86AudioNext, exec, playerctl next
 bindl = , XF86AudioPause, exec, playerctl play-pause
 bindl = , XF86AudioPlay, exec, playerctl play-pause
 bindl = , XF86AudioPrev, exec, playerctl previous
+#+end_src
 
+***  Windows and Workspaces
+#+begin_src conf
 # Ignore maximize requests from apps. You'll probably like this.
 windowrule = suppressevent maximize, class:.*
 
@@ -227,3 +319,5 @@ workspace = 4, monitor:HDMI-A-1
 windowrulev2 = float, title:emacs-run-app
 windowrulev2 = size 600 250, title:emacs-run-app
 windowrulev2 = center, title:emacs-run-app
+
+#+end_src
