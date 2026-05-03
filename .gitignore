@@ -5,6 +5,5 @@ tmp/
 
 *.py[cod]
 *.egg
-build
 htmlcov
 __pycache__/
