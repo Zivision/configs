@@ -9,16 +9,26 @@
   -  [[#imports][Imports]]
   -  [[#basic-settings][Basic Settings]]
   -  [[#direnv][Direnv]]
+  -  [[#config-file-linking][Config File linking]]
+    -  [[#home-file][Home File]]
+    -  [[#manage-system][Manage System]]
+    -  [[#doom-emacs][Doom Emacs]]
+    -  [[#hyprland][Hyprland]]
+    -  [[#kitty][Kitty]]
+    -  [[#waybar][Waybar]]
+    -  [[#wofi][Wofi]]
+    -  [[#end-of-list][End of list]]
+  -  [[#bash-management][Bash management]]
   -  [[#packages][Packages]]
     -  [[#start-of-list][Start of List]]
     -  [[#games][Games]]
-    -  [[#hyprland][Hyprland]]
+    -  [[#hyprland-1][Hyprland]]
     -  [[#browser][Browser]]
     -  [[#text-editors][Text editors]]
     -  [[#other-packages][Other Packages]]
     -  [[#fonts][Fonts]]
     -  [[#terminal][Terminal]]
-    -  [[#end-of-list][End of list]]
+    -  [[#end-of-list-1][End of list]]
 -  [[#systems][Systems]]
   -  [[#swiftx][SwiftX]]
   -  [[#nixbox][NixBox]]
@@ -36,7 +46,7 @@
     -  [[#system][System]]
     -  [[#syncthing][Syncthing]]
     -  [[#gnupg][Gnupg]]
-    -  [[#hyprland-1][Hyprland]]
+    -  [[#hyprland-2][Hyprland]]
     -  [[#flakes][Flakes]]
     -  [[#desktop][Desktop]]
     -  [[#audio][Audio]]
@@ -47,7 +57,7 @@
       -  [[#start-of-list-1][Start of List]]
       -  [[#more-developer-tools][More Developer Tools]]
       -  [[#flatpak-1][Flatpak]]
-      -  [[#end-of-list-1][End of List]]
+      -  [[#end-of-list-2][End of List]]
 
 *  Flake Setttings
 :PROPERTIES:
@@ -141,7 +151,76 @@ programs.direnv = {
   nix-direnv.enable = true;
 };
 #+end_src
+**  Config File linking
+***  Home File
+#+begin_src nix
+home.file = {
+#+end_src
+***  Manage System
+#+begin_src nix
+".local/bin/manage-system" ={
+  source = ../../bin/manage-system;
+  executable = true;
+};
+# Legacy Script that will be replaced eventually
+".local/bin/update-system" ={
+  source = ../../bin/update-system;
+  executable = true;
+};
+#+end_src
+***  Doom Emacs
+#+begin_src nix
+".config/doom" = {
+  source = ../doom;
+  recursive = true;
+};
+#+end_src
+***  Hyprland
+#+begin_src nix
+".config/hypr" = {
+  source = ../hypr;
+  recursive = true;
+};
+#+end_src
+***  Kitty
+#+begin_src nix
+".config/kitty" = {
+  source = ../kitty;
+  recursive = true;
+};
+#+end_src
+***  Waybar
+#+begin_src nix
+".config/waybar" = {
+  source = ../waybar;
+  recursive = true;
 
+};
+#+end_src
+***  Wofi
+#+begin_src nix
+".config/wofi" = {
+  source = ../wofi;
+  recursive = true;
+};
+#+end_src
+***  End of list
+#+begin_src nix
+};
+#+end_src
+
+**  Bash management
+#+begin_src nix
+programs.bash = {
+    enable = true;
+    initExtra = builtins.readFile ../home/.bashrc;
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
+
+#+end_src
 
 **  Packages
 ***  Start of List
@@ -207,7 +286,6 @@ fastfetch
   curl
   wget
   htop
-  stow
   fzf
   findutils.locate
   texlive.combined.scheme-medium

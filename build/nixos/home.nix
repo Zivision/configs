@@ -10,6 +10,55 @@ programs.direnv = {
   nix-direnv.enable = true;
 };
 
+home.file = {
+
+".local/bin/manage-system" ={
+  source = ../../bin/manage-system;
+  executable = true;
+};
+# Legacy Script that will be replaced eventually
+".local/bin/update-system" ={
+  source = ../../bin/update-system;
+  executable = true;
+};
+
+".config/doom" = {
+  source = ../doom;
+  recursive = true;
+};
+
+".config/hypr" = {
+  source = ../hypr;
+  recursive = true;
+};
+
+".config/kitty" = {
+  source = ../kitty;
+  recursive = true;
+};
+
+".config/waybar" = {
+  source = ../waybar;
+  recursive = true;
+
+};
+
+".config/wofi" = {
+  source = ../wofi;
+  recursive = true;
+};
+
+};
+
+programs.bash = {
+    enable = true;
+    initExtra = builtins.readFile ../home/.bashrc;
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
+
 home.packages = with pkgs; [
 
 (prismlauncher.override {

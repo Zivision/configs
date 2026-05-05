@@ -6,7 +6,6 @@ PROJECT_DIRECTORY = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 BUILD_DIRECTORY = PROJECT_DIRECTORY + "/build"
-print(BUILD_DIRECTORY)
 HOME_DIRECTORY = os.path.expanduser("~")
 
 
@@ -15,7 +14,6 @@ def run_dispatch(
 ) -> None:
     if arguments[key]:
         [_run_simple_script(command) for command in dispatch[key]]
-
 
 def _run_simple_script(command: list[str]) -> None:
     try:

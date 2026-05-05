@@ -3,26 +3,7 @@
 PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
 BUILD_DIR="${PROJECT_DIR}/build"
 
-echo "Build directories..."
-mkdir -p ~/.config/doom
-mkdir -p ~/.config/waybar
-mkdir -p ~/.config/wofi
-mkdir -p ~/.config/hypr
-mkdir -p ~/.config/kitty
-mkdir -p ~/.local/bin
-
 echo "Setting up symlinks"
 if [ ! -L "${BUILD_DIR}/nixos/hardware-configuration.nix" ]; then
     (cd "${BUILD_DIR}/nixos" && ln -sr /etc/nixos/hardware-configuration.nix)
 fi
-
-# Stow packages
-echo "Stowing packages"
-(cd "$BUILD_DIR" && stow doom -t ~/.config/doom)
-(cd "$BUILD_DIR" && stow home -t ~)
-(cd "$PROJECT_DIR" && stow bin -t ~/.local/bin)
-(cd "$BUILD_DIR" && stow waybar -t ~/.config/waybar)
-(cd "$BUILD_DIR" && stow hypr -t ~/.config/hypr)
-(cd "$BUILD_DIR" && stow wofi -t ~/.config/wofi)
-(cd "$BUILD_DIR" && stow kitty -t ~/.config/kitty)
-echo "Finished!"
