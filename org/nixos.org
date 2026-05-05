@@ -9,6 +9,8 @@
       -  [[#swiftx][Swiftx]]
       -  [[#nixbox][NixBox]]
     -  [[#dev-shell][Dev shell]]
+      -  [[#default][Default]]
+      -  [[#install][Install]]
   -  [[#end-of-flake][End of flake]]
 -  [[#home-settings][Home Settings]]
   -  [[#imports][Imports]]
@@ -142,8 +144,11 @@ in
 #+end_src
 ***  Dev shell
 #+begin_src nix
-
-devShells.${system}.default = legacyPkgs.mkShell {
+devShells.${system}= {
+#+end_src
+****  Default
+#+begin_src nix
+default = legacyPkgs.mkShell {
   packages = with legacyPkgs; [
     pyright
     black
@@ -154,9 +159,26 @@ devShells.${system}.default = legacyPkgs.mkShell {
     echo "Dev Envrionment Ready!"
   '';
 };
+
+
+#+end_src
+****  Install
+#+begin_src nix
+install = legacyPkgs.mkShell {
+  packages = with legacyPkgs; [
+    git
+    emacs
+    python3
+  ];
+  shellHook = ''
+    echo "Ready to build new nix machine!"
+  '';
+};
+
 #+end_src
 **  End of flake
 #+begin_src nix
+};
 };
 }
 

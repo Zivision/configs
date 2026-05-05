@@ -56,7 +56,9 @@ nixbox = nixpkgs.lib.nixosSystem {
   };
 };
 
-devShells.${system}.default = legacyPkgs.mkShell {
+devShells.${system}= {
+
+default = legacyPkgs.mkShell {
   packages = with legacyPkgs; [
     pyright
     black
@@ -68,5 +70,17 @@ devShells.${system}.default = legacyPkgs.mkShell {
   '';
 };
 
+install = legacyPkgs.mkShell {
+  packages = with legacyPkgs; [
+    git
+    emacs
+    python3
+  ];
+  shellHook = ''
+    echo "Ready to build new nix machine!"
+  '';
+};
+
+};
 };
 }
