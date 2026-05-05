@@ -7,3 +7,6 @@ tmp/
 *.egg
 htmlcov
 __pycache__/
+
+.envrc
+.direnv

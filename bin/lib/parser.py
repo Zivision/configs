@@ -21,6 +21,11 @@ def define_flags() -> argparse.ArgumentParser:
         help="Run 'rebuild' steps",
     )
     parser.add_argument(
+        "-t",
+        "--test",
+        help="run 'test' steps",
+    )
+    parser.add_argument(
         "-u",
         "--update",
         action="store_true",
@@ -75,10 +80,10 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
             [PROJECT_DIRECTORY + "/bin/tangle-docs"],
             [PROJECT_DIRECTORY + "/bin/configure-system"],
         ],
-        "update": [["update-system"]],
+        "update": [["nix", "flake", "update", "--flake", PROJECT_DIRECTORY]],
         "update_flatpak": [["flatpak", "update"]],
         "update_all": [
-            ["update-system"],
+            ["nix", "flake", "update", "--flake", PROJECT_DIRECTORY],
             ["flatpak", "update"],
         ],
         "rebuild": [
@@ -87,7 +92,17 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "nixos-rebuild",
                 "switch",
                 "--flake",
-                (BUILD_DIRECTORY + "/nixos#" + str(args["rebuild"])),
+                (PROJECT_DIRECTORY + "/#" + str(args["rebuild"])),
+                "--impure",
+            ]
+        ],
+        "test": [
+            [
+                "sudo",
+                "nixos-rebuild",
+                "test",
+                "--flake",
+                (PROJECT_DIRECTORY + "/#" + str(args["rebuild"])),
                 "--impure",
             ]
         ],
@@ -97,7 +112,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "nixos-rebuild",
                 "switch",
                 "--flake",
-                (BUILD_DIRECTORY + "/nixos#" + str(args["install"])),
+                (BUILD_DIRECTORY + "/nixos#" + str(args["test"])),
                 "--impure",
             ],
             # Clone DOOM Emacs repo and install it
@@ -127,3 +142,4 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
         run_dispatch(args, dispatch, key)
 
     run_dispatch(args, dispatch, "rebuild")
+    run_dispatch(args, dispatch, "test")

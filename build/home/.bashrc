@@ -70,6 +70,5 @@ export PATH="$HOME/.local/bin:$PATH"
 # Scripts for this project
 export PATH="$HOME/Workspace/Misc/configs/bin:$PATH"
 
-
 # Doom
 export PATH="$HOME/.config/emacs/bin:$PATH"

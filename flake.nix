@@ -1,0 +1,72 @@
+{
+  description = "My system flake";
+
+inputs = {
+  # NixOS official package source, using the nixos-25.11 branch here
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+  # Home manager
+  home-manager = {
+    url = "github:nix-community/home-manager/release-25.11";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+};
+
+outputs = { self, nixpkgs, home-manager, ... }@inputs:
+let
+  system = "x86_64-linux";
+  legacyPkgs = nixpkgs.legacyPackages.${system};
+in
+{
+
+nixosConfigurations = {
+
+swiftx = nixpkgs.lib.nixosSystem {
+  modules = [
+    # Import the previous configuration.nix we used,
+    # so the old configuration file still takes effect
+    ./build/nixos/configuration.nix
+    ./build/nixos/nvidia.nix
+    ./build/nixos/swiftx.nix
+
+    # Import home manager
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.primary = import ./build/nixos/home.nix;
+    }
+  ];
+};
+
+nixbox = nixpkgs.lib.nixosSystem {
+    modules = [
+      # Import the previous configuration.nix we used,
+      # so the old configuration file still takes effect
+      ./build/nixos/configuration.nix
+      ./build/nixos/nixbox.nix
+
+      # Import home manager
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.primary = import ./build/nixos/home.nix;
+      }
+    ];
+  };
+};
+
+devShells.${system}.default = legacyPkgs.mkShell {
+  packages = with legacyPkgs; [
+    pyright
+    black
+    python313Packages.pyflakes
+    python313Packages.isort
+  ];
+  shellHook = ''
+    echo "Dev Envrionment Ready!"
+  '';
+};
+
+};
+}

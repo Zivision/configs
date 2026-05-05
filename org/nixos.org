@@ -5,6 +5,11 @@
   -  [[#description][Description]]
   -  [[#inputs][Inputs]]
   -  [[#outputs][Outputs]]
+    -  [[#nixos-configurations][Nixos Configurations]]
+      -  [[#swiftx][Swiftx]]
+      -  [[#nixbox][NixBox]]
+    -  [[#dev-shell][Dev shell]]
+  -  [[#end-of-flake][End of flake]]
 -  [[#home-settings][Home Settings]]
   -  [[#imports][Imports]]
   -  [[#basic-settings][Basic Settings]]
@@ -29,8 +34,8 @@
     -  [[#terminal][Terminal]]
     -  [[#end-of-list-1][End of list]]
 -  [[#systems][Systems]]
-  -  [[#swiftx][SwiftX]]
-  -  [[#nixbox][NixBox]]
+  -  [[#swiftx-1][SwiftX]]
+  -  [[#nixbox-1][NixBox]]
 -  [[#configuration-settings][Configuration Settings]]
   -  [[#nvidia][Nvidia]]
     -  [[#lts-kernel][LTS Kernel]]
@@ -60,7 +65,7 @@
 
 *  Flake Setttings
 :PROPERTIES:
-:header-args: :tangle ../build/nixos/flake.nix
+:header-args: :tangle ../flake.nix
 :VISIBILITY: folded
 :END:
 **  Description
@@ -84,46 +89,77 @@ inputs = {
 
 **  Outputs
 #+begin_src nix
-outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+outputs = { self, nixpkgs, home-manager, ... }@inputs:
+let
+  system = "x86_64-linux";
+  legacyPkgs = nixpkgs.legacyPackages.${system};
+in
+{
+#+end_src
+***  Nixos Configurations
+#+begin_src nix
   nixosConfigurations = {
+#+end_src
+****  Swiftx
+#+begin_src nix
     swiftx = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
       modules = [
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
-        ./configuration.nix
-        ./nvidia.nix
-        ./swiftx.nix
+        ./build/nixos/configuration.nix
+        ./build/nixos/nvidia.nix
+        ./build/nixos/swiftx.nix
 
         # Import home manager
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.primary = import ./home.nix;
+          home-manager.users.primary = import ./build/nixos/home.nix;
         }
       ];
     };
+#+end_src
+****  NixBox
+#+begin_src nix
     nixbox = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
       modules = [
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
-        ./configuration.nix
-        ./nixbox.nix
+        ./build/nixos/configuration.nix
+        ./build/nixos/nixbox.nix
 
         # Import home manager
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.primary = import ./home.nix;
+          home-manager.users.primary = import ./build/nixos/home.nix;
         }
       ];
     };
   };
+#+end_src
+***  Dev shell
+#+begin_src nix
+
+devShells.${system}.default = legacyPkgs.mkShell {
+  packages = with legacyPkgs; [
+    pyright
+    black
+    python313Packages.pyflakes
+    python313Packages.isort
+  ];
+  shellHook = ''
+    echo "Dev Envrionment Ready!"
+  '';
+};
+#+end_src
+**  End of flake
+#+begin_src nix
 };
 }
+
 #+end_src
 
 *  Home Settings
