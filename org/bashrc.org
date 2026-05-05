@@ -95,12 +95,18 @@ alias nfzf='nvim $(fzf -m --preview="cat {}")'
 #+end_src
 
 **  Environment Variables
+This section is rather important check if it still applies if something break
+(AKA the scripts not showing up)
 #+begin_src bash
 export EDITOR='emacsclient -tty'
 export VISUAL='emacsclient -tty'
 
 # Add your custom PATH modifications below:
+# .local/bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# Scripts for this project
+export PATH="$HOME/Workspace/Misc/configs/bin:$PATH"
 
 # Doom
 export PATH="$HOME/.config/emacs/bin:$PATH"

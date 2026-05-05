@@ -64,7 +64,12 @@ export EDITOR='emacsclient -tty'
 export VISUAL='emacsclient -tty'
 
 # Add your custom PATH modifications below:
+# .local/bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# Scripts for this project
+export PATH="$HOME/Workspace/Misc/configs/bin:$PATH"
+
 
 # Doom
 export PATH="$HOME/.config/emacs/bin:$PATH"

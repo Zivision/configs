@@ -11,7 +11,6 @@
   -  [[#direnv][Direnv]]
   -  [[#config-file-linking][Config File linking]]
     -  [[#home-file][Home File]]
-    -  [[#manage-system][Manage System]]
     -  [[#doom-emacs][Doom Emacs]]
     -  [[#hyprland][Hyprland]]
     -  [[#kitty][Kitty]]
@@ -155,18 +154,6 @@ programs.direnv = {
 ***  Home File
 #+begin_src nix
 home.file = {
-#+end_src
-***  Manage System
-#+begin_src nix
-".local/bin/manage-system" ={
-  source = ../../bin/manage-system;
-  executable = true;
-};
-# Legacy Script that will be replaced eventually
-".local/bin/update-system" ={
-  source = ../../bin/update-system;
-  executable = true;
-};
 #+end_src
 ***  Doom Emacs
 #+begin_src nix

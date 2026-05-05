@@ -35,7 +35,6 @@
       -  [[#open-file][Open File]]
       -  [[#emms][EMMS]]
       -  [[#elfeed][Elfeed]]
-      -  [[#run-apps][Run apps]]
       -  [[#window-sizing][Window sizing]]
     -  [[#fonts][Fonts]]
       -  [[#change-font-based-on-mode][Change Font Based on Mode]]
@@ -59,7 +58,6 @@
       -  [[#python][Python]]
       -  [[#javascripttypescript][Javascript/Typescript]]
       -  [[#go][Go]]
-    -  [[#elpher][Elpher]]
     -  [[#org][Org]]
       -  [[#org-agenda][Org Agenda]]
       -  [[#org-modern][Org Modern]]
@@ -73,9 +71,6 @@
 -  [[#packages-settings][Packages Settings]]
   -  [[#basic-usage-1][Basic usage]]
   -  [[#external-packages][External Packages]]
-    -  [[#utils][Utils]]
-      -  [[#elpher-1][Elpher]]
-      -  [[#xdg-launcher-app-launcher][Xdg-launcher (App Launcher)]]
     -  [[#org-packages][Org Packages]]
       -  [[#org-modern-1][Org Modern]]
       -  [[#org-appear-1][Org appear]]
@@ -452,14 +447,6 @@ This is where custom Emacs functions and configuration for packages reside.
  :desc "Unjam elfeed" "u" #'elfeed-unjam
  :desc "Update elfeed" "U" #'elfeed-update)
 #+end_src
-****  Run apps
-#+begin_src elisp
-(map!
- :prefix "C-c r"
- :desc "Run application" "r" #'xdg-launcher-run-app)
-
-#+end_src
-
 ****  Window sizing
 #+begin_src emacs-lisp
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
@@ -664,12 +651,6 @@ Need to install python debugger (look at install.sh)
 #+begin_src emacs-lisp
 (require 'dap-dlv-go))
 #+end_src
-***  Elpher
-#+begin_src emacs-lisp
-(map! :after elpher
-      :map elpher-mode-map
-      "-" #'elpher-back)
-#+end_src
 
 ***  Org
 #+begin_verse
@@ -781,17 +762,6 @@ Packages outside of what's available for Doom Emacs reside here.
 NOTE: for more info on packages look at the documentation (SPC h d h) or more specifically
 C-h f package\!
 **  External Packages
-***  Utils
-****  Elpher
-#+begin_src emacs-lisp
-(package! elpher)
-#+end_src
-****  Xdg-launcher (App Launcher)
-#+begin_src elisp
-(package! xdg-launcher
-  :recipe '(:host github :repo "emacs-exwm/xdg-launcher")
-  :pin "7c81fd506f7a97e4f69eca90794d807ab84aec3f")
-#+end_src
 ***  Org Packages
 ****  Org Modern
 #+begin_src emacs-lisp

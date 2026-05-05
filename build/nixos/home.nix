@@ -12,16 +12,6 @@ programs.direnv = {
 
 home.file = {
 
-".local/bin/manage-system" ={
-  source = ../../bin/manage-system;
-  executable = true;
-};
-# Legacy Script that will be replaced eventually
-".local/bin/update-system" ={
-  source = ../../bin/update-system;
-  executable = true;
-};
-
 ".config/doom" = {
   source = ../doom;
   recursive = true;
@@ -110,7 +100,6 @@ fastfetch
   curl
   wget
   htop
-  stow
   fzf
   findutils.locate
   texlive.combined.scheme-medium

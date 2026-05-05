@@ -63,10 +63,6 @@
  :desc "Unjam elfeed" "u" #'elfeed-unjam
  :desc "Update elfeed" "U" #'elfeed-update)
 
-(map!
- :prefix "C-c r"
- :desc "Run application" "r" #'xdg-launcher-run-app)
-
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
 (global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)
@@ -226,10 +222,6 @@
 (dap-node-setup)
 
 (require 'dap-dlv-go))
-
-(map! :after elpher
-      :map elpher-mode-map
-      "-" #'elpher-back)
 
 (after! org
   (setq org-agenda-files '("~/Documents/org/agenda/agenda.org"))
