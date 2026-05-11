@@ -4,6 +4,9 @@
     (file-name-directory
      (file-truename (or load-file-name buffer-file-name))))))
 
+(after! auth-source
+  (setq auth-sources '("~/Private/.authinfo.gpg")))
+
 (defun hypr/launch-vterm
     ()
   "Open a new frame with a vterm buffer."

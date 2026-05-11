@@ -371,6 +371,9 @@ This is where custom Emacs functions and configuration for packages reside.
    (directory-file-name
     (file-name-directory
      (file-truename (or load-file-name buffer-file-name))))))
+
+(after! auth-source
+  (setq auth-sources '("~/Private/.authinfo.gpg")))
 #+end_src
 **  Custom Functions
 #+begin_src elisp
