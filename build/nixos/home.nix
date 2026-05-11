@@ -38,6 +38,11 @@ home.file = {
   recursive = true;
 };
 
+".config/kwalletrc".text = ''
+  [Wallet]
+  Enabled=false
+'';
+
 };
 
 programs.bash = {
@@ -73,13 +78,13 @@ brave
   gnumake
   ripgrep
   fd
-  emacs-pgtk
   cmake
   libtool
   ispell
   # emacs itself
-  emacs-pgtk
-
+  ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [
+    epkgs.mu4e
+  ]))
   # Org mode
   graphviz
 
@@ -112,6 +117,10 @@ noto-fonts-cjk-sans
 noto-fonts-cjk-serif
 
 kitty
+
+# Packages for emacs mu4e
+mu
+isync
 
 ];
  }

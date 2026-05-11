@@ -58,6 +58,7 @@
       -  [[#python][Python]]
       -  [[#javascripttypescript][Javascript/Typescript]]
       -  [[#go][Go]]
+    -  [[#mu4e][Mu4e]]
     -  [[#org][Org]]
       -  [[#org-agenda][Org Agenda]]
       -  [[#org-modern][Org Modern]]
@@ -320,7 +321,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
 **  Email
 #+begin_src emacs-lisp
        :email
-       ;;(mu4e +org +gmail)
+       (mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 #+end_src
@@ -650,6 +651,24 @@ Need to install python debugger (look at install.sh)
 ****  Go
 #+begin_src emacs-lisp
 (require 'dap-dlv-go))
+#+end_src
+***  Mu4e
+#+begin_src elisp
+(set-email-account! "gmail"
+  '((mu4e-sent-folder       . "/gmail/Sent")
+    (mu4e-drafts-folder     . "/gmail/Drafts")
+    (mu4e-trash-folder      . "/gmail/Trash")
+    (mu4e-refile-folder     . "/gmail/All Mail")
+    (smtpmail-smtp-user     . (plist-get (car (auth-source-search :host "imap.gmail.com")) :user))
+    (user-mail-address      . (plist-get (car (auth-source-search :host "imap.gmail.com")) :user))
+    (user-full-name         . (plist-get (car (auth-source-search :host "pmail")) :user)))
+  t)
+
+
+(after! mu4e
+  (setq mu4e-get-mail-command "mbsync -a"
+        mu4e-update-interval  300))  ; sync every 5 minutes
+
 #+end_src
 
 ***  Org

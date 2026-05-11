@@ -9,4 +9,4 @@ htmlcov
 __pycache__/
 
 .envrc
-.direnv
+.direnv/

@@ -23,6 +23,7 @@
     -  [[#kitty][Kitty]]
     -  [[#waybar][Waybar]]
     -  [[#wofi][Wofi]]
+    -  [[#kde-wallet][KDE Wallet]]
     -  [[#end-of-list][End of list]]
   -  [[#bash-management][Bash management]]
   -  [[#packages][Packages]]
@@ -34,6 +35,7 @@
     -  [[#other-packages][Other Packages]]
     -  [[#fonts][Fonts]]
     -  [[#terminal][Terminal]]
+    -  [[#email][Email]]
     -  [[#end-of-list-1][End of list]]
 -  [[#systems][Systems]]
   -  [[#swiftx-1][SwiftX]]
@@ -249,6 +251,13 @@ home.file = {
   recursive = true;
 };
 #+end_src
+***  KDE Wallet
+#+begin_src nix
+".config/kwalletrc".text = ''
+  [Wallet]
+  Enabled=false
+'';
+#+end_src
 ***  End of list
 #+begin_src nix
 };
@@ -266,6 +275,7 @@ programs.bash = {
   };
 
 #+end_src
+
 
 **  Packages
 ***  Start of List
@@ -302,13 +312,13 @@ brave
   gnumake
   ripgrep
   fd
-  emacs-pgtk
   cmake
   libtool
   ispell
   # emacs itself
-  emacs-pgtk
-
+  ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [
+    epkgs.mu4e
+  ]))
   # Org mode
   graphviz
 
@@ -349,6 +359,12 @@ noto-fonts-cjk-serif
 #+begin_src nix
   kitty
 #+end_src
+***  Email
+#+begin_src nix
+# Packages for emacs mu4e
+mu
+isync
+#+end_src
 ***  End of list
 #+begin_src nix
 ];
@@ -384,6 +400,16 @@ One of my laptops
   };
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
+
+  environment.variables = {
+  LIBVA_DRIVER_NAME = "nvidia";
+  GBM_BACKEND = "nvidia-drm";
+  __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  NVD_BACKEND = "direct";
+  # For Wayland
+  EGL_PLATFORM = "wayland";
+  NIXOS_OZONE_WL = "1";
+};
 
 }
 
