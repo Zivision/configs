@@ -215,13 +215,6 @@ programs.direnv = {
 #+begin_src nix
 home.file = {
 #+end_src
-***  Doom Emacs
-#+begin_src nix
-".config/doom" = {
-  source = ../doom;
-  recursive = true;
-};
-#+end_src
 ***  Hyprland
 #+begin_src nix
 ".config/hypr" = {

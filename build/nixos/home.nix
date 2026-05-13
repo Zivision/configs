@@ -12,11 +12,6 @@ programs.direnv = {
 
 home.file = {
 
-".config/doom" = {
-  source = ../doom;
-  recursive = true;
-};
-
 ".config/hypr" = {
   source = ../hypr;
   recursive = true;

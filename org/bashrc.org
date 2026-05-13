@@ -105,9 +105,13 @@ export VISUAL='emacsclient -tty'
 # .local/bin
 export PATH="$HOME/.local/bin:$PATH"
 
-# Scripts for this project
-export PATH="$HOME/Workspace/Misc/configs/bin:$PATH"
+# Configs directory
+CONFIGS="$HOME/Workspace/Misc/configs/"
 
-# Doom
+# Scripts for this project
+export PATH="$CONFIGS/bin:$PATH"
+
+# Doom and Doom dir
 export PATH="$HOME/.config/emacs/bin:$PATH"
+export DOOMDIR="$CONFIGS/build/doom"
 #+end_src
