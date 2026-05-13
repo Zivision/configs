@@ -1,0 +1,29 @@
+#!/usr/bin/env -S emacs --script
+(require 'subr-x)
+(require 'ob-tangle)
+
+(let* ((project-dir
+        (thread-first
+          ;; Get project directory on machine
+          (or load-file-name
+              buffer-file-name)
+          (file-name-directory)
+          (directory-file-name)
+          (file-name-directory)
+          (file-truename)))
+       ;; Library directory
+       (lib-dir (expand-file-name "bin/lib/elisp/" project-dir ))
+
+       ;; Build directory
+       (build-dir (expand-file-name  "build/" project-dir)))
+
+  ;; Check symbolic link of hardware configuration
+  (unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))
+    (let ((default-directory (expand-file-name "nixos" build-dir)))
+      (message "Creating link")
+      (make-symbolic-link "/etc/nixos/hardware-configuration.nix"
+                          (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
+  ;; Map over all org files
+  (mapc
+   #'org-babel-tangle-file
+   (directory-files-recursively (expand-file-name  "org/" project-dir ) "\\.org$")))

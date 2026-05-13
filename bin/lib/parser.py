@@ -77,8 +77,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
     # Commands to dispatch
     dispatch = {
         "configure": [
-            [PROJECT_DIRECTORY + "/bin/tangle-docs"],
-            [PROJECT_DIRECTORY + "/bin/configure-system"],
+            [PROJECT_DIRECTORY + "/bin/configure"],
         ],
         "update": [["nix", "flake", "update", "--flake", PROJECT_DIRECTORY]],
         "update_flatpak": [["flatpak", "update"]],

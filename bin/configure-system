@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-PROJECT_DIR=$(dirname "$(dirname "$(readlink -f "$0")")")
-BUILD_DIR="${PROJECT_DIR}/build"
-
-echo "Setting up symlinks"
-if [ ! -L "${BUILD_DIR}/nixos/hardware-configuration.nix" ]; then
-    (cd "${BUILD_DIR}/nixos" && ln -sr /etc/nixos/hardware-configuration.nix)
-fi
