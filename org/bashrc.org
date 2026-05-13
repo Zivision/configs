@@ -106,7 +106,7 @@ export VISUAL='emacsclient -tty'
 export PATH="$HOME/.local/bin:$PATH"
 
 # Configs directory
-CONFIGS="$HOME/Workspace/Misc/configs/"
+CONFIGS="$HOME/Workspace/Misc/configs"
 
 # Scripts for this project
 export PATH="$CONFIGS/bin:$PATH"
