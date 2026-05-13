@@ -1,8 +1,5 @@
-(defvar project-root
-  (file-name-directory
-   (directory-file-name
-    (file-name-directory
-     (file-truename (or load-file-name buffer-file-name))))))
+(after! doom
+  (add-to-list 'load-path (expand-file-name "elisp" "~/Workspace/Misc/configs/build/doom")))
 
 (after! auth-source
   (setq auth-sources '("~/Private/.authinfo.gpg")))
