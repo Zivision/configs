@@ -25,14 +25,13 @@
     ()
   "Tangle all org documents in configs"
   (let* ((project-dir
-          (thread-first
-            ;; Get project directory on machine
-            (or load-file-name
-                buffer-file-name)
-            (file-name-directory)
-            (directory-file-name)
-            (file-name-directory)
-            (file-truename)))
+          (thread-first (getenv "DOOMDIR")
+                        (expand-file-name)
+                        (file-name-directory)
+                        (directory-file-name)
+                        (file-name-directory)))
+
+
          ;; Library directory (not needed for now)
          ;;(lib-dir (expand-file-name "elisp/" project-dir ))
 
