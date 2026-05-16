@@ -27,6 +27,7 @@
     -  [[#window-resize][Window Resize]]
     -  [[#special-keys][Special Keys]]
     -  [[#windows-and-workspaces][Windows and Workspaces]]
+-  [[#autostart-1][Autostart]]
 
 *  Hyprland (hypr/ Directory)
 :PROPERTIES:
@@ -57,9 +58,7 @@ $emacsMenu = emacsclient -c -F '((name . "emacs-run-app") (minibuffer . only))' 
 #+end_src
 **  Autostart
 #+begin_src conf
-exec-once = waybar
-exec-once = waypaper --restore
-exec-once = emacs --daemon
+exec-once = ~/.config/hypr/autostart
 #+end_src
 **  Environment Variables
 #+begin_src conf
@@ -320,4 +319,19 @@ windowrulev2 = float, title:emacs-run-app
 windowrulev2 = size 600 250, title:emacs-run-app
 windowrulev2 = center, title:emacs-run-app
 
+#+end_src
+
+*  Autostart
+:PROPERTIES:
+:header-args: :tangle ../build/hypr/autostart
+:VISIBILITY: folded
+:END:
+#+begin_src bash
+#!/usr/bin/env bash
+
+export DOOMDIR="$HOME/Workspace/Misc/configs/build/doom"
+
+waybar &
+waypaper --restore
+emacs --daemon
 #+end_src
