@@ -2,11 +2,11 @@
   description = "My system flake";
 
 inputs = {
-  # NixOS official package source, using the nixos-25.11 branch here
-  nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+  # NixOS official package source, using the nixos-26.05 branch here
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
   # Home manager
   home-manager = {
-    url = "github:nix-community/home-manager/release-25.11";
+    url = "github:nix-community/home-manager/release-26.05";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 };
