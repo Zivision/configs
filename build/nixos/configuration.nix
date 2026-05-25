@@ -162,6 +162,14 @@ users.users.primary = {
 
 virtualisation.docker.enable = true;
 
+programs.virt-manager.enable = true;
+
+users.groups.libvirtd.members = ["primary"];
+
+virtualisation.libvirtd.enable = true;
+
+virtualisation.spiceUSBRedirection.enable = true;
+
 services.flatpak.enable = true;
 
 environment.systemPackages = with pkgs; [
