@@ -612,7 +612,12 @@ programs.firefox.enable = true;
 
 nixpkgs.config.allowUnfree = true;
 
-networking.firewall.enable = true;
+# Firewall
+networking.firewall = {
+  enable = true;
+  allowedTCPPorts = [ 5000 25565 ];
+  allowedUDPPorts = [ 5000 25565 ];
+};
 
 # This value determines the NixOS release from which the default
 # settings for stateful data, like file locations and database versions
