@@ -2,12 +2,13 @@
 
 *  Table of Contents :TOC_4:
 - [[#sway][Sway]]
-  - [[#variables][Variables]]
+  -  [[#variables][Variables]]
   -  [[#inputs][Inputs]]
+  -  [[#monitors][Monitors]]
   -  [[#auto-start][Auto Start]]
     -  [[#sway-configuration][Sway Configuration]]
     -  [[#script][Script]]
-  - [[#key-bindings][Key Bindings]]
+  -  [[#key-bindings][Key Bindings]]
     - [[#basics][Basics]]
     - [[#movement][Movement]]
     - [[#workspaces][Workspaces]]
@@ -27,7 +28,7 @@
 :VISIBILITY: folded
 :END:
 
-** Variables
+**  Variables
 #+begin_src conf
 ### Variables
 #
@@ -55,6 +56,12 @@ natural_scroll enabled
 middle_emulation enabled
 }
 #+end_src
+**  Monitors
+#+begin_src conf
+output DP-2 resolution 1440x900 position -900,0 transform 270
+output HDMI-A-1 resolution 1920x1080 position 0,0
+
+#+end_src
 **  Auto Start
 ***  Sway Configuration
 #+begin_src conf
@@ -76,7 +83,7 @@ emacs --daemon
 #+end_src
 
 
-** Key Bindings
+**  Key Bindings
 *** Basics
 #+begin_src conf
 #

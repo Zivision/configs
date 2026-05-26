@@ -22,6 +22,9 @@ natural_scroll enabled
 middle_emulation enabled
 }
 
+output DP-2 resolution 1440x900 position -900,0 transform 270
+output HDMI-A-1 resolution 1920x1080 position 0,0
+
 exec ~/.config/sway/autostart
 
 #
