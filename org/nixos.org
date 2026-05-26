@@ -22,6 +22,7 @@
     -  [[#kitty][Kitty]]
     -  [[#waybar][Waybar]]
     -  [[#wofi][Wofi]]
+    -  [[#sway][sway]]
     -  [[#kde-wallet][KDE Wallet]]
     -  [[#end-of-list][End of list]]
   -  [[#bash-management][Bash management]]
@@ -55,7 +56,7 @@
     -  [[#syncthing][Syncthing]]
     -  [[#gnupg][Gnupg]]
     -  [[#hyprland-2][Hyprland]]
-    -  [[#sway][Sway]]
+    -  [[#sway-1][Sway]]
     -  [[#polkit][Polkit]]
     -  [[#flakes][Flakes]]
     -  [[#desktop][Desktop]]
@@ -247,6 +248,13 @@ home.file = {
   recursive = true;
 };
 #+end_src
+***  sway
+#+begin_src nix
+".config/sway" = {
+  source = ../sway;
+  recursive = true;
+};
+#+end_src
 ***  KDE Wallet
 #+begin_src nix
 ".config/kwalletrc".text = ''
@@ -299,6 +307,7 @@ home.packages = with pkgs; [
 #+begin_src nix
    wl-clipboard
    mako
+   swaybg
 #+end_src
 ***  Browser
 #+begin_src nix

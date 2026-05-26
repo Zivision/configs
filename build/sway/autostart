@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export DOOMDIR="$HOME/Workspace/Misc/configs/build/doom"
+
+waypaper --restore
+emacs --daemon

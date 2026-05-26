@@ -33,6 +33,11 @@ home.file = {
   recursive = true;
 };
 
+".config/sway" = {
+  source = ../sway;
+  recursive = true;
+};
+
 ".config/kwalletrc".text = ''
   [Wallet]
   Enabled=false
@@ -66,6 +71,7 @@ brightnessctl
 
 wl-clipboard
 mako
+swaybg
 
 # Start of the home packages array
 brave
