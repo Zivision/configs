@@ -64,6 +64,9 @@ waybar
 waypaper
 brightnessctl
 
+wl-clipboard
+mako
+
 # Start of the home packages array
 brave
 

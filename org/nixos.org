@@ -29,6 +29,7 @@
     -  [[#start-of-list][Start of List]]
     -  [[#games][Games]]
     -  [[#hyprland-1][Hyprland]]
+    -  [[#sway-pkgs][Sway (PKGS)]]
     -  [[#browser][Browser]]
     -  [[#text-editors][Text editors]]
     -  [[#other-packages][Other Packages]]
@@ -54,6 +55,8 @@
     -  [[#syncthing][Syncthing]]
     -  [[#gnupg][Gnupg]]
     -  [[#hyprland-2][Hyprland]]
+    -  [[#sway][Sway]]
+    -  [[#polkit][Polkit]]
     -  [[#flakes][Flakes]]
     -  [[#desktop][Desktop]]
     -  [[#audio][Audio]]
@@ -291,6 +294,11 @@ home.packages = with pkgs; [
 
   waypaper
   brightnessctl
+#+end_src
+***  Sway (PKGS)
+#+begin_src nix
+   wl-clipboard
+   mako
 #+end_src
 ***  Browser
 #+begin_src nix
@@ -650,6 +658,18 @@ programs.hyprland.enable = true;
 
 # Optional, hint Electron apps to use Wayland:
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
+#+end_src
+***  Sway
+#+begin_src nix
+programs.sway = {
+  enable = true;
+  wrapperFeatures.gtk = true;
+};
+
+#+end_src
+***  Polkit
+#+begin_src nix
+security.polkit.enable = true;
 #+end_src
 ***  Flakes
 #+begin_src nix

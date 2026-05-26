@@ -119,6 +119,13 @@ programs.hyprland.enable = true;
 # Optional, hint Electron apps to use Wayland:
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+programs.sway = {
+  enable = true;
+  wrapperFeatures.gtk = true;
+};
+
+security.polkit.enable = true;
+
 # Enable flakes
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
