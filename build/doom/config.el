@@ -227,7 +227,7 @@
   '((mu4e-sent-folder       . "/gmail/Sent")
     (mu4e-drafts-folder     . "/gmail/Drafts")
     (mu4e-trash-folder      . "/gmail/Trash")
-    (mu4e-refile-folder     . "/gmail/All Mail")
+    (mu4e-refile-folder     . "/gmail/All Mail"))
   t)
 
 
