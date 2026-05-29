@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bashrc</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="../index.html">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Bashrc</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb98b513">Bashrc</a>
+<ul>
+<li><a href="#orgee946d8">Basic Settings</a></li>
+<li><a href="#orge401e57">History Configuration</a></li>
+<li><a href="#org3b28452">Fzf</a></li>
+<li><a href="#orgc214ade">Shell Options</a></li>
+<li><a href="#org4f0307f">Direnv</a></li>
+<li><a href="#org30818fd">Prompt</a></li>
+<li><a href="#org09e4043">Aliases</a></li>
+<li><a href="#orge196b37">Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This is the bashrc I use for the system
+</p>
+<div id="outline-container-orgb98b513" class="outline-2">
+<h2 id="orgb98b513">Bashrc</h2>
+<div class="outline-text-2" id="text-orgb98b513">
+</div>
+<div id="outline-container-orgee946d8" class="outline-3">
+<h3 id="orgee946d8">Basic Settings</h3>
+<div class="outline-text-3" id="text-orgee946d8">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/usr/bin/</span><span style="font-weight: bold;">env</span><span style="font-weight: bold; font-style: italic;"> bash
+</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">If not running interactively, don't do anything
+</span><span style="font-weight: bold;">case</span> $<span style="font-weight: bold; font-style: italic;">-</span><span style="font-weight: bold;"> in</span>
+    *i*) ;;
+      *) <span style="font-weight: bold;">return</span>;;
+<span style="font-weight: bold;">esac</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge401e57" class="outline-3">
+<h3 id="orge401e57">History Configuration</h3>
+<div class="outline-text-3" id="text-orge401e57">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">HISTSIZE</span>=10000                <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Commands to keep in memory
+</span><span style="font-weight: bold; font-style: italic;">HISTFILESIZE</span>=20000            <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Commands to keep in history file
+</span><span style="font-weight: bold; font-style: italic;">HISTCONTROL</span>=ignoreboth        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Ignore duplicates and commands starting with space
+</span><span style="font-weight: bold;">shopt</span> -s histappend           <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Append to history file, don't overwrite</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3b28452" class="outline-3">
+<h3 id="org3b28452">Fzf</h3>
+<div class="outline-text-3" id="text-org3b28452">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Set up fzf key bindings and fuzzy completion
+</span><span style="font-weight: bold;">eval</span> <span style="font-style: italic;">"$(</span><span style="font-weight: bold;">fzf --bash</span><span style="font-style: italic;">)"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc214ade" class="outline-3">
+<h3 id="orgc214ade">Shell Options</h3>
+<div class="outline-text-3" id="text-orgc214ade">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">shopt</span> -s checkwinsize         <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Update LINES and COLUMNS after each command
+</span><span style="font-weight: bold;">shopt</span> -s globstar 2&gt;/dev/null <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Enable ** for recursive glob matching
+</span><span style="font-weight: bold;">shopt</span> -s cdspell              <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Autocorrect minor spelling errors in cd</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4f0307f" class="outline-3">
+<h3 id="org4f0307f">Direnv</h3>
+<div class="outline-text-3" id="text-org4f0307f">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">eval</span> <span style="font-style: italic;">"$(</span><span style="font-weight: bold;">direnv hook bash</span><span style="font-style: italic;">)"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org30818fd" class="outline-3">
+<h3 id="org30818fd">Prompt</h3>
+<div class="outline-text-3" id="text-org30818fd">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Function to get current git branch
+</span><span style="font-weight: bold;">git_branch</span>() {
+    <span style="font-weight: bold;">local</span> <span style="font-weight: bold; font-style: italic;">branch</span>=$(<span style="font-weight: bold;">git branch 2&gt;/dev/null | grep '^*' | colrm 1 2</span>)
+    <span style="font-weight: bold;">if</span> [ -n <span style="font-style: italic;">"$branch"</span> ]; <span style="font-weight: bold;">then</span>
+        <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"($branch) "</span>
+    <span style="font-weight: bold;">fi</span>
+}
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Prompt
+</span>
+<span style="font-weight: bold; font-style: italic;">PS1</span>=<span style="font-style: italic;">'\[\033[01;32m\][\u@\h]\[\033[00m\] &gt;&gt;&gt; \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(</span><span style="font-weight: bold;">git_branch</span><span style="font-style: italic;">)\[\033[00m\]\n\[\033[01;90m\]\A\[\033[00m\] $ '</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org09e4043" class="outline-3">
+<h3 id="org09e4043">Aliases</h3>
+<div class="outline-text-3" id="text-org09e4043">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Listing
+</span><span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">ls</span>=<span style="font-style: italic;">'ls --color=auto'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">ll</span>=<span style="font-style: italic;">'ls -lh'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">la</span>=<span style="font-style: italic;">'ls -lAh'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">l</span>=<span style="font-style: italic;">'ls -CF'</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Safety nets
+</span><span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">rm</span>=<span style="font-style: italic;">'rm -i'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">cp</span>=<span style="font-style: italic;">'cp -i'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">mv</span>=<span style="font-style: italic;">'mv -i'</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Shortcuts
+</span><span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">grep</span>=<span style="font-style: italic;">'grep --color=auto'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">df</span>=<span style="font-style: italic;">'df -h'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">du</span>=<span style="font-style: italic;">'du -h'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">free</span>=<span style="font-style: italic;">'free -h'</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Git shortcuts (if you use git)
+</span><span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">gs</span>=<span style="font-style: italic;">'git status'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">ga</span>=<span style="font-style: italic;">'git add'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">gc</span>=<span style="font-style: italic;">'git commit'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">gp</span>=<span style="font-style: italic;">'git push'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">gl</span>=<span style="font-style: italic;">'git log --oneline --graph --decorate'</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Fzf
+</span><span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">efzf</span>=<span style="font-style: italic;">'emacsclient -tty $(</span><span style="font-weight: bold;">fzf -m --preview="cat {}"</span><span style="font-style: italic;">)'</span>
+<span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">nfzf</span>=<span style="font-style: italic;">'nvim $(</span><span style="font-weight: bold;">fzf -m --preview="cat {}"</span><span style="font-style: italic;">)'</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge196b37" class="outline-3">
+<h3 id="orge196b37">Environment Variables</h3>
+<div class="outline-text-3" id="text-orge196b37">
+<p>
+This section is rather important check if it still applies if something break
+(AKA the scripts not showing up)
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">export</span> <span style="font-weight: bold; font-style: italic;">EDITOR</span>=<span style="font-style: italic;">'emacsclient -tty'</span>
+<span style="font-weight: bold;">export</span> <span style="font-weight: bold; font-style: italic;">VISUAL</span>=<span style="font-style: italic;">'emacsclient -tty'</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Add your custom PATH modifications below:
+</span><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">.local/bin
+</span><span style="font-weight: bold;">export</span> <span style="font-weight: bold; font-style: italic;">PATH</span>=<span style="font-style: italic;">"$HOME/.local/bin:$PATH"</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Configs directory
+</span><span style="font-weight: bold; font-style: italic;">CONFIGS</span>=<span style="font-style: italic;">"$HOME/Workspace/Misc/configs"</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Scripts for this project
+</span><span style="font-weight: bold;">export</span> <span style="font-weight: bold; font-style: italic;">PATH</span>=<span style="font-style: italic;">"$CONFIGS/bin:$PATH"</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Doom and Doom dir
+</span><span style="font-weight: bold;">export</span> <span style="font-weight: bold; font-style: italic;">PATH</span>=<span style="font-style: italic;">"$HOME/.config/emacs/bin:$PATH"</span>
+<span style="font-weight: bold;">export</span> <span style="font-weight: bold; font-style: italic;">DOOMDIR</span>=<span style="font-style: italic;">"$CONFIGS/build/doom"</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.7.11)</p>
+</div>
+</body>
+</html>

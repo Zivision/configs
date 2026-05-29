@@ -1,7 +1,7 @@
 #+title: Bashrc
 
 This is the bashrc I use for the system
-*  Table of Contents :TOC_4:
+*  Table of Contents :TOC_4:noexport:
 -  [[#bashrc][Bashrc]]
   -  [[#basic-settings][Basic Settings]]
   -  [[#history-configuration][History Configuration]]

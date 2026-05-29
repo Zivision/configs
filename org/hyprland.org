@@ -1,6 +1,6 @@
 #+title: Hyprland
 
-*  Table of Contents :TOC_4:
+*  Table of Contents :TOC_4:noexport:
 -  [[#hyprland-hypr-directory][Hyprland (hypr/ Directory)]]
   -  [[#monitors][Monitors]]
   -  [[#programs][Programs]]

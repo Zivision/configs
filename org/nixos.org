@@ -1,6 +1,6 @@
 #+title: Nixos Configuration
 
-*  Table of Contents :TOC_4:
+*  Table of Contents :TOC_4:noexport:
 -  [[#flake-setttings][Flake Setttings]]
   -  [[#description][Description]]
   -  [[#inputs][Inputs]]

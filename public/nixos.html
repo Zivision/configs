@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nixos Configuration</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="../index.html">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Nixos Configuration</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgbe67079">Flake Setttings</a>
+<ul>
+<li><a href="#orge8d2400">Description</a></li>
+<li><a href="#org0797082">Inputs</a></li>
+<li><a href="#orgeadf24b">Outputs</a>
+<ul>
+<li><a href="#org4b4b1d5">Nixos Configurations</a></li>
+<li><a href="#org66a2697">Dev shell</a></li>
+</ul>
+</li>
+<li><a href="#org75f7333">End of flake</a></li>
+</ul>
+</li>
+<li><a href="#orgd94a034">Home Settings</a>
+<ul>
+<li><a href="#org961a19c">Imports</a></li>
+<li><a href="#orga136432">Basic Settings</a></li>
+<li><a href="#orgbb8b573">Direnv</a></li>
+<li><a href="#orgc072366">Config File linking</a>
+<ul>
+<li><a href="#org3630f93">Home File</a></li>
+<li><a href="#org18a41c6">Hyprland</a></li>
+<li><a href="#orgcf1d633">Kitty</a></li>
+<li><a href="#org31af3ab">Waybar</a></li>
+<li><a href="#org932bd41">Wofi</a></li>
+<li><a href="#org36c742a">sway</a></li>
+<li><a href="#org17454ea">KDE Wallet</a></li>
+<li><a href="#org12cccb8">End of list</a></li>
+</ul>
+</li>
+<li><a href="#orga106819">Bash management</a></li>
+<li><a href="#org8cc7cba">Packages</a>
+<ul>
+<li><a href="#orgfc78dfe">Start of List</a></li>
+<li><a href="#orgdf8bb47">Games</a></li>
+<li><a href="#orgeaf080a">Hyprland</a></li>
+<li><a href="#orgb90473c">Sway (PKGS)</a></li>
+<li><a href="#org03082d6">Browser</a></li>
+<li><a href="#orgb2ab65d">Text editors</a></li>
+<li><a href="#orgf877728">Other Packages</a></li>
+<li><a href="#orgcdea79d">Fonts</a></li>
+<li><a href="#org63ecf62">Terminal</a></li>
+<li><a href="#orgb021f46">Email</a></li>
+<li><a href="#orge52711a">End of list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8da9e27">Systems</a>
+<ul>
+<li><a href="#orgae1a1b4">SwiftX</a></li>
+<li><a href="#orgcadadbd">NixBox</a></li>
+</ul>
+</li>
+<li><a href="#org93e3299">Configuration Settings</a>
+<ul>
+<li><a href="#org449a0b6">Nvidia</a>
+<ul>
+<li><a href="#org5817107">LTS Kernel</a></li>
+<li><a href="#orgb0e238c">Open GL</a></li>
+<li><a href="#org595545c">Drivers and Hardware Settings</a></li>
+</ul>
+</li>
+<li><a href="#org9e9a2cc">Configuration</a>
+<ul>
+<li><a href="#orga00ea72">Imports</a></li>
+<li><a href="#org24a70ed">Bootloader</a></li>
+<li><a href="#org7b042ff">App armor</a></li>
+<li><a href="#org6b2a563">Nix (Packages manager)</a></li>
+<li><a href="#orge7c9369">Steam</a></li>
+<li><a href="#org2919d17">System</a></li>
+<li><a href="#org0eb9f2d">Syncthing</a></li>
+<li><a href="#org2b08fd2">Gnupg</a></li>
+<li><a href="#orgf38767e">Hyprland</a></li>
+<li><a href="#org437a79f">Sway</a></li>
+<li><a href="#org3f9dd0c">Polkit</a></li>
+<li><a href="#orgabcd4e8">Flakes</a></li>
+<li><a href="#orgbdbf635">Desktop</a></li>
+<li><a href="#orgc586a5d">Audio</a></li>
+<li><a href="#orgc99bd5e">Users</a></li>
+<li><a href="#org2e3f48b">Docker</a></li>
+<li><a href="#org7f4024c">Virt Manager</a></li>
+<li><a href="#org4e63e08">Flatpak</a></li>
+<li><a href="#org0b9d8b2">Nix Packages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbe67079" class="outline-2">
+<h2 id="orgbe67079">Flake Setttings</h2>
+<div class="outline-text-2" id="text-orgbe67079">
+</div>
+<div id="outline-container-orge8d2400" class="outline-3">
+<h3 id="orge8d2400">Description</h3>
+<div class="outline-text-3" id="text-orge8d2400">
+<div class="org-src-container">
+<pre class="src src-nix">{
+  description = "My system flake";
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0797082" class="outline-3">
+<h3 id="org0797082">Inputs</h3>
+<div class="outline-text-3" id="text-org0797082">
+<div class="org-src-container">
+<pre class="src src-nix">inputs = {
+  # NixOS official package source, using the nixos-26.05 branch here
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+  # Home manager
+  home-manager = {
+    url = "github:nix-community/home-manager/release-26.05";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeadf24b" class="outline-3">
+<h3 id="orgeadf24b">Outputs</h3>
+<div class="outline-text-3" id="text-orgeadf24b">
+<div class="org-src-container">
+<pre class="src src-nix">outputs = { self, nixpkgs, home-manager, ... }@inputs:
+let
+  system = "x86_64-linux";
+  legacyPkgs = nixpkgs.legacyPackages.${system};
+in
+{
+</pre>
+</div>
+</div>
+<div id="outline-container-org4b4b1d5" class="outline-4">
+<h4 id="org4b4b1d5">Nixos Configurations</h4>
+<div class="outline-text-4" id="text-org4b4b1d5">
+<div class="org-src-container">
+<pre class="src src-nix">nixosConfigurations = {
+</pre>
+</div>
+</div>
+<ul class="org-ul">
+<li><a id="org3c7ee33"></a>Swiftx<br />
+<div class="outline-text-5" id="text-org3c7ee33">
+<div class="org-src-container">
+<pre class="src src-nix">swiftx = nixpkgs.lib.nixosSystem {
+  modules = [
+    # Import the previous configuration.nix we used,
+    # so the old configuration file still takes effect
+    ./build/nixos/configuration.nix
+    ./build/nixos/nvidia.nix
+    ./build/nixos/swiftx.nix
+
+    # Import home manager
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.primary = import ./build/nixos/home.nix;
+    }
+  ];
+};
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org50fc3e2"></a>NixBox<br />
+<div class="outline-text-5" id="text-org50fc3e2">
+<div class="org-src-container">
+<pre class="src src-nix">  nixbox = nixpkgs.lib.nixosSystem {
+    modules = [
+      # Import the previous configuration.nix we used,
+      # so the old configuration file still takes effect
+      ./build/nixos/configuration.nix
+      ./build/nixos/nixbox.nix
+
+      # Import home manager
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.primary = import ./build/nixos/home.nix;
+      }
+    ];
+  };
+};
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org66a2697" class="outline-4">
+<h4 id="org66a2697">Dev shell</h4>
+<div class="outline-text-4" id="text-org66a2697">
+<div class="org-src-container">
+<pre class="src src-nix">devShells.${system}= {
+</pre>
+</div>
+</div>
+<ul class="org-ul">
+<li><a id="org2b86073"></a>Default<br />
+<div class="outline-text-5" id="text-org2b86073">
+<div class="org-src-container">
+<pre class="src src-nix">default = legacyPkgs.mkShell {
+  packages = with legacyPkgs; [
+    pyright
+    black
+    python313Packages.pyflakes
+    python313Packages.isort
+  ];
+  shellHook = ''
+    echo "Dev Envrionment Ready!"
+  '';
+};
+
+
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org94bb6f2"></a>Install<br />
+<div class="outline-text-5" id="text-org94bb6f2">
+<div class="org-src-container">
+<pre class="src src-nix">install = legacyPkgs.mkShell {
+  packages = with legacyPkgs; [
+    git
+    emacs
+    python3
+  ];
+  shellHook = ''
+    echo "Ready to build new nix machine!"
+  '';
+};
+
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org75f7333" class="outline-3">
+<h3 id="org75f7333">End of flake</h3>
+<div class="outline-text-3" id="text-org75f7333">
+<div class="org-src-container">
+<pre class="src src-nix">};
+};
+}
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd94a034" class="outline-2">
+<h2 id="orgd94a034">Home Settings</h2>
+<div class="outline-text-2" id="text-orgd94a034">
+</div>
+<div id="outline-container-org961a19c" class="outline-3">
+<h3 id="org961a19c">Imports</h3>
+<div class="outline-text-3" id="text-org961a19c">
+<div class="org-src-container">
+<pre class="src src-nix">{ config, lib, pkgs, ... }:
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga136432" class="outline-3">
+<h3 id="orga136432">Basic Settings</h3>
+<div class="outline-text-3" id="text-orga136432">
+<div class="org-src-container">
+<pre class="src src-nix">{
+  home.username = "primary";
+  home.homeDirectory = "/home/primary";
+  home.stateVersion = "26.05";
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb8b573" class="outline-3">
+<h3 id="orgbb8b573">Direnv</h3>
+<div class="outline-text-3" id="text-orgbb8b573">
+<div class="org-src-container">
+<pre class="src src-nix">programs.direnv = {
+  enable = true;
+  nix-direnv.enable = true;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc072366" class="outline-3">
+<h3 id="orgc072366">Config File linking</h3>
+<div class="outline-text-3" id="text-orgc072366">
+</div>
+<div id="outline-container-org3630f93" class="outline-4">
+<h4 id="org3630f93">Home File</h4>
+<div class="outline-text-4" id="text-org3630f93">
+<div class="org-src-container">
+<pre class="src src-nix">home.file = {
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org18a41c6" class="outline-4">
+<h4 id="org18a41c6">Hyprland</h4>
+<div class="outline-text-4" id="text-org18a41c6">
+<div class="org-src-container">
+<pre class="src src-nix">".config/hypr" = {
+  source = ../hypr;
+  recursive = true;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcf1d633" class="outline-4">
+<h4 id="orgcf1d633">Kitty</h4>
+<div class="outline-text-4" id="text-orgcf1d633">
+<div class="org-src-container">
+<pre class="src src-nix">".config/kitty" = {
+  source = ../kitty;
+  recursive = true;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org31af3ab" class="outline-4">
+<h4 id="org31af3ab">Waybar</h4>
+<div class="outline-text-4" id="text-org31af3ab">
+<div class="org-src-container">
+<pre class="src src-nix">".config/waybar" = {
+  source = ../waybar;
+  recursive = true;
+
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org932bd41" class="outline-4">
+<h4 id="org932bd41">Wofi</h4>
+<div class="outline-text-4" id="text-org932bd41">
+<div class="org-src-container">
+<pre class="src src-nix">".config/wofi" = {
+  source = ../wofi;
+  recursive = true;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org36c742a" class="outline-4">
+<h4 id="org36c742a">sway</h4>
+<div class="outline-text-4" id="text-org36c742a">
+<div class="org-src-container">
+<pre class="src src-nix">".config/sway" = {
+  source = ../sway;
+  recursive = true;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org17454ea" class="outline-4">
+<h4 id="org17454ea">KDE Wallet</h4>
+<div class="outline-text-4" id="text-org17454ea">
+<div class="org-src-container">
+<pre class="src src-nix">".config/kwalletrc".text = ''
+  [Wallet]
+  Enabled=false
+'';
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org12cccb8" class="outline-4">
+<h4 id="org12cccb8">End of list</h4>
+<div class="outline-text-4" id="text-org12cccb8">
+<div class="org-src-container">
+<pre class="src src-nix">};
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga106819" class="outline-3">
+<h3 id="orga106819">Bash management</h3>
+<div class="outline-text-3" id="text-orga106819">
+<div class="org-src-container">
+<pre class="src src-nix">programs.bash = {
+    enable = true;
+    initExtra = builtins.readFile ../home/.bashrc;
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8cc7cba" class="outline-3">
+<h3 id="org8cc7cba">Packages</h3>
+<div class="outline-text-3" id="text-org8cc7cba">
+</div>
+<div id="outline-container-orgfc78dfe" class="outline-4">
+<h4 id="orgfc78dfe">Start of List</h4>
+<div class="outline-text-4" id="text-orgfc78dfe">
+<div class="org-src-container">
+<pre class="src src-nix">home.packages = with pkgs; [
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdf8bb47" class="outline-4">
+<h4 id="orgdf8bb47">Games</h4>
+<div class="outline-text-4" id="text-orgdf8bb47">
+<div class="org-src-container">
+<pre class="src src-nix">(prismlauncher.override {
+  jdks = [
+    zulu25
+  ];
+})
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeaf080a" class="outline-4">
+<h4 id="orgeaf080a">Hyprland</h4>
+<div class="outline-text-4" id="text-orgeaf080a">
+<div class="org-src-container">
+<pre class="src src-nix">hyprpaper
+wofi
+waybar
+
+waypaper
+brightnessctl
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb90473c" class="outline-4">
+<h4 id="orgb90473c">Sway (PKGS)</h4>
+<div class="outline-text-4" id="text-orgb90473c">
+<div class="org-src-container">
+<pre class="src src-nix">wl-clipboard
+mako
+swaybg
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org03082d6" class="outline-4">
+<h4 id="org03082d6">Browser</h4>
+<div class="outline-text-4" id="text-org03082d6">
+<div class="org-src-container">
+<pre class="src src-nix"># Start of the home packages array
+brave
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb2ab65d" class="outline-4">
+<h4 id="orgb2ab65d">Text editors</h4>
+<div class="outline-text-4" id="text-orgb2ab65d">
+<div class="org-src-container">
+<pre class="src src-nix"># For Emacs
+  python3
+  gcc
+  gnumake
+  ripgrep
+  fd
+  cmake
+  libtool
+  ispell
+  # emacs itself
+  ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [
+    epkgs.mu4e
+  ]))
+  # Org mode
+  graphviz
+
+  # MPV for emms
+  mpv
+  # Neovim for quick edits
+  neovim
+
+  # Nix format
+  nixfmt
+
+  # Shell stuff
+  shellcheck
+  shfmt
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf877728" class="outline-4">
+<h4 id="orgf877728">Other Packages</h4>
+<div class="outline-text-4" id="text-orgf877728">
+<div class="org-src-container">
+<pre class="src src-nix">fastfetch
+  git
+  curl
+  wget
+  htop
+  fzf
+  findutils.locate
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcdea79d" class="outline-4">
+<h4 id="orgcdea79d">Fonts</h4>
+<div class="outline-text-4" id="text-orgcdea79d">
+<div class="org-src-container">
+<pre class="src src-nix"># Fonts for emacs
+nerd-fonts.symbols-only
+nerd-fonts.iosevka
+
+# Chinese Font
+noto-fonts-cjk-sans
+noto-fonts-cjk-serif
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org63ecf62" class="outline-4">
+<h4 id="org63ecf62">Terminal</h4>
+<div class="outline-text-4" id="text-org63ecf62">
+<div class="org-src-container">
+<pre class="src src-nix">kitty
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb021f46" class="outline-4">
+<h4 id="orgb021f46">Email</h4>
+<div class="outline-text-4" id="text-orgb021f46">
+<div class="org-src-container">
+<pre class="src src-nix"># Packages for emacs mu4e
+mu
+isync
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge52711a" class="outline-4">
+<h4 id="orge52711a">End of list</h4>
+<div class="outline-text-4" id="text-orge52711a">
+<div class="org-src-container">
+<pre class="src src-nix">];
+ }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8da9e27" class="outline-2">
+<h2 id="org8da9e27">Systems</h2>
+<div class="outline-text-2" id="text-org8da9e27">
+</div>
+<div id="outline-container-orgae1a1b4" class="outline-3">
+<h3 id="orgae1a1b4">SwiftX</h3>
+<div class="outline-text-3" id="text-orgae1a1b4">
+<p>
+One of my laptops
+</p>
+<div class="org-src-container">
+<pre class="src src-nix">{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+# This is for the swift x
+{
+  # Enable Prime
+  hardware.nvidia.prime = {
+    sync.enable = true;
+
+    # Make sure to use the correct Bus ID values for your system!
+    #intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:04:0:0";
+    amdgpuBusId = "PCI:01:0:0";
+  };
+  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
+
+  environment.variables = {
+  LIBVA_DRIVER_NAME = "nvidia";
+  GBM_BACKEND = "nvidia-drm";
+  __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  NVD_BACKEND = "direct";
+  # For Wayland
+  EGL_PLATFORM = "wayland";
+  NIXOS_OZONE_WL = "1";
+};
+
+}
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcadadbd" class="outline-3">
+<h3 id="orgcadadbd">NixBox</h3>
+<div class="outline-text-3" id="text-orgcadadbd">
+<p>
+Main Desktop
+</p>
+<div class="org-src-container">
+<pre class="src src-nix">{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+
+  # Use Latest Kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org93e3299" class="outline-2">
+<h2 id="org93e3299">Configuration Settings</h2>
+<div class="outline-text-2" id="text-org93e3299">
+</div>
+<div id="outline-container-org449a0b6" class="outline-3">
+<h3 id="org449a0b6">Nvidia</h3>
+<div class="outline-text-3" id="text-org449a0b6">
+<p>
+This is for machines that require nvidia drivers.
+This will work on all my machines, but it won't work on all nvidia cards.
+Mainly legacy, RTX 20+ should work fine.
+</p>
+
+<p>
+WARNING! Set LTS kernel
+I set this because running the latest kernel with nvidia ran into issues.
+</p>
+</div>
+<div id="outline-container-org5817107" class="outline-4">
+<h4 id="org5817107">LTS Kernel</h4>
+<div class="outline-text-4" id="text-org5817107">
+<div class="org-src-container">
+<pre class="src src-nix"># Import basic dependancies
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+
+  # Set Kernel to lts
+  boot.kernelPackages = pkgs.linuxPackages;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb0e238c" class="outline-4">
+<h4 id="orgb0e238c">Open GL</h4>
+<div class="outline-text-4" id="text-orgb0e238c">
+<div class="org-src-container">
+<pre class="src src-nix">hardware.graphics = {
+  enable = true;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org595545c" class="outline-4">
+<h4 id="org595545c">Drivers and Hardware Settings</h4>
+<div class="outline-text-4" id="text-org595545c">
+<div class="org-src-container">
+<pre class="src src-nix">  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+    # of just the bare essentials.
+    powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+    # Only available from driver 515.43.04+
+    open = true;
+
+    # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org9e9a2cc" class="outline-3">
+<h3 id="org9e9a2cc">Configuration</h3>
+<div class="outline-text-3" id="text-org9e9a2cc">
+<p>
+This is for global packages and settings I want on all my machines.
+</p>
+</div>
+<div id="outline-container-orga00ea72" class="outline-4">
+<h4 id="orga00ea72">Imports</h4>
+<div class="outline-text-4" id="text-orga00ea72">
+<div class="org-src-container">
+<pre class="src src-nix">{ config, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org24a70ed" class="outline-4">
+<h4 id="org24a70ed">Bootloader</h4>
+<div class="outline-text-4" id="text-org24a70ed">
+<div class="org-src-container">
+<pre class="src src-nix"># Bootloader.
+boot.loader.systemd-boot.enable = true;
+boot.loader.efi.canTouchEfiVariables = true;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7b042ff" class="outline-4">
+<h4 id="org7b042ff">App armor</h4>
+<div class="outline-text-4" id="text-org7b042ff">
+<div class="org-src-container">
+<pre class="src src-nix"># App armor
+security.apparmor.enable = true;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6b2a563" class="outline-4">
+<h4 id="org6b2a563">Nix (Packages manager)</h4>
+<div class="outline-text-4" id="text-org6b2a563">
+<div class="org-src-container">
+<pre class="src src-nix">nix.package = pkgs.nixVersions.latest;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge7c9369" class="outline-4">
+<h4 id="orge7c9369">Steam</h4>
+<div class="outline-text-4" id="text-orge7c9369">
+<div class="org-src-container">
+<pre class="src src-nix"># Steam
+programs.steam.enable = true;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2919d17" class="outline-4">
+<h4 id="org2919d17">System</h4>
+<div class="outline-text-4" id="text-org2919d17">
+<div class="org-src-container">
+<pre class="src src-nix">
+networking.hostName = "nixos"; # Define your hostname.
+# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+# Configure network proxy if necessary
+# networking.proxy.default = "http://user:password@proxy:port/";
+# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+# Enable networking
+networking.networkmanager.enable = true;
+
+# Set your time zone.
+time.timeZone = "America/Chicago";
+
+# Select internationalisation properties.
+
+i18n = {
+  defaultLocale = "en_US.UTF-8";
+
+  extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "zh_CN.UTF-8/UTF-8"
+  ];
+
+  inputMethod = {
+    # Available since NixOS 24.11
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      ignoreUserConfig = true;    # Use settings below, ignore user config
+      addons = with pkgs; [
+        fcitx5-chewing    # Chewing (Traditional Chinese)
+        qt6Packages.fcitx5-chinese-addons
+        fcitx5-mozc       # Japanese input method
+      ];
+      settings = {
+        inputMethod = {
+          "Groups/0" = {
+            Name = "Default";
+            "Default Layout" = "us";
+            DefaultIM = "keyboard-us";
+          };
+          "Groups/0/Items/0".Name = "keyboard-us";
+          "Groups/0/Items/1".Name = "chewing";
+          "Groups/0/Items/2".Name = "mozc";
+        };
+      };
+    };
+  };
+};
+
+# Backup browser
+programs.firefox.enable = true;
+
+nixpkgs.config.allowUnfree = true;
+
+# Firewall
+networking.firewall = {
+  enable = true;
+  allowedTCPPorts = [ 5000 25565 ];
+  allowedUDPPorts = [ 5000 25565 ];
+};
+
+# This value determines the NixOS release from which the default
+# settings for stateful data, like file locations and database versions
+# on your system were taken. It‘s perfectly fine and recommended to leave
+# this value at the release version of the first install of this system.
+# Before changing this value read the documentation for this option
+# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+system.stateVersion = "25.05"; # Did you read the comment?
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0eb9f2d" class="outline-4">
+<h4 id="org0eb9f2d">Syncthing</h4>
+<div class="outline-text-4" id="text-org0eb9f2d">
+<div class="org-src-container">
+<pre class="src src-nix"># Example for /etc/nixos/configuration.nix
+services.syncthing = {
+  enable = true;
+  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+  user = "primary";
+  dataDir = "/home/primary";
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2b08fd2" class="outline-4">
+<h4 id="org2b08fd2">Gnupg</h4>
+<div class="outline-text-4" id="text-org2b08fd2">
+<div class="org-src-container">
+<pre class="src src-nix">programs.gnupg.agent = {
+  enable = true;
+  pinentryPackage = pkgs.pinentry-qt;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf38767e" class="outline-4">
+<h4 id="orgf38767e">Hyprland</h4>
+<div class="outline-text-4" id="text-orgf38767e">
+<div class="org-src-container">
+<pre class="src src-nix">programs.hyprland.enable = true;
+
+# Optional, hint Electron apps to use Wayland:
+environment.sessionVariables.NIXOS_OZONE_WL = "1";
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org437a79f" class="outline-4">
+<h4 id="org437a79f">Sway</h4>
+<div class="outline-text-4" id="text-org437a79f">
+<div class="org-src-container">
+<pre class="src src-nix">programs.sway = {
+  enable = true;
+  wrapperFeatures.gtk = true;
+};
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3f9dd0c" class="outline-4">
+<h4 id="org3f9dd0c">Polkit</h4>
+<div class="outline-text-4" id="text-org3f9dd0c">
+<div class="org-src-container">
+<pre class="src src-nix">security.polkit.enable = true;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgabcd4e8" class="outline-4">
+<h4 id="orgabcd4e8">Flakes</h4>
+<div class="outline-text-4" id="text-orgabcd4e8">
+<div class="org-src-container">
+<pre class="src src-nix"># Enable flakes
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbdbf635" class="outline-4">
+<h4 id="orgbdbf635">Desktop</h4>
+<div class="outline-text-4" id="text-orgbdbf635">
+<div class="org-src-container">
+<pre class="src src-nix"># Enable the X11 windowing system.
+# You can disable this if you're only using the Wayland session.
+services.xserver.enable = true;
+
+# Enable the KDE Plasma Desktop Environment.
+services.displayManager.sddm.enable = true;
+services.desktopManager.plasma6.enable = true;
+
+# Configure keymap in X11
+services.xserver.xkb = {
+  layout = "us";
+  variant = "";
+};
+
+# Enable CUPS to print documents.
+services.printing.enable = true;
+
+# Set editor to neovim for quick edits
+environment.variables.EDITOR = "nvim";
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc586a5d" class="outline-4">
+<h4 id="orgc586a5d">Audio</h4>
+<div class="outline-text-4" id="text-orgc586a5d">
+<div class="org-src-container">
+<pre class="src src-nix"># Enable sound with pipewire.
+services.pulseaudio.enable = false;
+security.rtkit.enable = true;
+services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+  # If you want to use JACK applications, uncomment this
+  #jack.enable = true;
+
+  # use the example session manager (no others are packaged yet so this is enabled by default,
+  # no need to redefine it in your config for now)
+  #media-session.enable = true;
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc99bd5e" class="outline-4">
+<h4 id="orgc99bd5e">Users</h4>
+<div class="outline-text-4" id="text-orgc99bd5e">
+<div class="org-src-container">
+<pre class="src src-nix"># Define a user account. Don't forget to set a password with ‘passwd’.
+users.users.primary = {
+  isNormalUser = true;
+  description = "Primary";
+  extraGroups = [ "networkmanager" "wheel" "docker" ];
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2e3f48b" class="outline-4">
+<h4 id="org2e3f48b">Docker</h4>
+<div class="outline-text-4" id="text-org2e3f48b">
+<div class="org-src-container">
+<pre class="src src-nix">virtualisation.docker.enable = true;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f4024c" class="outline-4">
+<h4 id="org7f4024c">Virt Manager</h4>
+<div class="outline-text-4" id="text-org7f4024c">
+<div class="org-src-container">
+<pre class="src src-nix">programs.virt-manager.enable = true;
+
+users.groups.libvirtd.members = ["primary"];
+
+virtualisation.libvirtd.enable = true;
+
+virtualisation.spiceUSBRedirection.enable = true;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e63e08" class="outline-4">
+<h4 id="org4e63e08">Flatpak</h4>
+<div class="outline-text-4" id="text-org4e63e08">
+<div class="org-src-container">
+<pre class="src src-nix">services.flatpak.enable = true;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0b9d8b2" class="outline-4">
+<h4 id="org0b9d8b2">Nix Packages</h4>
+<div class="outline-text-4" id="text-org0b9d8b2">
+<p>
+These are <b>SYSTEM</b> packages for user specific look at home settings
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="org23bb43a"></a>Start of List<br />
+<div class="outline-text-5" id="text-org23bb43a">
+<div class="org-src-container">
+<pre class="src src-nix">environment.systemPackages = with pkgs; [
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org709b354"></a>More Developer Tools<br />
+<div class="outline-text-5" id="text-org709b354">
+<div class="org-src-container">
+<pre class="src src-nix">docker
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgca6168b"></a>Flatpak<br />
+<div class="outline-text-5" id="text-orgca6168b">
+<p>
+Why Flatpak? for sandboxing certain apps I wish to have more restrictive permissions
+</p>
+<div class="org-src-container">
+<pre class="src src-nix">flatpak
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org54d0c19"></a>End of List<br />
+<div class="outline-text-5" id="text-org54d0c19">
+<div class="org-src-container">
+<pre class="src src-nix">];
+}
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.7.11)</p>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 #+title: Sway Configuration
 
-*  Table of Contents :TOC_4:
+*  Table of Contents :TOC_4:noexport:
 - [[#sway][Sway]]
   -  [[#variables][Variables]]
   -  [[#inputs][Inputs]]

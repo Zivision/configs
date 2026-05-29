@@ -1,6 +1,6 @@
 #+title: Doom
 
-*  Table of Contents :TOC_4:
+*  Table of Contents :TOC_4:noexport:
 -  [[#about][About]]
   -  [[#why-emacs][Why Emacs?]]
     -  [[#i-like-lisp][I like lisp]]
@@ -822,3 +822,4 @@ C-h f package\!
 #+begin_src emacs-lisp
 (package! fireplace)
 #+end_src
+

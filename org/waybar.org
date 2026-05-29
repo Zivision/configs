@@ -1,6 +1,6 @@
 #+title: Waybar
 
-*  Table of Contents :TOC_4:
+*  Table of Contents :TOC_4:noexport:
 -  [[#waybar-waybar-directory][Waybar (waybar/ directory)]]
   -  [[#basic-settings][Basic Settings]]
   -  [[#mpd][MPD]]

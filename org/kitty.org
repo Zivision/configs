@@ -1,6 +1,6 @@
 #+title: Kitty
 
-*  Table of Contents :TOC_4:
+*  Table of Contents :TOC_4:noexport:
 -  [[#kitty-kitty-directory][Kitty (kitty/ Directory)]]
   -  [[#fonts][Fonts]]
   -  [[#cursor][Cursor]]
