@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nixos Configuration</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="../index.html">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="./">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
 </head>
 <body>
 <div id="content" class="content">
@@ -16,90 +16,90 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbe67079">Flake Setttings</a>
+<li><a href="#org9d54158">Flake Setttings</a>
 <ul>
-<li><a href="#orge8d2400">Description</a></li>
-<li><a href="#org0797082">Inputs</a></li>
-<li><a href="#orgeadf24b">Outputs</a>
+<li><a href="#orgd8546d9">Description</a></li>
+<li><a href="#org9492778">Inputs</a></li>
+<li><a href="#org066712b">Outputs</a>
 <ul>
-<li><a href="#org4b4b1d5">Nixos Configurations</a></li>
-<li><a href="#org66a2697">Dev shell</a></li>
+<li><a href="#org7a03574">Nixos Configurations</a></li>
+<li><a href="#org0fff100">Dev shell</a></li>
 </ul>
 </li>
-<li><a href="#org75f7333">End of flake</a></li>
+<li><a href="#org338534b">End of flake</a></li>
 </ul>
 </li>
-<li><a href="#orgd94a034">Home Settings</a>
+<li><a href="#org4e19101">Home Settings</a>
 <ul>
-<li><a href="#org961a19c">Imports</a></li>
-<li><a href="#orga136432">Basic Settings</a></li>
-<li><a href="#orgbb8b573">Direnv</a></li>
-<li><a href="#orgc072366">Config File linking</a>
+<li><a href="#org018c0df">Imports</a></li>
+<li><a href="#org1d45c8a">Basic Settings</a></li>
+<li><a href="#org372a5d3">Direnv</a></li>
+<li><a href="#org4110eaf">Config File linking</a>
 <ul>
-<li><a href="#org3630f93">Home File</a></li>
-<li><a href="#org18a41c6">Hyprland</a></li>
-<li><a href="#orgcf1d633">Kitty</a></li>
-<li><a href="#org31af3ab">Waybar</a></li>
-<li><a href="#org932bd41">Wofi</a></li>
-<li><a href="#org36c742a">sway</a></li>
-<li><a href="#org17454ea">KDE Wallet</a></li>
-<li><a href="#org12cccb8">End of list</a></li>
+<li><a href="#orgf5e6945">Home File</a></li>
+<li><a href="#orgd708290">Hyprland</a></li>
+<li><a href="#org1e2f1bc">Kitty</a></li>
+<li><a href="#org95a7c01">Waybar</a></li>
+<li><a href="#orgef39aed">Wofi</a></li>
+<li><a href="#org417de69">sway</a></li>
+<li><a href="#orgc97d0f9">KDE Wallet</a></li>
+<li><a href="#orgebc7215">End of list</a></li>
 </ul>
 </li>
-<li><a href="#orga106819">Bash management</a></li>
-<li><a href="#org8cc7cba">Packages</a>
+<li><a href="#org9e04b1b">Bash management</a></li>
+<li><a href="#org5d47c8c">Packages</a>
 <ul>
-<li><a href="#orgfc78dfe">Start of List</a></li>
-<li><a href="#orgdf8bb47">Games</a></li>
-<li><a href="#orgeaf080a">Hyprland</a></li>
-<li><a href="#orgb90473c">Sway (PKGS)</a></li>
-<li><a href="#org03082d6">Browser</a></li>
-<li><a href="#orgb2ab65d">Text editors</a></li>
-<li><a href="#orgf877728">Other Packages</a></li>
-<li><a href="#orgcdea79d">Fonts</a></li>
-<li><a href="#org63ecf62">Terminal</a></li>
-<li><a href="#orgb021f46">Email</a></li>
-<li><a href="#orge52711a">End of list</a></li>
+<li><a href="#org6e91314">Start of List</a></li>
+<li><a href="#org78750f3">Games</a></li>
+<li><a href="#orgdf28325">Hyprland</a></li>
+<li><a href="#org6d2ed2c">Sway (PKGS)</a></li>
+<li><a href="#org3506839">Browser</a></li>
+<li><a href="#orgd1934dc">Text editors</a></li>
+<li><a href="#orgfc6573b">Other Packages</a></li>
+<li><a href="#org6b87104">Fonts</a></li>
+<li><a href="#orge110d7f">Terminal</a></li>
+<li><a href="#org25bed5e">Email</a></li>
+<li><a href="#org9bda61b">End of list</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8da9e27">Systems</a>
+<li><a href="#org7912c6a">Systems</a>
 <ul>
-<li><a href="#orgae1a1b4">SwiftX</a></li>
-<li><a href="#orgcadadbd">NixBox</a></li>
+<li><a href="#org7e20c82">SwiftX</a></li>
+<li><a href="#orgdb8928f">NixBox</a></li>
 </ul>
 </li>
-<li><a href="#org93e3299">Configuration Settings</a>
+<li><a href="#orgd274ae2">Configuration Settings</a>
 <ul>
-<li><a href="#org449a0b6">Nvidia</a>
+<li><a href="#org7e67c71">Nvidia</a>
 <ul>
-<li><a href="#org5817107">LTS Kernel</a></li>
-<li><a href="#orgb0e238c">Open GL</a></li>
-<li><a href="#org595545c">Drivers and Hardware Settings</a></li>
+<li><a href="#orgadb02ac">LTS Kernel</a></li>
+<li><a href="#org428e9c4">Open GL</a></li>
+<li><a href="#org5da866f">Drivers and Hardware Settings</a></li>
 </ul>
 </li>
-<li><a href="#org9e9a2cc">Configuration</a>
+<li><a href="#org1a70a61">Configuration</a>
 <ul>
-<li><a href="#orga00ea72">Imports</a></li>
-<li><a href="#org24a70ed">Bootloader</a></li>
-<li><a href="#org7b042ff">App armor</a></li>
-<li><a href="#org6b2a563">Nix (Packages manager)</a></li>
-<li><a href="#orge7c9369">Steam</a></li>
-<li><a href="#org2919d17">System</a></li>
-<li><a href="#org0eb9f2d">Syncthing</a></li>
-<li><a href="#org2b08fd2">Gnupg</a></li>
-<li><a href="#orgf38767e">Hyprland</a></li>
-<li><a href="#org437a79f">Sway</a></li>
-<li><a href="#org3f9dd0c">Polkit</a></li>
-<li><a href="#orgabcd4e8">Flakes</a></li>
-<li><a href="#orgbdbf635">Desktop</a></li>
-<li><a href="#orgc586a5d">Audio</a></li>
-<li><a href="#orgc99bd5e">Users</a></li>
-<li><a href="#org2e3f48b">Docker</a></li>
-<li><a href="#org7f4024c">Virt Manager</a></li>
-<li><a href="#org4e63e08">Flatpak</a></li>
-<li><a href="#org0b9d8b2">Nix Packages</a></li>
+<li><a href="#orgb7e00fe">Imports</a></li>
+<li><a href="#org417ea44">Bootloader</a></li>
+<li><a href="#orgf407254">App armor</a></li>
+<li><a href="#org99cee5f">Nix (Packages manager)</a></li>
+<li><a href="#org6bfd507">Steam</a></li>
+<li><a href="#org92011f2">System</a></li>
+<li><a href="#orgc647654">Syncthing</a></li>
+<li><a href="#org8d6ac04">Gnupg</a></li>
+<li><a href="#org071c67d">Hyprland</a></li>
+<li><a href="#org38080e1">Sway</a></li>
+<li><a href="#orge8e8e0e">Polkit</a></li>
+<li><a href="#org647e16b">Flakes</a></li>
+<li><a href="#org65fa6fe">Desktop</a></li>
+<li><a href="#org052d878">Audio</a></li>
+<li><a href="#org5435d1f">Users</a></li>
+<li><a href="#org6c36efb">Docker</a></li>
+<li><a href="#orgc4ae383">Virt Manager</a></li>
+<li><a href="#org8f9d5f8">Flatpak</a></li>
+<li><a href="#org4f8120d">Nix Packages</a></li>
 </ul>
 </li>
 </ul>
@@ -107,13 +107,13 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbe67079" class="outline-2">
-<h2 id="orgbe67079">Flake Setttings</h2>
-<div class="outline-text-2" id="text-orgbe67079">
+<div id="outline-container-org9d54158" class="outline-2">
+<h2 id="org9d54158">Flake Setttings</h2>
+<div class="outline-text-2" id="text-org9d54158">
 </div>
-<div id="outline-container-orge8d2400" class="outline-3">
-<h3 id="orge8d2400">Description</h3>
-<div class="outline-text-3" id="text-orge8d2400">
+<div id="outline-container-orgd8546d9" class="outline-3">
+<h3 id="orgd8546d9">Description</h3>
+<div class="outline-text-3" id="text-orgd8546d9">
 <div class="org-src-container">
 <pre class="src src-nix">{
   description = "My system flake";
@@ -121,9 +121,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org0797082" class="outline-3">
-<h3 id="org0797082">Inputs</h3>
-<div class="outline-text-3" id="text-org0797082">
+<div id="outline-container-org9492778" class="outline-3">
+<h3 id="org9492778">Inputs</h3>
+<div class="outline-text-3" id="text-org9492778">
 <div class="org-src-container">
 <pre class="src src-nix">inputs = {
   # NixOS official package source, using the nixos-26.05 branch here
@@ -138,9 +138,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgeadf24b" class="outline-3">
-<h3 id="orgeadf24b">Outputs</h3>
-<div class="outline-text-3" id="text-orgeadf24b">
+<div id="outline-container-org066712b" class="outline-3">
+<h3 id="org066712b">Outputs</h3>
+<div class="outline-text-3" id="text-org066712b">
 <div class="org-src-container">
 <pre class="src src-nix">outputs = { self, nixpkgs, home-manager, ... }@inputs:
 let
@@ -151,17 +151,17 @@ in
 </pre>
 </div>
 </div>
-<div id="outline-container-org4b4b1d5" class="outline-4">
-<h4 id="org4b4b1d5">Nixos Configurations</h4>
-<div class="outline-text-4" id="text-org4b4b1d5">
+<div id="outline-container-org7a03574" class="outline-4">
+<h4 id="org7a03574">Nixos Configurations</h4>
+<div class="outline-text-4" id="text-org7a03574">
 <div class="org-src-container">
 <pre class="src src-nix">nixosConfigurations = {
 </pre>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org3c7ee33"></a>Swiftx<br />
-<div class="outline-text-5" id="text-org3c7ee33">
+<li><a id="org33c1420"></a>Swiftx<br />
+<div class="outline-text-5" id="text-org33c1420">
 <div class="org-src-container">
 <pre class="src src-nix">swiftx = nixpkgs.lib.nixosSystem {
   modules = [
@@ -184,8 +184,8 @@ in
 </div>
 </div>
 </li>
-<li><a id="org50fc3e2"></a>NixBox<br />
-<div class="outline-text-5" id="text-org50fc3e2">
+<li><a id="orgc505ff6"></a>NixBox<br />
+<div class="outline-text-5" id="text-orgc505ff6">
 <div class="org-src-container">
 <pre class="src src-nix">  nixbox = nixpkgs.lib.nixosSystem {
     modules = [
@@ -210,17 +210,17 @@ in
 </li>
 </ul>
 </div>
-<div id="outline-container-org66a2697" class="outline-4">
-<h4 id="org66a2697">Dev shell</h4>
-<div class="outline-text-4" id="text-org66a2697">
+<div id="outline-container-org0fff100" class="outline-4">
+<h4 id="org0fff100">Dev shell</h4>
+<div class="outline-text-4" id="text-org0fff100">
 <div class="org-src-container">
 <pre class="src src-nix">devShells.${system}= {
 </pre>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org2b86073"></a>Default<br />
-<div class="outline-text-5" id="text-org2b86073">
+<li><a id="org8ed1336"></a>Default<br />
+<div class="outline-text-5" id="text-org8ed1336">
 <div class="org-src-container">
 <pre class="src src-nix">default = legacyPkgs.mkShell {
   packages = with legacyPkgs; [
@@ -239,8 +239,8 @@ in
 </div>
 </div>
 </li>
-<li><a id="org94bb6f2"></a>Install<br />
-<div class="outline-text-5" id="text-org94bb6f2">
+<li><a id="org18ca386"></a>Install<br />
+<div class="outline-text-5" id="text-org18ca386">
 <div class="org-src-container">
 <pre class="src src-nix">install = legacyPkgs.mkShell {
   packages = with legacyPkgs; [
@@ -260,9 +260,9 @@ in
 </ul>
 </div>
 </div>
-<div id="outline-container-org75f7333" class="outline-3">
-<h3 id="org75f7333">End of flake</h3>
-<div class="outline-text-3" id="text-org75f7333">
+<div id="outline-container-org338534b" class="outline-3">
+<h3 id="org338534b">End of flake</h3>
+<div class="outline-text-3" id="text-org338534b">
 <div class="org-src-container">
 <pre class="src src-nix">};
 };
@@ -273,22 +273,22 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-orgd94a034" class="outline-2">
-<h2 id="orgd94a034">Home Settings</h2>
-<div class="outline-text-2" id="text-orgd94a034">
+<div id="outline-container-org4e19101" class="outline-2">
+<h2 id="org4e19101">Home Settings</h2>
+<div class="outline-text-2" id="text-org4e19101">
 </div>
-<div id="outline-container-org961a19c" class="outline-3">
-<h3 id="org961a19c">Imports</h3>
-<div class="outline-text-3" id="text-org961a19c">
+<div id="outline-container-org018c0df" class="outline-3">
+<h3 id="org018c0df">Imports</h3>
+<div class="outline-text-3" id="text-org018c0df">
 <div class="org-src-container">
 <pre class="src src-nix">{ config, lib, pkgs, ... }:
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga136432" class="outline-3">
-<h3 id="orga136432">Basic Settings</h3>
-<div class="outline-text-3" id="text-orga136432">
+<div id="outline-container-org1d45c8a" class="outline-3">
+<h3 id="org1d45c8a">Basic Settings</h3>
+<div class="outline-text-3" id="text-org1d45c8a">
 <div class="org-src-container">
 <pre class="src src-nix">{
   home.username = "primary";
@@ -298,9 +298,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb8b573" class="outline-3">
-<h3 id="orgbb8b573">Direnv</h3>
-<div class="outline-text-3" id="text-orgbb8b573">
+<div id="outline-container-org372a5d3" class="outline-3">
+<h3 id="org372a5d3">Direnv</h3>
+<div class="outline-text-3" id="text-org372a5d3">
 <div class="org-src-container">
 <pre class="src src-nix">programs.direnv = {
   enable = true;
@@ -310,22 +310,22 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-orgc072366" class="outline-3">
-<h3 id="orgc072366">Config File linking</h3>
-<div class="outline-text-3" id="text-orgc072366">
+<div id="outline-container-org4110eaf" class="outline-3">
+<h3 id="org4110eaf">Config File linking</h3>
+<div class="outline-text-3" id="text-org4110eaf">
 </div>
-<div id="outline-container-org3630f93" class="outline-4">
-<h4 id="org3630f93">Home File</h4>
-<div class="outline-text-4" id="text-org3630f93">
+<div id="outline-container-orgf5e6945" class="outline-4">
+<h4 id="orgf5e6945">Home File</h4>
+<div class="outline-text-4" id="text-orgf5e6945">
 <div class="org-src-container">
 <pre class="src src-nix">home.file = {
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org18a41c6" class="outline-4">
-<h4 id="org18a41c6">Hyprland</h4>
-<div class="outline-text-4" id="text-org18a41c6">
+<div id="outline-container-orgd708290" class="outline-4">
+<h4 id="orgd708290">Hyprland</h4>
+<div class="outline-text-4" id="text-orgd708290">
 <div class="org-src-container">
 <pre class="src src-nix">".config/hypr" = {
   source = ../hypr;
@@ -335,9 +335,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-orgcf1d633" class="outline-4">
-<h4 id="orgcf1d633">Kitty</h4>
-<div class="outline-text-4" id="text-orgcf1d633">
+<div id="outline-container-org1e2f1bc" class="outline-4">
+<h4 id="org1e2f1bc">Kitty</h4>
+<div class="outline-text-4" id="text-org1e2f1bc">
 <div class="org-src-container">
 <pre class="src src-nix">".config/kitty" = {
   source = ../kitty;
@@ -347,9 +347,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-org31af3ab" class="outline-4">
-<h4 id="org31af3ab">Waybar</h4>
-<div class="outline-text-4" id="text-org31af3ab">
+<div id="outline-container-org95a7c01" class="outline-4">
+<h4 id="org95a7c01">Waybar</h4>
+<div class="outline-text-4" id="text-org95a7c01">
 <div class="org-src-container">
 <pre class="src src-nix">".config/waybar" = {
   source = ../waybar;
@@ -360,9 +360,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-org932bd41" class="outline-4">
-<h4 id="org932bd41">Wofi</h4>
-<div class="outline-text-4" id="text-org932bd41">
+<div id="outline-container-orgef39aed" class="outline-4">
+<h4 id="orgef39aed">Wofi</h4>
+<div class="outline-text-4" id="text-orgef39aed">
 <div class="org-src-container">
 <pre class="src src-nix">".config/wofi" = {
   source = ../wofi;
@@ -372,9 +372,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-org36c742a" class="outline-4">
-<h4 id="org36c742a">sway</h4>
-<div class="outline-text-4" id="text-org36c742a">
+<div id="outline-container-org417de69" class="outline-4">
+<h4 id="org417de69">sway</h4>
+<div class="outline-text-4" id="text-org417de69">
 <div class="org-src-container">
 <pre class="src src-nix">".config/sway" = {
   source = ../sway;
@@ -384,9 +384,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-org17454ea" class="outline-4">
-<h4 id="org17454ea">KDE Wallet</h4>
-<div class="outline-text-4" id="text-org17454ea">
+<div id="outline-container-orgc97d0f9" class="outline-4">
+<h4 id="orgc97d0f9">KDE Wallet</h4>
+<div class="outline-text-4" id="text-orgc97d0f9">
 <div class="org-src-container">
 <pre class="src src-nix">".config/kwalletrc".text = ''
   [Wallet]
@@ -396,9 +396,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-org12cccb8" class="outline-4">
-<h4 id="org12cccb8">End of list</h4>
-<div class="outline-text-4" id="text-org12cccb8">
+<div id="outline-container-orgebc7215" class="outline-4">
+<h4 id="orgebc7215">End of list</h4>
+<div class="outline-text-4" id="text-orgebc7215">
 <div class="org-src-container">
 <pre class="src src-nix">};
 </pre>
@@ -406,9 +406,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-orga106819" class="outline-3">
-<h3 id="orga106819">Bash management</h3>
-<div class="outline-text-3" id="text-orga106819">
+<div id="outline-container-org9e04b1b" class="outline-3">
+<h3 id="org9e04b1b">Bash management</h3>
+<div class="outline-text-3" id="text-org9e04b1b">
 <div class="org-src-container">
 <pre class="src src-nix">programs.bash = {
     enable = true;
@@ -423,22 +423,22 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-org8cc7cba" class="outline-3">
-<h3 id="org8cc7cba">Packages</h3>
-<div class="outline-text-3" id="text-org8cc7cba">
+<div id="outline-container-org5d47c8c" class="outline-3">
+<h3 id="org5d47c8c">Packages</h3>
+<div class="outline-text-3" id="text-org5d47c8c">
 </div>
-<div id="outline-container-orgfc78dfe" class="outline-4">
-<h4 id="orgfc78dfe">Start of List</h4>
-<div class="outline-text-4" id="text-orgfc78dfe">
+<div id="outline-container-org6e91314" class="outline-4">
+<h4 id="org6e91314">Start of List</h4>
+<div class="outline-text-4" id="text-org6e91314">
 <div class="org-src-container">
 <pre class="src src-nix">home.packages = with pkgs; [
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf8bb47" class="outline-4">
-<h4 id="orgdf8bb47">Games</h4>
-<div class="outline-text-4" id="text-orgdf8bb47">
+<div id="outline-container-org78750f3" class="outline-4">
+<h4 id="org78750f3">Games</h4>
+<div class="outline-text-4" id="text-org78750f3">
 <div class="org-src-container">
 <pre class="src src-nix">(prismlauncher.override {
   jdks = [
@@ -449,9 +449,9 @@ in
 </div>
 </div>
 </div>
-<div id="outline-container-orgeaf080a" class="outline-4">
-<h4 id="orgeaf080a">Hyprland</h4>
-<div class="outline-text-4" id="text-orgeaf080a">
+<div id="outline-container-orgdf28325" class="outline-4">
+<h4 id="orgdf28325">Hyprland</h4>
+<div class="outline-text-4" id="text-orgdf28325">
 <div class="org-src-container">
 <pre class="src src-nix">hyprpaper
 wofi
@@ -463,9 +463,9 @@ brightnessctl
 </div>
 </div>
 </div>
-<div id="outline-container-orgb90473c" class="outline-4">
-<h4 id="orgb90473c">Sway (PKGS)</h4>
-<div class="outline-text-4" id="text-orgb90473c">
+<div id="outline-container-org6d2ed2c" class="outline-4">
+<h4 id="org6d2ed2c">Sway (PKGS)</h4>
+<div class="outline-text-4" id="text-org6d2ed2c">
 <div class="org-src-container">
 <pre class="src src-nix">wl-clipboard
 mako
@@ -474,9 +474,9 @@ swaybg
 </div>
 </div>
 </div>
-<div id="outline-container-org03082d6" class="outline-4">
-<h4 id="org03082d6">Browser</h4>
-<div class="outline-text-4" id="text-org03082d6">
+<div id="outline-container-org3506839" class="outline-4">
+<h4 id="org3506839">Browser</h4>
+<div class="outline-text-4" id="text-org3506839">
 <div class="org-src-container">
 <pre class="src src-nix"># Start of the home packages array
 brave
@@ -484,9 +484,9 @@ brave
 </div>
 </div>
 </div>
-<div id="outline-container-orgb2ab65d" class="outline-4">
-<h4 id="orgb2ab65d">Text editors</h4>
-<div class="outline-text-4" id="text-orgb2ab65d">
+<div id="outline-container-orgd1934dc" class="outline-4">
+<h4 id="orgd1934dc">Text editors</h4>
+<div class="outline-text-4" id="text-orgd1934dc">
 <div class="org-src-container">
 <pre class="src src-nix"># For Emacs
   python3
@@ -519,9 +519,9 @@ brave
 </div>
 </div>
 </div>
-<div id="outline-container-orgf877728" class="outline-4">
-<h4 id="orgf877728">Other Packages</h4>
-<div class="outline-text-4" id="text-orgf877728">
+<div id="outline-container-orgfc6573b" class="outline-4">
+<h4 id="orgfc6573b">Other Packages</h4>
+<div class="outline-text-4" id="text-orgfc6573b">
 <div class="org-src-container">
 <pre class="src src-nix">fastfetch
   git
@@ -534,9 +534,9 @@ brave
 </div>
 </div>
 </div>
-<div id="outline-container-orgcdea79d" class="outline-4">
-<h4 id="orgcdea79d">Fonts</h4>
-<div class="outline-text-4" id="text-orgcdea79d">
+<div id="outline-container-org6b87104" class="outline-4">
+<h4 id="org6b87104">Fonts</h4>
+<div class="outline-text-4" id="text-org6b87104">
 <div class="org-src-container">
 <pre class="src src-nix"># Fonts for emacs
 nerd-fonts.symbols-only
@@ -550,18 +550,18 @@ noto-fonts-cjk-serif
 </div>
 </div>
 </div>
-<div id="outline-container-org63ecf62" class="outline-4">
-<h4 id="org63ecf62">Terminal</h4>
-<div class="outline-text-4" id="text-org63ecf62">
+<div id="outline-container-orge110d7f" class="outline-4">
+<h4 id="orge110d7f">Terminal</h4>
+<div class="outline-text-4" id="text-orge110d7f">
 <div class="org-src-container">
 <pre class="src src-nix">kitty
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb021f46" class="outline-4">
-<h4 id="orgb021f46">Email</h4>
-<div class="outline-text-4" id="text-orgb021f46">
+<div id="outline-container-org25bed5e" class="outline-4">
+<h4 id="org25bed5e">Email</h4>
+<div class="outline-text-4" id="text-org25bed5e">
 <div class="org-src-container">
 <pre class="src src-nix"># Packages for emacs mu4e
 mu
@@ -570,9 +570,9 @@ isync
 </div>
 </div>
 </div>
-<div id="outline-container-orge52711a" class="outline-4">
-<h4 id="orge52711a">End of list</h4>
-<div class="outline-text-4" id="text-orge52711a">
+<div id="outline-container-org9bda61b" class="outline-4">
+<h4 id="org9bda61b">End of list</h4>
+<div class="outline-text-4" id="text-org9bda61b">
 <div class="org-src-container">
 <pre class="src src-nix">];
  }
@@ -582,13 +582,13 @@ isync
 </div>
 </div>
 </div>
-<div id="outline-container-org8da9e27" class="outline-2">
-<h2 id="org8da9e27">Systems</h2>
-<div class="outline-text-2" id="text-org8da9e27">
+<div id="outline-container-org7912c6a" class="outline-2">
+<h2 id="org7912c6a">Systems</h2>
+<div class="outline-text-2" id="text-org7912c6a">
 </div>
-<div id="outline-container-orgae1a1b4" class="outline-3">
-<h3 id="orgae1a1b4">SwiftX</h3>
-<div class="outline-text-3" id="text-orgae1a1b4">
+<div id="outline-container-org7e20c82" class="outline-3">
+<h3 id="org7e20c82">SwiftX</h3>
+<div class="outline-text-3" id="text-org7e20c82">
 <p>
 One of my laptops
 </p>
@@ -629,9 +629,9 @@ One of my laptops
 </div>
 </div>
 </div>
-<div id="outline-container-orgcadadbd" class="outline-3">
-<h3 id="orgcadadbd">NixBox</h3>
-<div class="outline-text-3" id="text-orgcadadbd">
+<div id="outline-container-orgdb8928f" class="outline-3">
+<h3 id="orgdb8928f">NixBox</h3>
+<div class="outline-text-3" id="text-orgdb8928f">
 <p>
 Main Desktop
 </p>
@@ -652,13 +652,13 @@ Main Desktop
 </div>
 </div>
 </div>
-<div id="outline-container-org93e3299" class="outline-2">
-<h2 id="org93e3299">Configuration Settings</h2>
-<div class="outline-text-2" id="text-org93e3299">
+<div id="outline-container-orgd274ae2" class="outline-2">
+<h2 id="orgd274ae2">Configuration Settings</h2>
+<div class="outline-text-2" id="text-orgd274ae2">
 </div>
-<div id="outline-container-org449a0b6" class="outline-3">
-<h3 id="org449a0b6">Nvidia</h3>
-<div class="outline-text-3" id="text-org449a0b6">
+<div id="outline-container-org7e67c71" class="outline-3">
+<h3 id="org7e67c71">Nvidia</h3>
+<div class="outline-text-3" id="text-org7e67c71">
 <p>
 This is for machines that require nvidia drivers.
 This will work on all my machines, but it won't work on all nvidia cards.
@@ -670,9 +670,9 @@ WARNING! Set LTS kernel
 I set this because running the latest kernel with nvidia ran into issues.
 </p>
 </div>
-<div id="outline-container-org5817107" class="outline-4">
-<h4 id="org5817107">LTS Kernel</h4>
-<div class="outline-text-4" id="text-org5817107">
+<div id="outline-container-orgadb02ac" class="outline-4">
+<h4 id="orgadb02ac">LTS Kernel</h4>
+<div class="outline-text-4" id="text-orgadb02ac">
 <div class="org-src-container">
 <pre class="src src-nix"># Import basic dependancies
 {
@@ -689,9 +689,9 @@ I set this because running the latest kernel with nvidia ran into issues.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb0e238c" class="outline-4">
-<h4 id="orgb0e238c">Open GL</h4>
-<div class="outline-text-4" id="text-orgb0e238c">
+<div id="outline-container-org428e9c4" class="outline-4">
+<h4 id="org428e9c4">Open GL</h4>
+<div class="outline-text-4" id="text-org428e9c4">
 <div class="org-src-container">
 <pre class="src src-nix">hardware.graphics = {
   enable = true;
@@ -700,9 +700,9 @@ I set this because running the latest kernel with nvidia ran into issues.
 </div>
 </div>
 </div>
-<div id="outline-container-org595545c" class="outline-4">
-<h4 id="org595545c">Drivers and Hardware Settings</h4>
-<div class="outline-text-4" id="text-org595545c">
+<div id="outline-container-org5da866f" class="outline-4">
+<h4 id="org5da866f">Drivers and Hardware Settings</h4>
+<div class="outline-text-4" id="text-org5da866f">
 <div class="org-src-container">
 <pre class="src src-nix">  # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -743,16 +743,16 @@ I set this because running the latest kernel with nvidia ran into issues.
 </div>
 </div>
 </div>
-<div id="outline-container-org9e9a2cc" class="outline-3">
-<h3 id="org9e9a2cc">Configuration</h3>
-<div class="outline-text-3" id="text-org9e9a2cc">
+<div id="outline-container-org1a70a61" class="outline-3">
+<h3 id="org1a70a61">Configuration</h3>
+<div class="outline-text-3" id="text-org1a70a61">
 <p>
 This is for global packages and settings I want on all my machines.
 </p>
 </div>
-<div id="outline-container-orga00ea72" class="outline-4">
-<h4 id="orga00ea72">Imports</h4>
-<div class="outline-text-4" id="text-orga00ea72">
+<div id="outline-container-orgb7e00fe" class="outline-4">
+<h4 id="orgb7e00fe">Imports</h4>
+<div class="outline-text-4" id="text-orgb7e00fe">
 <div class="org-src-container">
 <pre class="src src-nix">{ config, pkgs, ... }:
 
@@ -766,9 +766,9 @@ This is for global packages and settings I want on all my machines.
 </div>
 </div>
 </div>
-<div id="outline-container-org24a70ed" class="outline-4">
-<h4 id="org24a70ed">Bootloader</h4>
-<div class="outline-text-4" id="text-org24a70ed">
+<div id="outline-container-org417ea44" class="outline-4">
+<h4 id="org417ea44">Bootloader</h4>
+<div class="outline-text-4" id="text-org417ea44">
 <div class="org-src-container">
 <pre class="src src-nix"># Bootloader.
 boot.loader.systemd-boot.enable = true;
@@ -777,9 +777,9 @@ boot.loader.efi.canTouchEfiVariables = true;
 </div>
 </div>
 </div>
-<div id="outline-container-org7b042ff" class="outline-4">
-<h4 id="org7b042ff">App armor</h4>
-<div class="outline-text-4" id="text-org7b042ff">
+<div id="outline-container-orgf407254" class="outline-4">
+<h4 id="orgf407254">App armor</h4>
+<div class="outline-text-4" id="text-orgf407254">
 <div class="org-src-container">
 <pre class="src src-nix"># App armor
 security.apparmor.enable = true;
@@ -787,18 +787,18 @@ security.apparmor.enable = true;
 </div>
 </div>
 </div>
-<div id="outline-container-org6b2a563" class="outline-4">
-<h4 id="org6b2a563">Nix (Packages manager)</h4>
-<div class="outline-text-4" id="text-org6b2a563">
+<div id="outline-container-org99cee5f" class="outline-4">
+<h4 id="org99cee5f">Nix (Packages manager)</h4>
+<div class="outline-text-4" id="text-org99cee5f">
 <div class="org-src-container">
 <pre class="src src-nix">nix.package = pkgs.nixVersions.latest;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge7c9369" class="outline-4">
-<h4 id="orge7c9369">Steam</h4>
-<div class="outline-text-4" id="text-orge7c9369">
+<div id="outline-container-org6bfd507" class="outline-4">
+<h4 id="org6bfd507">Steam</h4>
+<div class="outline-text-4" id="text-org6bfd507">
 <div class="org-src-container">
 <pre class="src src-nix"># Steam
 programs.steam.enable = true;
@@ -806,9 +806,9 @@ programs.steam.enable = true;
 </div>
 </div>
 </div>
-<div id="outline-container-org2919d17" class="outline-4">
-<h4 id="org2919d17">System</h4>
-<div class="outline-text-4" id="text-org2919d17">
+<div id="outline-container-org92011f2" class="outline-4">
+<h4 id="org92011f2">System</h4>
+<div class="outline-text-4" id="text-org92011f2">
 <div class="org-src-container">
 <pre class="src src-nix">
 networking.hostName = "nixos"; # Define your hostname.
@@ -897,9 +897,9 @@ system.stateVersion = "25.05"; # Did you read the comment?
 </div>
 </div>
 </div>
-<div id="outline-container-org0eb9f2d" class="outline-4">
-<h4 id="org0eb9f2d">Syncthing</h4>
-<div class="outline-text-4" id="text-org0eb9f2d">
+<div id="outline-container-orgc647654" class="outline-4">
+<h4 id="orgc647654">Syncthing</h4>
+<div class="outline-text-4" id="text-orgc647654">
 <div class="org-src-container">
 <pre class="src src-nix"># Example for /etc/nixos/configuration.nix
 services.syncthing = {
@@ -912,9 +912,9 @@ services.syncthing = {
 </div>
 </div>
 </div>
-<div id="outline-container-org2b08fd2" class="outline-4">
-<h4 id="org2b08fd2">Gnupg</h4>
-<div class="outline-text-4" id="text-org2b08fd2">
+<div id="outline-container-org8d6ac04" class="outline-4">
+<h4 id="org8d6ac04">Gnupg</h4>
+<div class="outline-text-4" id="text-org8d6ac04">
 <div class="org-src-container">
 <pre class="src src-nix">programs.gnupg.agent = {
   enable = true;
@@ -924,9 +924,9 @@ services.syncthing = {
 </div>
 </div>
 </div>
-<div id="outline-container-orgf38767e" class="outline-4">
-<h4 id="orgf38767e">Hyprland</h4>
-<div class="outline-text-4" id="text-orgf38767e">
+<div id="outline-container-org071c67d" class="outline-4">
+<h4 id="org071c67d">Hyprland</h4>
+<div class="outline-text-4" id="text-org071c67d">
 <div class="org-src-container">
 <pre class="src src-nix">programs.hyprland.enable = true;
 
@@ -936,9 +936,9 @@ environment.sessionVariables.NIXOS_OZONE_WL = "1";
 </div>
 </div>
 </div>
-<div id="outline-container-org437a79f" class="outline-4">
-<h4 id="org437a79f">Sway</h4>
-<div class="outline-text-4" id="text-org437a79f">
+<div id="outline-container-org38080e1" class="outline-4">
+<h4 id="org38080e1">Sway</h4>
+<div class="outline-text-4" id="text-org38080e1">
 <div class="org-src-container">
 <pre class="src src-nix">programs.sway = {
   enable = true;
@@ -949,18 +949,18 @@ environment.sessionVariables.NIXOS_OZONE_WL = "1";
 </div>
 </div>
 </div>
-<div id="outline-container-org3f9dd0c" class="outline-4">
-<h4 id="org3f9dd0c">Polkit</h4>
-<div class="outline-text-4" id="text-org3f9dd0c">
+<div id="outline-container-orge8e8e0e" class="outline-4">
+<h4 id="orge8e8e0e">Polkit</h4>
+<div class="outline-text-4" id="text-orge8e8e0e">
 <div class="org-src-container">
 <pre class="src src-nix">security.polkit.enable = true;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgabcd4e8" class="outline-4">
-<h4 id="orgabcd4e8">Flakes</h4>
-<div class="outline-text-4" id="text-orgabcd4e8">
+<div id="outline-container-org647e16b" class="outline-4">
+<h4 id="org647e16b">Flakes</h4>
+<div class="outline-text-4" id="text-org647e16b">
 <div class="org-src-container">
 <pre class="src src-nix"># Enable flakes
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -968,9 +968,9 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 </div>
 </div>
 </div>
-<div id="outline-container-orgbdbf635" class="outline-4">
-<h4 id="orgbdbf635">Desktop</h4>
-<div class="outline-text-4" id="text-orgbdbf635">
+<div id="outline-container-org65fa6fe" class="outline-4">
+<h4 id="org65fa6fe">Desktop</h4>
+<div class="outline-text-4" id="text-org65fa6fe">
 <div class="org-src-container">
 <pre class="src src-nix"># Enable the X11 windowing system.
 # You can disable this if you're only using the Wayland session.
@@ -995,9 +995,9 @@ environment.variables.EDITOR = "nvim";
 </div>
 </div>
 </div>
-<div id="outline-container-orgc586a5d" class="outline-4">
-<h4 id="orgc586a5d">Audio</h4>
-<div class="outline-text-4" id="text-orgc586a5d">
+<div id="outline-container-org052d878" class="outline-4">
+<h4 id="org052d878">Audio</h4>
+<div class="outline-text-4" id="text-org052d878">
 <div class="org-src-container">
 <pre class="src src-nix"># Enable sound with pipewire.
 services.pulseaudio.enable = false;
@@ -1018,9 +1018,9 @@ services.pipewire = {
 </div>
 </div>
 </div>
-<div id="outline-container-orgc99bd5e" class="outline-4">
-<h4 id="orgc99bd5e">Users</h4>
-<div class="outline-text-4" id="text-orgc99bd5e">
+<div id="outline-container-org5435d1f" class="outline-4">
+<h4 id="org5435d1f">Users</h4>
+<div class="outline-text-4" id="text-org5435d1f">
 <div class="org-src-container">
 <pre class="src src-nix"># Define a user account. Don't forget to set a password with ‘passwd’.
 users.users.primary = {
@@ -1032,18 +1032,18 @@ users.users.primary = {
 </div>
 </div>
 </div>
-<div id="outline-container-org2e3f48b" class="outline-4">
-<h4 id="org2e3f48b">Docker</h4>
-<div class="outline-text-4" id="text-org2e3f48b">
+<div id="outline-container-org6c36efb" class="outline-4">
+<h4 id="org6c36efb">Docker</h4>
+<div class="outline-text-4" id="text-org6c36efb">
 <div class="org-src-container">
 <pre class="src src-nix">virtualisation.docker.enable = true;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7f4024c" class="outline-4">
-<h4 id="org7f4024c">Virt Manager</h4>
-<div class="outline-text-4" id="text-org7f4024c">
+<div id="outline-container-orgc4ae383" class="outline-4">
+<h4 id="orgc4ae383">Virt Manager</h4>
+<div class="outline-text-4" id="text-orgc4ae383">
 <div class="org-src-container">
 <pre class="src src-nix">programs.virt-manager.enable = true;
 
@@ -1056,41 +1056,41 @@ virtualisation.spiceUSBRedirection.enable = true;
 </div>
 </div>
 </div>
-<div id="outline-container-org4e63e08" class="outline-4">
-<h4 id="org4e63e08">Flatpak</h4>
-<div class="outline-text-4" id="text-org4e63e08">
+<div id="outline-container-org8f9d5f8" class="outline-4">
+<h4 id="org8f9d5f8">Flatpak</h4>
+<div class="outline-text-4" id="text-org8f9d5f8">
 <div class="org-src-container">
 <pre class="src src-nix">services.flatpak.enable = true;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0b9d8b2" class="outline-4">
-<h4 id="org0b9d8b2">Nix Packages</h4>
-<div class="outline-text-4" id="text-org0b9d8b2">
+<div id="outline-container-org4f8120d" class="outline-4">
+<h4 id="org4f8120d">Nix Packages</h4>
+<div class="outline-text-4" id="text-org4f8120d">
 <p>
 These are <b>SYSTEM</b> packages for user specific look at home settings
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org23bb43a"></a>Start of List<br />
-<div class="outline-text-5" id="text-org23bb43a">
+<li><a id="orgc33a6e1"></a>Start of List<br />
+<div class="outline-text-5" id="text-orgc33a6e1">
 <div class="org-src-container">
 <pre class="src src-nix">environment.systemPackages = with pkgs; [
 </pre>
 </div>
 </div>
 </li>
-<li><a id="org709b354"></a>More Developer Tools<br />
-<div class="outline-text-5" id="text-org709b354">
+<li><a id="org585e2df"></a>More Developer Tools<br />
+<div class="outline-text-5" id="text-org585e2df">
 <div class="org-src-container">
 <pre class="src src-nix">docker
 </pre>
 </div>
 </div>
 </li>
-<li><a id="orgca6168b"></a>Flatpak<br />
-<div class="outline-text-5" id="text-orgca6168b">
+<li><a id="orgbab9482"></a>Flatpak<br />
+<div class="outline-text-5" id="text-orgbab9482">
 <p>
 Why Flatpak? for sandboxing certain apps I wish to have more restrictive permissions
 </p>
@@ -1100,8 +1100,8 @@ Why Flatpak? for sandboxing certain apps I wish to have more restrictive permiss
 </div>
 </div>
 </li>
-<li><a id="org54d0c19"></a>End of List<br />
-<div class="outline-text-5" id="text-org54d0c19">
+<li><a id="org3a65c78"></a>End of List<br />
+<div class="outline-text-5" id="text-org3a65c78">
 <div class="org-src-container">
 <pre class="src src-nix">];
 }

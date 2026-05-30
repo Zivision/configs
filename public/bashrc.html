@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Bashrc</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="../index.html">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="./">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
 </head>
 <body>
 <div id="content" class="content">
@@ -16,16 +16,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb98b513">Bashrc</a>
+<li><a href="#orgfd5df21">Bashrc</a>
 <ul>
-<li><a href="#orgee946d8">Basic Settings</a></li>
-<li><a href="#orge401e57">History Configuration</a></li>
-<li><a href="#org3b28452">Fzf</a></li>
-<li><a href="#orgc214ade">Shell Options</a></li>
-<li><a href="#org4f0307f">Direnv</a></li>
-<li><a href="#org30818fd">Prompt</a></li>
-<li><a href="#org09e4043">Aliases</a></li>
-<li><a href="#orge196b37">Environment Variables</a></li>
+<li><a href="#org709c7ed">Basic Settings</a></li>
+<li><a href="#orge8118e1">History Configuration</a></li>
+<li><a href="#org971a3c3">Fzf</a></li>
+<li><a href="#org9bd340f">Shell Options</a></li>
+<li><a href="#org3c855dc">Direnv</a></li>
+<li><a href="#orgacef95d">Prompt</a></li>
+<li><a href="#orgbf976a8">Aliases</a></li>
+<li><a href="#org99b98d6">Environment Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -34,13 +34,13 @@
 <p>
 This is the bashrc I use for the system
 </p>
-<div id="outline-container-orgb98b513" class="outline-2">
-<h2 id="orgb98b513">Bashrc</h2>
-<div class="outline-text-2" id="text-orgb98b513">
+<div id="outline-container-orgfd5df21" class="outline-2">
+<h2 id="orgfd5df21">Bashrc</h2>
+<div class="outline-text-2" id="text-orgfd5df21">
 </div>
-<div id="outline-container-orgee946d8" class="outline-3">
-<h3 id="orgee946d8">Basic Settings</h3>
-<div class="outline-text-3" id="text-orgee946d8">
+<div id="outline-container-org709c7ed" class="outline-3">
+<h3 id="org709c7ed">Basic Settings</h3>
+<div class="outline-text-3" id="text-org709c7ed">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/usr/bin/</span><span style="font-weight: bold;">env</span><span style="font-weight: bold; font-style: italic;"> bash
 </span>
@@ -53,9 +53,9 @@ This is the bashrc I use for the system
 </div>
 </div>
 </div>
-<div id="outline-container-orge401e57" class="outline-3">
-<h3 id="orge401e57">History Configuration</h3>
-<div class="outline-text-3" id="text-orge401e57">
+<div id="outline-container-orge8118e1" class="outline-3">
+<h3 id="orge8118e1">History Configuration</h3>
+<div class="outline-text-3" id="text-orge8118e1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">HISTSIZE</span>=10000                <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Commands to keep in memory
 </span><span style="font-weight: bold; font-style: italic;">HISTFILESIZE</span>=20000            <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Commands to keep in history file
@@ -65,9 +65,9 @@ This is the bashrc I use for the system
 </div>
 </div>
 </div>
-<div id="outline-container-org3b28452" class="outline-3">
-<h3 id="org3b28452">Fzf</h3>
-<div class="outline-text-3" id="text-org3b28452">
+<div id="outline-container-org971a3c3" class="outline-3">
+<h3 id="org971a3c3">Fzf</h3>
+<div class="outline-text-3" id="text-org971a3c3">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Set up fzf key bindings and fuzzy completion
 </span><span style="font-weight: bold;">eval</span> <span style="font-style: italic;">"$(</span><span style="font-weight: bold;">fzf --bash</span><span style="font-style: italic;">)"</span>
@@ -75,9 +75,9 @@ This is the bashrc I use for the system
 </div>
 </div>
 </div>
-<div id="outline-container-orgc214ade" class="outline-3">
-<h3 id="orgc214ade">Shell Options</h3>
-<div class="outline-text-3" id="text-orgc214ade">
+<div id="outline-container-org9bd340f" class="outline-3">
+<h3 id="org9bd340f">Shell Options</h3>
+<div class="outline-text-3" id="text-org9bd340f">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold;">shopt</span> -s checkwinsize         <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Update LINES and COLUMNS after each command
 </span><span style="font-weight: bold;">shopt</span> -s globstar 2&gt;/dev/null <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Enable ** for recursive glob matching
@@ -86,18 +86,18 @@ This is the bashrc I use for the system
 </div>
 </div>
 </div>
-<div id="outline-container-org4f0307f" class="outline-3">
-<h3 id="org4f0307f">Direnv</h3>
-<div class="outline-text-3" id="text-org4f0307f">
+<div id="outline-container-org3c855dc" class="outline-3">
+<h3 id="org3c855dc">Direnv</h3>
+<div class="outline-text-3" id="text-org3c855dc">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold;">eval</span> <span style="font-style: italic;">"$(</span><span style="font-weight: bold;">direnv hook bash</span><span style="font-style: italic;">)"</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org30818fd" class="outline-3">
-<h3 id="org30818fd">Prompt</h3>
-<div class="outline-text-3" id="text-org30818fd">
+<div id="outline-container-orgacef95d" class="outline-3">
+<h3 id="orgacef95d">Prompt</h3>
+<div class="outline-text-3" id="text-orgacef95d">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Function to get current git branch
 </span><span style="font-weight: bold;">git_branch</span>() {
@@ -114,9 +114,9 @@ This is the bashrc I use for the system
 </div>
 </div>
 </div>
-<div id="outline-container-org09e4043" class="outline-3">
-<h3 id="org09e4043">Aliases</h3>
-<div class="outline-text-3" id="text-org09e4043">
+<div id="outline-container-orgbf976a8" class="outline-3">
+<h3 id="orgbf976a8">Aliases</h3>
+<div class="outline-text-3" id="text-orgbf976a8">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Listing
 </span><span style="font-weight: bold;">alias</span> <span style="font-weight: bold; font-style: italic;">ls</span>=<span style="font-style: italic;">'ls --color=auto'</span>
@@ -149,9 +149,9 @@ This is the bashrc I use for the system
 </div>
 </div>
 </div>
-<div id="outline-container-orge196b37" class="outline-3">
-<h3 id="orge196b37">Environment Variables</h3>
-<div class="outline-text-3" id="text-orge196b37">
+<div id="outline-container-org99b98d6" class="outline-3">
+<h3 id="org99b98d6">Environment Variables</h3>
+<div class="outline-text-3" id="text-org99b98d6">
 <p>
 This section is rather important check if it still applies if something break
 (AKA the scripts not showing up)

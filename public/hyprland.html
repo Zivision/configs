@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hyprland</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="../index.html">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="./">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
 </head>
 <body>
 <div id="content" class="content">
@@ -16,46 +16,46 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org76ccf49">Hyprland (hypr/ Directory)</a>
+<li><a href="#org8769d8d">Hyprland (hypr/ Directory)</a>
 <ul>
-<li><a href="#orgad7329c">Monitors</a></li>
-<li><a href="#org56668d2">Programs</a></li>
-<li><a href="#orgc14c78f">Autostart</a></li>
-<li><a href="#org528f10f">Environment Variables</a></li>
-<li><a href="#org6c4ce06">Look and Feel</a>
+<li><a href="#org560e8ab">Monitors</a></li>
+<li><a href="#org62bd8ef">Programs</a></li>
+<li><a href="#org6df5f9b">Autostart</a></li>
+<li><a href="#org0eb4db7">Environment Variables</a></li>
+<li><a href="#orgb4428e9">Look and Feel</a>
 <ul>
-<li><a href="#org0e82da3">General</a></li>
-<li><a href="#org7f9d462">Decoration</a></li>
-<li><a href="#org5a2a824">Animations</a></li>
-<li><a href="#orgd6740a2">Gaps</a></li>
-<li><a href="#orgfaa6873">Layouts</a></li>
-<li><a href="#orgb7099cc">Xwayland</a></li>
-<li><a href="#org31d3163">Misc Variables</a></li>
+<li><a href="#orgbeb4531">General</a></li>
+<li><a href="#org32450b6">Decoration</a></li>
+<li><a href="#orgc8818b4">Animations</a></li>
+<li><a href="#org7703fde">Gaps</a></li>
+<li><a href="#org404a8b0">Layouts</a></li>
+<li><a href="#orgf8166ce">Xwayland</a></li>
+<li><a href="#orgbd53735">Misc Variables</a></li>
 </ul>
 </li>
-<li><a href="#org6bbb072">Input</a></li>
-<li><a href="#org3fc09ce">Keybinds</a>
+<li><a href="#org799574f">Input</a></li>
+<li><a href="#org18b502f">Keybinds</a>
 <ul>
-<li><a href="#org4dcf710">Main Modifier Key</a></li>
-<li><a href="#orgb146ae3">Main Keybinds</a></li>
-<li><a href="#org5b9fd3f">Movement</a></li>
-<li><a href="#org59a03ee">Workspaces</a></li>
-<li><a href="#org5c2f687">Move To Workspaces</a></li>
-<li><a href="#org372a77a">Special Workspaces</a></li>
-<li><a href="#orgee1a3c0">Window Resize</a></li>
-<li><a href="#orgc94576c">Special Keys</a></li>
-<li><a href="#orgea9c9ea">Windows and Workspaces</a></li>
+<li><a href="#org667dee8">Main Modifier Key</a></li>
+<li><a href="#orgdca6fd7">Main Keybinds</a></li>
+<li><a href="#orgaca3a0b">Movement</a></li>
+<li><a href="#org6357710">Workspaces</a></li>
+<li><a href="#orgb71ea7d">Move To Workspaces</a></li>
+<li><a href="#org411f0c6">Special Workspaces</a></li>
+<li><a href="#orgeceaccc">Window Resize</a></li>
+<li><a href="#orgd14ea44">Special Keys</a></li>
+<li><a href="#org8d321dc">Windows and Workspaces</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb8b0df5">Autostart</a></li>
+<li><a href="#org8af19f7">Autostart</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org76ccf49" class="outline-2">
-<h2 id="org76ccf49">Hyprland (hypr/ Directory)</h2>
-<div class="outline-text-2" id="text-org76ccf49">
+<div id="outline-container-org8769d8d" class="outline-2">
+<h2 id="org8769d8d">Hyprland (hypr/ Directory)</h2>
+<div class="outline-text-2" id="text-org8769d8d">
 <p>
 This is my hyprland configuration originally modified from an auto generated one.
 </p>
@@ -64,9 +64,9 @@ This is my hyprland configuration originally modified from an auto generated one
 For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/Configuring/">Wiki</a>
 </p>
 </div>
-<div id="outline-container-orgad7329c" class="outline-3">
-<h3 id="orgad7329c">Monitors</h3>
-<div class="outline-text-3" id="text-orgad7329c">
+<div id="outline-container-org560e8ab" class="outline-3">
+<h3 id="org560e8ab">Monitors</h3>
+<div class="outline-text-3" id="text-org560e8ab">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">monitor</span> = DP-2, 1440x900@74.98, -900x0, 1, transform, 1
 <span style="font-weight: bold; font-style: italic;">monitor</span> = HDMI-A-1, 1920x1080@74.97, 0x0, 1
@@ -74,9 +74,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org56668d2" class="outline-3">
-<h3 id="org56668d2">Programs</h3>
-<div class="outline-text-3" id="text-org56668d2">
+<div id="outline-container-org62bd8ef" class="outline-3">
+<h3 id="org62bd8ef">Programs</h3>
+<div class="outline-text-3" id="text-org62bd8ef">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">$terminal</span> = kitty
 <span style="font-weight: bold; font-style: italic;">$fileManager</span> = dolphin
@@ -92,18 +92,18 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-orgc14c78f" class="outline-3">
-<h3 id="orgc14c78f">Autostart</h3>
-<div class="outline-text-3" id="text-orgc14c78f">
+<div id="outline-container-org6df5f9b" class="outline-3">
+<h3 id="org6df5f9b">Autostart</h3>
+<div class="outline-text-3" id="text-org6df5f9b">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">exec-once</span> = ~/.config/hypr/autostart
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org528f10f" class="outline-3">
-<h3 id="org528f10f">Environment Variables</h3>
-<div class="outline-text-3" id="text-org528f10f">
+<div id="outline-container-org0eb4db7" class="outline-3">
+<h3 id="org0eb4db7">Environment Variables</h3>
+<div class="outline-text-3" id="text-org0eb4db7">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">env</span> = XCURSOR_SIZE,24
 <span style="font-weight: bold; font-style: italic;">env</span> = HYPRCURSOR_SIZE,24
@@ -111,13 +111,13 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org6c4ce06" class="outline-3">
-<h3 id="org6c4ce06">Look and Feel</h3>
-<div class="outline-text-3" id="text-org6c4ce06">
+<div id="outline-container-orgb4428e9" class="outline-3">
+<h3 id="orgb4428e9">Look and Feel</h3>
+<div class="outline-text-3" id="text-orgb4428e9">
 </div>
-<div id="outline-container-org0e82da3" class="outline-4">
-<h4 id="org0e82da3">General</h4>
-<div class="outline-text-4" id="text-org0e82da3">
+<div id="outline-container-orgbeb4531" class="outline-4">
+<h4 id="orgbeb4531">General</h4>
+<div class="outline-text-4" id="text-orgbeb4531">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">general</span> {
     <span style="font-weight: bold; font-style: italic;">gaps_in</span> = 5
@@ -138,9 +138,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org7f9d462" class="outline-4">
-<h4 id="org7f9d462">Decoration</h4>
-<div class="outline-text-4" id="text-org7f9d462">
+<div id="outline-container-org32450b6" class="outline-4">
+<h4 id="org32450b6">Decoration</h4>
+<div class="outline-text-4" id="text-org32450b6">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">decoration</span> {
     <span style="font-weight: bold; font-style: italic;">rounding</span> = 3
@@ -168,9 +168,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org5a2a824" class="outline-4">
-<h4 id="org5a2a824">Animations</h4>
-<div class="outline-text-4" id="text-org5a2a824">
+<div id="outline-container-orgc8818b4" class="outline-4">
+<h4 id="orgc8818b4">Animations</h4>
+<div class="outline-text-4" id="text-orgc8818b4">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">animations</span> {
     <span style="font-weight: bold; font-style: italic;">enabled</span> = yes, please :)
@@ -205,9 +205,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-orgd6740a2" class="outline-4">
-<h4 id="orgd6740a2">Gaps</h4>
-<div class="outline-text-4" id="text-orgd6740a2">
+<div id="outline-container-org7703fde" class="outline-4">
+<h4 id="org7703fde">Gaps</h4>
+<div class="outline-text-4" id="text-org7703fde">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">"Smart gaps" / "No gaps when only"
 </span><span style="font-weight: bold; font-style: italic;">workspace</span> = w[tv1], gapsout:0, gapsin:0
@@ -220,13 +220,13 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-orgfaa6873" class="outline-4">
-<h4 id="orgfaa6873">Layouts</h4>
-<div class="outline-text-4" id="text-orgfaa6873">
+<div id="outline-container-org404a8b0" class="outline-4">
+<h4 id="org404a8b0">Layouts</h4>
+<div class="outline-text-4" id="text-org404a8b0">
 </div>
 <ul class="org-ul">
-<li><a id="org5993e4a"></a>Dwindle<br />
-<div class="outline-text-5" id="text-org5993e4a">
+<li><a id="orgdee247f"></a>Dwindle<br />
+<div class="outline-text-5" id="text-orgdee247f">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">dwindle</span> {
     <span style="font-weight: bold; font-style: italic;">pseudotile</span> = true <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
@@ -237,8 +237,8 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </li>
-<li><a id="org32d8921"></a>Master<br />
-<div class="outline-text-5" id="text-org32d8921">
+<li><a id="org37fb2b3"></a>Master<br />
+<div class="outline-text-5" id="text-org37fb2b3">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">master</span> {
     <span style="font-weight: bold; font-style: italic;">new_status</span> = master
@@ -249,9 +249,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </li>
 </ul>
 </div>
-<div id="outline-container-orgb7099cc" class="outline-4">
-<h4 id="orgb7099cc">Xwayland</h4>
-<div class="outline-text-4" id="text-orgb7099cc">
+<div id="outline-container-orgf8166ce" class="outline-4">
+<h4 id="orgf8166ce">Xwayland</h4>
+<div class="outline-text-4" id="text-orgf8166ce">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">xwayland</span> {
     <span style="font-weight: bold; font-style: italic;">force_zero_scaling</span> = true
@@ -260,9 +260,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org31d3163" class="outline-4">
-<h4 id="org31d3163">Misc Variables</h4>
-<div class="outline-text-4" id="text-org31d3163">
+<div id="outline-container-orgbd53735" class="outline-4">
+<h4 id="orgbd53735">Misc Variables</h4>
+<div class="outline-text-4" id="text-orgbd53735">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">misc</span> {
     <span style="font-weight: bold; font-style: italic;">force_default_wallpaper</span> = 0 <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Set to 0 or 1 to disable the anime mascot wallpapers
@@ -273,9 +273,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org6bbb072" class="outline-3">
-<h3 id="org6bbb072">Input</h3>
-<div class="outline-text-3" id="text-org6bbb072">
+<div id="outline-container-org799574f" class="outline-3">
+<h3 id="org799574f">Input</h3>
+<div class="outline-text-3" id="text-org799574f">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; text-decoration: underline;">input</span> {
     <span style="font-weight: bold; font-style: italic;">kb_layout</span> = us
@@ -303,22 +303,22 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org3fc09ce" class="outline-3">
-<h3 id="org3fc09ce">Keybinds</h3>
-<div class="outline-text-3" id="text-org3fc09ce">
+<div id="outline-container-org18b502f" class="outline-3">
+<h3 id="org18b502f">Keybinds</h3>
+<div class="outline-text-3" id="text-org18b502f">
 </div>
-<div id="outline-container-org4dcf710" class="outline-4">
-<h4 id="org4dcf710">Main Modifier Key</h4>
-<div class="outline-text-4" id="text-org4dcf710">
+<div id="outline-container-org667dee8" class="outline-4">
+<h4 id="org667dee8">Main Modifier Key</h4>
+<div class="outline-text-4" id="text-org667dee8">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">$mainMod</span> = SUPER <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Sets "Windows" key as main modifier</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb146ae3" class="outline-4">
-<h4 id="orgb146ae3">Main Keybinds</h4>
-<div class="outline-text-4" id="text-orgb146ae3">
+<div id="outline-container-orgdca6fd7" class="outline-4">
+<h4 id="orgdca6fd7">Main Keybinds</h4>
+<div class="outline-text-4" id="text-orgdca6fd7">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod, Q, exec, $vterm
 <span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod SHIFT, Q, exec, $terminal
@@ -340,9 +340,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org5b9fd3f" class="outline-4">
-<h4 id="org5b9fd3f">Movement</h4>
-<div class="outline-text-4" id="text-org5b9fd3f">
+<div id="outline-container-orgaca3a0b" class="outline-4">
+<h4 id="orgaca3a0b">Movement</h4>
+<div class="outline-text-4" id="text-orgaca3a0b">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod, H, movefocus, l
 <span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod, L, movefocus, r
@@ -352,9 +352,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org59a03ee" class="outline-4">
-<h4 id="org59a03ee">Workspaces</h4>
-<div class="outline-text-4" id="text-org59a03ee">
+<div id="outline-container-org6357710" class="outline-4">
+<h4 id="org6357710">Workspaces</h4>
+<div class="outline-text-4" id="text-org6357710">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod, 1, workspace, 1
 <span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod, 2, workspace, 2
@@ -370,9 +370,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org5c2f687" class="outline-4">
-<h4 id="org5c2f687">Move To Workspaces</h4>
-<div class="outline-text-4" id="text-org5c2f687">
+<div id="outline-container-orgb71ea7d" class="outline-4">
+<h4 id="orgb71ea7d">Move To Workspaces</h4>
+<div class="outline-text-4" id="text-orgb71ea7d">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod SHIFT, 1, movetoworkspace, 1
 <span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod SHIFT, 2, movetoworkspace, 2
@@ -388,9 +388,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-org372a77a" class="outline-4">
-<h4 id="org372a77a">Special Workspaces</h4>
-<div class="outline-text-4" id="text-org372a77a">
+<div id="outline-container-org411f0c6" class="outline-4">
+<h4 id="org411f0c6">Special Workspaces</h4>
+<div class="outline-text-4" id="text-org411f0c6">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Example special workspace (scratchpad)
 </span><span style="font-weight: bold; font-style: italic;">bind</span> = $mainMod, S, togglespecialworkspace, magic
@@ -403,9 +403,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-orgee1a3c0" class="outline-4">
-<h4 id="orgee1a3c0">Window Resize</h4>
-<div class="outline-text-4" id="text-orgee1a3c0">
+<div id="outline-container-orgeceaccc" class="outline-4">
+<h4 id="orgeceaccc">Window Resize</h4>
+<div class="outline-text-4" id="text-orgeceaccc">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Move/resize windows with mainMod + LMB/RMB and dragging
 </span><span style="font-weight: bold; font-style: italic;">bindm</span> = $mainMod, mouse:272, movewindow
@@ -414,9 +414,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-orgc94576c" class="outline-4">
-<h4 id="orgc94576c">Special Keys</h4>
-<div class="outline-text-4" id="text-orgc94576c">
+<div id="outline-container-orgd14ea44" class="outline-4">
+<h4 id="orgd14ea44">Special Keys</h4>
+<div class="outline-text-4" id="text-orgd14ea44">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Laptop multimedia keys for volume and LCD brightness
 </span><span style="font-weight: bold; font-style: italic;">bindel</span> = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
@@ -435,9 +435,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-orgea9c9ea" class="outline-4">
-<h4 id="orgea9c9ea">Windows and Workspaces</h4>
-<div class="outline-text-4" id="text-orgea9c9ea">
+<div id="outline-container-org8d321dc" class="outline-4">
+<h4 id="org8d321dc">Windows and Workspaces</h4>
+<div class="outline-text-4" id="text-org8d321dc">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Ignore maximize requests from apps. You'll probably like this.
 </span><span style="font-weight: bold; font-style: italic;">windowrule</span> = suppressevent maximize, class:.*
@@ -464,9 +464,9 @@ For more info on configuring hyprland visit the <a href="https://wiki.hypr.land/
 </div>
 </div>
 </div>
-<div id="outline-container-orgb8b0df5" class="outline-2">
-<h2 id="orgb8b0df5">Autostart</h2>
-<div class="outline-text-2" id="text-orgb8b0df5">
+<div id="outline-container-org8af19f7" class="outline-2">
+<h2 id="org8af19f7">Autostart</h2>
+<div class="outline-text-2" id="text-org8af19f7">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/usr/bin/</span><span style="font-weight: bold;">env</span><span style="font-weight: bold; font-style: italic;"> bash
 </span>

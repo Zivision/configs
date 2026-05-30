@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Waybar</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="../index.html">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" /><nav><a href="./">Home</a> | <a href="./bashrc.html">Bashrc</a> | <a href="./doom.html">Doom</a> | <a href="./hyprland.html">Hyprland</a> | <a href="./kitty.html">Kitty</a> | <a href="./nixos.html">Nixos</a> | <a href="./sway.html">Sway</a> | <a href="./waybar.html">Waybar</a></nav>
 </head>
 <body>
 <div id="content" class="content">
@@ -16,34 +16,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org549c7c3">Waybar (waybar/ directory)</a>
+<li><a href="#org6946b74">Waybar (waybar/ directory)</a>
 <ul>
-<li><a href="#orgf1cb68e">Basic Settings</a></li>
-<li><a href="#org9518283">MPD</a></li>
-<li><a href="#orgdfb763d">Idle<sub>inhibitor</sub></a></li>
-<li><a href="#org5147269">Tray</a></li>
-<li><a href="#orgd7563c3">Clock</a></li>
-<li><a href="#org4e386d6">CPU</a></li>
-<li><a href="#orgde02c36">Memory</a></li>
-<li><a href="#org8678736">Temperature</a></li>
-<li><a href="#org0cf3b4b">Backlight</a></li>
-<li><a href="#org86c4532">Battery</a></li>
-<li><a href="#orgb864a3a">Power Profiles</a></li>
-<li><a href="#orgbe671c8">Custom Power</a></li>
-<li><a href="#org71270c4">Network</a></li>
-<li><a href="#org5dafcd2">PulseAudio</a></li>
+<li><a href="#org707bcc5">Basic Settings</a></li>
+<li><a href="#orgdea7915">MPD</a></li>
+<li><a href="#org45315ad">Idle<sub>inhibitor</sub></a></li>
+<li><a href="#org8a7af51">Tray</a></li>
+<li><a href="#orgc4622d4">Clock</a></li>
+<li><a href="#org2328a7e">CPU</a></li>
+<li><a href="#org12ef524">Memory</a></li>
+<li><a href="#orga6b8007">Temperature</a></li>
+<li><a href="#org6dd4233">Backlight</a></li>
+<li><a href="#org1d5b51f">Battery</a></li>
+<li><a href="#orgf679f72">Power Profiles</a></li>
+<li><a href="#org865ada9">Custom Power</a></li>
+<li><a href="#org6b78dfb">Network</a></li>
+<li><a href="#orgfdc9b87">PulseAudio</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org549c7c3" class="outline-2">
-<h2 id="org549c7c3">Waybar (waybar/ directory)</h2>
-<div class="outline-text-2" id="text-org549c7c3">
+<div id="outline-container-org6946b74" class="outline-2">
+<h2 id="org6946b74">Waybar (waybar/ directory)</h2>
+<div class="outline-text-2" id="text-org6946b74">
 </div>
-<div id="outline-container-orgf1cb68e" class="outline-3">
-<h3 id="orgf1cb68e">Basic Settings</h3>
-<div class="outline-text-3" id="text-orgf1cb68e">
+<div id="outline-container-org707bcc5" class="outline-3">
+<h3 id="org707bcc5">Basic Settings</h3>
+<div class="outline-text-3" id="text-org707bcc5">
 <div class="org-src-container">
 <pre class="src src-js">{
     <span style="font-style: italic;">"layer"</span>: <span style="font-style: italic;">"top"</span>, <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Waybar at top layer
@@ -84,9 +84,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org9518283" class="outline-3">
-<h3 id="org9518283">MPD</h3>
-<div class="outline-text-3" id="text-org9518283">
+<div id="outline-container-orgdea7915" class="outline-3">
+<h3 id="orgdea7915">MPD</h3>
+<div class="outline-text-3" id="text-orgdea7915">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"mpd"</span>: {
     <span style="font-style: italic;">"format"</span>: <span style="font-style: italic;">"{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) &#11816;{songPosition}|{queueLength}&#11817; {volume}% &#61441;"</span>,
@@ -118,9 +118,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgdfb763d" class="outline-3">
-<h3 id="orgdfb763d">Idle<sub>inhibitor</sub></h3>
-<div class="outline-text-3" id="text-orgdfb763d">
+<div id="outline-container-org45315ad" class="outline-3">
+<h3 id="org45315ad">Idle<sub>inhibitor</sub></h3>
+<div class="outline-text-3" id="text-org45315ad">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"idle_inhibitor"</span>: {
     <span style="font-style: italic;">"format"</span>: <span style="font-style: italic;">"{icon}"</span>,
@@ -133,9 +133,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org5147269" class="outline-3">
-<h3 id="org5147269">Tray</h3>
-<div class="outline-text-3" id="text-org5147269">
+<div id="outline-container-org8a7af51" class="outline-3">
+<h3 id="org8a7af51">Tray</h3>
+<div class="outline-text-3" id="text-org8a7af51">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"tray"</span>: {
     <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">"icon-size": 21,
@@ -149,9 +149,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgd7563c3" class="outline-3">
-<h3 id="orgd7563c3">Clock</h3>
-<div class="outline-text-3" id="text-orgd7563c3">
+<div id="outline-container-orgc4622d4" class="outline-3">
+<h3 id="orgc4622d4">Clock</h3>
+<div class="outline-text-3" id="text-orgc4622d4">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"clock"</span>: {
     <span style="font-style: italic;">"timezone"</span>: <span style="font-style: italic;">"America/Chicago"</span>,
@@ -162,9 +162,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org4e386d6" class="outline-3">
-<h3 id="org4e386d6">CPU</h3>
-<div class="outline-text-3" id="text-org4e386d6">
+<div id="outline-container-org2328a7e" class="outline-3">
+<h3 id="org2328a7e">CPU</h3>
+<div class="outline-text-3" id="text-org2328a7e">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"cpu"</span>: {
     <span style="font-style: italic;">"format"</span>: <span style="font-style: italic;">"{usage}% &#62171;"</span>,
@@ -174,9 +174,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgde02c36" class="outline-3">
-<h3 id="orgde02c36">Memory</h3>
-<div class="outline-text-3" id="text-orgde02c36">
+<div id="outline-container-org12ef524" class="outline-3">
+<h3 id="org12ef524">Memory</h3>
+<div class="outline-text-3" id="text-org12ef524">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"memory"</span>: {
     <span style="font-style: italic;">"format"</span>: <span style="font-style: italic;">"{}% &#61641;"</span>
@@ -185,9 +185,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org8678736" class="outline-3">
-<h3 id="org8678736">Temperature</h3>
-<div class="outline-text-3" id="text-org8678736">
+<div id="outline-container-orga6b8007" class="outline-3">
+<h3 id="orga6b8007">Temperature</h3>
+<div class="outline-text-3" id="text-orga6b8007">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"temperature"</span>: {
     <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">"thermal-zone": 2,
@@ -201,9 +201,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org0cf3b4b" class="outline-3">
-<h3 id="org0cf3b4b">Backlight</h3>
-<div class="outline-text-3" id="text-org0cf3b4b">
+<div id="outline-container-org6dd4233" class="outline-3">
+<h3 id="org6dd4233">Backlight</h3>
+<div class="outline-text-3" id="text-org6dd4233">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"backlight"</span>: {
     <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">"device": "acpi_video1",
@@ -214,9 +214,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org86c4532" class="outline-3">
-<h3 id="org86c4532">Battery</h3>
-<div class="outline-text-3" id="text-org86c4532">
+<div id="outline-container-org1d5b51f" class="outline-3">
+<h3 id="org1d5b51f">Battery</h3>
+<div class="outline-text-3" id="text-org1d5b51f">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"battery"</span>: {
     <span style="font-style: italic;">"states"</span>: {
@@ -240,9 +240,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgb864a3a" class="outline-3">
-<h3 id="orgb864a3a">Power Profiles</h3>
-<div class="outline-text-3" id="text-orgb864a3a">
+<div id="outline-container-orgf679f72" class="outline-3">
+<h3 id="orgf679f72">Power Profiles</h3>
+<div class="outline-text-3" id="text-orgf679f72">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"power-profiles-daemon"</span>: {
   <span style="font-style: italic;">"format"</span>: <span style="font-style: italic;">"{icon}"</span>,
@@ -259,9 +259,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgbe671c8" class="outline-3">
-<h3 id="orgbe671c8">Custom Power</h3>
-<div class="outline-text-3" id="text-orgbe671c8">
+<div id="outline-container-org865ada9" class="outline-3">
+<h3 id="org865ada9">Custom Power</h3>
+<div class="outline-text-3" id="text-org865ada9">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"custom/power"</span>: {
     <span style="font-style: italic;">"format"</span> : <span style="font-style: italic;">"&#9211; "</span>,
@@ -279,9 +279,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org71270c4" class="outline-3">
-<h3 id="org71270c4">Network</h3>
-<div class="outline-text-3" id="text-org71270c4">
+<div id="outline-container-org6b78dfb" class="outline-3">
+<h3 id="org6b78dfb">Network</h3>
+<div class="outline-text-3" id="text-org6b78dfb">
 <div class="org-src-container">
 <pre class="src src-js"><span style="font-style: italic;">"network"</span>: {
     <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">"interface": "wlp2*", // (Optional) To force the use of this interface
@@ -296,9 +296,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org5dafcd2" class="outline-3">
-<h3 id="org5dafcd2">PulseAudio</h3>
-<div class="outline-text-3" id="text-org5dafcd2">
+<div id="outline-container-orgfdc9b87" class="outline-3">
+<h3 id="orgfdc9b87">PulseAudio</h3>
+<div class="outline-text-3" id="text-orgfdc9b87">
 <div class="org-src-container">
 <pre class="src src-js">    <span style="font-style: italic;">"pulseaudio"</span>: {
         <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">"scroll-step": 1, // %, can be a float
