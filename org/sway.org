@@ -18,6 +18,7 @@
     - [[#utilities][Utilities]]
   -  [[#bar][Bar]]
   -  [[#font][Font]]
+  -  [[#floating][Floating]]
   -  [[#opacity][Opacity]]
   -  [[#windows][Windows]]
   -  [[#extra][Extra]]
@@ -274,6 +275,10 @@ bar {
 **  Font
 #+begin_src conf
 font pango:Iosevka 16
+#+end_src
+**  Floating
+#+begin_src conf
+for_window [app_id="steam"] floating enable
 #+end_src
 **  Opacity
 #+begin_src conf

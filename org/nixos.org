@@ -290,7 +290,9 @@ home.packages = with pkgs; [
 #+begin_src nix
 (prismlauncher.override {
   jdks = [
+
     zulu25
+    zulu8
   ];
 })
 #+end_src

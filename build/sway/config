@@ -198,6 +198,8 @@ bar {
 
 font pango:Iosevka 16
 
+for_window [app_id="steam"] floating enable
+
 for_window [class=".*"] opacity 0.9
 
 # Removes title bar and sets a 1-pixel border
