@@ -16,4 +16,6 @@
 
 (package! nerd-icons-completion)
 
+(package! golden-ratio)
+
 (package! fireplace)

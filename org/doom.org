@@ -53,6 +53,7 @@
     -  [[#emms-1][EMMS]]
     -  [[#elfeed-1][Elfeed]]
     -  [[#nerd-icons][Nerd Icons]]
+    -  [[#golden-ratio][Golden Ratio]]
     -  [[#debugger][Debugger]]
       -  [[#main-config][Main Config]]
       -  [[#python][Python]]
@@ -83,6 +84,7 @@
     -  [[#ui-1][UI]]
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
       -  [[#nerd-icons-completion][Nerd Icons Completion]]
+      -  [[#golden-ratio-window-resize][Golden Ratio (Window resize)]]
     -  [[#fun][Fun]]
       -  [[#fireplace][Fireplace]]
 
@@ -627,6 +629,13 @@ Will need to download the Iosevka Font for this to work.
   :hook
   (dired-mode . nerd-icons-dired-mode))
 #+end_src
+***  Golden Ratio
+#+begin_src elisp
+(use-package!
+    :hook
+  (golden-ratio-mode 1))
+
+#+end_src
 ***  Debugger
 ****  Main Config
 #+begin_src emacs-lisp
@@ -816,6 +825,10 @@ C-h f package\!
 ****  Nerd Icons Completion
 #+begin_src elisp
 (package! nerd-icons-completion)
+#+end_src
+****  Golden Ratio (Window resize)
+#+begin_src elisp
+(package! golden-ratio)
 #+end_src
 ***  Fun
 ****  Fireplace
