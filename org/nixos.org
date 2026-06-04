@@ -22,7 +22,8 @@
     -  [[#kitty][Kitty]]
     -  [[#waybar][Waybar]]
     -  [[#wofi][Wofi]]
-    -  [[#sway][sway]]
+    -  [[#sway][Sway]]
+    -  [[#swaylock][Swaylock]]
     -  [[#kde-wallet][KDE Wallet]]
     -  [[#end-of-list][End of list]]
   -  [[#bash-management][Bash management]]
@@ -67,6 +68,7 @@
     -  [[#flatpak][Flatpak]]
     -  [[#nix-packages][Nix Packages]]
       -  [[#start-of-list-1][Start of List]]
+      -  [[#sway-lock-lock-screen][Sway Lock (Lock Screen)]]
       -  [[#more-developer-tools][More Developer Tools]]
       -  [[#flatpak-1][Flatpak]]
       -  [[#end-of-list-2][End of List]]
@@ -248,10 +250,17 @@ home.file = {
   recursive = true;
 };
 #+end_src
-***  sway
+***  Sway
 #+begin_src nix
 ".config/sway" = {
   source = ../sway;
+  recursive = true;
+};
+#+end_src
+***  Swaylock
+#+begin_src nix
+".config/swaylock" = {
+  source = ../swaylock;
   recursive = true;
 };
 #+end_src
@@ -763,6 +772,10 @@ These are *SYSTEM* packages for user specific look at home settings
 ****  Start of List
 #+begin_src nix
 environment.systemPackages = with pkgs; [
+#+end_src
+****  Sway Lock (Lock Screen)
+#+begin_src nix
+swaylock
 #+end_src
 ****  More Developer Tools
 #+begin_src nix

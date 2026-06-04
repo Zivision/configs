@@ -38,6 +38,11 @@ home.file = {
   recursive = true;
 };
 
+".config/swaylock" = {
+  source = ../swaylock;
+  recursive = true;
+};
+
 ".config/kwalletrc".text = ''
   [Wallet]
   Enabled=false

@@ -21,6 +21,7 @@
   -  [[#floating][Floating]]
   -  [[#opacity][Opacity]]
   -  [[#windows][Windows]]
+  -  [[#screen-lock][Screen Lock]]
   -  [[#extra][Extra]]
 
 * Sway
@@ -292,6 +293,21 @@ default_floating_border pixel 1
 
 # Format: client.<state> border background text indicator child_border
 client.focused           #64727D #000000 #ffffff #000000 #000000
+#+end_src
+**  Screen Lock
+#+begin_src conf
+# Lock screen after 5 minutes of inactivity, turn off display after 10 minutes
+exec swayidle -w \
+    timeout 300 'swaylock' \
+    timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock'
+
+# Lock on laptop lid close
+bindswitch --locked --reload lid:on exec swaylock
+
+# Manual Lock
+bindsym $mod+Ctrl+l exec swaylock
 #+end_src
 **  Extra
 #+begin_src conf

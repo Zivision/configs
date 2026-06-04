@@ -1,0 +1,19 @@
+#+title: Swaylock
+
+*  Swaylock
+:PROPERTIES:
+:header-args: :tangle ../build/swaylock/config
+:VISIBILITY: folded
+:END:
+**  Base Settings
+#+begin_src conf
+image=/home/primary/Pictures/wallpapers/1920x1080 Landscape/Abandonded_City_1920x1080.png
+scaling=center
+show-failed-attempts
+ignore-empty-password
+#+end_src
+**  Ring Color Settings
+#+begin_src nix
+ring-color=#000000
+ring-caps-lock-color=#FA032C
+#+end_src
