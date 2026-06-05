@@ -1,16 +1,11 @@
 (after! doom
   (add-to-list 'load-path (expand-file-name "elisp" "~/Workspace/Misc/configs/build/doom")))
 
+
 (after! auth-source
   (setq auth-sources '("~/Private/.authinfo.gpg")))
 
-(defun hypr/launch-vterm
-    ()
-  "Open a new frame with a vterm buffer."
-  (+vterm/here 0)
-  (switch-to-buffer "*vterm*"))
-
-(defun hypr/launch-eshell
+(defun wm/launch-eshell
     ()
   "Open a new eshell frame if one doesn't exist. Otherwise open new eshell buffer."
   (if (get-buffer "*doom:eshell*")
@@ -20,16 +15,7 @@
       (switch-to-buffer "*doom:eshell*")
       (eshell/clear))))
 
-(defun hypr/launch-elfeed
-    ()
-  (elfeed)
-  (elfeed-update)
-  (switch-to-buffer "*elfeed-search*"))
-
-(defun hypr/launch-scratch
-    ()
-  (scratch-buffer)
-  (switch-to-buffer "*scratch*"))
+(require 'tangle-configs)
 
 (setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
 
@@ -207,6 +193,18 @@
 (use-package! nerd-icons-dired
   :hook
   (dired-mode . nerd-icons-dired-mode))
+
+(use-package! golden-ratio
+    :config
+  (golden-ratio-mode t)
+  (setq golden-ratio-extra-commands
+        (append golden-ratio-extra-commands
+                '(evil-window-left
+                  evil-window-right
+                  evil-window-up
+                  evil-window-down
+                  next-multiframe-window
+                  previous-multiframe-window))))
 
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))

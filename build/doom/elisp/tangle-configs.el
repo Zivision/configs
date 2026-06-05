@@ -23,7 +23,8 @@
 
 (defun tangle-configs-configure
     ()
-  "Tangle all org documents in configs"
+  "Tangle all org documents in configs."
+
   (let* ((project-dir
           (thread-first (getenv "DOOMDIR")
                         (expand-file-name)
@@ -60,7 +61,7 @@
 
 (defun tangle-configs-configure-interactive
     ()
-  "Tangle all org documents in configs (interactively)"
+  "Tangle all org documents in configs (interactively)."
   (interactive)
   (tangle-configs-configure))
 
