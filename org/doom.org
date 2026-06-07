@@ -54,6 +54,7 @@
       -  [[#gptel][GPTel]]
     -  [[#emms-1][EMMS]]
     -  [[#elfeed-1][Elfeed]]
+      -  [[#elfeed-tube][Elfeed Tube]]
     -  [[#nerd-icons][Nerd Icons]]
     -  [[#golden-ratio][Golden Ratio]]
     -  [[#debugger][Debugger]]
@@ -87,6 +88,11 @@
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
       -  [[#nerd-icons-completion][Nerd Icons Completion]]
       -  [[#golden-ratio-window-resize][Golden Ratio (Window resize)]]
+    -  [[#elfeed-2][Elfeed]]
+      -  [[#elfeed-tube-1][Elfeed Tube]]
+    -  [[#misc][Misc]]
+      -  [[#aio][AIO]]
+      -  [[#mpv][MPV]]
     -  [[#fun][Fun]]
       -  [[#fireplace][Fireplace]]
 
@@ -605,6 +611,21 @@ Will need to download the Iosevka Font for this to work.
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
 #+end_src
+****  Elfeed Tube
+#+begin_src elisp
+(use-package! elfeed-tube
+  :ensure t ;; or :straight t
+  :after elfeed
+  :demand t
+  :config
+  ;; (setq elfeed-tube-auto-save-p nil) ; default value
+  ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+  (setq elfeed-tube-backend 'yt-dlp)
+  (elfeed-tube-setup))
+
+(use-package! elfeed-tube-mpv
+  :ensure t) ;; or :straight t
+#+end_src
 ***  Nerd Icons
 #+begin_src elisp
 ;; Load after vertico
@@ -826,6 +847,21 @@ C-h f package\!
 ****  Golden Ratio (Window resize)
 #+begin_src elisp
 (package! golden-ratio)
+#+end_src
+***  Elfeed
+****  Elfeed Tube
+#+begin_src elisp
+(package! elfeed-tube)
+(package! elfeed-tube-mpv)
+#+end_src
+***  Misc
+****  AIO
+#+begin_src elisp
+(package! aio)
+#+end_src
+****  MPV
+#+begin_src elisp
+(package! mpv)
 #+end_src
 ***  Fun
 ****  Fireplace

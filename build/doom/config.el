@@ -183,6 +183,19 @@
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
 
+(use-package! elfeed-tube
+  :ensure t ;; or :straight t
+  :after elfeed
+  :demand t
+  :config
+  ;; (setq elfeed-tube-auto-save-p nil) ; default value
+  ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+  (setq elfeed-tube-backend 'yt-dlp)
+  (elfeed-tube-setup))
+
+(use-package! elfeed-tube-mpv
+  :ensure t) ;; or :straight t
+
 ;; Load after vertico
 (after! vertico
   (use-package! nerd-icons-completion

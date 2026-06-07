@@ -118,6 +118,7 @@ fastfetch
   htop
   fzf
   findutils.locate
+  yt-dlp
 
 # Fonts for emacs
 nerd-fonts.symbols-only

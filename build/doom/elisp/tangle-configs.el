@@ -47,15 +47,7 @@
                             (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
     ;; Map over all org files
     (mapc
-     #'(lambda (file-path)
-         (org-babel-tangle-file file-path)
-         (when (string= (file-name-nondirectory file-path) "doom.org")
-           (progn
-             (message "Starting: DOOM Sync")
-             (start-process-shell-command
-              "doom-sync"
-              "*Output*"
-              "doom sync"))))
+     (lambda (file-path) (org-babel-tangle-file file-path))
      (directory-files-recursively (expand-file-name  "org/" project-dir ) "\\.org$"))))
 
 

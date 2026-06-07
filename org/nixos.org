@@ -364,6 +364,7 @@ fastfetch
   htop
   fzf
   findutils.locate
+  yt-dlp
 #+end_src
 ***  Fonts
 #+begin_src nix

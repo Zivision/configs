@@ -18,4 +18,11 @@
 
 (package! golden-ratio)
 
+(package! elfeed-tube)
+(package! elfeed-tube-mpv)
+
+(package! aio)
+
+(package! mpv)
+
 (package! fireplace)
