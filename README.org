@@ -8,8 +8,9 @@ This is where I keep all of my dotfiles for all of my software
 
 *  Main Software
 + Editor: DOOM Emacs
-+ WM and Bar: Hyprland and Waybar
++ Window Manager: Sway
 + Terminal: Kitty
++ Status Bar: Waybar
 + Launcher: Wofi
 + GNU/Linux Distro: Nixos
 
@@ -23,13 +24,14 @@ Usually into a Workspace directory under a Misc directory. (But location doesn't
 git clone https://github.com/Zivision/configs.git ~/Workspace/Misc/configs
 #+end_src
 
-After cloning the repository, run *nix-shell* in project root or the command below
+After cloning the repository, run *nix develop*
 #+begin_src bash
-nix-shell ~/Workspace/Misc/configs/shell.nix
+nix develop
 #+end_src
 
-after that simply run the following command listed below
-WARNING: nixbox is the minimal setup and does NOT have NVIDIA drivers. Look at nixos.org (file, not site) or nixos/
+after that simply run the following command listed below WARNING: nixbox is the
+minimal setup and does NOT have NVIDIA drivers. Look at
+PROJECT_ROOT/org/nixos.org for the full in depth configuration.
 #+begin_src bash
 ~/Workspace/Misc/configs/bin/manage-system -ci nixbox
 #+end_src
