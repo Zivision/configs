@@ -234,18 +234,6 @@
 
 (require 'dap-dlv-go))
 
-(set-email-account! "gmail"
-  '((mu4e-sent-folder       . "/gmail/Sent")
-    (mu4e-drafts-folder     . "/gmail/Drafts")
-    (mu4e-trash-folder      . "/gmail/Trash")
-    (mu4e-refile-folder     . "/gmail/All Mail"))
-  t)
-
-
-(after! mu4e
-  (setq mu4e-get-mail-command "mbsync -a"
-        mu4e-update-interval  300))  ; sync every 5 minutes
-
 (after! org
   (setq org-agenda-files '("~/Documents/org/agenda/agenda.org"))
   (setq org-directory "~/Documents/org")

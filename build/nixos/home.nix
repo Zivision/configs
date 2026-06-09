@@ -130,9 +130,5 @@ noto-fonts-cjk-serif
 
 kitty
 
-# Packages for emacs mu4e
-mu
-isync
-
 ];
  }
