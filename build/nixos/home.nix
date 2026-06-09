@@ -50,6 +50,8 @@ home.file = {
 
 };
 
+programs.thunderbird.enable = true;
+
 programs.bash = {
     enable = true;
     initExtra = builtins.readFile ../home/.bashrc;

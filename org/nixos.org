@@ -26,6 +26,7 @@
     -  [[#swaylock][Swaylock]]
     -  [[#kde-wallet][KDE Wallet]]
     -  [[#end-of-list][End of list]]
+  -  [[#thunderbird-email][Thunderbird (email)]]
   -  [[#bash-management][Bash management]]
   -  [[#packages][Packages]]
     -  [[#start-of-list][Start of List]]
@@ -273,6 +274,10 @@ home.file = {
 ***  End of list
 #+begin_src nix
 };
+#+end_src
+**  Thunderbird (email)
+#+begin_src nix
+programs.thunderbird.enable = true;
 #+end_src
 
 **  Bash management
