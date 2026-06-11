@@ -43,6 +43,11 @@ home.file = {
   recursive = true;
 };
 
+".config/mako" = {
+  source = ../mako;
+  recursive = true;
+};
+
 ".config/kwalletrc".text = ''
   [Wallet]
   Enabled=false

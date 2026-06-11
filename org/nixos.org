@@ -24,6 +24,7 @@
     -  [[#wofi][Wofi]]
     -  [[#sway][Sway]]
     -  [[#swaylock][Swaylock]]
+    -  [[#mako][Mako]]
     -  [[#kde-wallet][KDE Wallet]]
     -  [[#end-of-list][End of list]]
   -  [[#thunderbird-email][Thunderbird (email)]]
@@ -261,6 +262,13 @@ home.file = {
 #+begin_src nix
 ".config/swaylock" = {
   source = ../swaylock;
+  recursive = true;
+};
+#+end_src
+***  Mako
+#+begin_src nix
+".config/mako" = {
+  source = ../mako;
   recursive = true;
 };
 #+end_src
