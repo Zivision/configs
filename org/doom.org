@@ -57,6 +57,7 @@
       -  [[#elfeed-tube][Elfeed Tube]]
     -  [[#nerd-icons][Nerd Icons]]
     -  [[#golden-ratio][Golden Ratio]]
+    -  [[#beacon][Beacon]]
     -  [[#debugger][Debugger]]
       -  [[#main-config][Main Config]]
       -  [[#python][Python]]
@@ -87,6 +88,7 @@
       -  [[#nerd-icons-dired][Nerd Icons (dired)]]
       -  [[#nerd-icons-completion][Nerd Icons Completion]]
       -  [[#golden-ratio-window-resize][Golden Ratio (Window resize)]]
+      -  [[#beacon-1][Beacon]]
     -  [[#elfeed-2][Elfeed]]
       -  [[#elfeed-tube-1][Elfeed Tube]]
     -  [[#misc][Misc]]
@@ -158,7 +160,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
-       doom-dashboard    ; a nifty splash screen for Emacs
+       dashboard         ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
@@ -653,6 +655,16 @@ Will need to download the Iosevka Font for this to work.
                   previous-multiframe-window))))
 
 #+end_src
+***  Beacon
+#+begin_src elisp
+(use-package! beacon
+  :config
+  (setq beacon-size 10
+        beacon-color "#F92660"
+        beacon-blink-duration 0.9
+        beacon-blink-delay 0.0)
+  (beacon-mode 1))
+#+end_src
 ***  Debugger
 ****  Main Config
 #+begin_src emacs-lisp
@@ -830,6 +842,10 @@ C-h f package\!
 ****  Golden Ratio (Window resize)
 #+begin_src elisp
 (package! golden-ratio)
+#+end_src
+****  Beacon
+#+begin_src elisp
+(package! beacon)
 #+end_src
 ***  Elfeed
 ****  Elfeed Tube

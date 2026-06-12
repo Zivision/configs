@@ -18,6 +18,8 @@
 
 (package! golden-ratio)
 
+(package! beacon)
+
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)
 

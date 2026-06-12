@@ -219,6 +219,10 @@
                   next-multiframe-window
                   previous-multiframe-window))))
 
+(use-package! beacon
+  :config
+  (beacon-mode 1))
+
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (dap-mode 1)
