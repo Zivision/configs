@@ -221,6 +221,10 @@
 
 (use-package! beacon
   :config
+  (setq beacon-size 30
+        beacon-color "#F92660"
+        beacon-blink-duration 0.9
+        beacon-blink-delay 0.0)
   (beacon-mode 1))
 
 (after! dap-mode

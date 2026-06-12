@@ -1,9 +1,9 @@
 ;;; tangle-configs.el --- Tangle org documents -*- lexical-binding: t; -*-
 ;;
-;; Copyright (C) 2026 Primary
+;; Copyright (C) 2026 Zachary Castro
 ;;
 ;; Author: Zivision
-;; Maintainer: Zivision <primary@nixos>
+;; Maintainer: Zivision
 ;; Created: May 13, 2026
 ;; Modified: May 13, 2026
 ;; Version: 0.0.1
@@ -39,24 +39,24 @@
          ;; Build directory
          (build-dir (expand-file-name  "build/" project-dir)))
 
-    ;; Check symbolic link of hardware configuration
-    (unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))
-      (let ((default-directory (expand-file-name "nixos" build-dir)))
-        (message "Creating link")
-        (make-symbolic-link "/etc/nixos/hardware-configuration.nix"
-                            (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
-    ;; Map over all org files
-    (mapc
-     (lambda (file-path) (org-babel-tangle-file file-path))
-     (directory-files-recursively (expand-file-name  "org/" project-dir ) "\\.org$"))))
+;; Check symbolic link of hardware configuration
+(unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))
+  (let ((default-directory (expand-file-name "nixos" build-dir)))
+    (message "Creating link")
+    (make-symbolic-link "/etc/nixos/hardware-configuration.nix"
+                        (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
 
+;; Map over all org files
+(mapc
+ (lambda (file-path) (org-babel-tangle-file file-path))
+ (directory-files-recursively
+  (expand-file-name  "org/" project-dir ) "\\.org$"))))
 
 (defun tangle-configs-configure-interactive
     ()
   "Tangle all org documents in configs (interactively)."
   (interactive)
   (tangle-configs-configure))
-
 
 (provide 'tangle-configs)
 ;;; tangle-configs.el ends here

@@ -96,6 +96,14 @@
       -  [[#mpv][MPV]]
     -  [[#fun][Fun]]
       -  [[#fireplace][Fireplace]]
+-  [[#internal-packages][Internal Packages]]
+  -  [[#tangle-configs-1][Tangle Configs]]
+    -  [[#header--metadata][Header & Metadata]]
+    -  [[#configure-function][Configure Function]]
+      -  [[#create-symlink][Create Symlink]]
+      -  [[#babel-org-documents][Babel Org Documents]]
+    -  [[#interactive-function][Interactive Function]]
+    -  [[#end-of-file][End of File]]
 
 *  About
 :PROPERTIES:
@@ -659,7 +667,7 @@ Will need to download the Iosevka Font for this to work.
 #+begin_src elisp
 (use-package! beacon
   :config
-  (setq beacon-size 10
+  (setq beacon-size 30
         beacon-color "#F92660"
         beacon-blink-duration 0.9
         beacon-blink-delay 0.0)
@@ -868,3 +876,96 @@ C-h f package\!
 (package! fireplace)
 #+end_src
 
+*  Internal Packages
+**  Tangle Configs
+:PROPERTIES:
+:header-args: :tangle ../build/doom/elisp/tangle-configs.el
+:VISIBILITY: folded
+:END:
+
+***  Header & Metadata
+#+begin_src elisp
+;;; tangle-configs.el --- Tangle org documents -*- lexical-binding: t; -*-
+;;
+;; Copyright (C) 2026 Zachary Castro
+;;
+;; Author: Zivision
+;; Maintainer: Zivision
+;; Created: May 13, 2026
+;; Modified: May 13, 2026
+;; Version: 0.0.1
+;; Keywords: abbrev bib c calendar comm convenience data docs emulations extensions faces files frames games hardware help hypermedia i18n internal languages lisp local maint mail matching mouse multimedia news outlines processes terminals tex text tools unix vc wp
+;; Homepage: https://github.com/primary/tangle-configs
+;; Package-Requires: ((emacs "25.1"))
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; Commentary:
+;;
+;;  Description
+;;
+;;; Code:
+(require 'subr-x)
+(require 'ob-tangle)
+#+end_src
+
+***  Configure Function
+
+#+begin_src elisp
+(defun tangle-configs-configure
+    ()
+  "Tangle all org documents in configs."
+
+  (let* ((project-dir
+          (thread-first (getenv "DOOMDIR")
+                        (expand-file-name)
+                        (file-name-directory)
+                        (directory-file-name)
+                        (file-name-directory)))
+
+
+         ;; Library directory (not needed for now)
+         ;;(lib-dir (expand-file-name "elisp/" project-dir ))
+
+         ;; Build directory
+         (build-dir (expand-file-name  "build/" project-dir)))
+
+#+end_src
+
+****  Create Symlink
+This snippet creates a link between system hardware-configuration.nix and the
+local nix files in this project.
+#+begin_src elisp
+    ;; Check symbolic link of hardware configuration
+    (unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))
+      (let ((default-directory (expand-file-name "nixos" build-dir)))
+        (message "Creating link")
+        (make-symbolic-link "/etc/nixos/hardware-configuration.nix"
+                            (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
+#+end_src
+
+****  Babel Org Documents
+This takes each file in the *org/* directory and creates the corresponding files
+needed.
+#+begin_src elisp
+    ;; Map over all org files
+    (mapc
+     (lambda (file-path) (org-babel-tangle-file file-path))
+     (directory-files-recursively
+      (expand-file-name  "org/" project-dir ) "\\.org$"))))
+#+end_src
+***  Interactive Function
+This is a simple interactive wrapper. It isn't much but works okay, need improvement.
+#+begin_src elisp
+(defun tangle-configs-configure-interactive
+    ()
+  "Tangle all org documents in configs (interactively)."
+  (interactive)
+  (tangle-configs-configure))
+#+end_src
+
+***  End of File
+#+begin_src elisp
+(provide 'tangle-configs)
+;;; tangle-configs.el ends here
+#+end_src
