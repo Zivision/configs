@@ -313,6 +313,9 @@ home.packages = with pkgs; [
    wl-clipboard
    mako
    swaybg
+   wofi
+   waybar
+   waypaper
 #+end_src
 ***  Browser
 #+begin_src nix

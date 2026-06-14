@@ -74,6 +74,9 @@ home.packages = with pkgs; [
 wl-clipboard
 mako
 swaybg
+wofi
+waybar
+waypaper
 
 # Start of the home packages array
 brave
