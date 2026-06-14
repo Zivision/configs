@@ -18,7 +18,6 @@
   -  [[#direnv][Direnv]]
   -  [[#config-file-linking][Config File linking]]
     -  [[#home-file][Home File]]
-    -  [[#hyprland][Hyprland]]
     -  [[#kitty][Kitty]]
     -  [[#waybar][Waybar]]
     -  [[#wofi][Wofi]]
@@ -32,7 +31,6 @@
   -  [[#packages][Packages]]
     -  [[#start-of-list][Start of List]]
     -  [[#games][Games]]
-    -  [[#hyprland-1][Hyprland]]
     -  [[#sway-pkgs][Sway (PKGS)]]
     -  [[#browser][Browser]]
     -  [[#text-editors][Text editors]]
@@ -57,7 +55,7 @@
     -  [[#system][System]]
     -  [[#syncthing][Syncthing]]
     -  [[#gnupg][Gnupg]]
-    -  [[#hyprland-2][Hyprland]]
+    -  [[#wayland][Wayland]]
     -  [[#sway-1][Sway]]
     -  [[#polkit][Polkit]]
     -  [[#flakes][Flakes]]
@@ -222,13 +220,6 @@ programs.direnv = {
 #+begin_src nix
 home.file = {
 #+end_src
-***  Hyprland
-#+begin_src nix
-".config/hypr" = {
-  source = ../hypr;
-  recursive = true;
-};
-#+end_src
 ***  Kitty
 #+begin_src nix
 ".config/kitty" = {
@@ -316,15 +307,6 @@ home.packages = with pkgs; [
     zulu8
   ];
 })
-#+end_src
-***  Hyprland
-#+begin_src nix
-  hyprpaper
-  wofi
-  waybar
-
-  waypaper
-  brightnessctl
 #+end_src
 ***  Sway (PKGS)
 #+begin_src nix
@@ -673,17 +655,15 @@ services.syncthing = {
 };
 #+end_src
 ***  Gnupg
+
 #+begin_src nix
 programs.gnupg.agent = {
   enable = true;
   pinentryPackage = pkgs.pinentry-qt;
 };
 #+end_src
-***  Hyprland
+***  Wayland
 #+begin_src nix
-programs.hyprland.enable = true;
-
-# Optional, hint Electron apps to use Wayland:
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
 #+end_src
 ***  Sway

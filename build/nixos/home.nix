@@ -12,11 +12,6 @@ programs.direnv = {
 
 home.file = {
 
-".config/hypr" = {
-  source = ../hypr;
-  recursive = true;
-};
-
 ".config/kitty" = {
   source = ../kitty;
   recursive = true;
@@ -75,13 +70,6 @@ home.packages = with pkgs; [
     zulu8
   ];
 })
-
-hyprpaper
-wofi
-waybar
-
-waypaper
-brightnessctl
 
 wl-clipboard
 mako
