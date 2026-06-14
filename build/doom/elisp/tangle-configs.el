@@ -21,6 +21,26 @@
 (require 'subr-x)
 (require 'ob-tangle)
 
+(defun tangle-configs--build-directories
+    (project-dir)
+  "Build the needed directories for each package in 'build/'."
+
+  ;; Loop over programs and if a file exists but not the directory
+  ;; Build directory
+
+  (seq-doseq
+      (program (mapcar
+                (lambda (file-path)
+                  (file-name-sans-extension (file-name-nondirectory file-path)))
+                (directory-files-recursively
+                 (expand-file-name  "org/" project-dir ) "\\.org$")))
+    (let ((file-path
+           (expand-file-name program
+                             (expand-file-name "build" "~/Workspace/Misc/configs"))))
+
+      (unless (file-directory-p file-path)
+        (make-directory file-path)))))
+
 (defun tangle-configs-configure
     ()
   "Tangle all org documents in configs."
@@ -38,6 +58,8 @@
 
          ;; Build directory
          (build-dir (expand-file-name  "build/" project-dir)))
+
+(tangle-configs--build-directories project-dir)
 
 ;; Check symbolic link of hardware configuration
 (unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))

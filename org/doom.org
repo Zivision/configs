@@ -99,7 +99,9 @@
 -  [[#internal-packages][Internal Packages]]
   -  [[#tangle-configs-1][Tangle Configs]]
     -  [[#header--metadata][Header & Metadata]]
+    -  [[#build-directories][Build Directories]]
     -  [[#configure-function][Configure Function]]
+      -  [[#make-directories][Make Directories]]
       -  [[#create-symlink][Create Symlink]]
       -  [[#babel-org-documents][Babel Org Documents]]
     -  [[#interactive-function][Interactive Function]]
@@ -385,8 +387,10 @@ This is where custom Emacs functions and configuration for packages reside.
 + map!           :: Map new keys
 **  Custom Variables
 #+begin_src elisp
+(defvar project-root "~/Workspace/Misc/configs")
+
 (after! doom
-  (add-to-list 'load-path (expand-file-name "elisp" "~/Workspace/Misc/configs/build/doom")))
+  (add-to-list 'load-path (expand-file-name "build/doom/elisp" project-root)))
 
 
 (after! auth-source
@@ -420,15 +424,13 @@ Mainly just imports
 ****  Open File
 #+begin_src emacs-lisp
 (map!
- :prefix "C-c o f"
- :desc "Open notes.org" "n" #'(lambda ()
+ :prefix "C-c o d"
+ :desc "Open org directory" "o" #'(lambda ()
                                 (interactive)
-                                (find-file
-                                 (concat org-directory "/notes.org")))
- :desc "Open config.org" "c" #'(lambda ()
+                                (dired org-directory ))
+ :desc "Open configs directory" "c" #'(lambda ()
                                  (interactive)
-                                 (find-file
-                                  (concat project-root "config.org"))))
+                                 (dired project-root)))
 #+end_src
 
 ****  EMMS
@@ -908,6 +910,30 @@ C-h f package\!
 (require 'subr-x)
 (require 'ob-tangle)
 #+end_src
+***  Build Directories
+This is for making the directories in the build directory automatically
+#+begin_src elisp
+(defun tangle-configs--build-directories
+    (project-dir)
+  "Build the needed directories for each package in 'build/'."
+
+  ;; Loop over programs and if a file exists but not the directory
+  ;; Build directory
+
+  (seq-doseq
+      (program (mapcar
+                (lambda (file-path)
+                  (file-name-sans-extension (file-name-nondirectory file-path)))
+                (directory-files-recursively
+                 (expand-file-name  "org/" project-dir ) "\\.org$")))
+    (let ((file-path
+           (expand-file-name program
+                             (expand-file-name "build" "~/Workspace/Misc/configs"))))
+
+      (unless (file-directory-p file-path)
+        (make-directory file-path)))))
+
+  #+end_src
 
 ***  Configure Function
 
@@ -931,28 +957,33 @@ C-h f package\!
          (build-dir (expand-file-name  "build/" project-dir)))
 
 #+end_src
+****  Make Directories
+See definition above
+#+begin_src elisp
+(tangle-configs--build-directories project-dir)
+#+end_src
 
 ****  Create Symlink
 This snippet creates a link between system hardware-configuration.nix and the
 local nix files in this project.
 #+begin_src elisp
-    ;; Check symbolic link of hardware configuration
-    (unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))
-      (let ((default-directory (expand-file-name "nixos" build-dir)))
-        (message "Creating link")
-        (make-symbolic-link "/etc/nixos/hardware-configuration.nix"
-                            (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
+;; Check symbolic link of hardware configuration
+(unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))
+  (let ((default-directory (expand-file-name "nixos" build-dir)))
+    (message "Creating link")
+    (make-symbolic-link "/etc/nixos/hardware-configuration.nix"
+                        (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
 #+end_src
 
 ****  Babel Org Documents
 This takes each file in the *org/* directory and creates the corresponding files
 needed.
 #+begin_src elisp
-    ;; Map over all org files
-    (mapc
-     (lambda (file-path) (org-babel-tangle-file file-path))
-     (directory-files-recursively
-      (expand-file-name  "org/" project-dir ) "\\.org$"))))
+;; Map over all org files
+(mapc
+ (lambda (file-path) (org-babel-tangle-file file-path))
+ (directory-files-recursively
+  (expand-file-name  "org/" project-dir ) "\\.org$"))))
 #+end_src
 ***  Interactive Function
 This is a simple interactive wrapper. It isn't much but works okay, need improvement.

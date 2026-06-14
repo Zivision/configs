@@ -1,5 +1,7 @@
+(defvar project-root "~/Workspace/Misc/configs")
+
 (after! doom
-  (add-to-list 'load-path (expand-file-name "elisp" "~/Workspace/Misc/configs/build/doom")))
+  (add-to-list 'load-path (expand-file-name "build/doom/elisp" project-root)))
 
 
 (after! auth-source
@@ -20,15 +22,13 @@
 (setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
 
 (map!
- :prefix "C-c o f"
- :desc "Open notes.org" "n" #'(lambda ()
+ :prefix "C-c o d"
+ :desc "Open org directory" "o" #'(lambda ()
                                 (interactive)
-                                (find-file
-                                 (concat org-directory "/notes.org")))
- :desc "Open config.org" "c" #'(lambda ()
+                                (dired org-directory ))
+ :desc "Open configs directory" "c" #'(lambda ()
                                  (interactive)
-                                 (find-file
-                                  (concat project-root "config.org"))))
+                                 (dired project-root)))
 
 (map!
  :prefix "C-c m"
