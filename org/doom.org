@@ -99,11 +99,15 @@
 -  [[#internal-packages][Internal Packages]]
   -  [[#tangle-configs-1][Tangle Configs]]
     -  [[#header--metadata][Header & Metadata]]
+    -  [[#manual-link-firefox][Manual Link Firefox]]
+      -  [[#search-folder-for-prefsjs][Search Folder for prefs.js]]
+      -  [[#link-it][Link it]]
     -  [[#build-directories][Build Directories]]
     -  [[#configure-function][Configure Function]]
       -  [[#make-directories][Make Directories]]
       -  [[#create-symlink][Create Symlink]]
       -  [[#babel-org-documents][Babel Org Documents]]
+      -  [[#create-manual-symlinks][Create Manual symlinks]]
     -  [[#interactive-function][Interactive Function]]
     -  [[#end-of-file][End of File]]
 
@@ -910,6 +914,31 @@ C-h f package\!
 (require 'subr-x)
 (require 'ob-tangle)
 #+end_src
+***  Manual Link Firefox
+#+begin_src elisp
+(defun tangle-configs--manual-link-firefox
+    (target-dir build-dir file)
+  "Manually link of a certain FILE in BUILD-DIR to TARGET-DIR."
+#+end_src
+****  Search Folder for prefs.js
+Finds profile folders created by firefox
+#+begin_src elisp
+  (let ((paths
+         (mapcar
+          (lambda (path)
+            (file-name-directory (expand-file-name path)))
+          (directory-files-recursively target-dir "prefs.js"))))
+#+end_src
+****  Link it
+#+begin_src elisp
+(mapcar (lambda (path)
+          (unless (file-symlink-p
+                   (expand-file-name file path))
+            (make-symbolic-link (expand-file-name file build-dir)
+                                (expand-file-name file path))))
+        paths)))
+#+end_src
+
 ***  Build Directories
 This is for making the directories in the build directory automatically
 #+begin_src elisp
@@ -983,8 +1012,19 @@ needed.
 (mapc
  (lambda (file-path) (org-babel-tangle-file file-path))
  (directory-files-recursively
-  (expand-file-name  "org/" project-dir ) "\\.org$"))))
+  (expand-file-name  "org/" project-dir ) "\\.org$")))
 #+end_src
+
+****  Create Manual symlinks
+#+begin_src elisp
+(tangle-configs--manual-link-firefox "~/.mozilla/firefox"
+                                     "~/Workspace/Misc/configs/build/firefox"
+                                     "user.js")
+
+); End of Function
+#+end_src
+
+
 ***  Interactive Function
 This is a simple interactive wrapper. It isn't much but works okay, need improvement.
 #+begin_src elisp

@@ -21,6 +21,23 @@
 (require 'subr-x)
 (require 'ob-tangle)
 
+(defun tangle-configs--manual-link-firefox
+    (target-dir build-dir file)
+  "Manually link of a certain FILE in BUILD-DIR to TARGET-DIR."
+
+(let ((paths
+       (mapcar
+        (lambda (path)
+          (file-name-directory (expand-file-name path)))
+        (directory-files-recursively target-dir "prefs.js"))))
+
+(mapcar (lambda (path)
+          (unless (file-symlink-p
+                   (expand-file-name file path))
+            (make-symbolic-link (expand-file-name file build-dir)
+                                (expand-file-name file path))))
+        paths)))
+
 (defun tangle-configs--build-directories
     (project-dir)
   "Build the needed directories for each package in 'build/'."
@@ -72,7 +89,13 @@
 (mapc
  (lambda (file-path) (org-babel-tangle-file file-path))
  (directory-files-recursively
-  (expand-file-name  "org/" project-dir ) "\\.org$"))))
+  (expand-file-name  "org/" project-dir ) "\\.org$")))
+
+(tangle-configs--manual-link-firefox "~/.mozilla/firefox"
+                                     "~/Workspace/Misc/configs/build/firefox"
+                                     "user.js")
+
+); End of Function
 
 (defun tangle-configs-configure-interactive
     ()
