@@ -5,6 +5,8 @@
   -  [[#betterfox][BetterFox]]
   -  [[#smooth-fox][Smooth Fox]]
   -  [[#custom-overrides][Custom Overrides]]
+    -  [[#font-improvement][Font Improvement]]
+    -  [[#location-requests][Location Requests]]
   -  [[#end-of-betterfox][End of Betterfox]]
 
 *  User
@@ -206,11 +208,22 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 **  Custom Overrides
 #+begin_src js
 /****************************************************************************
- * START: MY OVERRIDES                                                      *
-****************************************************************************/
+ ,* START: MY OVERRIDES                                                      *
+,****************************************************************************/
 // visit https://github.com/yokoffing/Betterfox/wiki/Common-Overrides
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // Enter your personal overrides below this line:
+
+#+end_src
+***  Font Improvement
+#+begin_src js
+user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
+user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
+user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
+#+end_src
+***  Location Requests
+#+begin_src js
+user_pref("permissions.default.geo", 0);
 #+end_src
 **  End of Betterfox
 #+begin_src js
