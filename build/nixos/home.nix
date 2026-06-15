@@ -80,6 +80,7 @@ waypaper
 
 # Start of the home packages array
 brave
+firefox
 
 # For Emacs
   python3

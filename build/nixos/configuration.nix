@@ -81,8 +81,6 @@ i18n = {
   };
 };
 
-# Backup browser
-programs.firefox.enable = true;
 
 nixpkgs.config.allowUnfree = true;
 

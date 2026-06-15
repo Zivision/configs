@@ -292,7 +292,6 @@ programs.bash = {
 
 #+end_src
 
-
 **  Packages
 ***  Start of List
 #+begin_src nix
@@ -321,6 +320,7 @@ home.packages = with pkgs; [
 #+begin_src nix
 # Start of the home packages array
 brave
+firefox
 #+end_src
 ***  Text editors
 #+begin_src nix
@@ -627,8 +627,6 @@ i18n = {
   };
 };
 
-# Backup browser
-programs.firefox.enable = true;
 
 nixpkgs.config.allowUnfree = true;
 
