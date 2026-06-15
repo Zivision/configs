@@ -191,6 +191,12 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // Enter your personal overrides below this line:
 
+user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
+user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
+user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
+
+user_pref("permissions.default.geo", 0);
+
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/
