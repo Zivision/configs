@@ -4,3 +4,4 @@ export DOOMDIR="$HOME/Workspace/Misc/configs/build/doom"
 
 waypaper --restore
 emacs --daemon
+foot --server

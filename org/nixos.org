@@ -24,12 +24,14 @@
     -  [[#sway][Sway]]
     -  [[#swaylock][Swaylock]]
     -  [[#mako][Mako]]
+    -  [[#foot][Foot]]
     -  [[#kde-wallet][KDE Wallet]]
     -  [[#end-of-list][End of list]]
   -  [[#thunderbird-email][Thunderbird (email)]]
   -  [[#bash-management][Bash management]]
   -  [[#packages][Packages]]
     -  [[#start-of-list][Start of List]]
+    -  [[#office-tools][Office Tools]]
     -  [[#games][Games]]
     -  [[#sway-pkgs][Sway (PKGS)]]
     -  [[#browser][Browser]]
@@ -263,6 +265,13 @@ home.file = {
   recursive = true;
 };
 #+end_src
+***  Foot
+#+begin_src nix
+".config/foot" = {
+  source = ../foot;
+  recursive = true;
+};
+#+end_src
 ***  KDE Wallet
 #+begin_src nix
 ".config/kwalletrc".text = ''
@@ -296,6 +305,13 @@ programs.bash = {
 ***  Start of List
 #+begin_src nix
 home.packages = with pkgs; [
+#+end_src
+***  Office Tools
+#+begin_src nix
+  libreoffice-qt6-fresh
+  hunspell
+  hunspellDicts.uk_UA
+  hunspellDicts.th_TH
 #+end_src
 ***  Games
 #+begin_src nix

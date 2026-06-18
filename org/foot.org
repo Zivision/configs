@@ -1,0 +1,18 @@
+#+title: Foot
+
+*  Foot Settings
+:PROPERTIES:
+:header-args: :tangle ../build/foot/foot.ini
+:VISIBILITY: folded
+:END:
+**  Main Tag
+#+begin_src conf
+[main]
+#+end_src
+**  Font
+#+begin_src conf
+font = Iosevka Nerd Font Mono:style=Regular:size=12
+font-bold = Iosevka Nerd Font Mono:style=Bold:size=12
+font-italic = Iosevka Nerd Font Mono:style=Oblique:size=12
+font-bold-italic = Iosevka Nerd Font Mono:style=Bold Oblique:size=12
+#+end_src

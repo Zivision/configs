@@ -142,7 +142,6 @@ In my experience Emacs has been pretty stable once I got everything working how 
 ***  Killer Features
 I used to use Neovim so you might be inclined to ask why do I not switch back? The main reasons are magit and org-mode. Hands down my favorite features of Emacs and keep me here with it.
 
-
 *  Init Settings
 :PROPERTIES:
 :header-args: :tangle ../build/doom/init.el

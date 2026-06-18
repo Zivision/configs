@@ -43,6 +43,11 @@ home.file = {
   recursive = true;
 };
 
+".config/foot" = {
+  source = ../foot;
+  recursive = true;
+};
+
 ".config/kwalletrc".text = ''
   [Wallet]
   Enabled=false
@@ -62,6 +67,11 @@ programs.bash = {
   };
 
 home.packages = with pkgs; [
+
+libreoffice-qt6-fresh
+hunspell
+hunspellDicts.uk_UA
+hunspellDicts.th_TH
 
 (prismlauncher.override {
   jdks = [
