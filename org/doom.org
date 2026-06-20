@@ -726,7 +726,7 @@ first my default org directory
         `(("t" "Personal todo" ; Todo items
           entry (file+headline +org-capture-todo-file " Capture Tasks")
           ,(concat
-           "* TODO [#B] [ ] %? "
+           "* [ ] [#B] TODO %? "
            (format-time-string "<%Y-%m-%d %a>"
                                (org-read-date nil t "Fri"))
            "\n\n%a")
