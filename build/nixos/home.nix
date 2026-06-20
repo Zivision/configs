@@ -128,6 +128,9 @@ fastfetch
   fzf
   findutils.locate
   yt-dlp
+  vips
+  ffmpegthumbnailer
+  mediainfo
 
 # Fonts for emacs
 nerd-fonts.symbols-only

@@ -16,6 +16,7 @@
     - [[#scratchpad][Scratchpad]]
     - [[#resize][Resize]]
     - [[#utilities][Utilities]]
+    - [[#apps][Apps]]
   -  [[#bar][Bar]]
   -  [[#font][Font]]
   -  [[#floating][Floating]]
@@ -48,6 +49,7 @@ set $menu wofi --show drun
 
 # Emacs
 set $editor emacsclient -cn
+set $filemanager emacsclient -c --eval '(dirvish)'
 #+end_src
 **  Inputs
 #+begin_src conf
@@ -261,6 +263,11 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
     bindsym Print exec grim
+#+end_src
+*** Apps
+#+begin_src conf
+bindsym $mod+Shift+p exec $filemanager
+
 #+end_src
 **  Bar
 #+begin_src conf

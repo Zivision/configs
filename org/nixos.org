@@ -378,6 +378,9 @@ fastfetch
   fzf
   findutils.locate
   yt-dlp
+  vips
+  ffmpegthumbnailer
+  mediainfo
 #+end_src
 ***  Fonts
 #+begin_src nix
