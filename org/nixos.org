@@ -1,91 +1,91 @@
 #+title: Nixos Configuration
 
-*  Table of Contents :TOC_4:noexport:
--  [[#flake-setttings][Flake Setttings]]
-  -  [[#description][Description]]
-  -  [[#inputs][Inputs]]
-  -  [[#outputs][Outputs]]
-    -  [[#nixos-configurations][Nixos Configurations]]
-      -  [[#swiftx][Swiftx]]
-      -  [[#nixbox][NixBox]]
-    -  [[#dev-shell][Dev shell]]
-      -  [[#default][Default]]
-      -  [[#install][Install]]
-  -  [[#end-of-flake][End of flake]]
--  [[#home-settings][Home Settings]]
-  -  [[#imports][Imports]]
-  -  [[#basic-settings][Basic Settings]]
-  -  [[#direnv][Direnv]]
-  -  [[#config-file-linking][Config File linking]]
-    -  [[#home-file][Home File]]
-    -  [[#kitty][Kitty]]
-    -  [[#waybar][Waybar]]
-    -  [[#wofi][Wofi]]
-    -  [[#sway][Sway]]
-    -  [[#swaylock][Swaylock]]
-    -  [[#mako][Mako]]
-    -  [[#foot][Foot]]
-    -  [[#kde-wallet][KDE Wallet]]
-    -  [[#end-of-list][End of list]]
-  -  [[#thunderbird-email][Thunderbird (email)]]
-  -  [[#bash-management][Bash management]]
-  -  [[#packages][Packages]]
-    -  [[#start-of-list][Start of List]]
-    -  [[#office-tools][Office Tools]]
-    -  [[#games][Games]]
-    -  [[#sway-pkgs][Sway (PKGS)]]
-    -  [[#browser][Browser]]
-    -  [[#text-editors][Text editors]]
-    -  [[#other-packages][Other Packages]]
-    -  [[#fonts][Fonts]]
-    -  [[#terminal][Terminal]]
-    -  [[#end-of-list-1][End of list]]
--  [[#systems][Systems]]
-  -  [[#swiftx-1][SwiftX]]
-  -  [[#nixbox-1][NixBox]]
--  [[#configuration-settings][Configuration Settings]]
-  -  [[#nvidia][Nvidia]]
-    -  [[#lts-kernel][LTS Kernel]]
-    -  [[#open-gl][Open GL]]
-    -  [[#drivers-and-hardware-settings][Drivers and Hardware Settings]]
-  -  [[#configuration][Configuration]]
-    -  [[#imports-1][Imports]]
-    -  [[#bootloader][Bootloader]]
-    -  [[#app-armor][App armor]]
-    -  [[#nix-packages-manager][Nix (Packages manager)]]
-    -  [[#steam][Steam]]
-    -  [[#system][System]]
-    -  [[#syncthing][Syncthing]]
-    -  [[#gnupg][Gnupg]]
-    -  [[#wayland][Wayland]]
-    -  [[#sway-1][Sway]]
-    -  [[#polkit][Polkit]]
-    -  [[#flakes][Flakes]]
-    -  [[#desktop][Desktop]]
-    -  [[#audio][Audio]]
-    -  [[#users][Users]]
-    -  [[#docker][Docker]]
-    -  [[#virt-manager][Virt Manager]]
-    -  [[#flatpak][Flatpak]]
-    -  [[#nix-packages][Nix Packages]]
-      -  [[#start-of-list-1][Start of List]]
-      -  [[#sway-lock-lock-screen][Sway Lock (Lock Screen)]]
-      -  [[#more-developer-tools][More Developer Tools]]
-      -  [[#flatpak-1][Flatpak]]
-      -  [[#end-of-list-2][End of List]]
+* Table of Contents :TOC_4:noexport:
+- [[#flake-setttings][Flake Setttings]]
+  - [[#description][Description]]
+  - [[#inputs][Inputs]]
+  - [[#outputs][Outputs]]
+    - [[#nixos-configurations][Nixos Configurations]]
+      - [[#swiftx][Swiftx]]
+      - [[#nixbox][NixBox]]
+    - [[#dev-shell][Dev shell]]
+      - [[#default][Default]]
+      - [[#install][Install]]
+  - [[#end-of-flake][End of flake]]
+- [[#home-settings][Home Settings]]
+  - [[#imports][Imports]]
+  - [[#basic-settings][Basic Settings]]
+  - [[#direnv][Direnv]]
+  - [[#config-file-linking][Config File linking]]
+    - [[#home-file][Home File]]
+    - [[#kitty][Kitty]]
+    - [[#waybar][Waybar]]
+    - [[#wofi][Wofi]]
+    - [[#sway][Sway]]
+    - [[#swaylock][Swaylock]]
+    - [[#mako][Mako]]
+    - [[#foot][Foot]]
+    - [[#kde-wallet][KDE Wallet]]
+    - [[#end-of-list][End of list]]
+  - [[#thunderbird-email][Thunderbird (email)]]
+  - [[#bash-management][Bash management]]
+  - [[#packages][Packages]]
+    - [[#start-of-list][Start of List]]
+    - [[#office-tools][Office Tools]]
+    - [[#games][Games]]
+    - [[#sway-pkgs][Sway (PKGS)]]
+    - [[#browser][Browser]]
+    - [[#text-editors][Text editors]]
+    - [[#other-packages][Other Packages]]
+    - [[#fonts][Fonts]]
+    - [[#terminal][Terminal]]
+    - [[#end-of-list-1][End of list]]
+- [[#systems][Systems]]
+  - [[#swiftx-1][SwiftX]]
+  - [[#nixbox-1][NixBox]]
+- [[#configuration-settings][Configuration Settings]]
+  - [[#nvidia][Nvidia]]
+    - [[#lts-kernel][LTS Kernel]]
+    - [[#open-gl][Open GL]]
+    - [[#drivers-and-hardware-settings][Drivers and Hardware Settings]]
+  - [[#configuration][Configuration]]
+    - [[#imports-1][Imports]]
+    - [[#bootloader][Bootloader]]
+    - [[#app-armor][App armor]]
+    - [[#nix-packages-manager][Nix (Packages manager)]]
+    - [[#steam][Steam]]
+    - [[#system][System]]
+    - [[#syncthing][Syncthing]]
+    - [[#gnupg][Gnupg]]
+    - [[#wayland][Wayland]]
+    - [[#sway-1][Sway]]
+    - [[#polkit][Polkit]]
+    - [[#flakes][Flakes]]
+    - [[#desktop][Desktop]]
+    - [[#audio][Audio]]
+    - [[#users][Users]]
+    - [[#docker][Docker]]
+    - [[#virt-manager][Virt Manager]]
+    - [[#flatpak][Flatpak]]
+    - [[#nix-packages][Nix Packages]]
+      - [[#start-of-list-1][Start of List]]
+      - [[#sway-lock-lock-screen][Sway Lock (Lock Screen)]]
+      - [[#more-developer-tools][More Developer Tools]]
+      - [[#flatpak-1][Flatpak]]
+      - [[#end-of-list-2][End of List]]
 
-*  Flake Setttings
+* Flake Setttings
 :PROPERTIES:
 :header-args: :tangle ../flake.nix
 :VISIBILITY: folded
 :END:
-**  Description
+** Description
 #+begin_src nix
 {
   description = "My system flake";
 #+end_src
 
-**  Inputs
+** Inputs
 #+begin_src nix
 inputs = {
   # NixOS official package source, using the nixos-26.05 branch here
@@ -98,7 +98,7 @@ inputs = {
 };
 #+end_src
 
-**  Outputs
+** Outputs
 #+begin_src nix
 outputs = { self, nixpkgs, home-manager, ... }@inputs:
 let
@@ -107,11 +107,11 @@ let
 in
 {
 #+end_src
-***  Nixos Configurations
+*** Nixos Configurations
 #+begin_src nix
   nixosConfigurations = {
 #+end_src
-****  Swiftx
+**** Swiftx
 #+begin_src nix
     swiftx = nixpkgs.lib.nixosSystem {
       modules = [
@@ -131,7 +131,7 @@ in
       ];
     };
 #+end_src
-****  NixBox
+**** NixBox
 #+begin_src nix
     nixbox = nixpkgs.lib.nixosSystem {
       modules = [
@@ -151,11 +151,11 @@ in
     };
   };
 #+end_src
-***  Dev shell
+*** Dev shell
 #+begin_src nix
 devShells.${system}= {
 #+end_src
-****  Default
+**** Default
 #+begin_src nix
 default = legacyPkgs.mkShell {
   packages = with legacyPkgs; [
@@ -171,7 +171,7 @@ default = legacyPkgs.mkShell {
 
 
 #+end_src
-****  Install
+**** Install
 #+begin_src nix
 install = legacyPkgs.mkShell {
   packages = with legacyPkgs; [
@@ -185,7 +185,7 @@ install = legacyPkgs.mkShell {
 };
 
 #+end_src
-**  End of flake
+** End of flake
 #+begin_src nix
 };
 };
@@ -193,43 +193,43 @@ install = legacyPkgs.mkShell {
 
 #+end_src
 
-*  Home Settings
+* Home Settings
 :PROPERTIES:
 :header-args: :tangle ../build/nixos/home.nix
 :VISIBILITY: folded
 :END:
 
-**  Imports
+** Imports
 #+begin_src nix
 { config, lib, pkgs, ... }:
 #+end_src
-**  Basic Settings
+** Basic Settings
 #+begin_src nix
 {
   home.username = "primary";
   home.homeDirectory = "/home/primary";
   home.stateVersion = "26.05";
 #+end_src
-**  Direnv
+** Direnv
 #+begin_src nix
 programs.direnv = {
   enable = true;
   nix-direnv.enable = true;
 };
 #+end_src
-**  Config File linking
-***  Home File
+** Config File linking
+*** Home File
 #+begin_src nix
 home.file = {
 #+end_src
-***  Kitty
+*** Kitty
 #+begin_src nix
 ".config/kitty" = {
   source = ../kitty;
   recursive = true;
 };
 #+end_src
-***  Waybar
+*** Waybar
 #+begin_src nix
 ".config/waybar" = {
   source = ../waybar;
@@ -237,58 +237,58 @@ home.file = {
 
 };
 #+end_src
-***  Wofi
+*** Wofi
 #+begin_src nix
 ".config/wofi" = {
   source = ../wofi;
   recursive = true;
 };
 #+end_src
-***  Sway
+*** Sway
 #+begin_src nix
 ".config/sway" = {
   source = ../sway;
   recursive = true;
 };
 #+end_src
-***  Swaylock
+*** Swaylock
 #+begin_src nix
 ".config/swaylock" = {
   source = ../swaylock;
   recursive = true;
 };
 #+end_src
-***  Mako
+*** Mako
 #+begin_src nix
 ".config/mako" = {
   source = ../mako;
   recursive = true;
 };
 #+end_src
-***  Foot
+*** Foot
 #+begin_src nix
 ".config/foot" = {
   source = ../foot;
   recursive = true;
 };
 #+end_src
-***  KDE Wallet
+*** KDE Wallet
 #+begin_src nix
 ".config/kwalletrc".text = ''
   [Wallet]
   Enabled=false
 '';
 #+end_src
-***  End of list
+*** End of list
 #+begin_src nix
 };
 #+end_src
-**  Thunderbird (email)
+** Thunderbird (email)
 #+begin_src nix
 programs.thunderbird.enable = true;
 #+end_src
 
-**  Bash management
+** Bash management
 #+begin_src nix
 programs.bash = {
     enable = true;
@@ -301,19 +301,19 @@ programs.bash = {
 
 #+end_src
 
-**  Packages
-***  Start of List
+** Packages
+*** Start of List
 #+begin_src nix
 home.packages = with pkgs; [
 #+end_src
-***  Office Tools
+*** Office Tools
 #+begin_src nix
   libreoffice-qt6-fresh
   hunspell
   hunspellDicts.uk_UA
   hunspellDicts.th_TH
 #+end_src
-***  Games
+*** Games
 #+begin_src nix
 (prismlauncher.override {
   jdks = [
@@ -323,7 +323,7 @@ home.packages = with pkgs; [
   ];
 })
 #+end_src
-***  Sway (PKGS)
+*** Sway (PKGS)
 #+begin_src nix
    wl-clipboard
    mako
@@ -332,13 +332,13 @@ home.packages = with pkgs; [
    waybar
    waypaper
 #+end_src
-***  Browser
+*** Browser
 #+begin_src nix
 # Start of the home packages array
 brave
 firefox
 #+end_src
-***  Text editors
+*** Text editors
 #+begin_src nix
 # For Emacs
   python3
@@ -368,7 +368,7 @@ firefox
   shellcheck
   shfmt
 #+end_src
-***  Other Packages
+*** Other Packages
 #+begin_src nix
 fastfetch
   git
@@ -382,7 +382,7 @@ fastfetch
   ffmpegthumbnailer
   mediainfo
 #+end_src
-***  Fonts
+*** Fonts
 #+begin_src nix
 # Fonts for emacs
 nerd-fonts.symbols-only
@@ -393,20 +393,20 @@ noto-fonts-cjk-sans
 noto-fonts-cjk-serif
 
 #+end_src
-***  Terminal
+*** Terminal
 #+begin_src nix
   kitty
 #+end_src
-***  End of list
+*** End of list
 #+begin_src nix
 ];
  }
 #+end_src
-*  Systems
+* Systems
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
-**  SwiftX
+** SwiftX
 :PROPERTIES:
 :header-args: :tangle ../build/nixos/swiftx.nix
 :VISIBILITY: folded
@@ -446,7 +446,7 @@ One of my laptops
 }
 
 #+end_src
-**  NixBox
+** NixBox
 :PROPERTIES:
 :header-args: :tangle ../build/nixos/nixbox.nix
 :VISIBILITY: folded
@@ -465,11 +465,11 @@ Main Desktop
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }
 #+end_src
-*  Configuration Settings
+* Configuration Settings
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
-**  Nvidia
+** Nvidia
 :PROPERTIES:
 :header-args: :tangle ../build/nixos/nvidia.nix
 :VISIBILITY: folded
@@ -480,7 +480,7 @@ Mainly legacy, RTX 20+ should work fine.
 
 WARNING! Set LTS kernel
 I set this because running the latest kernel with nvidia ran into issues.
-***  LTS Kernel
+*** LTS Kernel
 #+begin_src nix
 # Import basic dependancies
 {
@@ -495,13 +495,13 @@ I set this because running the latest kernel with nvidia ran into issues.
   boot.kernelPackages = pkgs.linuxPackages;
 #+end_src
 
-***  Open GL
+*** Open GL
 #+begin_src nix
   hardware.graphics = {
     enable = true;
   };
 #+end_src
-***  Drivers and Hardware Settings
+*** Drivers and Hardware Settings
 #+begin_src nix
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -539,14 +539,14 @@ I set this because running the latest kernel with nvidia ran into issues.
 }
 #+end_src
 
-**  Configuration
+** Configuration
 :PROPERTIES:
 :header-args: :tangle ../build/nixos/configuration.nix
 :VISIBILITY: folded
 :END:
 
 This is for global packages and settings I want on all my machines.
-***  Imports
+*** Imports
 #+begin_src nix
 { config, pkgs, ... }:
 
@@ -558,29 +558,29 @@ This is for global packages and settings I want on all my machines.
 
 #+end_src
 
-***  Bootloader
+*** Bootloader
 #+begin_src nix
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 #+end_src
 
-***  App armor
+*** App armor
 #+begin_src nix
   # App armor
   security.apparmor.enable = true;
 #+end_src
-***  Nix (Packages manager)
+*** Nix (Packages manager)
 #+begin_src nix
 nix.package = pkgs.nixVersions.latest;
 #+end_src
-***  Steam
+*** Steam
 #+begin_src nix
   # Steam
   programs.steam.enable = true;
 #+end_src
 
-***  System
+*** System
 #+begin_src nix
 
 networking.hostName = "nixos"; # Define your hostname.
@@ -664,7 +664,7 @@ networking.firewall = {
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 system.stateVersion = "25.05"; # Did you read the comment?
 #+end_src
-***  Syncthing
+*** Syncthing
 #+begin_src nix
 # Example for /etc/nixos/configuration.nix
 services.syncthing = {
@@ -674,7 +674,7 @@ services.syncthing = {
   dataDir = "/home/primary";
 };
 #+end_src
-***  Gnupg
+*** Gnupg
 
 #+begin_src nix
 programs.gnupg.agent = {
@@ -682,11 +682,11 @@ programs.gnupg.agent = {
   pinentryPackage = pkgs.pinentry-qt;
 };
 #+end_src
-***  Wayland
+*** Wayland
 #+begin_src nix
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
 #+end_src
-***  Sway
+*** Sway
 #+begin_src nix
 programs.sway = {
   enable = true;
@@ -694,17 +694,17 @@ programs.sway = {
 };
 
 #+end_src
-***  Polkit
+*** Polkit
 #+begin_src nix
 security.polkit.enable = true;
 #+end_src
-***  Flakes
+*** Flakes
 #+begin_src nix
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #+end_src
 
-***  Desktop
+*** Desktop
 #+begin_src nix
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -727,7 +727,7 @@ security.polkit.enable = true;
   environment.variables.EDITOR = "nvim";
 #+end_src
 
-***  Audio
+*** Audio
 #+begin_src nix
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -746,7 +746,7 @@ security.polkit.enable = true;
   };
 #+end_src
 
-***  Users
+*** Users
 #+begin_src nix
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.primary = {
@@ -756,11 +756,11 @@ security.polkit.enable = true;
   };
 #+end_src
 
-***  Docker
+*** Docker
 #+begin_src nix
 virtualisation.docker.enable = true;
 #+end_src
-***  Virt Manager
+*** Virt Manager
 #+begin_src nix
 programs.virt-manager.enable = true;
 
@@ -770,31 +770,31 @@ virtualisation.libvirtd.enable = true;
 
 virtualisation.spiceUSBRedirection.enable = true;
 #+end_src
-***  Flatpak
+*** Flatpak
 #+begin_src nix
 services.flatpak.enable = true;
 #+end_src
-***  Nix Packages
+*** Nix Packages
 These are *SYSTEM* packages for user specific look at home settings
-****  Start of List
+**** Start of List
 #+begin_src nix
 environment.systemPackages = with pkgs; [
 #+end_src
-****  Sway Lock (Lock Screen)
+**** Sway Lock (Lock Screen)
 #+begin_src nix
 swaylock
 #+end_src
-****  More Developer Tools
+**** More Developer Tools
 #+begin_src nix
   docker
 #+end_src
 
-****  Flatpak
+**** Flatpak
 Why Flatpak? for sandboxing certain apps I wish to have more restrictive permissions
 #+begin_src nix
 flatpak
 #+end_src
-****  End of List
+**** End of List
 #+begin_src nix
 ];
 }

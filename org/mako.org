@@ -1,11 +1,11 @@
 #+title: Mako
 
-*  Mako
+* Mako
 :PROPERTIES:
 :header-args: :tangle ../build/mako/config
 :VISIBILITY: folded
 :END:
-**  Basic Settings
+** Basic Settings
 #+begin_src conf
 font=Iosevka Nerd Font Mono 13
 background-color=#000000

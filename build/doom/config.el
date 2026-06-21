@@ -256,7 +256,7 @@
         `(("t" "Personal todo" ; Todo items
           entry (file+headline +org-capture-todo-file " Capture Tasks")
           ,(concat
-           "* TODO [#B] [ ] %? "
+           "* [ ] [#B] TODO %? "
            (format-time-string "<%Y-%m-%d %a>"
                                (org-read-date nil t "Fri"))
            "\n\n%a")
@@ -299,10 +299,11 @@
   :hook (org-mode . org-modern-mode)
   :config
   ;; Basic settings
-  (setq org-modern-star '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+  (setq org-modern-replace-stars ""
+        org-modern-star 'replace
         org-modern-table-vertical 1
         org-modern-table-horizontal 0.2
-        org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
+        org-modern-list '((43 . "") (45 . "–") (42 . "•"))
         org-modern-block-fringe nil
         org-modern-todo-faces
         '(("TODO"  :foreground "red")

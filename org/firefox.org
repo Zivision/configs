@@ -1,20 +1,20 @@
 #+title: Firefox
 
-*  Table of Contents :TOC_4:noexport:
--  [[#user][User]]
-  -  [[#betterfox][BetterFox]]
-  -  [[#smooth-fox][Smooth Fox]]
-  -  [[#custom-overrides][Custom Overrides]]
-    -  [[#font-improvement][Font Improvement]]
-    -  [[#location-requests][Location Requests]]
-  -  [[#end-of-betterfox][End of Betterfox]]
+* Table of Contents :TOC_4:noexport:
+- [[#user][User]]
+  - [[#betterfox][BetterFox]]
+  - [[#smooth-fox][Smooth Fox]]
+  - [[#custom-overrides][Custom Overrides]]
+    - [[#font-improvement][Font Improvement]]
+    - [[#location-requests][Location Requests]]
+  - [[#end-of-betterfox][End of Betterfox]]
 
-*  User
+* User
 :PROPERTIES:
 :header-args: :tangle ../build/firefox/user.js
 :VISIBILITY: folded
 :END:
-**  BetterFox
+** BetterFox
 This is copied from [[https://github.com/yokoffing/Betterfox][Here]] check them out
 #+begin_src js
 //
@@ -197,7 +197,7 @@ user_pref("browser.menu.showViewImageInfo", true);
 user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 #+end_src
-**  Smooth Fox
+** Smooth Fox
 #+begin_src js
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
@@ -205,7 +205,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
 // Enter your scrolling overrides below this line:
 #+end_src
-**  Custom Overrides
+** Custom Overrides
 #+begin_src js
 /****************************************************************************
  ,* START: MY OVERRIDES                                                      *
@@ -215,17 +215,17 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // Enter your personal overrides below this line:
 
 #+end_src
-***  Font Improvement
+*** Font Improvement
 #+begin_src js
 user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
 user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
 user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
 #+end_src
-***  Location Requests
+*** Location Requests
 #+begin_src js
 user_pref("permissions.default.geo", 0);
 #+end_src
-**  End of Betterfox
+** End of Betterfox
 #+begin_src js
 /****************************************************************************
  * END: BETTERFOX                                                           *

@@ -1,149 +1,149 @@
 #+title: Doom
 
-*  Table of Contents :TOC_4:noexport:
--  [[#about][About]]
-  -  [[#why-emacs][Why Emacs?]]
-    -  [[#i-like-lisp][I like lisp]]
-    -  [[#developerwriting-environment][Developer/Writing environment]]
-    -  [[#customize-everything][Customize everything]]
-    -  [[#gui-app][GUI App]]
-    -  [[#stability][Stability]]
-    -  [[#killer-features][Killer Features]]
--  [[#init-settings][Init Settings]]
-  -  [[#input][Input]]
-  -  [[#completion][Completion]]
-  -  [[#ui][UI]]
-  -  [[#editor][Editor]]
-  -  [[#emacs][Emacs]]
-  -  [[#term][Term]]
-  -  [[#checkers][Checkers]]
-  -  [[#tools][Tools]]
-  -  [[#os][OS]]
-  -  [[#lang][Lang]]
-  -  [[#email][Email]]
-  -  [[#app][App]]
-  -  [[#config][Config]]
--  [[#config-settings][Config Settings]]
-  -  [[#basic-usage][Basic usage]]
-    -  [[#basic-variables][Basic variables]]
-    -  [[#basic-macros][Basic macros]]
-  -  [[#custom-variables][Custom Variables]]
-  -  [[#custom-functions][Custom Functions]]
-    -  [[#window-manager][Window Manager]]
-    -  [[#tangle-configs][Tangle configs]]
-  -  [[#basic-settings][Basic settings]]
-    -  [[#splash-screen][Splash Screen]]
-    -  [[#keybinds][Keybinds]]
-      -  [[#open-file][Open File]]
-      -  [[#emms][EMMS]]
-      -  [[#elfeed][Elfeed]]
-      -  [[#window-sizing][Window sizing]]
-    -  [[#fonts][Fonts]]
-      -  [[#change-font-based-on-mode][Change Font Based on Mode]]
-      -  [[#set-font-faces][Set Font Faces]]
-    -  [[#theme][Theme]]
+* Table of Contents :TOC_4:noexport:
+- [[#about][About]]
+  - [[#why-emacs][Why Emacs?]]
+    - [[#i-like-lisp][I like lisp]]
+    - [[#developerwriting-environment][Developer/Writing environment]]
+    - [[#customize-everything][Customize everything]]
+    - [[#gui-app][GUI App]]
+    - [[#stability][Stability]]
+    - [[#killer-features][Killer Features]]
+- [[#init-settings][Init Settings]]
+  - [[#input][Input]]
+  - [[#completion][Completion]]
+  - [[#ui][UI]]
+  - [[#editor][Editor]]
+  - [[#emacs][Emacs]]
+  - [[#term][Term]]
+  - [[#checkers][Checkers]]
+  - [[#tools][Tools]]
+  - [[#os][OS]]
+  - [[#lang][Lang]]
+  - [[#email][Email]]
+  - [[#app][App]]
+  - [[#config][Config]]
+- [[#config-settings][Config Settings]]
+  - [[#basic-usage][Basic usage]]
+    - [[#basic-variables][Basic variables]]
+    - [[#basic-macros][Basic macros]]
+  - [[#custom-variables][Custom Variables]]
+  - [[#custom-functions][Custom Functions]]
+    - [[#window-manager][Window Manager]]
+    - [[#tangle-configs][Tangle configs]]
+  - [[#basic-settings][Basic settings]]
+    - [[#splash-screen][Splash Screen]]
+    - [[#keybinds][Keybinds]]
+      - [[#open-file][Open File]]
+      - [[#emms][EMMS]]
+      - [[#elfeed][Elfeed]]
+      - [[#window-sizing][Window sizing]]
+    - [[#fonts][Fonts]]
+      - [[#change-font-based-on-mode][Change Font Based on Mode]]
+      - [[#set-font-faces][Set Font Faces]]
+    - [[#theme][Theme]]
       - [[#borders][Borders]]
-    -  [[#line-numbers][Line numbers]]
-    -  [[#mode-line-settings][Mode Line Settings]]
-    -  [[#mode-settings][Mode Settings]]
-    -  [[#review-packages][Review Packages]]
-  -  [[#package-settings][Package settings]]
-    -  [[#utilities][Utilities]]
-      -  [[#eshell][Eshell]]
-      -  [[#dired][Dired]]
-      -  [[#gptel][GPTel]]
-    -  [[#emms-1][EMMS]]
-    -  [[#elfeed-1][Elfeed]]
-      -  [[#elfeed-tube][Elfeed Tube]]
-    -  [[#nerd-icons][Nerd Icons]]
-    -  [[#golden-ratio][Golden Ratio]]
-    -  [[#beacon][Beacon]]
-    -  [[#debugger][Debugger]]
-      -  [[#main-config][Main Config]]
-      -  [[#python][Python]]
-      -  [[#javascripttypescript][Javascript/Typescript]]
-      -  [[#go][Go]]
-    -  [[#org][Org]]
-      -  [[#org-capture][Org Capture]]
-      -  [[#org-agenda][Org Agenda]]
-      -  [[#org-modern][Org Modern]]
-      -  [[#org-appear][Org Appear]]
-      -  [[#org-download][Org Download]]
-      -  [[#org-roam][Org Roam]]
-      -  [[#org-toc][Org TOC]]
-      -  [[#olivetti][Olivetti]]
-      -  [[#misc-org-settings][Misc org settings]]
-      -  [[#prettify-symbols-mode][Prettify Symbols Mode]]
--  [[#packages-settings][Packages Settings]]
-  -  [[#basic-usage-1][Basic usage]]
-  -  [[#external-packages][External Packages]]
-    -  [[#org-packages][Org Packages]]
-      -  [[#org-modern-1][Org Modern]]
-      -  [[#org-appear-1][Org appear]]
-      -  [[#org-table-of-contents][Org table of contents]]
-      -  [[#org-download-1][Org Download]]
-      -  [[#olivetti-1][Olivetti]]
-      -  [[#nov][Nov]]
-      -  [[#djvu][Djvu]]
-    -  [[#ui-1][UI]]
-      -  [[#nerd-icons-dired][Nerd Icons (dired)]]
-      -  [[#nerd-icons-completion][Nerd Icons Completion]]
-      -  [[#golden-ratio-window-resize][Golden Ratio (Window resize)]]
-      -  [[#beacon-1][Beacon]]
-    -  [[#elfeed-2][Elfeed]]
-      -  [[#elfeed-tube-1][Elfeed Tube]]
-    -  [[#misc][Misc]]
-      -  [[#aio][AIO]]
-      -  [[#mpv][MPV]]
-    -  [[#fun][Fun]]
-      -  [[#fireplace][Fireplace]]
--  [[#internal-packages][Internal Packages]]
-  -  [[#tangle-configs-1][Tangle Configs]]
-    -  [[#header--metadata][Header & Metadata]]
-    -  [[#manual-link-firefox][Manual Link Firefox]]
-      -  [[#search-folder-for-prefsjs][Search Folder for prefs.js]]
-      -  [[#link-it][Link it]]
-    -  [[#build-directories][Build Directories]]
-    -  [[#configure-function][Configure Function]]
-      -  [[#make-directories][Make Directories]]
-      -  [[#create-symlink][Create Symlink]]
-      -  [[#babel-org-documents][Babel Org Documents]]
-      -  [[#create-manual-symlinks][Create Manual symlinks]]
-    -  [[#interactive-function][Interactive Function]]
-    -  [[#end-of-file][End of File]]
+    - [[#line-numbers][Line numbers]]
+    - [[#mode-line-settings][Mode Line Settings]]
+    - [[#mode-settings][Mode Settings]]
+    - [[#review-packages][Review Packages]]
+  - [[#package-settings][Package settings]]
+    - [[#utilities][Utilities]]
+      - [[#eshell][Eshell]]
+      - [[#dired][Dired]]
+      - [[#gptel][GPTel]]
+    - [[#emms-1][EMMS]]
+    - [[#elfeed-1][Elfeed]]
+      - [[#elfeed-tube][Elfeed Tube]]
+    - [[#nerd-icons][Nerd Icons]]
+    - [[#golden-ratio][Golden Ratio]]
+    - [[#beacon][Beacon]]
+    - [[#debugger][Debugger]]
+      - [[#main-config][Main Config]]
+      - [[#python][Python]]
+      - [[#javascripttypescript][Javascript/Typescript]]
+      - [[#go][Go]]
+    - [[#org][Org]]
+      - [[#org-capture][Org Capture]]
+      - [[#org-agenda][Org Agenda]]
+      - [[#org-modern][Org Modern]]
+      - [[#org-appear][Org Appear]]
+      - [[#org-download][Org Download]]
+      - [[#org-roam][Org Roam]]
+      - [[#org-toc][Org TOC]]
+      - [[#olivetti][Olivetti]]
+      - [[#misc-org-settings][Misc org settings]]
+      - [[#prettify-symbols-mode][Prettify Symbols Mode]]
+- [[#packages-settings][Packages Settings]]
+  - [[#basic-usage-1][Basic usage]]
+  - [[#external-packages][External Packages]]
+    - [[#org-packages][Org Packages]]
+      - [[#org-modern-1][Org Modern]]
+      - [[#org-appear-1][Org appear]]
+      - [[#org-table-of-contents][Org table of contents]]
+      - [[#org-download-1][Org Download]]
+      - [[#olivetti-1][Olivetti]]
+      - [[#nov][Nov]]
+      - [[#djvu][Djvu]]
+    - [[#ui-1][UI]]
+      - [[#nerd-icons-dired][Nerd Icons (dired)]]
+      - [[#nerd-icons-completion][Nerd Icons Completion]]
+      - [[#golden-ratio-window-resize][Golden Ratio (Window resize)]]
+      - [[#beacon-1][Beacon]]
+    - [[#elfeed-2][Elfeed]]
+      - [[#elfeed-tube-1][Elfeed Tube]]
+    - [[#misc][Misc]]
+      - [[#aio][AIO]]
+      - [[#mpv][MPV]]
+    - [[#fun][Fun]]
+      - [[#fireplace][Fireplace]]
+- [[#internal-packages][Internal Packages]]
+  - [[#tangle-configs-1][Tangle Configs]]
+    - [[#header--metadata][Header & Metadata]]
+    - [[#manual-link-firefox][Manual Link Firefox]]
+      - [[#search-folder-for-prefsjs][Search Folder for prefs.js]]
+      - [[#link-it][Link it]]
+    - [[#build-directories][Build Directories]]
+    - [[#configure-function][Configure Function]]
+      - [[#make-directories][Make Directories]]
+      - [[#create-symlink][Create Symlink]]
+      - [[#babel-org-documents][Babel Org Documents]]
+      - [[#create-manual-symlinks][Create Manual symlinks]]
+    - [[#interactive-function][Interactive Function]]
+    - [[#end-of-file][End of File]]
 
-*  About
+* About
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
 
 *DISCLAIMER:* The configuration starts after this, so feel free to skip the about section
 
-**  Why Emacs?
+** Why Emacs?
 I chose Emacs for a couple of reasons.
-***  I like lisp
+*** I like lisp
 Sometimes it is that simple, I like writing lisp and wanted an editor that is configured with lisp.
 
-***  Developer/Writing environment
+*** Developer/Writing environment
 I like using tools that enable modal editing and keyboard driven text editing. I also value a tool that keeps everything in one space.
 - Development :: Git, Docker, Scripting, Debugging, and READING logs all in Emacs
 - Writing :: Org Mode enables to do all my writing in one format then target different formats with tools like pandoc
 
 Nothing is off the table with Emacs, I can write custom functions to do whatever I need and interact with the system through my main environment.
 
-***  Customize everything
+*** Customize everything
 Everything can be changed: theme, font, functionality, keybinds, modes, you name it.
 
-***  GUI App
+*** GUI App
 This one is less important, but due to issues with emoji and certain font faces in terminals I had issues with displaying characters in Neovim in the past.
 
-***  Stability
+*** Stability
 In my experience Emacs has been pretty stable once I got everything working how I liked it. My previous editor (Neovim) had stability issues in the past but from what I've gathered it has gotten better over the years.
 
-***  Killer Features
+*** Killer Features
 I used to use Neovim so you might be inclined to ask why do I not switch back? The main reasons are magit and org-mode. Hands down my favorite features of Emacs and keep me here with it.
 
-*  Init Settings
+* Init Settings
 :PROPERTIES:
 :header-args: :tangle ../build/doom/init.el
 :VISIBILITY: folded
@@ -151,7 +151,7 @@ I used to use Neovim so you might be inclined to ask why do I not switch back? T
 
 This are the settings originally located in *init.el*
 To toggle certain settings simply uncomment (remove ;;) a package name.
-**  Input
+** Input
 #+begin_src emacs-lisp
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
@@ -159,7 +159,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;japanese
        ;;layout            ; auie,ctsrnm is the superior home row
 #+end_src
-**  Completion
+** Completion
 #+begin_src emacs-lisp
        :completion
        ;;company           ; the ultimate code completion backend
@@ -169,7 +169,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;ivy               ; a search engine for love and life
        vertico           ; the search engine of the future
 #+end_src
-**  UI
+** UI
 #+begin_src emacs-lisp
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -196,7 +196,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 #+end_src
-**  Editor
+** Editor
 #+begin_src emacs-lisp
        :editor
        (evil +everywhere) ; come to the dark side, we have cookies
@@ -213,7 +213,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        (whitespace +guess +trim)  ; a butler for your whitespace
        word-wrap         ; soft wrapping with language-aware indent
 #+end_src
-**  Emacs
+** Emacs
 #+begin_src emacs-lisp
        :emacs
        dired             ; making dired pretty [functional]
@@ -224,7 +224,7 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 #+end_src
-**  Term
+** Term
 #+begin_src emacs-lisp
        :term
        eshell            ; the elisp shell that works everywhere
@@ -232,14 +232,14 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        ;;term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
 #+end_src
-**  Checkers
+** Checkers
 #+begin_src emacs-lisp
        :checkers
        syntax              ; tasing you for every semicolon you forget
        (spell +flyspell) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
 #+end_src
-**  Tools
+** Tools
 #+begin_src emacs-lisp
        :tools
        ;;ansible
@@ -264,13 +264,13 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
         +everywhere)       ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 #+end_src
-**  OS
+** OS
 #+begin_src emacs-lisp
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
        ;;tty               ; improve the terminal Emacs experience
 #+end_src
-**  Lang
+** Lang
 #+begin_src emacs-lisp
        :lang
        ;;ada               ; In strong typing we (blindly) trust
@@ -343,14 +343,14 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
 #+end_src
-**  Email
+** Email
 #+begin_src emacs-lisp
        :email
        ;;(mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 #+end_src
-**  App
+** App
 #+begin_src emacs-lisp
        :app
        calendar
@@ -359,14 +359,14 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
        irc               ; how neckbeards socialize
        (rss +org)        ; emacs as an RSS reader
 #+end_src
-**  Config
+** Config
 #+begin_src emacs-lisp
        :config
        ;;literate
        (default +bindings +smartparens))
 #+end_src
 
-*  Config Settings
+* Config Settings
 :PROPERTIES:
 :header-args: :tangle ../build/doom/config.el
 :VISIBILITY: folded
@@ -374,22 +374,22 @@ To toggle certain settings simply uncomment (remove ;;) a package name.
 
 This are the settings originally located in *config.el*.
 This is where custom Emacs functions and configuration for packages reside.
-**  Basic usage
-***  Basic variables
+** Basic usage
+*** Basic variables
 + doom-font                :: the primary font to use
 + doom-variable-pitch-font :: a non-monospace font (where applicable)
 + doom-big-font            :: used for big font
 + doom-symbol-font         :: for symbols
 + doom-serif-font          :: serif font
 
-***  Basic macros
+*** Basic macros
 + after!         :: Used for configuring packages doom might override
 + load!          :: Load external .el files
 + use-package!   :: Configure packages
 + after!         :: For running code after a package has loaded
 + add-load-path! :: For adding directories to the load-path.
 + map!           :: Map new keys
-**  Custom Variables
+** Custom Variables
 #+begin_src elisp
 (defvar project-root "~/Workspace/Misc/configs")
 
@@ -400,8 +400,8 @@ This is where custom Emacs functions and configuration for packages reside.
 (after! auth-source
   (setq auth-sources '("~/Private/.authinfo.gpg")))
 #+end_src
-**  Custom Functions
-***  Window Manager
+** Custom Functions
+*** Window Manager
 #+begin_src elisp
 (defun wm/launch-eshell
     ()
@@ -413,19 +413,19 @@ This is where custom Emacs functions and configuration for packages reside.
       (switch-to-buffer "*doom:eshell*")
       (eshell/clear))))
 #+end_src
-***  Tangle configs
+*** Tangle configs
 Mainly just imports
 #+begin_src elisp
 (require 'tangle-configs)
 #+end_src
 
-**  Basic settings
-***  Splash Screen
+** Basic settings
+*** Splash Screen
 #+begin_src elisp
 (setq fancy-splash-image "~/Pictures/wallpapers/Pics/Emacs-logo.svg.png")
 #+end_src
-***  Keybinds
-****  Open File
+*** Keybinds
+**** Open File
 #+begin_src emacs-lisp
 (map!
  :prefix "C-c o d"
@@ -437,7 +437,7 @@ Mainly just imports
                                  (dired project-root)))
 #+end_src
 
-****  EMMS
+**** EMMS
 #+begin_src emacs-lisp
 (map!
  :prefix "C-c m"
@@ -452,7 +452,7 @@ Mainly just imports
  :desc "Next Track" "j" #'emms-next
  :desc "Previous track" "k" #'emms-previous)
 #+end_src
-****  Elfeed
+**** Elfeed
 #+begin_src emacs-lisp
 (map!
  :prefix "C-c n"
@@ -460,15 +460,15 @@ Mainly just imports
  :desc "Unjam elfeed" "u" #'elfeed-unjam
  :desc "Update elfeed" "U" #'elfeed-update)
 #+end_src
-****  Window sizing
+**** Window sizing
 #+begin_src emacs-lisp
 (global-set-key (kbd "<C-up>"   ) 'shrink-window)
 (global-set-key (kbd "<C-down>" ) 'enlarge-window)
 (global-set-key (kbd "<C-left>" ) 'shrink-window-horizontally)
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 #+end_src
-***  Fonts
-****  Change Font Based on Mode
+*** Fonts
+**** Change Font Based on Mode
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook
           (lambda () (text-scale-set 1))) ; Make font larger in org mode
@@ -476,7 +476,7 @@ Mainly just imports
 (add-hook 'prog-mode-hook
           (lambda () (text-scale-set 0))) ; Reset font for programming modes
 #+end_src
-****  Set Font Faces
+**** Set Font Faces
 Will need to download the Iosevka Font for this to work.
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16)
@@ -485,7 +485,7 @@ Will need to download the Iosevka Font for this to work.
 ;; Make doom large font even bigger
 (setq doom-big-font-increment 4)
 #+end_src
-***  Theme
+*** Theme
 #+begin_src emacs-lisp
 ;; Enable bold and italic for better syntax highlighting
 (after! doom-themes
@@ -519,11 +519,11 @@ Will need to download the Iosevka Font for this to work.
   '(window-divider-first-pixel :foreground "#000000")
   '(window-divider-last-pixel :foreground "#000000"))
 #+end_src
-***  Line numbers
+*** Line numbers
 #+begin_src emacs-lisp
 (setq display-line-numbers-type `relative)
 #+end_src
-***  Mode Line Settings
+*** Mode Line Settings
 #+begin_src emacs-lisp
 (after! doom-modeline
   ;; Configuration
@@ -544,19 +544,19 @@ Will need to download the Iosevka Font for this to work.
 
 (display-time-mode 1)
 #+end_src
-***  Mode Settings
+*** Mode Settings
 #+begin_src emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 #+end_src
-***  Review Packages
+*** Review Packages
 #+begin_src emacs-lisp
 (setq package-review-policy t
       package-review-diff-command '("git" "diff" "--no-index" "--color=never" "--diff-filter=d"))
 #+end_src
-**  Package settings
-***  Utilities
-****  Eshell
-*****  Prompt
+** Package settings
+*** Utilities
+**** Eshell
+***** Prompt
 #+begin_src emacs-lisp
 (after! eshell
   (require 'magit)
@@ -595,10 +595,10 @@ Will need to download the Iosevka Font for this to work.
 
   (setq eshell-prompt-regexp "^[^λ]*λ "))
 #+end_src
-****  Dired
+**** Dired
 #+begin_src emacs-lisp
 #+end_src
-****  GPTel
+**** GPTel
 #+begin_src elisp
 ;; For auth in mini buffer
 (setq epg-pinentry-mode 'loopback)
@@ -613,7 +613,7 @@ Will need to download the Iosevka Font for this to work.
           :key (lambda () (my/gptel-get-key "generativelanguage.googleapis.com"))))
   (setq gptel-model 'gemini-3-flash-preview))
 #+end_src
-***  EMMS
+*** EMMS
 #+begin_src emacs-lisp
 (after! EMMS
   (require 'emms-source-file)
@@ -621,12 +621,12 @@ Will need to download the Iosevka Font for this to work.
 
   (setq-default emms-source-file-default-directory "~/Music/"))
 #+end_src
-***  Elfeed
+*** Elfeed
 #+begin_src emacs-lisp
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org")))
 #+end_src
-****  Elfeed Tube
+**** Elfeed Tube
 #+begin_src elisp
 (use-package! elfeed-tube
   :ensure t ;; or :straight t
@@ -641,7 +641,7 @@ Will need to download the Iosevka Font for this to work.
 (use-package! elfeed-tube-mpv
   :ensure t) ;; or :straight t
 #+end_src
-***  Nerd Icons
+*** Nerd Icons
 #+begin_src elisp
 ;; Load after vertico
 (after! vertico
@@ -654,7 +654,7 @@ Will need to download the Iosevka Font for this to work.
   :hook
   (dired-mode . nerd-icons-dired-mode))
 #+end_src
-***  Golden Ratio
+*** Golden Ratio
 #+begin_src elisp
 (use-package! golden-ratio
     :config
@@ -669,7 +669,7 @@ Will need to download the Iosevka Font for this to work.
                   previous-multiframe-window))))
 
 #+end_src
-***  Beacon
+*** Beacon
 #+begin_src elisp
 (use-package! beacon
   :config
@@ -679,32 +679,32 @@ Will need to download the Iosevka Font for this to work.
         beacon-blink-delay 0.0)
   (beacon-mode 1))
 #+end_src
-***  Debugger
-****  Main Config
+*** Debugger
+**** Main Config
 #+begin_src emacs-lisp
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (dap-mode 1)
   (dap-ui-mode 1)
 #+end_src
-****  Python
+**** Python
 Need to install python debugger (look at install.sh)
 #+begin_src emacs-lisp
 (require 'dap-python)
 ;; Set python debugger (debugpy)
 (setq dap-python-debugger 'debugpy)
 #+end_src
-****  Javascript/Typescript
+**** Javascript/Typescript
 #+begin_src emacs-lisp
 (require 'dap-node)
 ;; Auto-installs debug adapter
 (dap-node-setup)
 #+end_src
-****  Go
+**** Go
 #+begin_src emacs-lisp
 (require 'dap-dlv-go))
 #+end_src
-***  Org
+*** Org
 #+begin_verse
 All of my org settings
 first my default org directory
@@ -719,7 +719,7 @@ first my default org directory
   (setq org-hide-emphasis-markers t)
   (setq org-default-notes-file (expand-file-name "notes.org" org-directory)))
 #+end_src
-****  Org Capture
+**** Org Capture
 #+begin_src elisp
 (after! org
   (setq org-capture-templates
@@ -760,14 +760,14 @@ first my default org directory
          ("oc" "Project changelog" entry #'+org-capture-central-project-changelog-file
           "* %U %?\n %i\n %a" :heading "Changelog" :prepend t))))
 #+end_src
-****  Org Agenda
+**** Org Agenda
 #+begin_src elisp
 (after! org
   ;; Show upcoming holidays
   (setq org-agenda-include-diary t))
 #+end_src
 
-****  Org Modern
+**** Org Modern
 #+begin_verse
 This makes org mode nicer to look at
 #+end_verse
@@ -777,10 +777,11 @@ This makes org mode nicer to look at
   :hook (org-mode . org-modern-mode)
   :config
   ;; Basic settings
-  (setq org-modern-star '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+  (setq org-modern-replace-stars ""
+        org-modern-star 'replace
         org-modern-table-vertical 1
         org-modern-table-horizontal 0.2
-        org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
+        org-modern-list '((43 . "") (45 . "–") (42 . "•"))
         org-modern-block-fringe nil
         org-modern-todo-faces
         '(("TODO"  :foreground "red")
@@ -793,17 +794,17 @@ This makes org mode nicer to look at
         org-src-tab-acts-natively t      ; Tab works normally in code blocks
         org-src-preserve-indentation t))  ; Preserve indentation
 #+end_src
-****  Org Appear
+**** Org Appear
 #+begin_src emacs-lisp
 (use-package! org-appear
   :after org-modern
   :hook (org-mode . org-appear-mode))
 #+END_SRC
-****  Org Download
+**** Org Download
 #+begin_src emacs-lisp
 (setq-default org-download-image-dir "~/Pictures/Org")
 #+end_src
-****  Org Roam
+**** Org Roam
 #+begin_src elisp
 (after! org
   (setq org-roam-capture-templates
@@ -813,12 +814,12 @@ This makes org mode nicer to look at
             "#+title: ${title}\nHead to the [[id:6c8c0623-2b7f-4717-9985-2733777df46e][Home-Node]]\n")
            :unnarrowed t))))
 #+end_src
-****  Org TOC
+**** Org TOC
 #+begin_src emacs-lisp
 (use-package! toc-org
   :hook (org-mode . toc-org-mode))
 #+END_SRC
-****  Olivetti
+**** Olivetti
 #+begin_verse
 Used to center org documents
 #+end_verse
@@ -827,14 +828,14 @@ Used to center org documents
   :hook (org-mode . olivetti-mode)
   :init (setq olivetti-body-width 100))
 #+end_src
-****  Misc org settings
+**** Misc org settings
 #+begin_src emacs-lisp
 (after! org
   (setq org-babel-python-command "python3") ; Sets python to "python3"
   (setq org-babel-default-header-args:python '((:results . "output")))) ; Sets results to output
 #+end_src
 
-****  Prettify Symbols Mode
+**** Prettify Symbols Mode
 #+begin_src emacs-lisp
 (after! org
   ;; Disables these modes that freeze org mode
@@ -842,7 +843,7 @@ Used to center org documents
   (global-prettify-symbols-mode -1))
 #+end_src
 
-*  Packages Settings
+* Packages Settings
 :PROPERTIES:
 :header-args: :tangle ../build/doom/packages.el
 :VISIBILITY: folded
@@ -851,89 +852,89 @@ Used to center org documents
 This are the external dependencies originally in *packages.el*.
 Packages outside of what's available for Doom Emacs reside here.
 
-**  Basic usage
+** Basic usage
 1. Declare them here in a `package!' statement,
 2. Run 'doom sync' in the shell,
 3. Restart Emacs.
 NOTE: for more info on packages look at the documentation (SPC h d h) or more specifically
 C-h f package\!
-**  External Packages
-***  Org Packages
-****  Org Modern
+** External Packages
+*** Org Packages
+**** Org Modern
 #+begin_src emacs-lisp
 (package! org-modern)
 #+end_src
-****  Org appear
+**** Org appear
 #+begin_src emacs-lisp
 (package! org-appear)
 #+END_SRC
-****  Org table of contents
+**** Org table of contents
 #+begin_src emacs-lisp
 (package! toc-org)
 #+END_SRC
-****  Org Download
+**** Org Download
 #+begin_src emacs-lisp
 (package! org-download)
 #+end_src
-****  Olivetti
+**** Olivetti
 #+begin_src emacs-lisp
 (package! olivetti)
 #+end_src
-****  Nov
+**** Nov
 #+begin_src elisp
 (package! nov)
 #+end_src
-****  Djvu
+**** Djvu
 #+begin_src elisp
 (package! djvu)
 #+end_src
 
-***  UI
-****  Nerd Icons (dired)
+*** UI
+**** Nerd Icons (dired)
 #+begin_src emacs-lisp
 (package! nerd-icons-dired)
 #+end_src
-****  Nerd Icons Completion
+**** Nerd Icons Completion
 #+begin_src elisp
 (package! nerd-icons-completion)
 #+end_src
-****  Golden Ratio (Window resize)
+**** Golden Ratio (Window resize)
 #+begin_src elisp
 (package! golden-ratio)
 #+end_src
-****  Beacon
+**** Beacon
 #+begin_src elisp
 (package! beacon)
 #+end_src
-***  Elfeed
-****  Elfeed Tube
+*** Elfeed
+**** Elfeed Tube
 #+begin_src elisp
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)
 #+end_src
-***  Misc
-****  AIO
+*** Misc
+**** AIO
 #+begin_src elisp
 (package! aio)
 #+end_src
-****  MPV
+**** MPV
 #+begin_src elisp
 (package! mpv)
 #+end_src
-***  Fun
-****  Fireplace
+*** Fun
+**** Fireplace
 #+begin_src emacs-lisp
 (package! fireplace)
 #+end_src
 
-*  Internal Packages
-**  Tangle Configs
+* Internal Packages
+** Tangle Configs
 :PROPERTIES:
 :header-args: :tangle ../build/doom/elisp/tangle-configs.el
 :VISIBILITY: folded
 :END:
 
-***  Header & Metadata
+*** Header & Metadata
 #+begin_src elisp
 ;;; tangle-configs.el --- Tangle org documents -*- lexical-binding: t; -*-
 ;;
@@ -958,13 +959,13 @@ C-h f package\!
 (require 'subr-x)
 (require 'ob-tangle)
 #+end_src
-***  Manual Link Firefox
+*** Manual Link Firefox
 #+begin_src elisp
 (defun tangle-configs--manual-link-firefox
     (target-dir build-dir file)
   "Manually link of a certain FILE in BUILD-DIR to TARGET-DIR."
 #+end_src
-****  Search Folder for prefs.js
+**** Search Folder for prefs.js
 Finds profile folders created by firefox
 #+begin_src elisp
   (let ((paths
@@ -973,7 +974,7 @@ Finds profile folders created by firefox
             (file-name-directory (expand-file-name path)))
           (directory-files-recursively target-dir "prefs.js"))))
 #+end_src
-****  Link it
+**** Link it
 #+begin_src elisp
 (mapcar (lambda (path)
           (unless (file-symlink-p
@@ -983,7 +984,7 @@ Finds profile folders created by firefox
         paths)))
 #+end_src
 
-***  Build Directories
+*** Build Directories
 This is for making the directories in the build directory automatically
 #+begin_src elisp
 (defun tangle-configs--build-directories
@@ -1008,7 +1009,7 @@ This is for making the directories in the build directory automatically
 
   #+end_src
 
-***  Configure Function
+*** Configure Function
 
 #+begin_src elisp
 (defun tangle-configs-configure
@@ -1030,13 +1031,13 @@ This is for making the directories in the build directory automatically
          (build-dir (expand-file-name  "build/" project-dir)))
 
 #+end_src
-****  Make Directories
+**** Make Directories
 See definition above
 #+begin_src elisp
 (tangle-configs--build-directories project-dir)
 #+end_src
 
-****  Create Symlink
+**** Create Symlink
 This snippet creates a link between system hardware-configuration.nix and the
 local nix files in this project.
 #+begin_src elisp
@@ -1048,7 +1049,7 @@ local nix files in this project.
                         (expand-file-name "nixos/hardware-configuration.nix" build-dir))))
 #+end_src
 
-****  Babel Org Documents
+**** Babel Org Documents
 This takes each file in the *org/* directory and creates the corresponding files
 needed.
 #+begin_src elisp
@@ -1059,7 +1060,7 @@ needed.
   (expand-file-name  "org/" project-dir ) "\\.org$")))
 #+end_src
 
-****  Create Manual symlinks
+**** Create Manual symlinks
 #+begin_src elisp
 (tangle-configs--manual-link-firefox "~/.mozilla/firefox"
                                      "~/Workspace/Misc/configs/build/firefox"
@@ -1069,7 +1070,7 @@ needed.
 #+end_src
 
 
-***  Interactive Function
+*** Interactive Function
 This is a simple interactive wrapper. It isn't much but works okay, need improvement.
 #+begin_src elisp
 (defun tangle-configs-configure-interactive
@@ -1079,7 +1080,7 @@ This is a simple interactive wrapper. It isn't much but works okay, need improve
   (tangle-configs-configure))
 #+end_src
 
-***  End of File
+*** End of File
 #+begin_src elisp
 (provide 'tangle-configs)
 ;;; tangle-configs.el ends here

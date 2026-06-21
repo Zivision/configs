@@ -1,14 +1,14 @@
 #+title: Sway Configuration
 
-*  Table of Contents :TOC_4:noexport:
+* Table of Contents :TOC_4:noexport:
 - [[#sway][Sway]]
-  -  [[#variables][Variables]]
-  -  [[#inputs][Inputs]]
-  -  [[#monitors][Monitors]]
-  -  [[#auto-start][Auto Start]]
-    -  [[#sway-configuration][Sway Configuration]]
-    -  [[#script][Script]]
-  -  [[#key-bindings][Key Bindings]]
+  - [[#variables][Variables]]
+  - [[#inputs][Inputs]]
+  - [[#monitors][Monitors]]
+  - [[#auto-start][Auto Start]]
+    - [[#sway-configuration][Sway Configuration]]
+    - [[#script][Script]]
+  - [[#key-bindings][Key Bindings]]
     - [[#basics][Basics]]
     - [[#movement][Movement]]
     - [[#workspaces][Workspaces]]
@@ -17,13 +17,13 @@
     - [[#resize][Resize]]
     - [[#utilities][Utilities]]
     - [[#apps][Apps]]
-  -  [[#bar][Bar]]
-  -  [[#font][Font]]
-  -  [[#floating][Floating]]
-  -  [[#opacity][Opacity]]
-  -  [[#windows][Windows]]
-  -  [[#screen-lock][Screen Lock]]
-  -  [[#extra][Extra]]
+  - [[#bar][Bar]]
+  - [[#font][Font]]
+  - [[#floating][Floating]]
+  - [[#opacity][Opacity]]
+  - [[#windows][Windows]]
+  - [[#screen-lock][Screen Lock]]
+  - [[#extra][Extra]]
 
 * Sway
 :PROPERTIES:
@@ -31,7 +31,7 @@
 :VISIBILITY: folded
 :END:
 
-**  Variables
+** Variables
 #+begin_src conf
 ### Variables
 #
@@ -51,7 +51,7 @@ set $menu wofi --show drun
 set $editor emacsclient -cn
 set $filemanager emacsclient -c --eval '(dirvish)'
 #+end_src
-**  Inputs
+** Inputs
 #+begin_src conf
 input type:touchpad {
 dwt enabled
@@ -60,19 +60,19 @@ natural_scroll enabled
 middle_emulation enabled
 }
 #+end_src
-**  Monitors
+** Monitors
 #+begin_src conf
 output DP-2 resolution 1440x900 position -900,0 transform 270
 output HDMI-A-1 resolution 1920x1080 position 0,0
 
 #+end_src
-**  Auto Start
-***  Sway Configuration
+** Auto Start
+*** Sway Configuration
 #+begin_src conf
 exec ~/.config/sway/autostart
 
 #+end_src
-***  Script
+*** Script
 :PROPERTIES:
 :header-args: :tangle ../build/sway/autostart
 :VISIBILITY: folded
@@ -88,7 +88,7 @@ foot --server
 #+end_src
 
 
-**  Key Bindings
+** Key Bindings
 *** Basics
 #+begin_src conf
 #
@@ -269,7 +269,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Shift+p exec $filemanager
 
 #+end_src
-**  Bar
+** Bar
 #+begin_src conf
 #
 # Status Bar:
@@ -281,19 +281,19 @@ bar {
 
 }
 #+end_src
-**  Font
+** Font
 #+begin_src conf
 font pango:Iosevka 16
 #+end_src
-**  Floating
+** Floating
 #+begin_src conf
 for_window [app_id="steam"] floating enable
 #+end_src
-**  Opacity
+** Opacity
 #+begin_src conf
 for_window [class=".*"] opacity 0.9
 #+end_src
-**  Windows
+** Windows
 #+begin_src conf
 # Removes title bar and sets a 1-pixel border
 default_border pixel 1
@@ -302,7 +302,7 @@ default_floating_border pixel 1
 # Format: client.<state> border background text indicator child_border
 client.focused           #64727D #000000 #ffffff #000000 #000000
 #+end_src
-**  Screen Lock
+** Screen Lock
 #+begin_src conf
 # Lock on laptop lid close
 bindswitch --locked --reload lid:on exec swaylock
@@ -310,7 +310,7 @@ bindswitch --locked --reload lid:on exec swaylock
 # Manual Lock
 bindsym $mod+Ctrl+l exec swaylock
 #+end_src
-**  Extra
+** Extra
 #+begin_src conf
 # From nixos.conf in /etc/sway/config.d/
 # Import the most important environment variables into the D-Bus and systemd

@@ -1,29 +1,29 @@
 #+title: Waybar
 
-*  Table of Contents :TOC_4:noexport:
--  [[#waybar-waybar-directory][Waybar (waybar/ directory)]]
-  -  [[#basic-settings][Basic Settings]]
-  -  [[#mpd][MPD]]
-  -  [[#idle_inhibitor][Idle_inhibitor]]
-  -  [[#tray][Tray]]
-  -  [[#clock][Clock]]
-  -  [[#cpu][CPU]]
-  -  [[#memory][Memory]]
-  -  [[#temperature][Temperature]]
-  -  [[#backlight][Backlight]]
-  -  [[#battery][Battery]]
-  -  [[#power-profiles][Power Profiles]]
-  -  [[#custom-power][Custom Power]]
-  -  [[#network][Network]]
-  -  [[#pulseaudio][PulseAudio]]
+* Table of Contents :TOC_4:noexport:
+- [[#waybar-waybar-directory][Waybar (waybar/ directory)]]
+  - [[#basic-settings][Basic Settings]]
+  - [[#mpd][MPD]]
+  - [[#idle_inhibitor][Idle_inhibitor]]
+  - [[#tray][Tray]]
+  - [[#clock][Clock]]
+  - [[#cpu][CPU]]
+  - [[#memory][Memory]]
+  - [[#temperature][Temperature]]
+  - [[#backlight][Backlight]]
+  - [[#battery][Battery]]
+  - [[#power-profiles][Power Profiles]]
+  - [[#custom-power][Custom Power]]
+  - [[#network][Network]]
+  - [[#pulseaudio][PulseAudio]]
 
-*  Waybar (waybar/ directory)
+* Waybar (waybar/ directory)
 :PROPERTIES:
 :header-args: :tangle ../build/waybar/config.jsonc
 :VISIBILITY: folded
 :END:
 
-**  Basic Settings
+** Basic Settings
 #+begin_src js
 {
     "layer": "top", // Waybar at top layer
@@ -61,7 +61,7 @@
         "custom/power"
     ],
 #+end_src
-**  MPD
+** MPD
 #+begin_src js
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -90,7 +90,7 @@
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
 #+end_src
-**  Idle_inhibitor
+** Idle_inhibitor
 #+begin_src js
     "idle_inhibitor": {
         "format": "{icon}",
@@ -100,7 +100,7 @@
         }
     },
 #+end_src
-**  Tray
+** Tray
 #+begin_src js
     "tray": {
         // "icon-size": 21,
@@ -111,7 +111,7 @@
         // }
     },
 #+end_src
-**  Clock
+** Clock
 #+begin_src js
     "clock": {
         "timezone": "America/Chicago",
@@ -119,20 +119,20 @@
         "format-alt": "{:%m-%d-%Y}"
     },
 #+end_src
-**  CPU
+** CPU
 #+begin_src js
     "cpu": {
         "format": "{usage}% ",
         "tooltip": false
     },
 #+end_src
-**  Memory
+** Memory
 #+begin_src js
     "memory": {
         "format": "{}% "
     },
 #+end_src
-**  Temperature
+** Temperature
 #+begin_src js
     "temperature": {
         // "thermal-zone": 2,
@@ -143,7 +143,7 @@
         "format-icons": ["", "", ""]
     },
 #+end_src
-**  Backlight
+** Backlight
 #+begin_src js
     "backlight": {
         // "device": "acpi_video1",
@@ -151,7 +151,7 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
 #+end_src
-**  Battery
+** Battery
 #+begin_src js
     "battery": {
         "states": {
@@ -172,7 +172,7 @@
         "bat": "BAT2"
     },
 #+end_src
-**  Power Profiles
+** Power Profiles
 #+begin_src js
     "power-profiles-daemon": {
       "format": "{icon}",
@@ -186,7 +186,7 @@
       }
     },
 #+end_src
-**  Custom Power
+** Custom Power
 #+begin_src js
     "custom/power": {
         "format" : "⏻ ",
@@ -201,7 +201,7 @@
 		}
     },
 #+end_src
-**  Network
+** Network
 #+begin_src js
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -213,7 +213,7 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 #+end_src
-**  PulseAudio
+** PulseAudio
 #+begin_src js
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
