@@ -2,20 +2,21 @@
 
 This is where I keep all of my dotfiles for all of my software
 
-*  Table of contents :TOC_4:
--  [[#main-software][Main Software]]
--  [[#how-to-install][How to install]]
+* Table of contents :TOC_4:
+- [[#main-software][Main Software]]
+- [[#how-to-install][How to install]]
 
-*  Main Software
+* Main Software
 + Editor: DOOM Emacs
 + Window Manager: Sway
-+ Terminal: Kitty
++ Terminal: Foot
 + Status Bar: Waybar
 + Launcher: Wofi
 + GNU/Linux Distro: Nixos
 
 
-*  How to install
+
+* How to install
 The main way I install this is grabbing a graphical installer ISO from [[https://nixos.org/download/][nixos.org]].
 After the initial install, I install git and then clone this repository.
 

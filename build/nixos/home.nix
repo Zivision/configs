@@ -92,6 +92,10 @@ waypaper
 brave
 firefox
 
+kdePackages.kdenlive
+
+audacity
+
 # For Emacs
   python3
   gcc

@@ -35,6 +35,8 @@
     - [[#games][Games]]
     - [[#sway-pkgs][Sway (PKGS)]]
     - [[#browser][Browser]]
+    - [[#video-editing][Video Editing]]
+    - [[#audio-editing][Audio Editing]]
     - [[#text-editors][Text editors]]
     - [[#other-packages][Other Packages]]
     - [[#fonts][Fonts]]
@@ -337,6 +339,14 @@ home.packages = with pkgs; [
 # Start of the home packages array
 brave
 firefox
+#+end_src
+*** Video Editing
+#+begin_src nix
+kdePackages.kdenlive
+#+end_src
+*** Audio Editing
+#+begin_src nix
+audacity
 #+end_src
 *** Text editors
 #+begin_src nix
