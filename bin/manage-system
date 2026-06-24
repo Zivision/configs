@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from lib.cli import start_cli
+from lib.parser import start_cli
 
 
 def main() -> None:

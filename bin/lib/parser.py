@@ -101,11 +101,12 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "nixos-rebuild",
                 "test",
                 "--flake",
-                (PROJECT_DIRECTORY + "/#" + str(args["rebuild"])),
+                (PROJECT_DIRECTORY + "/#" + str(args["test"])),
                 "--impure",
             ]
         ],
         "install": [
+            [PROJECT_DIRECTORY + "/bin/configure"],
             [
                 "sudo",
                 "nixos-rebuild",
@@ -120,7 +121,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
                 "clone",
                 "--depth",
                 "1",
-                "https://github.com/doomemacs/doomemacs",
+                "https://github.com/doomemacs/core",
                 (HOME_DIRECTORY + "/.config/emacs"),
             ],
             [(HOME_DIRECTORY + "/.config/emacs/bin/doom"), "install"],
@@ -133,6 +134,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
     # 2. Install
     # 3. Updates
     # 4. Rebuild
+    # 5. Test
 
     run_dispatch(args, dispatch, "configure")
     run_dispatch(args, dispatch, "install")
@@ -142,3 +144,7 @@ def parse_flags(parser: argparse.ArgumentParser) -> None:
 
     run_dispatch(args, dispatch, "rebuild")
     run_dispatch(args, dispatch, "test")
+
+
+def start_cli() -> None:
+    parse_flags(define_flags())
