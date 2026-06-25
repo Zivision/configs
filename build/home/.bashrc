@@ -71,7 +71,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export CONFIGS=$(cat $(fd -I paths.json ~) | jq -r ".root")
 
 # Scripts for this project
-export PATH="$CONFIGS/build/tools/:$PATH"
+export PATH="$CONFIGS/build/tools:$PATH"
 
 # Doom and Doom dir
 export PATH="$HOME/.config/emacs/bin:$PATH"
