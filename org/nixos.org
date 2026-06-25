@@ -391,6 +391,7 @@ fastfetch
   vips
   ffmpegthumbnailer
   mediainfo
+  jq
 #+end_src
 *** Fonts
 #+begin_src nix

@@ -106,10 +106,10 @@ export VISUAL='emacsclient -tty'
 export PATH="$HOME/.local/bin:$PATH"
 
 # Configs directory
-CONFIGS="$HOME/Workspace/Misc/configs"
+export CONFIGS=$(cat $(fd -I paths.json ~) | jq -r ".root")
 
 # Scripts for this project
-export PATH="$CONFIGS/bin:$PATH"
+export PATH="$CONFIGS/build/tools/:$PATH"
 
 # Doom and Doom dir
 export PATH="$HOME/.config/emacs/bin:$PATH"

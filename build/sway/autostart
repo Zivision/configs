@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-export DOOMDIR="$HOME/Workspace/Misc/configs/build/doom"
+export CONFIGS=$(cat $(fd -I paths.json ~) | jq -r ".root")
+export DOOMDIR="$CONFIGS/build/doom"
 
 waypaper --restore
 emacs --daemon

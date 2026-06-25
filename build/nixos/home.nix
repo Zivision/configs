@@ -135,6 +135,7 @@ fastfetch
   vips
   ffmpegthumbnailer
   mediainfo
+  jq
 
 # Fonts for emacs
 nerd-fonts.symbols-only

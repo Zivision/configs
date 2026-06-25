@@ -4,6 +4,7 @@ import os
 import subprocess
 import json
 import argparse
+import sys
 
 script_path = Path(__file__).resolve().parent
 
