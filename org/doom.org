@@ -391,10 +391,24 @@ This is where custom Emacs functions and configuration for packages reside.
 + map!           :: Map new keys
 ** Custom Variables
 #+begin_src elisp
-(defvar project-root "~/Workspace/Misc/configs")
+(require 'json)
+(defvar paths
+  (json-read-file
+   (expand-file-name "paths.json"
+                     (thread-first
+                       ;; Get project directory on machine
+                       (or load-file-name
+                           buffer-file-name)
+                       (file-name-directory)
+                       (directory-file-name)
+                       (file-name-directory)
+                       (directory-file-name)
+                       (file-name-directory)
+                       (file-truename)))))
 
 (after! doom
-  (add-to-list 'load-path (expand-file-name "build/doom/elisp" project-root)))
+  (defvar configs-directory (alist-get `root paths))
+  (add-to-list 'load-path (expand-file-name "doom/elisp" (alist-get `build paths))))
 
 
 (after! auth-source
@@ -991,7 +1005,7 @@ Finds profile folders created by firefox
 This is for making the directories in the build directory automatically
 #+begin_src elisp
 (defun tangle-configs--build-directories
-    (project-dir)
+    (project-dir build-dir)
   "Build the needed directories for each package in 'build/'."
 
   ;; Loop over programs and if a file exists but not the directory
@@ -1004,8 +1018,7 @@ This is for making the directories in the build directory automatically
                 (directory-files-recursively
                  (expand-file-name  "org/" project-dir ) "\\.org$")))
     (let ((file-path
-           (expand-file-name program
-                             (expand-file-name "build" "~/Workspace/Misc/configs"))))
+           (expand-file-name program build-dir)))
 
       (unless (file-directory-p file-path)
         (make-directory file-path)))))
@@ -1016,28 +1029,15 @@ This is for making the directories in the build directory automatically
 
 #+begin_src elisp
 (defun tangle-configs-configure
-    ()
+    (project-dir build-dir)
   "Tangle all org documents in configs."
 
-  (let* ((project-dir
-          (thread-first (getenv "DOOMDIR")
-                        (expand-file-name)
-                        (file-name-directory)
-                        (directory-file-name)
-                        (file-name-directory)))
-
-
-         ;; Library directory (not needed for now)
-         ;;(lib-dir (expand-file-name "elisp/" project-dir ))
-
-         ;; Build directory
-         (build-dir (expand-file-name  "build/" project-dir)))
 
 #+end_src
 **** Make Directories
 See definition above
 #+begin_src elisp
-(tangle-configs--build-directories project-dir)
+(tangle-configs--build-directories project-dir build-dir)
 #+end_src
 
 **** Create Symlink
@@ -1060,13 +1060,13 @@ needed.
 (mapc
  (lambda (file-path) (org-babel-tangle-file file-path))
  (directory-files-recursively
-  (expand-file-name  "org/" project-dir ) "\\.org$")))
+  (expand-file-name  "org/" project-dir ) "\\.org$"))
 #+end_src
 
 **** Create Manual symlinks
 #+begin_src elisp
 (tangle-configs--manual-link-firefox "~/.mozilla/firefox"
-                                     "~/Workspace/Misc/configs/build/firefox"
+                                     (expand-file-name "firefox" build-dir)
                                      "user.js")
 
 ); End of Function
@@ -1075,6 +1075,8 @@ needed.
 
 *** Interactive Function
 This is a simple interactive wrapper. It isn't much but works okay, need improvement.
+
+NEEDS WORK! NOT FINISHED
 #+begin_src elisp
 (defun tangle-configs-configure-interactive
     ()

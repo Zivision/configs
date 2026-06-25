@@ -14,6 +14,8 @@
                        (file-name-directory)
                        (directory-file-name)
                        (file-name-directory)
+                       (directory-file-name)
+                       (file-name-directory)
                        (file-truename)))))
 
 (add-to-list 'load-path (expand-file-name "doom/elisp" (alist-get `build paths)))

@@ -1,7 +1,21 @@
-(defvar project-root "~/Workspace/Misc/configs")
+(require 'json)
+(defvar paths
+  (json-read-file
+   (expand-file-name "paths.json"
+                     (thread-first
+                       ;; Get project directory on machine
+                       (or load-file-name
+                           buffer-file-name)
+                       (file-name-directory)
+                       (directory-file-name)
+                       (file-name-directory)
+                       (directory-file-name)
+                       (file-name-directory)
+                       (file-truename)))))
 
 (after! doom
-  (add-to-list 'load-path (expand-file-name "build/doom/elisp" project-root)))
+  (defvar configs-directory (alist-get `root paths))
+  (add-to-list 'load-path (expand-file-name "doom/elisp" (alist-get `build paths))))
 
 
 (after! auth-source

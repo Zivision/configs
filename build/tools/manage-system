@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import os
+import subprocess
+import json
+import argparse
+
+script_path = Path(__file__).resolve().parent
+
+PROJECT_DIRECTORY = str(script_path.parents[1])
+BUILD_DIRECTORY = str(script_path.parents[0])
+HOME_DIRECTORY = os.path.expanduser("~")
+
+paths = {
+    "home": HOME_DIRECTORY,
+    "root": PROJECT_DIRECTORY,
+    "build": BUILD_DIRECTORY,
+    "script": str(script_path),
+}
+
+try:
+    with open(os.path.join(paths["root"], "paths.json"), "x") as json_file:
+        json.dump(paths, json_file)
+except FileExistsError as e:
+    print(f"Paths file already exists skipping: {e}")
+
+def run_dispatch(
+    arguments: dict[str, bool | str],
+    dispatch: dict[str, list],
+    key: str
+) -> None:
+    if arguments[key]:
+        [_run_simple_script(command) for command in dispatch[key]]
+
+def _run_simple_script(command: list[str]) -> None:
+    try:
+        print(f"Running commands: {command}")
+        proc = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE,
+            text=True,
+            bufsize=1,  # Enables line buffering
+        )
+        for line in proc.stdout:
+            print(line.strip())
+        proc.wait()
+
+        print(f"\nCommand Finished!\nReturn code: {proc.returncode}\n\n")
+    except subprocess.CalledProcessError as e:
+        print(f"Command failed with return code {e.returncode}")
+        print(f"Error output: {e.stderr}")
+        raise Exception("Script execution failed!")
+
+def define_flags() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="CLI Wrapper for common nixos system processes"
+    )
+
+    parser.add_argument(
+        "-c",
+        "--configure",
+        action="store_true",
+        help="Run 'configure-system' script",
+    )
+    parser.add_argument(
+        "-r",
+        "--rebuild",
+        help="Run 'rebuild' steps",
+    )
+    parser.add_argument(
+        "-t",
+        "--test",
+        help="run 'test' steps",
+    )
+    parser.add_argument(
+        "-u",
+        "--update",
+        action="store_true",
+        help="Run 'update-system' script",
+    )
+    parser.add_argument(
+        "-uf",
+        "--update-flatpak",
+        action="store_true",
+        help="Run 'flatpak update'",
+    )
+    parser.add_argument(
+        "-U",
+        "--update-all",
+        action="store_true",
+        help="Run full system update",
+    )
+    parser.add_argument(
+        "-i",
+        "--install",
+        help="Run 'install' instructions",
+    )
+
+    return parser
+
+def show_help_menu(
+    parser: argparse.ArgumentParser,
+    arguments: dict[str, bool | str | None],
+    target_type: type,
+) -> None:
+    # Checks for TARGET_TYPE in arguments
+    checked_type: bool = any(
+        isinstance(value, target_type) for value in arguments.values()
+    )
+
+    if not checked_type and True not in arguments.values():
+        parser.print_help()
+        sys.exit(0)
+
+def parse_flags(parser: argparse.ArgumentParser) -> None:
+    args = vars(parser.parse_args())
+    # If none of the configuration flags are true
+    # And there is no string
+    # Print help menu and exit program
+    show_help_menu(parser, args, str)
+
+    # Commands to dispatch
+    dispatch = {
+        "configure": [
+            [BUILD_DIRECTORY + "/tools/configure"],
+        ],
+        "update": [["nix", "flake", "update", "--flake", PROJECT_DIRECTORY]],
+        "update_flatpak": [["flatpak", "update"]],
+        "update_all": [
+            ["nix", "flake", "update", "--flake", PROJECT_DIRECTORY],
+            ["flatpak", "update"],
+        ],
+        "rebuild": [
+            [
+                "sudo",
+                "nixos-rebuild",
+                "switch",
+                "--flake",
+                (PROJECT_DIRECTORY + "/#" + str(args["rebuild"])),
+                "--impure",
+            ]
+        ],
+        "test": [
+            [
+                "sudo",
+                "nixos-rebuild",
+                "test",
+                "--flake",
+                (PROJECT_DIRECTORY + "/#" + str(args["test"])),
+                "--impure",
+            ]
+        ],
+        "install": [
+            [BUILD_DIRECTORY + "/tools/configure"],
+            [
+                "sudo",
+                "nixos-rebuild",
+                "switch",
+                "--flake",
+                (PROJECT_DIRECTORY + "/#" + str(args["test"])),
+                "--impure",
+            ],
+            # Clone DOOM Emacs repo and install it
+            [
+                "git",
+                "clone",
+                "--depth",
+                "1",
+                "https://github.com/doomemacs/core",
+                (HOME_DIRECTORY + "/.config/emacs"),
+            ],
+            [(HOME_DIRECTORY + "/.config/emacs/bin/doom"), "install"],
+        ],
+    }
+
+    # This checks for commands in order.
+    # Currently it is:
+    # 1. Configure
+    # 2. Install
+    # 3. Updates
+    # 4. Rebuild
+    # 5. Test
+
+    run_dispatch(args, dispatch, "configure")
+    run_dispatch(args, dispatch, "install")
+
+    for key in ["update", "update_flatpak", "update_all"]:
+        run_dispatch(args, dispatch, key)
+
+    run_dispatch(args, dispatch, "rebuild")
+    run_dispatch(args, dispatch, "test")
+
+parse_flags(define_flags())

@@ -1,0 +1,345 @@
+#+title: Tools
+
+
+* Table of Contents :TOC_4:noexport:
+- [[#configure][Configure]]
+- [[#build-site][Build Site]]
+- [[#manage-system][Manage System]]
+  - [[#shebang-and-imports][Shebang and Imports]]
+  - [[#get-paths][Get Paths]]
+  - [[#write-paths-file][Write Paths File]]
+  - [[#shell-commands][Shell Commands]]
+    - [[#run-dispatch][Run Dispatch]]
+    - [[#run-script][Run Script]]
+  - [[#define-flags][Define Flags]]
+  - [[#show-help-menu][Show Help Menu]]
+  - [[#parse-flags][Parse Flags]]
+  - [[#start-cli][Start CLI]]
+
+* Configure
+:PROPERTIES:
+:header-args: :tangle ../build/tools/configure
+:VISIBILITY: folded
+:END:
+
+This simply loads the elisp lib from my doom config and runs it with the
+neccesary variables
+#+begin_src elisp
+#!/usr/bin/env -S emacs --script
+(require 'subr-x)
+(require 'ob-tangle)
+(require 'json)
+
+
+(defvar paths
+  (json-read-file
+   (expand-file-name "paths.json"
+                     (thread-first
+                       ;; Get project directory on machine
+                       (or load-file-name
+                           buffer-file-name)
+                       (file-name-directory)
+                       (directory-file-name)
+                       (file-name-directory)
+                       (directory-file-name)
+                       (file-name-directory)
+                       (file-truename)))))
+
+(add-to-list 'load-path (expand-file-name "doom/elisp" (alist-get `build paths)))
+(require 'tangle-configs)
+
+(tangle-configs-configure
+ (alist-get `root paths)
+ (alist-get `build paths))
+#+end_src
+* Build Site
+:PROPERTIES:
+:header-args: :tangle ../build/tools/build-site
+:VISIBILITY: folded
+:END:
+
+This script is unused as of now, might revive later.
+#+begin_src elisp
+#!/usr/bin/env -S emacs -q --script
+;; Set the package installation directory so that packages aren't stored in the
+;; ~/.emacs.d/elpa path.
+(require 'package)
+(setq package-user-dir (expand-file-name "./.packages"))
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+;; Initialize the package system
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; Install dependencies
+(package-install 'htmlize)
+
+;; Load the publishing system
+(require 'ox-publish)
+
+;; Customize the HTML output
+(setq org-html-validation-link nil            ;; Don't show validation link
+      org-html-head-include-scripts nil       ;; Use our own scripts
+      org-html-head-include-default-style nil ;; Use our own styles
+      org-export-with-broken-links t ;; Strip broken links
+      org-html-head
+      (concat
+       "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />"
+       "<nav>"
+       "<a href=\"./\">Home</a> | "
+       "<a href=\"./bashrc.html\">Bashrc</a> | "
+       "<a href=\"./doom.html\">Doom</a> | "
+       "<a href=\"./hyprland.html\">Hyprland</a> | "
+       "<a href=\"./kitty.html\">Kitty</a> | "
+       "<a href=\"./nixos.html\">Nixos</a> | "
+       "<a href=\"./sway.html\">Sway</a> | "
+       "<a href=\"./waybar.html\">Waybar</a>"
+       "</nav>"))
+
+;; Define the publishing project
+(setq org-publish-project-alist
+      (list
+       (list "org-site:main"
+             :recursive t
+             :base-directory "../org/"
+             :publishing-function 'org-html-publish-to-html
+             :publishing-directory "../public"
+             :with-author nil           ;; Don't include author name
+             :with-creator t            ;; Include Emacs and Org versions in footer
+             :with-toc t                ;; Include a table of contents
+             :section-numbers nil       ;; Don't include section numbers
+             :time-stamp-file nil)))    ;; Don't include time stamp in file
+
+;; Generate the site output
+(org-publish-all t)
+
+(message "Build complete!")
+#+end_src
+
+* Manage System
+:PROPERTIES:
+:header-args: :tangle ../build/tools/manage-system
+:VISIBILITY: folded
+:END:
+This is the main wrapper/script for running everything to keep the system up and running
+
+** Shebang and Imports
+#+begin_src python
+#!/usr/bin/env python3
+from pathlib import Path
+import os
+import subprocess
+import json
+import argparse
+#+end_src
+
+** Get Paths
+#+begin_src python
+
+script_path = Path(__file__).resolve().parent
+
+PROJECT_DIRECTORY = str(script_path.parents[1])
+BUILD_DIRECTORY = str(script_path.parents[0])
+HOME_DIRECTORY = os.path.expanduser("~")
+
+paths = {
+    "home": HOME_DIRECTORY,
+    "root": PROJECT_DIRECTORY,
+    "build": BUILD_DIRECTORY,
+    "script": str(script_path),
+}
+#+end_src
+
+** Write Paths File
+#+begin_src python
+try:
+    with open(os.path.join(paths["root"], "paths.json"), "x") as json_file:
+        json.dump(paths, json_file)
+except FileExistsError as e:
+    print(f"Paths file already exists skipping: {e}")
+#+end_src
+
+** Shell Commands
+*** Run Dispatch
+#+begin_src python
+def run_dispatch(
+    arguments: dict[str, bool | str],
+    dispatch: dict[str, list],
+    key: str
+) -> None:
+    if arguments[key]:
+        [_run_simple_script(command) for command in dispatch[key]]
+#+end_src
+
+*** Run Script
+#+begin_src python
+def _run_simple_script(command: list[str]) -> None:
+    try:
+        print(f"Running commands: {command}")
+        proc = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE,
+            text=True,
+            bufsize=1,  # Enables line buffering
+        )
+        for line in proc.stdout:
+            print(line.strip())
+        proc.wait()
+
+        print(f"\nCommand Finished!\nReturn code: {proc.returncode}\n\n")
+    except subprocess.CalledProcessError as e:
+        print(f"Command failed with return code {e.returncode}")
+        print(f"Error output: {e.stderr}")
+        raise Exception("Script execution failed!")
+#+end_src
+** Define Flags
+#+begin_src python
+def define_flags() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="CLI Wrapper for common nixos system processes"
+    )
+
+    parser.add_argument(
+        "-c",
+        "--configure",
+        action="store_true",
+        help="Run 'configure-system' script",
+    )
+    parser.add_argument(
+        "-r",
+        "--rebuild",
+        help="Run 'rebuild' steps",
+    )
+    parser.add_argument(
+        "-t",
+        "--test",
+        help="run 'test' steps",
+    )
+    parser.add_argument(
+        "-u",
+        "--update",
+        action="store_true",
+        help="Run 'update-system' script",
+    )
+    parser.add_argument(
+        "-uf",
+        "--update-flatpak",
+        action="store_true",
+        help="Run 'flatpak update'",
+    )
+    parser.add_argument(
+        "-U",
+        "--update-all",
+        action="store_true",
+        help="Run full system update",
+    )
+    parser.add_argument(
+        "-i",
+        "--install",
+        help="Run 'install' instructions",
+    )
+
+    return parser
+#+end_src
+** Show Help Menu
+#+begin_src python
+def show_help_menu(
+    parser: argparse.ArgumentParser,
+    arguments: dict[str, bool | str | None],
+    target_type: type,
+) -> None:
+    # Checks for TARGET_TYPE in arguments
+    checked_type: bool = any(
+        isinstance(value, target_type) for value in arguments.values()
+    )
+
+    if not checked_type and True not in arguments.values():
+        parser.print_help()
+        sys.exit(0)
+#+end_src
+** Parse Flags
+#+begin_src python
+def parse_flags(parser: argparse.ArgumentParser) -> None:
+    args = vars(parser.parse_args())
+    # If none of the configuration flags are true
+    # And there is no string
+    # Print help menu and exit program
+    show_help_menu(parser, args, str)
+
+    # Commands to dispatch
+    dispatch = {
+        "configure": [
+            [BUILD_DIRECTORY + "/tools/configure"],
+        ],
+        "update": [["nix", "flake", "update", "--flake", PROJECT_DIRECTORY]],
+        "update_flatpak": [["flatpak", "update"]],
+        "update_all": [
+            ["nix", "flake", "update", "--flake", PROJECT_DIRECTORY],
+            ["flatpak", "update"],
+        ],
+        "rebuild": [
+            [
+                "sudo",
+                "nixos-rebuild",
+                "switch",
+                "--flake",
+                (PROJECT_DIRECTORY + "/#" + str(args["rebuild"])),
+                "--impure",
+            ]
+        ],
+        "test": [
+            [
+                "sudo",
+                "nixos-rebuild",
+                "test",
+                "--flake",
+                (PROJECT_DIRECTORY + "/#" + str(args["test"])),
+                "--impure",
+            ]
+        ],
+        "install": [
+            [BUILD_DIRECTORY + "/tools/configure"],
+            [
+                "sudo",
+                "nixos-rebuild",
+                "switch",
+                "--flake",
+                (PROJECT_DIRECTORY + "/#" + str(args["test"])),
+                "--impure",
+            ],
+            # Clone DOOM Emacs repo and install it
+            [
+                "git",
+                "clone",
+                "--depth",
+                "1",
+                "https://github.com/doomemacs/core",
+                (HOME_DIRECTORY + "/.config/emacs"),
+            ],
+            [(HOME_DIRECTORY + "/.config/emacs/bin/doom"), "install"],
+        ],
+    }
+
+    # This checks for commands in order.
+    # Currently it is:
+    # 1. Configure
+    # 2. Install
+    # 3. Updates
+    # 4. Rebuild
+    # 5. Test
+
+    run_dispatch(args, dispatch, "configure")
+    run_dispatch(args, dispatch, "install")
+
+    for key in ["update", "update_flatpak", "update_all"]:
+        run_dispatch(args, dispatch, key)
+
+    run_dispatch(args, dispatch, "rebuild")
+    run_dispatch(args, dispatch, "test")
+#+end_src
+** Start CLI
+#+begin_src python
+parse_flags(define_flags())
+#+end_src

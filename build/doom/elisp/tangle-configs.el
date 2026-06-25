@@ -39,7 +39,7 @@
         paths)))
 
 (defun tangle-configs--build-directories
-    (project-dir)
+    (project-dir build-dir)
   "Build the needed directories for each package in 'build/'."
 
   ;; Loop over programs and if a file exists but not the directory
@@ -52,31 +52,16 @@
                 (directory-files-recursively
                  (expand-file-name  "org/" project-dir ) "\\.org$")))
     (let ((file-path
-           (expand-file-name program
-                             (expand-file-name "build" "~/Workspace/Misc/configs"))))
+           (expand-file-name program build-dir)))
 
       (unless (file-directory-p file-path)
         (make-directory file-path)))))
 
 (defun tangle-configs-configure
-    ()
+    (project-dir build-dir)
   "Tangle all org documents in configs."
 
-  (let* ((project-dir
-          (thread-first (getenv "DOOMDIR")
-                        (expand-file-name)
-                        (file-name-directory)
-                        (directory-file-name)
-                        (file-name-directory)))
-
-
-         ;; Library directory (not needed for now)
-         ;;(lib-dir (expand-file-name "elisp/" project-dir ))
-
-         ;; Build directory
-         (build-dir (expand-file-name  "build/" project-dir)))
-
-(tangle-configs--build-directories project-dir)
+(tangle-configs--build-directories project-dir build-dir)
 
 ;; Check symbolic link of hardware configuration
 (unless (file-symlink-p (expand-file-name "nixos/hardware-configuration.nix" build-dir))
@@ -89,10 +74,10 @@
 (mapc
  (lambda (file-path) (org-babel-tangle-file file-path))
  (directory-files-recursively
-  (expand-file-name  "org/" project-dir ) "\\.org$")))
+  (expand-file-name  "org/" project-dir ) "\\.org$"))
 
 (tangle-configs--manual-link-firefox "~/.mozilla/firefox"
-                                     "~/Workspace/Misc/configs/build/firefox"
+                                     (expand-file-name "firefox" build-dir)
                                      "user.js")
 
 ); End of Function
