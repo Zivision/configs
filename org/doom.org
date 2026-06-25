@@ -825,8 +825,11 @@ Used to center org documents
 #+end_verse
 #+begin_src emacs-lisp
 (use-package! olivetti
-  :hook (org-mode . olivetti-mode)
-  :init (setq olivetti-body-width 100))
+  :hook
+  (org-mode . olivetti-mode)
+  (eww-mode . olivetti-mode)
+  :config
+  (setq olivetti-body-width 120))
 #+end_src
 **** Misc org settings
 #+begin_src emacs-lisp

@@ -334,8 +334,11 @@
   :hook (org-mode . toc-org-mode))
 
 (use-package! olivetti
-  :hook (org-mode . olivetti-mode)
-  :init (setq olivetti-body-width 100))
+  :hook
+  (org-mode . olivetti-mode)
+  (eww-mode . olivetti-mode)
+  :config
+  (setq olivetti-body-width 120))
 
 (after! org
   (setq org-babel-python-command "python3") ; Sets python to "python3"
