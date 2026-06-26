@@ -1,4 +1,5 @@
 #+title: Doom
+#+macro: word-count (eval (count-words (point-min) (point-max)))
 
 * Table of Contents :TOC_4:noexport:
 - [[#about][About]]
@@ -47,6 +48,7 @@
     - [[#mode-line-settings][Mode Line Settings]]
     - [[#mode-settings][Mode Settings]]
     - [[#review-packages][Review Packages]]
+    - [[#window-alist-window-behavior][Window Alist (window behavior)]]
   - [[#package-settings][Package settings]]
     - [[#utilities][Utilities]]
       - [[#eshell][Eshell]]
@@ -118,6 +120,8 @@
 :END:
 
 *DISCLAIMER:* The configuration starts after this, so feel free to skip the about section
+
+Currently in this configuration there is {{{word-count}}} words
 
 ** Why Emacs?
 I chose Emacs for a couple of reasons.
@@ -567,6 +571,21 @@ Will need to download the Iosevka Font for this to work.
 (setq package-review-policy t
       package-review-diff-command '("git" "diff" "--no-index" "--color=never" "--diff-filter=d"))
 #+end_src
+*** Window Alist (window behavior)
+#+begin_src elisp
+(setq display-buffer-alist
+      '(
+        ;; EWW
+        ("\\*eww\\*"
+         (display-buffer-reuse-mode-window
+          display-buffer-same-window))
+
+        ;; Proced
+        ("\\*Proced*"
+         (display-buffer-reuse-mode-window
+          display-buffer-same-window))
+        ))
+#+end_src
 ** Package settings
 *** Utilities
 **** Eshell
@@ -842,7 +861,7 @@ Used to center org documents
   :hook
   (org-mode . olivetti-mode)
   (eww-mode . olivetti-mode)
-  :config
+  :init
   (setq olivetti-body-width 120))
 #+end_src
 **** Misc org settings

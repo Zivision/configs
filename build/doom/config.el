@@ -136,6 +136,19 @@
 (setq package-review-policy t
       package-review-diff-command '("git" "diff" "--no-index" "--color=never" "--diff-filter=d"))
 
+(setq display-buffer-alist
+      '(
+        ;; EWW
+        ("\\*eww\\*"
+         (display-buffer-reuse-mode-window
+          display-buffer-same-window))
+
+        ;; Proced
+        ("\\*Proced*"
+         (display-buffer-reuse-mode-window
+          display-buffer-same-window))
+        ))
+
 (after! eshell
   (require 'magit)
 
@@ -351,7 +364,7 @@
   :hook
   (org-mode . olivetti-mode)
   (eww-mode . olivetti-mode)
-  :config
+  :init
   (setq olivetti-body-width 120))
 
 (after! org
