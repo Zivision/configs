@@ -105,10 +105,6 @@ audacity
   cmake
   libtool
   ispell
-  # emacs itself
-  ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [
-    epkgs.mu4e
-  ]))
   # Org mode
   graphviz
 
@@ -123,6 +119,65 @@ audacity
   # Shell stuff
   shellcheck
   shfmt
+
+# emacs itself
+((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [
+  epkgs.mu4e
+  epkgs.evil
+  epkgs.evil-collection
+  epkgs.general
+  epkgs.which-key
+  epkgs.doom-modeline
+  epkgs.vertico
+  epkgs.consult
+  epkgs.orderless
+  epkgs.magit
+  epkgs.emms
+  epkgs.elfeed
+  epkgs.elfeed-org
+  epkgs.elfeed-tube
+  epkgs.elfeed-tube-mpv
+  epkgs.nerd-icons-dired
+  epkgs.nerd-icons-completion
+  epkgs.golden-ratio
+  epkgs.vterm
+  epkgs.corfu
+  epkgs.cape
+  epkgs.apheleia
+  epkgs.beacon
+  epkgs.yasnippet
+  epkgs.vertico-posframe
+  epkgs.marginalia
+  epkgs.embark
+  epkgs.embark-consult
+  epkgs.undo-fu
+  epkgs.dashboard
+
+  # Themes
+  epkgs.doom-themes
+  epkgs.jazz-theme
+  epkgs.badwolf-theme
+  
+  # Eshell
+  epkgs.eshell-syntax-highlighting
+  epkgs.eshell-prompt-extras
+
+  # Org mode
+  epkgs.olivetti
+  epkgs.org-modern
+  epkgs.org-appear
+  epkgs.toc-org
+  epkgs.org-roam
+
+  ## Languages
+  # Python
+  epkgs.lsp-pyright
+  epkgs.pet
+  epkgs.pyvenv
+
+  # Nix
+  epkgs.nix-mode
+]))
 
 fastfetch
   git
