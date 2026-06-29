@@ -379,62 +379,63 @@ audacity
 *** Emacs
 #+begin_src nix
 # emacs itself
-((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [
-  epkgs.mu4e
-  epkgs.evil
-  epkgs.evil-collection
-  epkgs.general
-  epkgs.which-key
-  epkgs.doom-modeline
-  epkgs.vertico
-  epkgs.consult
-  epkgs.orderless
-  epkgs.magit
-  epkgs.emms
-  epkgs.elfeed
-  epkgs.elfeed-org
-  epkgs.elfeed-tube
-  epkgs.elfeed-tube-mpv
-  epkgs.nerd-icons-dired
-  epkgs.nerd-icons-completion
-  epkgs.golden-ratio
-  epkgs.vterm
-  epkgs.corfu
-  epkgs.cape
-  epkgs.apheleia
-  epkgs.beacon
-  epkgs.yasnippet
-  epkgs.vertico-posframe
-  epkgs.marginalia
-  epkgs.embark
-  epkgs.embark-consult
-  epkgs.undo-fu
-  epkgs.dashboard
+((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: with epkgs; [
+  mu4e
+  evil
+  evil-collection
+  general
+  which-key
+  doom-modeline
+  vertico
+  consult
+  orderless
+  magit
+  emms
+  elfeed
+  elfeed-org
+  elfeed-tube
+  elfeed-tube-mpv
+  nerd-icons-dired
+  nerd-icons-completion
+  golden-ratio
+  vterm
+  corfu
+  cape
+  apheleia
+  beacon
+  yasnippet
+  vertico-posframe
+  marginalia
+  embark
+  embark-consult
+  undo-fu
+  dashboard
+  envrc
 
   # Themes
-  epkgs.doom-themes
-  epkgs.jazz-theme
-  epkgs.badwolf-theme
+  doom-themes
+  jazz-theme
+  badwolf-theme
   
   # Eshell
-  epkgs.eshell-syntax-highlighting
-  epkgs.eshell-prompt-extras
+  eshell-syntax-highlighting
+  eshell-prompt-extras
 
   # Org mode
-  epkgs.olivetti
-  epkgs.org-modern
-  epkgs.org-appear
-  epkgs.toc-org
-  epkgs.org-roam
+  olivetti
+  org-modern
+  org-appear
+  toc-org
+  org-roam
 
   ## Languages
   # Python
-  epkgs.lsp-pyright
-  epkgs.pet
-  epkgs.pyvenv
+  lsp-pyright
+  pet
+  pyvenv
 
   # Nix
-  epkgs.nix-mode
+  nix-mode
 ]))
 #+end_src
 *** Other Packages

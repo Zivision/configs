@@ -1,17 +1,17 @@
-  ;; Basic Settings
-  (tool-bar-mode 0)
-  (menu-bar-mode 0)
-  (scroll-bar-mode 0)
-  (setq inhibit-startup-screen t
-        use-short-answers t)
-  (electric-pair-mode 1)
-  (recentf-mode t)
+;; Basic Settings
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+(setq inhibit-startup-screen t
+      use-short-answers t)
+(electric-pair-mode 1)
+(recentf-mode t)
 
 
-  ;; Disable auto-save (#file#) entirely and backups
-  (setq auto-save-default nil
+;; Disable auto-save (#file#) entirely and backups
+(setq auto-save-default nil
 	make-backup-files nil
-        create-lockfiles nil)
+      create-lockfiles nil)
 
 (setq-default indent-tabs-mode nil
 	      tab-width 4)
@@ -142,27 +142,27 @@
 (elfeed-org)
 (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org"))
 
-  (use-package vertico
-    :custom
-    (vertico-scroll-margin 0) ;; Different scroll margin
-    (vertico-count 20) ;; Show more candidates
-    (vertico-resize nil) ;; Grow and shrink the Vertico minibuffer
-    (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
-    :init
-    (require 'vertico)
-    (vertico-mode t))
-  (use-package vertico-directory
-    :ensure nil
-    :bind (:map vertico-map
-  	      ("DEL" . vertico-directory-delete-char)
-  	      ("M-DEL" . vertico-directory-delete-word)))
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
 
-  (use-package savehist
-    :init
-    (savehist-mode t))
+(use-package vertico
+  :custom
+  (vertico-scroll-margin 0) ;; Different scroll margin
+  (vertico-count 20) ;; Show more candidates
+  (vertico-resize nil) ;; Grow and shrink the Vertico minibuffer
+  (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :init
+  (require 'vertico)
+  (vertico-mode t))
+(use-package vertico-directory
+  :ensure nil
+  :bind (:map vertico-map
+	      ("DEL" . vertico-directory-delete-char)
+	      ("M-DEL" . vertico-directory-delete-word)))
 
-(require 'vertico-posframe)
-(vertico-posframe-mode t)
+(use-package savehist
+  :init
+  (savehist-mode t))
 
 (use-package dabbrev
   ;; Swap M-/ and C-M-/
@@ -382,6 +382,20 @@
   :config
 
   (general-evil-setup t)
+
+  ;; Org Mode enter key
+  (general-define-key
+   :states '(normal motion)
+   :keymaps 'org-mode-map
+   "RET" (lambda ()
+           (interactive)
+           (if (org-element-lineage
+                (org-element-context)
+                '(link)
+                t)
+               (org-open-at-point)
+             (evil-ret))))
+  
   ;; Define a space-leader-definer for the SPC prefix
   (general-create-definer space-leader-def
     :prefix "SPC"
@@ -471,7 +485,23 @@
   (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
 
   :config
-  (require 'org-tempo))
+  (require 'org-tempo)
+
+  ;; Org Babel
+  (setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (shell . t)))
+
+  ;; Show results of python execution
+  (with-eval-after-load 'ob-python
+  (setq org-babel-default-header-args:python
+        '((:results . "output")
+          (:session . "none")
+          (:exports . "both"))))
+
+  )
 
 (use-package org-roam
   :ensure t
@@ -496,32 +526,33 @@
                               t
                             (electric-pair-default-inhibit c))))))
 
-  (setq org-capture-templates
-        `(("t" "Personal todo" ; Todo items
-          entry (file+headline
-                 ,(expand-file-name "todo.org" org-directory)
-                 " Capture Tasks")
-          ,(concat
-           "* [ ] [#B] TODO %? "
-           (format-time-string "<%Y-%m-%d %a>"
-                               (org-read-date nil t "Fri"))
-           "\n\n%a")
-          :prepend t)
+(setq org-capture-templates
+      `(("t" "Personal todo" ; Todo items
+        entry (file+headline
+               ,(expand-file-name "todo.org" org-directory)
+               " Capture Tasks")
+        ,(concat
+         "* [ ] [#B] TODO %? "
+         (format-time-string "<%Y-%m-%d %a>"
+                             (org-read-date nil t "Fri"))
+         "\n\n%a")
+        :prepend t)
 
 
-         ;; Notes
-         ("n" "Personal notes"
-          entry (file+headline
-                 ,(expand-file-name "notes.org" org-directory)
-                 "Capture Notes")
-          "* %u %?\n%i\n%a" :prepend t)))
+       ;; Notes
+       ("n" "Personal notes"
+        entry (file+headline
+               ,(expand-file-name "notes.org" org-directory)
+               "Capture Notes")
+        "* %u %?\n%i\n%a" :prepend t)))
 
 (use-package org-modern
   :defer t
   :hook (org-mode . org-modern-mode)
   :config
   ;; Basic settings
-  (setq org-modern-star '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+  (setq org-modern-replace-stars "󰏝󰏝󰏝󰏝󰏝󰏝"
+        org-modern-star 'replace
         org-modern-table-vertical 1
         org-modern-table-horizontal 0.2
         org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))

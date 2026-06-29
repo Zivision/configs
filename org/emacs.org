@@ -21,9 +21,9 @@
     -  [[#magit][Magit]]
     -  [[#emms][EMMS]]
     -  [[#elfeed][Elfeed]]
+    - [[#direnv-envrc][Direnv (envrc)]]
   -  [[#completion][Completion]]
     -  [[#vertico][Vertico]]
-    -  [[#vertico-pos-frame][Vertico POS Frame]]
     -  [[#dabbrev][Dabbrev]]
     -  [[#corfu-and-cape][Corfu and Cape]]
     -  [[#consult][Consult]]
@@ -41,8 +41,8 @@
     -  [[#which-key][Which Key]]
     -  [[#general][General]]
   -  [[#org][Org]]
-    -  [[#org-roam][Org Roam]]
-    -  [[#org-electric-pair][Org Electric Pair]]
+    - [[#org-roam][Org Roam]]
+    - [[#org-electric-pair][Org Electric Pair]]
     - [[#capture][Capture]]
     - [[#modern][Modern]]
     -  [[#appear][Appear]]
@@ -238,6 +238,11 @@
 (elfeed-org)
 (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org"))
 #+end_src
+*** Direnv (envrc)
+#+begin_src elisp
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
+#+end_src
 **  Completion
 ***  Vertico
 #+begin_src elisp
@@ -261,11 +266,6 @@
     (savehist-mode t))
 #+end_src
 
-***  Vertico POS Frame
-#+begin_src 
-(require 'vertico-posframe)
-(vertico-posframe-mode t)
-#+end_src
 
 ***  Dabbrev
 #+begin_src elisp
@@ -522,6 +522,20 @@
   :config
 
   (general-evil-setup t)
+
+  ;; Org Mode enter key
+  (general-define-key
+   :states '(normal motion)
+   :keymaps 'org-mode-map
+   "RET" (lambda ()
+           (interactive)
+           (if (org-element-lineage
+                (org-element-context)
+                '(link)
+                t)
+               (org-open-at-point)
+             (evil-ret))))
+  
   ;; Define a space-leader-definer for the SPC prefix
   (general-create-definer space-leader-def
     :prefix "SPC"
@@ -616,9 +630,25 @@
   (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
 
   :config
-  (require 'org-tempo))
+  (require 'org-tempo)
+
+  ;; Org Babel
+  (setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (shell . t)))
+
+  ;; Show results of python execution
+  (with-eval-after-load 'ob-python
+  (setq org-babel-default-header-args:python
+        '((:results . "output")
+          (:session . "none")
+          (:exports . "both"))))
+
+  )
 #+end_src
-***  Org Roam
+*** Org Roam
 #+begin_src elisp
 (use-package org-roam
   :ensure t
@@ -635,7 +665,7 @@
             "#+title: ${title}\nHead to the [[id:6c8c0623-2b7f-4717-9985-2733777df46e][Home-Node]]\n")
            :unnarrowed t))))
 #+end_src
-***  Org Electric Pair
+*** Org Electric Pair
 This disables <> automatic pairing in org mode only
 #+begin_src 
 (add-hook 'org-mode-hook
