@@ -23,14 +23,6 @@
   (setq initial-buffer-choice 'dashboard-open)
   (dashboard-setup-startup-hook))
 
-(use-package beacon
-  :config
-  (setq beacon-size 30
-        beacon-color "tan"
-        beacon-blink-duration 0.9
-        beacon-blink-delay 0.0)
-  (beacon-mode 1))
-
 (use-package nerd-icons-completion
   :after vertico
   :config
@@ -60,7 +52,7 @@
           display-buffer-same-window))
 
         ;; Proced
-        ("\\*Proced*"
+        ("\\*Proced\\*"
          (display-buffer-reuse-mode-window
           display-buffer-same-window))
         ))
@@ -84,8 +76,17 @@
 ;; For clock
 (display-time-mode 1)
 
-(require 'jazz-theme)
-(load-theme 'jazz t)
+(use-package doom-themes
+  :ensure t
+  :custom
+  ;; Global settings (defaults)
+  (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+  (doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+  (doom-tokyo-night-brighter-comments t)
+  (doom-tokyo-night-comment-bg nil)
+  :config
+  (load-theme 'doom-tokyo-night t))
 
 (add-to-list 'default-frame-alist
              '(font . "Iosevka Nerd Font Mono 14"))
@@ -141,6 +142,28 @@
 (require 'elfeed-org)
 (elfeed-org)
 (setq rmh-elfeed-org-files (list "~/Documents/org/elfeed.org"))
+
+(use-package elfeed-tube
+  :ensure t ;; or :straight t
+  :after elfeed
+  :demand t
+  :config
+  ;; (setq elfeed-tube-auto-save-p nil) ; default value
+  ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+  (elfeed-tube-setup)
+
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
+;; MPV
+(use-package elfeed-tube-mpv
+  :ensure t ;; or :straight t
+  :bind (:map elfeed-show-mode-map
+              ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+              ("C-c C-w" . elfeed-tube-mpv-where)))
 
 (use-package envrc
   :hook (after-init . envrc-global-mode))

@@ -133,10 +133,6 @@ audacity
   orderless
   magit
   emms
-  elfeed
-  elfeed-org
-  elfeed-tube
-  elfeed-tube-mpv
   nerd-icons-dired
   nerd-icons-completion
   golden-ratio
@@ -153,7 +149,13 @@ audacity
   undo-fu
   dashboard
   envrc
-
+  
+  # Elfeed
+  elfeed
+  elfeed-org
+  elfeed-tube
+  elfeed-tube-mpv
+  
   # Themes
   doom-themes
   jazz-theme
