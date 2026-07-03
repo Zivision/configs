@@ -283,6 +283,11 @@
   (apheleia-global-mode +1)
   (setf (alist-get 'nix-mode apheleia-mode-alist) 'nixfmt))
 
+(use-package jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+
 ;; Nix syntax highlighting and indentation
 (use-package nix-mode
   :defer t

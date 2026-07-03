@@ -31,6 +31,7 @@
     -  [[#eglot][Eglot]]
     -  [[#apheleia][Apheleia]]
     -  [[#languages][Languages]]
+      - [[#english][English]]
       -  [[#nix][Nix]]
       -  [[#python][Python]]
     -  [[#marginalia--embark][Marginalia & Embark]]
@@ -401,6 +402,14 @@
   (setf (alist-get 'nix-mode apheleia-mode-alist) 'nixfmt))
 #+end_src
 ***  Languages
+**** English
+Yes this is spellcheck
+#+begin_src elisp
+(use-package jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+#+end_src
 
 ****  Nix
 #+begin_src elisp

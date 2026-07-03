@@ -70,8 +70,7 @@ home.packages = with pkgs; [
 
 libreoffice-qt6-fresh
 hunspell
-hunspellDicts.uk_UA
-hunspellDicts.th_TH
+hunspellDicts.en-us
 
 (prismlauncher.override {
   jdks = [
@@ -122,7 +121,6 @@ audacity
 
 # emacs itself
 ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: with epkgs; [
-  mu4e
   evil
   evil-collection
   general
@@ -131,17 +129,13 @@ audacity
   vertico
   consult
   orderless
-  magit
-  emms
   nerd-icons-dired
   nerd-icons-completion
   golden-ratio
-  vterm
   corfu
   cape
   apheleia
   beacon
-  yasnippet
   vertico-posframe
   marginalia
   embark
@@ -149,6 +143,13 @@ audacity
   undo-fu
   dashboard
   envrc
+
+  # Emacs Utilities
+  magit
+  emms
+  vterm
+  mu4e
+  yasnippet
   
   # Elfeed
   elfeed
@@ -171,6 +172,7 @@ audacity
   org-appear
   toc-org
   org-roam
+  jinx
 
   ## Languages
   # Python
