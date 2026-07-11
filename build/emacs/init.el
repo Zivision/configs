@@ -307,6 +307,15 @@
   :config
   (add-hook 'python-base-mode-hook 'pet-mode -10))
 
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist
+             '("\\.yaml\\'" . yaml-mode))
+
+;; Auto indent enter mode
+(add-hook 'yaml-mode-hook
+      '(lambda ()
+        (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
 (use-package marginalia
   :ensure t
   :config

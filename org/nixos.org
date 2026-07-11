@@ -54,6 +54,7 @@
   - [[#configuration][Configuration]]
     - [[#imports-1][Imports]]
     - [[#bootloader][Bootloader]]
+    - [[#virtual-box][Virtual Box]]
     - [[#app-armor][App armor]]
     - [[#nix-packages-manager][Nix (Packages manager)]]
     - [[#steam][Steam]]
@@ -373,6 +374,9 @@ audacity
   # Shell stuff
   shellcheck
   shfmt
+
+  # Backup Editor
+  vscode  
 #+end_src
 
 *** Emacs
@@ -440,6 +444,9 @@ audacity
 
   # Nix
   nix-mode
+
+  # Yaml
+  yaml-mode
 ]))
 #+end_src
 *** Other Packages
@@ -640,6 +647,12 @@ This is for global packages and settings I want on all my machines.
   boot.loader.efi.canTouchEfiVariables = true;
 #+end_src
 
+*** Virtual Box
+#+begin_src elisp
+   virtualisation.virtualbox.host.enable = true;
+   users.extraGroups.vboxusers.members = [ "primary" ];
+#+end_src
+
 *** App armor
 #+begin_src nix
   # App armor
@@ -757,6 +770,7 @@ programs.gnupg.agent = {
   pinentryPackage = pkgs.pinentry-qt;
 };
 #+end_src
+
 *** Wayland
 #+begin_src nix
 environment.sessionVariables.NIXOS_OZONE_WL = "1";

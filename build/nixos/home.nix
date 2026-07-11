@@ -119,6 +119,9 @@ audacity
   shellcheck
   shfmt
 
+  # Backup Editor
+  vscode
+
 # emacs itself
 ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: with epkgs; [
   evil
@@ -182,6 +185,9 @@ audacity
 
   # Nix
   nix-mode
+
+  # Yaml
+  yaml-mode
 ]))
 
 fastfetch

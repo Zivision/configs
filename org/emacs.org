@@ -34,6 +34,7 @@
       - [[#english][English]]
       -  [[#nix][Nix]]
       -  [[#python][Python]]
+      - [[#yaml][Yaml]]
     -  [[#marginalia--embark][Marginalia & Embark]]
     -  [[#custom-settings][Custom Settings]]
   -  [[#key-binds][Key Binds]]
@@ -433,6 +434,20 @@ Yes this is spellcheck
   :ensure t
   :config
   (add-hook 'python-base-mode-hook 'pet-mode -10))
+#+end_src
+
+**** Yaml
+#+begin_src elisp
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist
+             '("\\.yaml\\'" . yaml-mode))
+
+;; Auto indent enter mode
+(add-hook 'yaml-mode-hook
+      '(lambda ()
+        (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
 #+end_src
 ***  Marginalia & Embark
 #+begin_src elisp
