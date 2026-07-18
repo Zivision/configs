@@ -443,6 +443,12 @@
   (space-leader-def
     "w" 'evil-window-map
     "." 'find-file
+    )
+
+  ;; Consult functions
+  (space-leader-def
+    "/" 'consult-fd
+    "'" 'consult-ripgrep
     "," 'consult-buffer
     )
 
