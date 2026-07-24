@@ -90,8 +90,8 @@ nixpkgs.config.allowUnfree = true;
 # Firewall
 networking.firewall = {
   enable = true;
-  allowedTCPPorts = [ 5000 25565 ];
-  allowedUDPPorts = [ 5000 25565 ];
+  #allowedTCPPorts = [  ];
+  #allowedUDPPorts = [  ];
 };
 
 # This value determines the NixOS release from which the default
@@ -142,10 +142,12 @@ services.xserver.xkb = {
 };
 
 # Enable CUPS to print documents.
-services.printing.enable = true;
+#services.printing.enable = true;
 
 # Set editor to neovim for quick edits
 environment.variables.EDITOR = "nvim";
+
+
 
 # Enable sound with pipewire.
 services.pulseaudio.enable = false;
@@ -170,23 +172,11 @@ users.users.primary = {
   extraGroups = [ "networkmanager" "wheel" "docker" ];
 };
 
-virtualisation.docker.enable = true;
-
-programs.virt-manager.enable = true;
-
-users.groups.libvirtd.members = ["primary"];
-
-virtualisation.libvirtd.enable = true;
-
-virtualisation.spiceUSBRedirection.enable = true;
-
 services.flatpak.enable = true;
 
 environment.systemPackages = with pkgs; [
 
 swaylock
-
-docker
 
 flatpak
 

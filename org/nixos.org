@@ -66,15 +66,13 @@
     - [[#polkit][Polkit]]
     - [[#flakes][Flakes]]
     - [[#desktop][Desktop]]
+    - [[#dns][DNS]]
     - [[#audio][Audio]]
     - [[#users][Users]]
-    - [[#docker][Docker]]
-    - [[#virt-manager][Virt Manager]]
     - [[#flatpak][Flatpak]]
     - [[#nix-packages][Nix Packages]]
       - [[#start-of-list-1][Start of List]]
       - [[#sway-lock-lock-screen][Sway Lock (Lock Screen)]]
-      - [[#more-developer-tools][More Developer Tools]]
       - [[#flatpak-1][Flatpak]]
       - [[#end-of-list-2][End of List]]
 
@@ -740,8 +738,8 @@ nixpkgs.config.allowUnfree = true;
 # Firewall
 networking.firewall = {
   enable = true;
-  allowedTCPPorts = [ 5000 25565 ];
-  allowedUDPPorts = [ 5000 25565 ];
+  #allowedTCPPorts = [  ];
+  #allowedUDPPorts = [  ];
 };
 
 # This value determines the NixOS release from which the default
@@ -810,10 +808,15 @@ security.polkit.enable = true;
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #services.printing.enable = true;
 
   # Set editor to neovim for quick edits
   environment.variables.EDITOR = "nvim";
+#+end_src
+
+
+*** DNS
+#+begin_src nix
 #+end_src
 
 *** Audio
@@ -845,20 +848,6 @@ security.polkit.enable = true;
   };
 #+end_src
 
-*** Docker
-#+begin_src nix
-virtualisation.docker.enable = true;
-#+end_src
-*** Virt Manager
-#+begin_src nix
-programs.virt-manager.enable = true;
-
-users.groups.libvirtd.members = ["primary"];
-
-virtualisation.libvirtd.enable = true;
-
-virtualisation.spiceUSBRedirection.enable = true;
-#+end_src
 *** Flatpak
 #+begin_src nix
 services.flatpak.enable = true;
@@ -872,10 +861,6 @@ environment.systemPackages = with pkgs; [
 **** Sway Lock (Lock Screen)
 #+begin_src nix
 swaylock
-#+end_src
-**** More Developer Tools
-#+begin_src nix
-  docker
 #+end_src
 
 **** Flatpak
