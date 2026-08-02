@@ -281,7 +281,20 @@
   :ensure t
   :config
   (apheleia-global-mode +1)
-  (setf (alist-get 'nix-mode apheleia-mode-alist) 'nixfmt))
+  (setf (alist-get 'nix-mode apheleia-mode-alist) 'nixfmt)
+  (setf (alist-get 'clojure-mode apheleia-mode-alist) 'cljfmt))
+
+;; Major mode
+(use-package clojure-mode)
+
+;; Cider
+(use-package cider
+  :after clojure-mode)
+
+;; Paredit
+(use-package paredit
+  :hook ((clojure-mode . paredit-mode)
+         (cider-repl-mode . paredit-mode)))
 
 (use-package jinx
   :hook (emacs-startup . global-jinx-mode)

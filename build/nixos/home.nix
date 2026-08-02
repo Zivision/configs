@@ -57,6 +57,11 @@ home.file = {
 
 programs.thunderbird.enable = true;
 
+services.nextcloud-client = {
+  enable = true;
+  startInBackground = true;
+};
+
 programs.bash = {
     enable = true;
     initExtra = builtins.readFile ../home/.bashrc;
@@ -178,6 +183,11 @@ audacity
   jinx
 
   ## Languages
+  # Clojure
+  clojure-mode
+  cider
+  paredit
+  
   # Python
   lsp-pyright
   pet

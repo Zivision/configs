@@ -28,6 +28,7 @@
     - [[#kde-wallet][KDE Wallet]]
     - [[#end-of-list][End of list]]
   - [[#thunderbird-email][Thunderbird (email)]]
+  - [[#nextcloud][Nextcloud]]
   - [[#bash-management][Bash management]]
   - [[#packages][Packages]]
     - [[#start-of-list][Start of List]]
@@ -66,7 +67,6 @@
     - [[#polkit][Polkit]]
     - [[#flakes][Flakes]]
     - [[#desktop][Desktop]]
-    - [[#dns][DNS]]
     - [[#audio][Audio]]
     - [[#users][Users]]
     - [[#flatpak][Flatpak]]
@@ -289,6 +289,13 @@ home.file = {
 #+begin_src nix
 programs.thunderbird.enable = true;
 #+end_src
+** Nextcloud
+#+begin_src nix
+services.nextcloud-client = {
+  enable = true;
+  startInBackground = true;
+};
+#+end_src
 
 ** Bash management
 #+begin_src nix
@@ -435,6 +442,11 @@ audacity
   jinx
 
   ## Languages
+  # Clojure
+  clojure-mode
+  cider
+  paredit
+  
   # Python
   lsp-pyright
   pet
@@ -769,6 +781,7 @@ programs.gnupg.agent = {
 };
 #+end_src
 
+
 *** Wayland
 #+begin_src nix
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -814,10 +827,6 @@ security.polkit.enable = true;
   environment.variables.EDITOR = "nvim";
 #+end_src
 
-
-*** DNS
-#+begin_src nix
-#+end_src
 
 *** Audio
 #+begin_src nix

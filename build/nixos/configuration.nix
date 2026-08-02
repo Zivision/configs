@@ -147,8 +147,6 @@ services.xserver.xkb = {
 # Set editor to neovim for quick edits
 environment.variables.EDITOR = "nvim";
 
-
-
 # Enable sound with pipewire.
 services.pulseaudio.enable = false;
 security.rtkit.enable = true;
