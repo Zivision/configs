@@ -69,6 +69,7 @@
     - [[#desktop][Desktop]]
     - [[#audio][Audio]]
     - [[#users][Users]]
+    - [[#clamav][Clamav]]
     - [[#flatpak][Flatpak]]
     - [[#nix-packages][Nix Packages]]
       - [[#start-of-list-1][Start of List]]
@@ -278,7 +279,7 @@ home.file = {
 #+begin_src nix
 ".config/kwalletrc".text = ''
   [Wallet]
-  Enabled=false
+  Enabled=true
 '';
 #+end_src
 *** End of list
@@ -856,6 +857,14 @@ security.polkit.enable = true;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 #+end_src
+*** Clamav
+#+begin_src nix
+services.clamav.daemon.enable = true;
+
+services.clamav.updater.enable = true;
+
+
+#+end_src
 
 *** Flatpak
 #+begin_src nix
@@ -876,6 +885,7 @@ swaylock
 Why Flatpak? for sandboxing certain apps I wish to have more restrictive permissions
 #+begin_src nix
 flatpak
+ clamav
 #+end_src
 **** End of List
 #+begin_src nix

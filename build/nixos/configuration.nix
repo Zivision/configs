@@ -170,6 +170,10 @@ users.users.primary = {
   extraGroups = [ "networkmanager" "wheel" "docker" ];
 };
 
+services.clamav.daemon.enable = true;
+
+services.clamav.updater.enable = true;
+
 services.flatpak.enable = true;
 
 environment.systemPackages = with pkgs; [
@@ -177,6 +181,7 @@ environment.systemPackages = with pkgs; [
 swaylock
 
 flatpak
+ clamav
 
 ];
 }
