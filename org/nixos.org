@@ -886,6 +886,7 @@ Why Flatpak? for sandboxing certain apps I wish to have more restrictive permiss
 #+begin_src nix
 flatpak
  clamav
+gparted
 #+end_src
 **** End of List
 #+begin_src nix

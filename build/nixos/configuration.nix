@@ -182,6 +182,7 @@ swaylock
 
 flatpak
  clamav
+gparted
 
 ];
 }
