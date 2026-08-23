@@ -83,10 +83,10 @@
   (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
   (doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-  (doom-tokyo-night-brighter-comments t)
-  (doom-tokyo-night-comment-bg nil)
+  (doom-monokai-classic-brighter-comments t)
+  (doom-monokai-classic-comment-bg nil)
   :config
-  (load-theme 'doom-tokyo-night t))
+  (load-theme 'doom-monokai-classic t))
 
 (add-to-list 'default-frame-alist
              '(font . "Iosevka Nerd Font Mono 14"))
@@ -465,10 +465,12 @@
     "," 'consult-buffer
     )
 
+  ;; Utils
   (space-leader-def
     :prefix "SPC o"
     "e" 'eshell
-    "t" 'vterm)
+    "t" 'vterm
+    "a" 'org-agenda)
 
   (space-leader-def
     :prefix "SPC g"
