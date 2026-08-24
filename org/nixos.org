@@ -178,29 +178,32 @@ in
         }
       ];
     };
-  };
 #+end_src
 **** WSL
 #+begin_src nix
-    wsl = nixpkgs.lib.nixosSystem {
-      modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./build/nixos/wsl.nix
+wsl = nixpkgs.lib.nixosSystem {
+  modules = [
+    # Import the previous configuration.nix we used,
+    # so the old configuration file still takes effect
 
-        # Import home manager
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.primary =  {
-            imports = [
-            ./build/nixos/dev.nix
-            ];
-          };
-        }
-      ];
-    };
+    nixos-wsl.nixosModules.default
+    {
+      system.stateVersion = "26.05";
+      wsl.enable = true;
+    }
+    # Import home manager
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.primary =  {
+        imports = [
+          ./build/nixos/dev.nix
+        ];
+      };
+    }
+  ];
+};
 
 #+end_src
 *** Dev shell
