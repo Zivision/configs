@@ -6,7 +6,10 @@ inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
   # Nixos WSL Channel
-  nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+  nixos-wsl = {
+    url = "github:nix-community/NixOS-WSL/main";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   # Home manager
   home-manager = {
     url = "github:nix-community/home-manager/release-26.05";
@@ -72,6 +75,8 @@ nixbox = nixpkgs.lib.nixosSystem {
 
 wsl = nixpkgs.lib.nixosSystem {
   modules = [
+    ./build/nixos/wsl.nix
+ 
     # Import the previous configuration.nix we used,
     # so the old configuration file still takes effect
 

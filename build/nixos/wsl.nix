@@ -5,10 +5,8 @@
   ...
 }:
 {
-  imports = [
-    # Include Modules
-    <nixos-wsl/modules>
-  ];
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   wsl.enable = true;
   wsl.defaultUser = "primary";
