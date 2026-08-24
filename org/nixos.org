@@ -8,6 +8,7 @@
     - [[#nixos-configurations][Nixos Configurations]]
       - [[#swiftx][Swiftx]]
       - [[#nixbox][NixBox]]
+      - [[#wsl][WSL]]
     - [[#dev-shell][Dev shell]]
       - [[#default][Default]]
       - [[#install][Install]]
@@ -15,7 +16,6 @@
 - [[#home-settings][Home Settings]]
   - [[#imports][Imports]]
   - [[#basic-settings][Basic Settings]]
-  - [[#direnv][Direnv]]
   - [[#config-file-linking][Config File linking]]
     - [[#home-file][Home File]]
     - [[#kitty][Kitty]]
@@ -27,33 +27,44 @@
     - [[#foot][Foot]]
     - [[#kde-wallet][KDE Wallet]]
     - [[#end-of-list][End of list]]
-  - [[#thunderbird-email][Thunderbird (email)]]
   - [[#nextcloud][Nextcloud]]
-  - [[#bash-management][Bash management]]
   - [[#packages][Packages]]
     - [[#start-of-list][Start of List]]
     - [[#office-tools][Office Tools]]
     - [[#games][Games]]
     - [[#sway-pkgs][Sway (PKGS)]]
     - [[#browser][Browser]]
+    - [[#backup-editor][Backup editor]]
     - [[#video-editing][Video Editing]]
     - [[#audio-editing][Audio Editing]]
-    - [[#text-editors][Text editors]]
-    - [[#emacs][Emacs]]
-    - [[#other-packages][Other Packages]]
     - [[#fonts][Fonts]]
     - [[#terminal][Terminal]]
     - [[#end-of-list-1][End of list]]
+- [[#dev-settings][Dev Settings]]
+  - [[#imports-1][Imports]]
+  - [[#basic-settings-1][Basic Settings]]
+  - [[#direnv][Direnv]]
+  - [[#bash-management][Bash management]]
+  - [[#packages-1][Packages]]
+    - [[#start-of-list-1][Start of List]]
+    - [[#hunspell][Hunspell]]
+    - [[#dependencies][Dependencies]]
+    - [[#neovim][Neovim]]
+    - [[#emacs][Emacs]]
+    - [[#other-packages][Other Packages]]
+    - [[#fonts-for-packages][Fonts for packages]]
+    - [[#end-of-list-2][End of list]]
 - [[#systems][Systems]]
   - [[#swiftx-1][SwiftX]]
   - [[#nixbox-1][NixBox]]
+  - [[#wsl-1][WSL]]
 - [[#configuration-settings][Configuration Settings]]
   - [[#nvidia][Nvidia]]
     - [[#lts-kernel][LTS Kernel]]
     - [[#open-gl][Open GL]]
     - [[#drivers-and-hardware-settings][Drivers and Hardware Settings]]
   - [[#configuration][Configuration]]
-    - [[#imports-1][Imports]]
+    - [[#imports-2][Imports]]
     - [[#bootloader][Bootloader]]
     - [[#virtual-box][Virtual Box]]
     - [[#app-armor][App armor]]
@@ -72,10 +83,10 @@
     - [[#clamav][Clamav]]
     - [[#flatpak][Flatpak]]
     - [[#nix-packages][Nix Packages]]
-      - [[#start-of-list-1][Start of List]]
+      - [[#start-of-list-2][Start of List]]
       - [[#sway-lock-lock-screen][Sway Lock (Lock Screen)]]
       - [[#flatpak-1][Flatpak]]
-      - [[#end-of-list-2][End of List]]
+      - [[#end-of-list-3][End of List]]
 
 * Flake Setttings
 :PROPERTIES:
@@ -93,6 +104,9 @@
 inputs = {
   # NixOS official package source, using the nixos-26.05 branch here
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+
+  # Nixos WSL Channel
+  nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   # Home manager
   home-manager = {
     url = "github:nix-community/home-manager/release-26.05";
@@ -129,7 +143,13 @@ in
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.primary = import ./build/nixos/home.nix;
+          home-manager.users.primary =  {
+            imports = [
+
+            ./build/nixos/home.nix
+            ./build/nixos/dev.nix
+            ];
+          };
         }
       ];
     };
@@ -148,11 +168,40 @@ in
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.primary = import ./build/nixos/home.nix;
+          home-manager.users.primary =  {
+            imports = [
+
+            ./build/nixos/home.nix
+            ./build/nixos/dev.nix
+            ];
+          };
         }
       ];
     };
   };
+#+end_src
+**** WSL
+#+begin_src nix
+    wsl = nixpkgs.lib.nixosSystem {
+      modules = [
+        # Import the previous configuration.nix we used,
+        # so the old configuration file still takes effect
+        ./build/nixos/wsl.nix
+
+        # Import home manager
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.primary =  {
+            imports = [
+            ./build/nixos/dev.nix
+            ];
+          };
+        }
+      ];
+    };
+
 #+end_src
 *** Dev shell
 #+begin_src nix
@@ -213,13 +262,6 @@ install = legacyPkgs.mkShell {
   home.homeDirectory = "/home/primary";
   home.stateVersion = "26.05";
 #+end_src
-** Direnv
-#+begin_src nix
-programs.direnv = {
-  enable = true;
-  nix-direnv.enable = true;
-};
-#+end_src
 ** Config File linking
 *** Home File
 #+begin_src nix
@@ -237,7 +279,6 @@ home.file = {
 ".config/waybar" = {
   source = ../waybar;
   recursive = true;
-
 };
 #+end_src
 *** Wofi
@@ -286,10 +327,6 @@ home.file = {
 #+begin_src nix
 };
 #+end_src
-** Thunderbird (email)
-#+begin_src nix
-programs.thunderbird.enable = true;
-#+end_src
 ** Nextcloud
 #+begin_src nix
 services.nextcloud-client = {
@@ -298,18 +335,6 @@ services.nextcloud-client = {
 };
 #+end_src
 
-** Bash management
-#+begin_src nix
-programs.bash = {
-    enable = true;
-    initExtra = builtins.readFile ../home/.bashrc;
-
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-  };
-
-#+end_src
 
 ** Packages
 *** Start of List
@@ -319,8 +344,6 @@ home.packages = with pkgs; [
 *** Office Tools
 #+begin_src nix
   libreoffice-qt6-fresh
-  hunspell
-  hunspellDicts.en-us
 #+end_src
 *** Games
 #+begin_src nix
@@ -344,8 +367,12 @@ home.packages = with pkgs; [
 *** Browser
 #+begin_src nix
 # Start of the home packages array
-brave
 firefox
+#+end_src
+*** Backup editor
+#+begin_src nix
+  # Backup Editor
+  vscode  
 #+end_src
 *** Video Editing
 #+begin_src nix
@@ -355,7 +382,70 @@ kdePackages.kdenlive
 #+begin_src nix
 audacity
 #+end_src
-*** Text editors
+
+*** Fonts
+#+begin_src nix
+
+# Chinese Font
+noto-fonts-cjk-sans
+noto-fonts-cjk-serif
+
+#+end_src
+*** Terminal
+#+begin_src nix
+  kitty
+#+end_src
+*** End of list
+#+begin_src nix
+];
+ }
+#+end_src
+* Dev Settings
+:PROPERTIES:
+:header-args: :tangle ../build/nixos/dev.nix
+:VISIBILITY: folded
+:END:
+** Imports
+#+begin_src nix
+{ config, lib, pkgs, ... }:
+#+end_src
+** Basic Settings
+#+begin_src nix
+{
+  home.username = "primary";
+  home.homeDirectory = "/home/primary";
+  home.stateVersion = "26.05";
+#+end_src
+** Direnv
+#+begin_src nix
+programs.direnv = {
+  enable = true;
+  nix-direnv.enable = true;
+};
+#+end_src
+** Bash management
+#+begin_src nix
+programs.bash = {
+    enable = true;
+    initExtra = builtins.readFile ../home/.bashrc;
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
+
+#+end_src
+** Packages
+*** Start of List
+#+begin_src nix
+home.packages = with pkgs; [
+#+end_src
+*** Hunspell
+#+begin_src nix
+  hunspell
+  hunspellDicts.en-us
+#+end_src
+*** Dependencies
 #+begin_src nix
 # For Emacs
   python3
@@ -371,8 +461,6 @@ audacity
 
   # MPV for emms
   mpv
-  # Neovim for quick edits
-  neovim
 
   # Nix format
   nixfmt
@@ -381,10 +469,13 @@ audacity
   shellcheck
   shfmt
 
-  # Backup Editor
-  vscode  
 #+end_src
+*** Neovim
+#+begin_src nix
+  # Neovim for quick edits
+  neovim
 
+#+end_src
 *** Emacs
 #+begin_src nix
 # emacs itself
@@ -403,8 +494,6 @@ audacity
   corfu
   cape
   apheleia
-  beacon
-  vertico-posframe
   marginalia
   embark
   embark-consult
@@ -416,7 +505,6 @@ audacity
   magit
   emms
   vterm
-  mu4e
   yasnippet
   
   # Elfeed
@@ -427,8 +515,6 @@ audacity
   
   # Themes
   doom-themes
-  jazz-theme
-  badwolf-theme
   
   # Eshell
   eshell-syntax-highlighting
@@ -460,14 +546,15 @@ audacity
   yaml-mode
 ]))
 #+end_src
+
 *** Other Packages
 #+begin_src nix
-fastfetch
+  fastfetch
   git
+  fzf
   curl
   wget
   htop
-  fzf
   findutils.locate
   yt-dlp
   vips
@@ -475,20 +562,11 @@ fastfetch
   mediainfo
   jq
 #+end_src
-*** Fonts
+*** Fonts for packages
 #+begin_src nix
 # Fonts for emacs
 nerd-fonts.symbols-only
 nerd-fonts.iosevka
-
-# Chinese Font
-noto-fonts-cjk-sans
-noto-fonts-cjk-serif
-
-#+end_src
-*** Terminal
-#+begin_src nix
-  kitty
 #+end_src
 *** End of list
 #+begin_src nix
@@ -557,6 +635,31 @@ Main Desktop
   # Use Latest Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }
+#+end_src
+** WSL
+:PROPERTIES:
+:header-args: :tangle ../build/nixos/wsl.nix
+:VISIBILITY: folded
+:END:
+#+begin_src nix
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    # Include Modules
+    <nixos-wsl/modules>
+  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  wsl.enable = true;
+  wsl.defaultUser = "primary";
+
+  system.stateVersion = "26.05"; # Did you read the comment?
+}
+
 #+end_src
 * Configuration Settings
 :PROPERTIES:

@@ -4,6 +4,9 @@
 inputs = {
   # NixOS official package source, using the nixos-26.05 branch here
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+
+  # Nixos WSL Channel
+  nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   # Home manager
   home-manager = {
     url = "github:nix-community/home-manager/release-26.05";
@@ -33,7 +36,13 @@ swiftx = nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users.primary = import ./build/nixos/home.nix;
+      home-manager.users.primary =  {
+        imports = [
+
+        ./build/nixos/home.nix
+        ./build/nixos/dev.nix
+        ];
+      };
     }
   ];
 };
@@ -50,7 +59,13 @@ nixbox = nixpkgs.lib.nixosSystem {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.primary = import ./build/nixos/home.nix;
+        home-manager.users.primary =  {
+          imports = [
+
+          ./build/nixos/home.nix
+          ./build/nixos/dev.nix
+          ];
+        };
       }
     ];
   };
