@@ -71,6 +71,26 @@ nixbox = nixpkgs.lib.nixosSystem {
   };
 };
 
+wsl = nixpkgs.lib.nixosSystem {
+  modules = [
+    # Import the previous configuration.nix we used,
+    # so the old configuration file still takes effect
+    ./build/nixos/wsl.nix
+
+    # Import home manager
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.primary =  {
+        imports = [
+        ./build/nixos/dev.nix
+        ];
+      };
+    }
+  ];
+};
+
 devShells.${system}= {
 
 default = legacyPkgs.mkShell {
