@@ -117,7 +117,7 @@ inputs = {
 
 ** Outputs
 #+begin_src nix
-outputs = { self, nixpkgs, home-manager, ... }@inputs:
+outputs = { self, nixpkgs, home-manager, nixos-wsl, ... }@inputs:
 let
   system = "x86_64-linux";
   legacyPkgs = nixpkgs.legacyPackages.${system};
@@ -203,6 +203,7 @@ wsl = nixpkgs.lib.nixosSystem {
       };
     }
   ];
+};
 };
 
 #+end_src
