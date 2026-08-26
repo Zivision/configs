@@ -130,6 +130,8 @@ ffmpegthumbnailer
 mediainfo
 jq
 
+tmux
+
 # Fonts for emacs
 nerd-fonts.symbols-only
 nerd-fonts.iosevka

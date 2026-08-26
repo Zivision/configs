@@ -52,6 +52,7 @@
     - [[#neovim][Neovim]]
     - [[#emacs][Emacs]]
     - [[#other-packages][Other Packages]]
+    - [[#multiplexer][Multiplexer]]
     - [[#fonts-for-packages][Fonts for packages]]
     - [[#end-of-list-2][End of list]]
 - [[#systems][Systems]]
@@ -570,6 +571,10 @@ home.packages = with pkgs; [
   ffmpegthumbnailer
   mediainfo
   jq
+#+end_src
+*** Multiplexer
+#+begin_src nix
+tmux
 #+end_src
 *** Fonts for packages
 #+begin_src nix
