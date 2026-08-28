@@ -6,8 +6,8 @@
   - [[#inputs][Inputs]]
   - [[#outputs][Outputs]]
     - [[#nixos-configurations][Nixos Configurations]]
-      - [[#swiftx][Swiftx]]
-      - [[#nixbox][NixBox]]
+      - [[#laptop][Laptop]]
+      - [[#main-box][Main Box]]
       - [[#wsl][WSL]]
     - [[#dev-shell][Dev shell]]
       - [[#default][Default]]
@@ -56,8 +56,8 @@
     - [[#fonts-for-packages][Fonts for packages]]
     - [[#end-of-list-2][End of list]]
 - [[#systems][Systems]]
-  - [[#swiftx-1][SwiftX]]
-  - [[#nixbox-1][NixBox]]
+  - [[#laptop-1][Laptop]]
+  - [[#main-box-1][Main Box]]
   - [[#wsl-1][WSL]]
 - [[#configuration-settings][Configuration Settings]]
   - [[#nvidia][Nvidia]]
@@ -132,15 +132,15 @@ in
 #+begin_src nix
   nixosConfigurations = {
 #+end_src
-**** Swiftx
+**** Laptop
 #+begin_src nix
-    swiftx = nixpkgs.lib.nixosSystem {
+    laptop = nixpkgs.lib.nixosSystem {
       modules = [
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
         ./build/nixos/configuration.nix
         ./build/nixos/nvidia.nix
-        ./build/nixos/swiftx.nix
+        ./build/nixos/laptop.nix
 
         # Import home manager
         home-manager.nixosModules.home-manager
@@ -158,14 +158,14 @@ in
       ];
     };
 #+end_src
-**** NixBox
+**** Main Box
 #+begin_src nix
-    nixbox = nixpkgs.lib.nixosSystem {
+    mainbox = nixpkgs.lib.nixosSystem {
       modules = [
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
         ./build/nixos/configuration.nix
-        ./build/nixos/nixbox.nix
+        ./build/nixos/main-box.nix
 
         # Import home manager
         home-manager.nixosModules.home-manager
@@ -591,9 +591,9 @@ nerd-fonts.iosevka
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
-** SwiftX
+** Laptop
 :PROPERTIES:
-:header-args: :tangle ../build/nixos/swiftx.nix
+:header-args: :tangle ../build/nixos/laptop.nix
 :VISIBILITY: folded
 :END:
 One of my laptops
@@ -604,8 +604,12 @@ One of my laptops
   pkgs,
   ...
 }:
-# This is for the swift x
+# This is for the Laptop
 {
+
+  # Also another reference
+  # Just Monika.
+  networking.hostName = "Monika";
   # Enable Prime
   hardware.nvidia.prime = {
     sync.enable = true;
@@ -631,12 +635,12 @@ One of my laptops
 }
 
 #+end_src
-** NixBox
+** Main Box
 :PROPERTIES:
-:header-args: :tangle ../build/nixos/nixbox.nix
+:header-args: :tangle ../build/nixos/main-box.nix
 :VISIBILITY: folded
 :END:
-Main Desktop
+Main Box
 #+begin_src nix
 {
   config,
@@ -645,7 +649,10 @@ Main Desktop
   ...
 }:
 {
-
+  # If you get it, you get it.
+  # El Psy Kongroo
+  networking.hostName = "IBN-5100";
+  
   # Use Latest Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }
@@ -797,7 +804,6 @@ nix.package = pkgs.nixVersions.latest;
 *** System
 #+begin_src nix
 
-networking.hostName = "nixos"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 # Configure network proxy if necessary

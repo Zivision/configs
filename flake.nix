@@ -26,13 +26,13 @@ in
 
 nixosConfigurations = {
 
-swiftx = nixpkgs.lib.nixosSystem {
+laptop = nixpkgs.lib.nixosSystem {
   modules = [
     # Import the previous configuration.nix we used,
     # so the old configuration file still takes effect
     ./build/nixos/configuration.nix
     ./build/nixos/nvidia.nix
-    ./build/nixos/swiftx.nix
+    ./build/nixos/laptop.nix
 
     # Import home manager
     home-manager.nixosModules.home-manager
@@ -50,12 +50,12 @@ swiftx = nixpkgs.lib.nixosSystem {
   ];
 };
 
-nixbox = nixpkgs.lib.nixosSystem {
+mainbox = nixpkgs.lib.nixosSystem {
   modules = [
     # Import the previous configuration.nix we used,
     # so the old configuration file still takes effect
     ./build/nixos/configuration.nix
-    ./build/nixos/nixbox.nix
+    ./build/nixos/main-box.nix
 
     # Import home manager
     home-manager.nixosModules.home-manager
