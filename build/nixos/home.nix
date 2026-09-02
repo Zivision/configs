@@ -80,6 +80,7 @@ firefox
 vscode
 
 kdePackages.kdenlive
+  handbrake
 
 audacity
 
@@ -88,6 +89,8 @@ noto-fonts-cjk-sans
 noto-fonts-cjk-serif
 
 kitty
+
+strawberry
 
 ];
  }

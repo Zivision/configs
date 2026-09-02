@@ -39,6 +39,7 @@
     - [[#audio-editing][Audio Editing]]
     - [[#fonts][Fonts]]
     - [[#terminal][Terminal]]
+    - [[#music-player][Music Player]]
     - [[#end-of-list-1][End of list]]
 - [[#dev-settings][Dev Settings]]
   - [[#imports-1][Imports]]
@@ -387,6 +388,7 @@ firefox
 *** Video Editing
 #+begin_src nix
 kdePackages.kdenlive
+  handbrake
 #+end_src
 *** Audio Editing
 #+begin_src nix
@@ -404,6 +406,10 @@ noto-fonts-cjk-serif
 *** Terminal
 #+begin_src nix
   kitty
+#+end_src
+*** Music Player
+#+begin_src nix
+  strawberry
 #+end_src
 *** End of list
 #+begin_src nix
