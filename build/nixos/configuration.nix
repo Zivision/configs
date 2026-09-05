@@ -101,14 +101,6 @@ networking.firewall = {
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 system.stateVersion = "25.05"; # Did you read the comment?
 
-# Example for /etc/nixos/configuration.nix
-services.syncthing = {
-  enable = true;
-  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-  user = "primary";
-  dataDir = "/home/primary";
-};
-
 programs.gnupg.agent = {
   enable = true;
   pinentryPackage = pkgs.pinentry-qt;
