@@ -50,7 +50,7 @@ hunspellDicts.en-us
 neovim
 
 # emacs itself
-((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: with epkgs; [
+((emacsPackagesFor emacs-gtk).emacsWithPackages (epkgs: with epkgs; [
   evil
   evil-collection
   general
