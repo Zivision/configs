@@ -36,9 +36,7 @@
     - [[#browser][Browser]]
     - [[#backup-editor][Backup editor]]
     - [[#video-editing][Video Editing]]
-    - [[#audio-editing][Audio Editing]]
     - [[#fonts][Fonts]]
-    - [[#terminal][Terminal]]
     - [[#music-player][Music Player]]
     - [[#end-of-list-1][End of list]]
 - [[#dev-settings][Dev Settings]]
@@ -81,12 +79,12 @@
     - [[#desktop][Desktop]]
     - [[#audio][Audio]]
     - [[#users][Users]]
-    - [[#clamav][Clamav]]
     - [[#flatpak][Flatpak]]
     - [[#nix-packages][Nix Packages]]
       - [[#start-of-list-2][Start of List]]
       - [[#sway-lock-lock-screen][Sway Lock (Lock Screen)]]
       - [[#flatpak-1][Flatpak]]
+      - [[#gparted][Gparted]]
       - [[#end-of-list-3][End of List]]
 
 * Flake Setttings
@@ -359,8 +357,7 @@ home.packages = with pkgs; [
 #+begin_src nix
 (prismlauncher.override {
   jdks = [
-
-    zulu25
+    jdk25
     zulu8
   ];
 })
@@ -389,10 +386,6 @@ firefox
 kdePackages.kdenlive
   handbrake
 #+end_src
-*** Audio Editing
-#+begin_src nix
-audacity
-#+end_src
 
 *** Fonts
 #+begin_src nix
@@ -401,10 +394,6 @@ audacity
 noto-fonts-cjk-sans
 noto-fonts-cjk-serif
 
-#+end_src
-*** Terminal
-#+begin_src nix
-  kitty
 #+end_src
 *** Music Player
 #+begin_src nix
@@ -973,14 +962,6 @@ security.polkit.enable = true;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 #+end_src
-*** Clamav
-#+begin_src nix
-services.clamav.daemon.enable = true;
-
-services.clamav.updater.enable = true;
-
-
-#+end_src
 
 *** Flatpak
 #+begin_src nix
@@ -1001,7 +982,9 @@ swaylock
 Why Flatpak? for sandboxing certain apps I wish to have more restrictive permissions
 #+begin_src nix
 flatpak
- clamav
+#+end_src
+**** Gparted
+#+begin_src nix
 gparted
 #+end_src
 **** End of List

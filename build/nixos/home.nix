@@ -60,8 +60,7 @@ libreoffice-qt6-fresh
 
 (prismlauncher.override {
   jdks = [
-
-    zulu25
+    jdk25
     zulu8
   ];
 })
@@ -82,13 +81,9 @@ vscode
 kdePackages.kdenlive
   handbrake
 
-audacity
-
 # Chinese Font
 noto-fonts-cjk-sans
 noto-fonts-cjk-serif
-
-kitty
 
 strawberry
 
