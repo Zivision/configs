@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-export CONFIGS=$(cat $(fd -I paths.json ~) | jq -r ".root")
-export DOOMDIR="$CONFIGS/build/doom"
-
 kwalletd6 &
 waypaper --restore
-emacs -q --load "$CONFIGS/build/emacs/init.el" --daemon
+emacs --daemon
 foot --server

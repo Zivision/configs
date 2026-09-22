@@ -18,6 +18,7 @@
   - [[#basic-settings][Basic Settings]]
   - [[#config-file-linking][Config File linking]]
     - [[#home-file][Home File]]
+    - [[#emacs][Emacs]]
     - [[#kitty][Kitty]]
     - [[#waybar][Waybar]]
     - [[#wofi][Wofi]]
@@ -49,7 +50,7 @@
     - [[#hunspell][Hunspell]]
     - [[#dependencies][Dependencies]]
     - [[#neovim][Neovim]]
-    - [[#emacs][Emacs]]
+    - [[#emacs-1][Emacs]]
     - [[#other-packages][Other Packages]]
     - [[#multiplexer][Multiplexer]]
     - [[#fonts-for-packages][Fonts for packages]]
@@ -274,6 +275,13 @@ install = legacyPkgs.mkShell {
 *** Home File
 #+begin_src nix
 home.file = {
+#+end_src
+*** Emacs
+#+begin_src nix
+".config/emacs" = {
+  source = ../emacs;
+  recursive = true;
+};
 #+end_src
 *** Kitty
 #+begin_src nix

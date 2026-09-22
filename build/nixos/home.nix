@@ -7,6 +7,11 @@
 
 home.file = {
 
+".config/emacs" = {
+  source = ../emacs;
+  recursive = true;
+};
+
 ".config/kitty" = {
   source = ../kitty;
   recursive = true;
