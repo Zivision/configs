@@ -125,7 +125,8 @@
     (erase-buffer)
     (eshell-send-input)))
 
-(use-package magit :ensure t)
+(use-package magit :ensure t
+  :commands (magit-status magit-blame))
 
 ;; Basic package setup (assumes use-package or package-install)
 (require 'emms-setup)
@@ -285,7 +286,8 @@
   (setf (alist-get 'clojure-mode apheleia-mode-alist) 'cljfmt))
 
 ;; Major mode
-(use-package clojure-mode)
+(use-package clojure-mode
+  :mode ("\\.clj\\'" . clojure-mode))
 
 ;; Cider
 (use-package cider
@@ -293,6 +295,7 @@
 
 ;; Paredit
 (use-package paredit
+  
   :hook ((clojure-mode . paredit-mode)
          (cider-repl-mode . paredit-mode)))
 
@@ -305,7 +308,7 @@
 (use-package nix-mode
   :defer t
   :ensure t
-  :mode "\\.nix\\'")
+  :mode ("\\.nix\\'" . nix-mode))
 
 ;; Virtualenv
 (use-package pyvenv

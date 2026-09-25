@@ -366,7 +366,7 @@ home.packages = with pkgs; [
 (prismlauncher.override {
   jdks = [
     jdk25
-    zulu8
+    jdk8
   ];
 })
 #+end_src
@@ -397,11 +397,9 @@ kdePackages.kdenlive
 
 *** Fonts
 #+begin_src nix
-
 # Chinese Font
 noto-fonts-cjk-sans
 noto-fonts-cjk-serif
-
 #+end_src
 *** Music Player
 #+begin_src nix
@@ -490,73 +488,73 @@ home.packages = with pkgs; [
 #+end_src
 *** Emacs
 #+begin_src nix
-# emacs itself
-((emacsPackagesFor emacs-gtk).emacsWithPackages (epkgs: with epkgs; [
-  evil
-  evil-collection
-  general
-  which-key
-  doom-modeline
-  vertico
-  consult
-  orderless
-  nerd-icons-dired
-  nerd-icons-completion
-  golden-ratio
-  corfu
-  cape
-  apheleia
-  marginalia
-  embark
-  embark-consult
-  undo-fu
-  dashboard
-  envrc
+  # emacs itself
+  ((emacsPackagesFor emacs-gtk).emacsWithPackages (epkgs: with epkgs; [
+    evil
+    evil-collection
+    general
+    which-key
+    doom-modeline
+    vertico
+    consult
+    orderless
+    nerd-icons-dired
+    nerd-icons-completion
+    golden-ratio
+    corfu
+    cape
+    apheleia
+    marginalia
+    embark
+    embark-consult
+    undo-fu
+    dashboard
+    envrc
 
-  # Emacs Utilities
-  magit
-  emms
-  vterm
-  yasnippet
-  
-  # Elfeed
-  elfeed
-  elfeed-org
-  elfeed-tube
-  elfeed-tube-mpv
-  
-  # Themes
-  doom-themes
-  
-  # Eshell
-  eshell-syntax-highlighting
-  eshell-prompt-extras
+    # Emacs Utilities
+    magit
+    emms
+    vterm
+    yasnippet
+    
+    # Elfeed
+    elfeed
+    elfeed-org
+    elfeed-tube
+    elfeed-tube-mpv
+    
+    # Themes
+    doom-themes
+    
+    # Eshell
+    eshell-syntax-highlighting
+    eshell-prompt-extras
 
-  # Org mode
-  olivetti
-  org-modern
-  org-appear
-  toc-org
-  org-roam
-  jinx
+    # Org mode
+    olivetti
+    org-modern
+    org-appear
+    toc-org
+    org-roam
+    jinx
 
-  ## Languages
-  # Clojure
-  clojure-mode
-  cider
-  paredit
-  
-  # Python
-  lsp-pyright
-  pet
-  pyvenv
+    ## Languages
+    # Clojure
+    clojure-mode
+    cider
+    paredit
+    
+    # Python
+    lsp-pyright
+    pet
+    pyvenv
 
-  # Nix
-  nix-mode
+    # Nix
+    nix-mode
 
-  # Yaml
-  yaml-mode
-]))
+    # Yaml
+    yaml-mode
+  ]))
 #+end_src
 
 *** Other Packages
@@ -569,9 +567,6 @@ home.packages = with pkgs; [
   htop
   findutils.locate
   yt-dlp
-  vips
-  ffmpegthumbnailer
-  mediainfo
   jq
 #+end_src
 *** Multiplexer

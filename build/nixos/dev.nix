@@ -125,9 +125,6 @@ wget
 htop
 findutils.locate
 yt-dlp
-vips
-ffmpegthumbnailer
-mediainfo
 jq
 
 tmux

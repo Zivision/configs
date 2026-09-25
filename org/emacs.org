@@ -218,7 +218,8 @@
 #+end_src
 ***  Magit
 #+begin_src elisp
-(use-package magit :ensure t)
+(use-package magit :ensure t
+  :commands (magit-status magit-blame))
 #+end_src
 ***  EMMS
 #+begin_src elisp
@@ -408,7 +409,8 @@
 **** Clojure
 #+begin_src elisp
 ;; Major mode
-(use-package clojure-mode)
+(use-package clojure-mode
+  :mode ("\\.clj\\'" . clojure-mode))
 
 ;; Cider
 (use-package cider
@@ -416,6 +418,7 @@
 
 ;; Paredit
 (use-package paredit
+  
   :hook ((clojure-mode . paredit-mode)
          (cider-repl-mode . paredit-mode)))
 #+end_src
@@ -434,7 +437,7 @@ Yes this is spellcheck
 (use-package nix-mode
   :defer t
   :ensure t
-  :mode "\\.nix\\'")
+  :mode ("\\.nix\\'" . nix-mode))
 #+end_src
 ****  Python
 #+begin_src elisp

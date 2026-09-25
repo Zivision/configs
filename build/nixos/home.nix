@@ -66,7 +66,7 @@ libreoffice-qt6-fresh
 (prismlauncher.override {
   jdks = [
     jdk25
-    zulu8
+    jdk8
   ];
 })
 
